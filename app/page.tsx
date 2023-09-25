@@ -1,9 +1,10 @@
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
 import Link from 'next/link'
+import Image from 'next/image'
 import LogoutButton from '../components/LogoutButton'
-import SupabaseLogo from '../components/SupabaseLogo'
-import NextJsLogo from '../components/NextJsLogo'
+import TheCirculArtLogoLong from '../assets/logos/the-circulart-logo-long-white-thin.svg'
+import TheCirculCARDLogo from '../assets/logos/the-circulCARD-logo-long-whiite.svg'
 
 export const dynamic = 'force-dynamic'
 
@@ -72,10 +73,22 @@ export default async function Index() {
         <div className="flex flex-col items-center mb-4 lg:mb-12">
           <div className="flex gap-8 justify-center items-center">
             <Link href="https://supabase.com/" target="_blank">
-              <SupabaseLogo />
+              <Image
+                src={TheCirculArtLogoLong}
+                alt="Picture of the author"
+                width={200}
+                // blurDataURL="data:..." automatically provided
+                // placeholder="blur" // Optional blur-up while loading
+              />
             </Link>
             <span className="border-l rotate-45 h-6" />
-            <NextJsLogo />
+            <Image
+              src={TheCirculCARDLogo}
+              alt="Picture of the author"
+              width={200}
+              // blurDataURL="data:..." automatically provided
+              // placeholder="blur" // Optional blur-up while loading
+            />
           </div>
           <h1 className="sr-only">Supabase and Next.js Starter Template</h1>
           <p className="text-3xl lg:text-4xl !leading-tight mx-auto max-w-xl text-center my-12">
