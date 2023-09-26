@@ -4,7 +4,7 @@ const nextConfig = {
     serverActions: true,
   },
   reactStrictMode: true,
-  distDir: 'build',
+  distDir: 'out',
 }
 
 module.exports = nextConfig
