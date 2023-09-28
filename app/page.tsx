@@ -4,7 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import LogoutButton from '../components/LogoutButton'
 import TheCirculArtBulb from '../assets/logos/circulart-green-bulb.svg'
-import TheCirculArtText from '../assets/logos/circulart-only-text-white-green.png'
+import TheCirculArtText from '../assets/logos/__circulart-NO-bulb-text-white-green.svg'
 
 export const dynamic = 'force-dynamic'
 
@@ -74,7 +74,7 @@ export default async function Index() {
 
       <div className="animate-in flex flex-col gap-14 opacity-0 max-w-4xl px-3 py-16 lg:py-24 mt[25%] text-foreground">
         <div className="flex flex-col items-center mt-20 md:my-32 lg:mb-12">
-          <div className="flex flex-col justify-center items-center">
+          <div className="flex flex-col gap-2 justify-center items-center">
             <Link href="https://supabase.com/" target="_blank">
               <Image
                 src={TheCirculArtBulb}
