@@ -40,3 +40,32 @@
     transform: translateY(0);
   }
 }
+
+@font-face {
+  font-family: 'Champagne&Limousines';
+  src: url('../public/fonts/champagne---limousines/Champagne & Limousines.ttf');
+  src: url('../public/fonts/champagne---limousines/Champagne & Limousines Bold.ttf');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'MarkPro';
+  src: url('../public/fonts/mark-pro/Mark Pro/Mark Pro.ttf');
+  src: url('../public/fonts/mark-pro/Mark Pro Bold/Mark Pro Bold.ttf');
+  src: url('../public/fonts/mark-pro/Mark Pro Medium/Mark Pro Medium.ttf');
+  font-weight: 400;
+  font-style: normal;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Champagne&Limousines';
+}
+
+p {
+  font-family: 'MarkPro';
+}

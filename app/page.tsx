@@ -97,8 +97,10 @@ export default async function Index() {
             Circular economy through recycling and generation of second live
             products.
           </h1>
-          <button className="bg-[#79d97c] py-1 px-8 mt-6 rounded-full font-mono text-lg text-white">
-            <strong>Entrar</strong>
+          <button className="bg-[#79d97c] py-1 px-8 mt-6 rounded-full text-lg text-white">
+            <h4>
+              <strong>Entrar</strong>
+            </h4>
           </button>
           <p className="text-base !leading-tight mx-auto max-w-xl text-center my-12">
             He olvidado mi contraseña
