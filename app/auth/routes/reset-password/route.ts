@@ -6,11 +6,15 @@ export const dynamic = 'force-dynamic'
 
 export async function POST(request: Request) {
   const requestUrl = new URL(request.url)
+  const formData = await request.formData()
+  const email = String(formData.get('email'))
   const supabase = createRouteHandlerClient({ cookies })
+  console.log('AUTH-PASS-RESET-EMAIL', email)
+  await supabase.auth.resetPasswordForEmail(email, {
+    redirectTo: `${requestUrl.origin}/auth/views/update-password`,
+  })
 
-  await supabase.auth.signOut()
-
-  return NextResponse.redirect(`${requestUrl.origin}/login`, {
+  return NextResponse.redirect(`${requestUrl.origin}/`, {
     // a 301 status is required to redirect from a POST to a GET route
     status: 301,
   })

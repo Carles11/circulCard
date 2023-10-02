@@ -1,7 +1,7 @@
 import Link from 'next/link'
-import Messages from './messages'
+import Messages from '../messages'
 
-export default function Login() {
+export default function PasswordReset() {
   return (
     <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2">
       <Link
@@ -26,40 +26,25 @@ export default function Login() {
       </Link>
 
       <form
-        className="flex-1 flex flex-col w-full justify-center gap-2 text-foreground"
-        action="/auth/sign-in"
+        action="/auth/routes/reset-password"
         method="post"
+        className="flex-1 flex flex-col w-full my-28 py-2 px-4 rounded-md no-underline bg-btn-background"
       >
-        <label className="text-md" htmlFor="email">
+        <h1 className="text-white">Recuperación de contraseña</h1>
+        <label className="text-md text-white my-2" htmlFor="password">
           Email
         </label>
         <input
-          className="rounded-md px-4 py-2 bg-inherit border mb-6"
+          className="text-white rounded-md px-4 py-2 bg-inherit border mb-6"
           name="email"
           placeholder="you@example.com"
           required
           autoComplete="username"
         />
-        <label className="text-md" htmlFor="password">
-          Password
-        </label>
-        <input
-          className="rounded-md px-4 py-2 bg-inherit border mb-6"
-          type="password"
-          name="password"
-          placeholder="••••••••"
-          required
-          autoComplete="current-password"
-        />
+
         <button className="bg-green-700 rounded-full text-lg px-4 py-2 text-white mb-2 hover:bg-btn-background-hover">
           Validar
         </button>
-        {/* <button
-          formAction="/auth/sign-up"
-          className="border border-gray-700 rounded px-4 py-2 text-white mb-2"
-        >
-          Sign Up
-        </button> */}
       </form>
       <Messages />
     </div>

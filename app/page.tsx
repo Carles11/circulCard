@@ -42,6 +42,7 @@ export const dynamic = 'force-dynamic'
 export default async function Index() {
   const supabase = createServerComponentClient({ cookies })
 
+  console.log('------cookies---->', cookies)
   const {
     data: { user },
   } = await supabase.auth.getUser()
@@ -80,6 +81,7 @@ export default async function Index() {
                 src={TheCirculArtBulb}
                 alt="The circulart bulb in green"
                 width={50}
+                height={50}
                 // blurDataURL="data:..." automatically provided
                 // placeholder="blur" // Optional blur-up while loading
               />
@@ -89,6 +91,7 @@ export default async function Index() {
               src={TheCirculArtText}
               alt="The circulart"
               width={200}
+              priority={true}
               // blurDataURL="data:..." automatically provided
               // placeholder="blur" // Optional blur-up while loading
             />
@@ -98,7 +101,7 @@ export default async function Index() {
             products.
           </h1>
           <Link
-            href="/login"
+            href="/auth/views/login"
             className="py-2 px-4 rounded-md no-underline bg-btn-background"
           >
             <button className="bg-[#79d97c] py-0 px-8 mt-16 rounded-full text-lg text-white hover:bg-btn-background-hover ">
@@ -108,12 +111,12 @@ export default async function Index() {
             </button>
           </Link>
           <Link
-            href="/login"
+            href="/auth/views/reset-password"
             className="py-2 px-4 rounded-md no-underline bg-btn-background"
           >
-            <p className="text-xs !leading-tight mx-auto max-w-xl text-center my-4">
+            <button className="text-xs py-2 px-4 rounded-md no-underline bg-btn-background hover:bg-btn-background-hover">
               He olvidado mi contraseña
-            </p>{' '}
+            </button>
           </Link>
         </div>
 
