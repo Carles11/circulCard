@@ -10,10 +10,10 @@
     --foreground: 200 50% 3%;
   }
 
-  @media (prefers-color-scheme: light) {
+  @media (prefers-color-scheme: dark) {
     :root {
       --background: 200 50% 3%;
-      --btn-background: 200 10% 9%;
+      --btn-background: #79d97c;
       --btn-background-hover: 200 10% 12%;
       --foreground: 200 20% 96%;
     }
@@ -39,4 +39,33 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+@font-face {
+  font-family: 'Champagne&Limousines';
+  src: url('../public/fonts/champagne---limousines/Champagne & Limousines.ttf');
+  src: url('../public/fonts/champagne---limousines/Champagne & Limousines Bold.ttf');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'MarkPro';
+  src: url('../public/fonts/mark-pro/Mark Pro/Mark Pro.ttf');
+  src: url('../public/fonts/mark-pro/Mark Pro Bold/Mark Pro Bold.ttf');
+  src: url('../public/fonts/mark-pro/Mark Pro Medium/Mark Pro Medium.ttf');
+  font-weight: 400;
+  font-style: normal;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Champagne&Limousines';
+}
+
+p {
+  font-family: 'MarkPro';
 }

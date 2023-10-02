@@ -22,7 +22,7 @@ export default function Login() {
         >
           <polyline points="15 18 9 12 15 6" />
         </svg>{' '}
-        Back
+        Volver
       </Link>
 
       <form
@@ -38,6 +38,7 @@ export default function Login() {
           name="email"
           placeholder="you@example.com"
           required
+          autoComplete="username"
         />
         <label className="text-md" htmlFor="password">
           Password
@@ -48,18 +49,19 @@ export default function Login() {
           name="password"
           placeholder="••••••••"
           required
+          autoComplete="current-password"
         />
-        <button className="bg-green-700 rounded px-4 py-2 text-white mb-2">
-          Sign In
+        <button className="bg-green-700 rounded-full text-lg px-4 py-2 text-white mb-2 hover:bg-btn-background-hover">
+          Validar
         </button>
-        <button
+        {/* <button
           formAction="/auth/sign-up"
-          className="border border-gray-700 rounded px-4 py-2 text-black mb-2"
+          className="border border-gray-700 rounded px-4 py-2 text-white mb-2"
         >
           Sign Up
-        </button>
-        <Messages />
+        </button> */}
       </form>
+      <Messages />
     </div>
   )
 }
