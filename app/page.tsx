@@ -87,7 +87,7 @@ export default async function Index() {
 
             <Image
               src={TheCirculArtText}
-              alt="Picture of the author"
+              alt="The circulart"
               width={200}
               // blurDataURL="data:..." automatically provided
               // placeholder="blur" // Optional blur-up while loading
@@ -97,14 +97,24 @@ export default async function Index() {
             Circular economy through recycling and generation of second live
             products.
           </h1>
-          <button className="bg-[#79d97c] py-0 px-8 mt-16 rounded-full text-lg text-white">
-            <h4>
-              <strong>Entrar</strong>
-            </h4>
-          </button>
-          <p className="text-base !leading-tight mx-auto max-w-xl text-center my-4">
-            He olvidado mi contraseña
-          </p>
+          <Link
+            href="/login"
+            className="py-2 px-4 rounded-md no-underline bg-btn-background"
+          >
+            <button className="bg-[#79d97c] py-0 px-8 mt-16 rounded-full text-lg text-white hover:bg-btn-background-hover ">
+              <h4>
+                <strong>Entrar</strong>
+              </h4>
+            </button>
+          </Link>
+          <Link
+            href="/login"
+            className="py-2 px-4 rounded-md no-underline bg-btn-background"
+          >
+            <p className="text-xs !leading-tight mx-auto max-w-xl text-center my-4">
+              He olvidado mi contraseña
+            </p>{' '}
+          </Link>
         </div>
 
         {/* <div className="w-full p-[1px] bg-gradient-to-r from-transparent via-foreground/10 to-transparent" />
