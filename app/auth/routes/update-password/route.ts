@@ -9,13 +9,13 @@ export async function POST(request: Request) {
   const formData = await request.formData()
   const new_password = String(formData.get('new_password'))
   const supabase = createRouteHandlerClient({ cookies })
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
-  console.log('------USERin-password---->', user)
-  console.log('AUTH-PASS-RESET-NEWPASSWORD', new_password)
-  await supabase.auth.updateUser({ password: new_password })
 
+  console.log('AUTH-PASS-RESET-NEWPASSWORD', new_password)
+
+  const { error } = await supabase.auth.updateUser({
+    password: new_password,
+  })
+  console.log('AUTH-PASS-ERROR----->', error)
   return NextResponse.redirect(`${requestUrl.origin}/`, {
     // a 301 status is required to redirect from a POST to a GET route
     status: 301,

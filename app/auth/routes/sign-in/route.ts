@@ -15,10 +15,10 @@ export async function POST(request: Request) {
     email,
     password,
   })
-
+  console.log('EROROR-AFTER-PASSRESET', error)
   if (error) {
     return NextResponse.redirect(
-      `${requestUrl.origin}/login?error=Could not authenticate user`,
+      `${requestUrl.origin}/auth/views/login?error=Could not authenticate user`,
       {
         // a 301 status is required to redirect from a POST to a GET route
         status: 301,
