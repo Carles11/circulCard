@@ -28,14 +28,13 @@ export default function Products() {
 
   useEffect(() => {
     const getProducts = async () => {
-      console.log('UUUUUUUUUUUUU', clientID)
       try {
         const { data, error } = await supabase
           .from('products')
           .select(`product_name, clients (id)`)
           .not('clients', 'is', null)
           .eq('clients.id', clientID)
-        console.log('DATAT-TA-KAT-----', data)
+
         setProducts(data || [])
       } catch (error: any) {
         setError(error.message)
