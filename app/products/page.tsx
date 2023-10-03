@@ -1,4 +1,5 @@
 'use client'
+import { useSearchParams } from 'next/navigation'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
@@ -15,6 +16,9 @@ const iconMap: Record<string, StaticImageData> = {
 }
 
 export default function Products() {
+  const searchParams = useSearchParams()
+  const clientID = searchParams.get('clientID')
+
   const [products, setProducts] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -24,11 +28,13 @@ export default function Products() {
 
   useEffect(() => {
     const getProducts = async () => {
+      console.log('UUUUUUUUUUUUU', clientID)
       try {
         const { data, error } = await supabase
           .from('products')
-          .select(`product_name,clients (id)`)
+          .select(`product_name, clients (id)`)
           .not('clients', 'is', null)
+          .eq('clients.id', clientID)
         console.log('DATAT-TA-KAT-----', data)
         setProducts(data || [])
       } catch (error: any) {

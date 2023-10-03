@@ -43,7 +43,12 @@ export default function Clients() {
       {clients.length > 0 ? (
         clients.map((cli) => (
           <Link
-            href="/products"
+            href={{
+              pathname: 'products',
+              query: {
+                clientID: cli.id,
+              },
+            }}
             className="py-2 px-4 rounded-md no-underline text-foreground bg-btn-background hover:bg-btn-background-hover flex items-center group text-sm"
           >
             <button
