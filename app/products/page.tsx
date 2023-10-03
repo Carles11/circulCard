@@ -3,7 +3,7 @@ import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Image, { StaticImageData } from 'next/image'
-import { FC } from 'react'
+
 import POSicon from '../../assets/images/icons/pos-icon.png'
 import CARDSicon from '../../assets/images/icons/cards-icon.png'
 import FURNITUREicon from '../../assets/images/icons/furniture-icon.png'
@@ -25,12 +25,11 @@ export default function Products() {
   useEffect(() => {
     const getProducts = async () => {
       try {
-        const { data, error } = await supabase.from('products').select()
-        console.log('producuts---', data, error)
-        if (error) {
-          throw new Error(error.message)
-        }
-
+        const { data, error } = await supabase
+          .from('products')
+          .select(`product_name,clients (id)`)
+          .not('clients', 'is', null)
+        console.log('DATAT-TA-KAT-----', data)
         setProducts(data || [])
       } catch (error: any) {
         setError(error.message)
@@ -72,26 +71,30 @@ export default function Products() {
         </svg>{' '}
         Volver
       </Link>
-      <div className="flex flex-row">
+      <div className="flex flex-row self-center">
         {products.length > 0 ? (
-          products.map((prod) => (
-            <div className="flex flex-col gap-2 items-center">
-              <Image
-                src={iconMap[prod.product_name]}
-                alt="The circulart bulb in green"
-                width={50}
-                height={50}
-                // blurDataURL="data:..." automatically provided
-                // placeholder="blur" // Optional blur-up while loading
-              />
-              <button
-                className="m-8 w-auto text-white bg-green-700 rounded-full text-sm px-4 py-2 text-white mb-2 hover:bg-btn-background-hover"
-                key={prod.id}
-              >
-                {prod.product_name}
-              </button>
-            </div>
-          ))
+          products.map((prod) =>
+            prod.clients !== null ? (
+              <div className="flex flex-col gap-2 items-center">
+                <Image
+                  src={iconMap[prod.product_name]}
+                  alt="The circulart products"
+                  width={70}
+                  height={70}
+                  // blurDataURL="data:..." automatically provided
+                  // placeholder="blur" // Optional blur-up while loading
+                />
+                <button
+                  className="m-8 w-auto text-white bg-green-700 rounded-full text-sm px-4 py-2 text-white mb-2 hover:bg-btn-background-hover"
+                  key={prod.id}
+                >
+                  {prod.product_name}
+                </button>
+              </div>
+            ) : (
+              <p>This client has not defined any products yet.</p>
+            )
+          )
         ) : (
           <p className="text-white">No Products available</p>
         )}
