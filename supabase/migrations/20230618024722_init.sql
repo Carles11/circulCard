@@ -2,6 +2,7 @@ create table if not exists clients (
   id uuid default gen_random_uuid() primary key,
   created_at timestamp with time zone default timezone('utc'::text, now()) not null,
   title text,
+  
   is_complete boolean default false,
   user_id uuid references auth.users default auth.uid()
 );

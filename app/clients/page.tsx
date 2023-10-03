@@ -1,6 +1,7 @@
 'use client'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useEffect, useState } from 'react'
+import Link from 'next/link'
 
 export default function Clients() {
   const [clients, setClients] = useState<any[]>([])
@@ -41,12 +42,17 @@ export default function Clients() {
     <div className="flex flex-col">
       {clients.length > 0 ? (
         clients.map((cli) => (
-          <button
-            className="m-8 w-auto text-white bg-green-700 rounded-full text-lg px-4 py-2 text-white mb-2 hover:bg-btn-background-hover"
-            key={cli.id}
+          <Link
+            href="/products"
+            className="py-2 px-4 rounded-md no-underline text-foreground bg-btn-background hover:bg-btn-background-hover flex items-center group text-sm"
           >
-            {cli.title}
-          </button>
+            <button
+              className="w-full m-8 text-white bg-green-700 rounded-full text-lg px-4 py-2 text-white mb-2 hover:bg-btn-background-hover"
+              key={cli.id}
+            >
+              {cli.client_name}
+            </button>{' '}
+          </Link>
         ))
       ) : (
         <p className="text-white">No clients available</p>
