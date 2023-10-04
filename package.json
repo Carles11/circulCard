@@ -22,7 +22,7 @@
     "@types/react": "18.2.12",
     "@types/react-dom": "18.2.5",
     "encoding": "^0.1.13",
-    "supabase": "^1.99.5"
+    "supabase": ">=1.8.1"
   },
   "engines": {
     "node": ">=16"

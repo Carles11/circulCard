@@ -43,6 +43,7 @@ export default function Clients() {
       {clients.length > 0 ? (
         clients.map((cli) => (
           <Link
+            key={cli.id}
             href={{
               pathname: 'products',
               query: {

@@ -1,7 +1,39 @@
+'use client'
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
+
 import Link from 'next/link'
 import Messages from '../messages'
+import { useEffect, useState } from 'react'
+import { redirect } from 'next/navigation'
+import { User as SupabaseUser } from '@supabase/supabase-js'
 
+import type { Database } from '../../../../types/supabase'
+
+interface User extends SupabaseUser {
+  // Additional properties specific to your application
+}
 export default function Login() {
+  const [user, setUser] = useState<User | null>(null)
+  console.log('userrrrlrrlrlrlr', user)
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const supabase = createClientComponentClient<Database>()
+
+      const {
+        data: { user: fetchedUser },
+      } = await supabase.auth.getUser()
+
+      setUser(fetchedUser || null)
+    }
+
+    fetchData()
+  }, [])
+
+  useEffect(() => {
+    user?.id && redirect('/clients')
+  }, [])
+
   return (
     <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2">
       <Link
