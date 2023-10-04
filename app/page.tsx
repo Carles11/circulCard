@@ -90,7 +90,7 @@ export default async function Index() {
             products.
           </h1>
           <Link
-            href="/auth/views/login"
+            href={`${user ? '/clients' : '/auth/views/login'}`}
             className="py-2 px-4 rounded-md no-underline bg-btn-background"
           >
             <button className="bg-[#79d97c] py-0 px-8 mt-16 rounded-full text-lg text-white hover:bg-btn-background-hover ">
