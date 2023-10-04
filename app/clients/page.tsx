@@ -5,6 +5,7 @@ import RealtimeClients from './realTimeClients'
 
 import type { Database } from '../../types/supabase'
 import { redirect } from 'next/navigation'
+import Loader from 'components/loader'
 
 export default function Clients() {
   const [clients, setClients] = useState<any[]>([])
@@ -50,7 +51,11 @@ export default function Clients() {
   }, [supabase, setClients, setLoading, setError])
 
   if (loading) {
-    return <p className="text-white">Loading...</p>
+    return (
+      <p className="text-white">
+        <Loader />
+      </p>
+    )
   }
 
   if (error) {
