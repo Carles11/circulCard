@@ -5,6 +5,7 @@ import Image from 'next/image'
 
 import TheCirculArtBulb from '../assets/logos/circulart-green-bulb.svg'
 import TheCirculArtText from '../assets/logos/__circulart-NO-bulb-text-white-green.svg'
+import { redirect } from 'next/navigation'
 
 export const dynamic = 'force-dynamic'
 
@@ -41,6 +42,14 @@ export const dynamic = 'force-dynamic'
 
 export default async function Index() {
   const supabase = createServerComponentClient({ cookies })
+
+  const {
+    data: { session },
+  } = await supabase.auth.getSession()
+
+  if (!session) {
+    redirect('/unauthenticated')
+  }
 
   const {
     data: { user },

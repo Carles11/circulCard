@@ -1,7 +1,7 @@
 'use client'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useEffect, useState } from 'react'
-import Link from 'next/link'
+import RealtimeClients from './realTimeClients'
 
 export default function Clients() {
   const [clients, setClients] = useState<any[]>([])
@@ -40,29 +40,7 @@ export default function Clients() {
 
   return (
     <div className="flex flex-col">
-      {clients.length > 0 ? (
-        clients.map((cli) => (
-          <Link
-            key={cli.id}
-            href={{
-              pathname: 'products',
-              query: {
-                clientID: cli.id,
-              },
-            }}
-            className="py-2 px-4 rounded-md no-underline text-foreground bg-btn-background hover:bg-btn-background-hover flex items-center group text-sm"
-          >
-            <button
-              className="w-full m-8 text-white bg-green-700 rounded-full text-lg px-4 py-2 text-white mb-2 hover:bg-btn-background-hover"
-              key={cli.id}
-            >
-              {cli.client_name}
-            </button>{' '}
-          </Link>
-        ))
-      ) : (
-        <p className="text-white">No clients available</p>
-      )}
+      <RealtimeClients clients={clients} />
     </div>
   )
 }
