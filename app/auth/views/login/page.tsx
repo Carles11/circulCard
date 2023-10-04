@@ -14,7 +14,6 @@ interface User extends SupabaseUser {
 }
 export default function Login() {
   const [user, setUser] = useState<User | null>(null)
-  console.log('userrrrlrrlrlrlr', user)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,8 +30,11 @@ export default function Login() {
   }, [])
 
   useEffect(() => {
+    // Redirect logged-in users
     user?.id && redirect('/clients')
-  }, [])
+  }, [user])
+
+  console.log('RRRRRRRRRRRRRRRRR', user)
 
   return (
     <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2">
