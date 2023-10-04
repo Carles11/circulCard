@@ -9,6 +9,7 @@ import { useRouter } from 'next/navigation'
 function realTimeClients({ clients }: { clients: any }) {
   const supabase = createClientComponentClient()
   const router = useRouter()
+
   useEffect(() => {
     const channel = supabase
       .channel('realtime clients')

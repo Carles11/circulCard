@@ -3,6 +3,9 @@ import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useEffect, useState } from 'react'
 import RealtimeClients from './realTimeClients'
 
+import type { Database } from '../../types/supabase'
+import { redirect } from 'next/navigation'
+
 export default function Clients() {
   const [clients, setClients] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
@@ -10,6 +13,22 @@ export default function Clients() {
 
   // Create a Supabase client configured to use cookies
   const supabase = createClientComponentClient()
+
+  useEffect(() => {
+    const supabase = createClientComponentClient<Database>()
+
+    const checkUser = async () => {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession()
+
+      if (!session) {
+        redirect('/unauthenticated')
+      }
+    }
+
+    checkUser()
+  }, [supabase])
 
   useEffect(() => {
     const getClients = async () => {

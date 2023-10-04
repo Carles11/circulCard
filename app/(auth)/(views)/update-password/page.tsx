@@ -26,7 +26,7 @@ export default function PasswordUpdate() {
       </Link>
 
       <form
-        action="/auth/routes/update-password"
+        action="/routes/update-password"
         method="post"
         className="flex-1 flex flex-col w-full my-28 py-2 px-4 rounded-md no-underline bg-btn-background"
       >

@@ -5,7 +5,6 @@ import Image from 'next/image'
 
 import TheCirculArtBulb from '../assets/logos/circulart-green-bulb.svg'
 import TheCirculArtText from '../assets/logos/__circulart-NO-bulb-text-white-green.svg'
-import { redirect } from 'next/navigation'
 
 export const dynamic = 'force-dynamic'
 
@@ -44,14 +43,6 @@ export default async function Index() {
   const supabase = createServerComponentClient({ cookies })
 
   const {
-    data: { session },
-  } = await supabase.auth.getSession()
-
-  if (!session) {
-    redirect('/unauthenticated')
-  }
-
-  const {
     data: { user },
   } = await supabase.auth.getUser()
 
@@ -60,7 +51,11 @@ export default async function Index() {
       <div className="animate-in flex flex-col gap-14 opacity-0 max-w-4xl px-3 py-16 lg:py-24 mt[25%] text-foreground">
         <div className="flex flex-col items-center mt-20 md:my-32 lg:mb-12">
           <div className="flex flex-col gap-2 justify-center items-center">
-            <Link href="https://thecirculart.com/" target="_blank">
+            <Link
+              href="https://thecirculart.com/"
+              target="_blank"
+              className="link-no-style"
+            >
               <Image
                 src={TheCirculArtBulb}
                 alt="The circulart bulb in green"
@@ -85,8 +80,8 @@ export default async function Index() {
             products.
           </h1>
           <Link
-            href={`${user ? '/clients' : '/auth/views/login'}`}
-            className="py-2 px-4 rounded-md no-underline bg-btn-background"
+            href={`${user ? '/clients' : '/login'}`}
+            className="link-no-style"
           >
             <button className="bg-[#79d97c] py-0 px-8 mt-16 rounded-full text-lg text-white hover:bg-btn-background-hover ">
               <h4>
@@ -94,11 +89,8 @@ export default async function Index() {
               </h4>
             </button>
           </Link>
-          <Link
-            href="/auth/views/reset-password"
-            className="py-2 px-4 rounded-md no-underline bg-btn-background"
-          >
-            <button className="text-xs py-2 px-4 rounded-md no-underline bg-btn-background hover:bg-btn-background-hover">
+          <Link href="/reset-password">
+            <button className="text-xs my-2 py-2 px-4 rounded-md no-underline bg-btn-background hover:bg-btn-background-hover">
               He olvidado mi contraseña
             </button>
           </Link>
