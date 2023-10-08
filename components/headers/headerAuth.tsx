@@ -35,9 +35,6 @@ function authHeader() {
             </button>
           </Link>
         )}
-        {/* <div className="flex items-center gap-4">
-          <LogoutButton />
-        </div> */}
       </div>
     </nav>
   )
