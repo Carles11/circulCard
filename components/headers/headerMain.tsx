@@ -41,7 +41,7 @@ function mainHeader({ user }: { user: object }) {
           </Link>
         )}
       </div>
-      <div className="flex flex-col items-center gap-4">
+      <div className="flex flex-col items-center">
         <Link
           href="https://thecirculart.com/"
           target="_blank"
@@ -50,8 +50,8 @@ function mainHeader({ user }: { user: object }) {
           <Image
             src={TheCirculArtBulb}
             alt="The circulart bulb in green"
-            width={50}
-            height={50}
+            width={40}
+            height={40}
             // blurDataURL="data:..." automatically provided
             // placeholder="blur" // Optional blur-up while loading
           />

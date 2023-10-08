@@ -32,7 +32,6 @@ function realTimeClients({ clients }: { clients: any }) {
 
   return (
     <div>
-      {' '}
       {clients.length > 0 ? (
         clients.map((cli: any) => (
           <Link
@@ -43,7 +42,7 @@ function realTimeClients({ clients }: { clients: any }) {
                 clientID: cli.id,
               },
             }}
-            className="py-2 px-4 rounded-md no-underline text-foreground bg-btn-background hover:bg-btn-background-hover flex items-center group text-sm"
+            className="link-no-style py-2 px-4 rounded-md no-underline text-foreground bg-btn-background hover:bg-btn-background-hover flex items-center group text-sm"
           >
             <ClientItem client={cli} />
           </Link>
