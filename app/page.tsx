@@ -1,10 +1,8 @@
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
-import Link from 'next/link'
-import Image from 'next/image'
 
-import TheCirculArtBulb from '../assets/logos/circulart-green-bulb.svg'
-import TheCirculArtText from '../assets/logos/__circulart-NO-bulb-text-white-green.svg'
+import MainPageTopContent from 'components/mainPage/mainPageTopContent'
+import MainPageBottomContent from '@/components/mainPage/mainPageBottomContent'
 
 export const dynamic = 'force-dynamic'
 
@@ -50,50 +48,12 @@ export default async function Index() {
     <div className="w-full h-full flex flex-col items-center">
       <div className="animate-in flex flex-col gap-14 opacity-0 max-w-4xl px-3 py-16 lg:py-24 mt[25%] text-foreground">
         <div className="flex flex-col items-center mt-20 md:my-32 lg:mb-12">
-          <div className="flex flex-col gap-2 justify-center items-center">
-            <Link
-              href="https://thecirculart.com/"
-              target="_blank"
-              className="link-no-style"
-            >
-              <Image
-                src={TheCirculArtBulb}
-                alt="The circulart bulb in green"
-                width={50}
-                height={50}
-                // blurDataURL="data:..." automatically provided
-                // placeholder="blur" // Optional blur-up while loading
-              />
-            </Link>
-
-            <Image
-              src={TheCirculArtText}
-              alt="The circulart"
-              width={200}
-              priority={true}
-              // blurDataURL="data:..." automatically provided
-              // placeholder="blur" // Optional blur-up while loading
-            />
-          </div>
+          <MainPageTopContent />
           <h1 className="sr-only">
             Circular economy through recycling and generation of second live
             products.
           </h1>
-          <Link
-            href={`${user ? '/clients' : '/login'}`}
-            className="link-no-style"
-          >
-            <button className="bg-[#79d97c] py-0 px-8 mt-16 rounded-full text-lg text-white hover:bg-btn-background-hover ">
-              <h4>
-                <strong>Entrar</strong>
-              </h4>
-            </button>
-          </Link>
-          <Link href="/reset-password">
-            <button className="text-xs my-2 py-2 px-4 rounded-md no-underline bg-btn-background hover:bg-btn-background-hover">
-              He olvidado mi contraseña
-            </button>
-          </Link>
+          <MainPageBottomContent user={user} />
         </div>
 
         {/* <div className="w-full p-[1px] bg-gradient-to-r from-transparent via-foreground/10 to-transparent" />
