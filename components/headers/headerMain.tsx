@@ -11,7 +11,6 @@ import TheCirculArtBulb from 'assets/logos/circulart-green-bulb.svg'
 
 function mainHeader({ user }: { user: object }) {
   const router = useRouter()
-  console.log('urlIsHomeurlIsHomeurlIsHome', urlIsHome())
   return (
     <div className="text-white flex flex-row justify-between border-b border-b-foreground/10 h-16">
       <div>

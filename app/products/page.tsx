@@ -7,6 +7,7 @@ import Image, { StaticImageData } from 'next/image'
 import POSicon from '../../assets/images/icons/pos-icon.png'
 import CARDSicon from '../../assets/images/icons/cards-icon.png'
 import FURNITUREicon from '../../assets/images/icons/furniture-icon.png'
+import Loader from 'components/loader'
 
 const iconMap: Record<string, StaticImageData> = {
   Datáfonos: POSicon,
@@ -30,9 +31,8 @@ export default function Products() {
       try {
         const { data, error } = await supabase
           .from('products')
-          .select(`product_name, clients (id)`)
-          .not('clients', 'is', null)
-          .eq('clients.id', clientID)
+          .select(`product_name`)
+        // .eq('products.clients.id', clientID)
 
         setProducts(data || [])
       } catch (error: any) {
@@ -46,13 +46,17 @@ export default function Products() {
   }, [supabase, setProducts, setLoading, setError])
 
   if (loading) {
-    return <p className="text-white">Loading...</p>
+    return (
+      <p className="text-white">
+        <Loader />
+      </p>
+    )
   }
 
   if (error) {
     return <p className="text-red-500">{error}</p>
   }
-
+  console.log('LIST-OF-PRODUCTS---->', products)
   return (
     <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2">
       <div className="flex flex-row self-center">
