@@ -4,12 +4,13 @@
 import { useSearchParams } from 'next/navigation'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useEffect, useState } from 'react'
-import ProductsList from './productsList'
 import type { Database } from 'types/supabase'
 import { User as SupabaseUser } from '@supabase/supabase-js'
 
 import Loader from 'components/loader'
 import ClientGreeting from './clientGreeting'
+import ProductsList from './productsList'
+import CTAsButtons from './ctasButtons'
 
 interface User extends SupabaseUser {
   // Additional properties specific to your application
@@ -76,6 +77,7 @@ export default function Products() {
     <div className="flex flex-col gap-28">
       <ClientGreeting clientID={clientID} />
       <ProductsList user={user} products={products} />
+      <CTAsButtons />
     </div>
   )
 }
