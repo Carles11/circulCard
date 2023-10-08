@@ -1,7 +1,9 @@
 import './globals.css'
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
-import LogoutButton from '../components/LogoutButton'
+
+import MainHeader from '@/components/headers/headerAuth'
+import AuthHeader from '@/components/headers/headerAuth'
 
 export const metadata = {
   title: 'TheCirculArt',
@@ -18,25 +20,15 @@ export default async function RootLayout({
   const {
     data: { user },
   } = await supabase.auth.getUser()
-
+  console.log('USER----->', user)
   return (
-    <html lang="en">
+    <html lang="es">
       <body>
         <main className="min-h-screen bg-background flex flex-col items-center">
           <div className="w-full h-full flex flex-col items-center">
-            {user && (
-              <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
-                <div className="w-full max-w-4xl flex justify-between items-center p-3 text-sm text-foreground">
-                  <div />
-                  <div>
-                    <div className="flex items-center gap-4">
-                      Hey, {user.email}!
-                      <LogoutButton />
-                    </div>
-                  </div>
-                </div>
-              </nav>
-            )}
+            <nav className="text-white w-full flex justify-center border-b border-b-foreground/10 h-16">
+              {user ? <MainHeader user={user} /> : <AuthHeader />}
+            </nav>
           </div>
 
           {children}

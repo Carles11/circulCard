@@ -4,6 +4,8 @@ import { cookies } from 'next/headers'
 import MainPageTopContent from 'components/mainPage/mainPageTopContent'
 import MainPageBottomContent from '@/components/mainPage/mainPageBottomContent'
 
+// import RootLayout from 'layouts/rootLayout'
+
 export const dynamic = 'force-dynamic'
 
 // const resources = [
@@ -156,3 +158,7 @@ export default async function Index() {
     </div>
   )
 }
+
+// Index.getLayout = function getLayout(page: React.ReactElement) {
+//   return <RootLayout>{page}</RootLayout>
+// }
