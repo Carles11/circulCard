@@ -66,6 +66,31 @@ h6 {
   font-family: 'Champagne&Limousines';
 }
 
+h1 {
+  font-size: 250%; /* 45px */
+}
+
+h2 {
+  font-size: 200%; /* 36px */
+  color: var(--btn-background);
+}
+
+h3 {
+  font-size: 177.78%; /* 32px */
+}
+
+h4 {
+  font-size: 162.5%; /* 26px */
+}
+
+h5 {
+  font-size: 122%; /* 22px */
+}
+
+h6 {
+  font-size: 100%; /* 18px */
+}
+
 p {
   font-family: 'MarkPro';
 }

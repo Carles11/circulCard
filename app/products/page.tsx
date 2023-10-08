@@ -1,30 +1,31 @@
 'use client'
+// @ts-nocheck
+
 import { useSearchParams } from 'next/navigation'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useEffect, useState } from 'react'
-import Image, { StaticImageData } from 'next/image'
+import ProductsList from './productsList'
+import type { Database } from 'types/supabase'
+import { User as SupabaseUser } from '@supabase/supabase-js'
 
-import POSicon from '../../assets/images/icons/pos-icon.png'
-import CARDSicon from '../../assets/images/icons/cards-icon.png'
-import FURNITUREicon from '../../assets/images/icons/furniture-icon.png'
 import Loader from 'components/loader'
+import ClientGreeting from './clientGreeting'
 
-const iconMap: Record<string, StaticImageData> = {
-  Datáfonos: POSicon,
-  Tarjetas: CARDSicon,
-  Mobiliario: FURNITUREicon,
+interface User extends SupabaseUser {
+  // Additional properties specific to your application
 }
 
 export default function Products() {
   const searchParams = useSearchParams()
   const clientID = searchParams.get('clientID')
+  const [user, setUser] = useState<User | null>(null)
 
   const [products, setProducts] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
   // Create a Supabase client configured to use cookies
-  const supabase = createClientComponentClient()
+  const supabase = createClientComponentClient<Database>()
 
   useEffect(() => {
     const getProducts = async () => {
@@ -45,6 +46,20 @@ export default function Products() {
     getProducts()
   }, [supabase, setProducts, setLoading, setError])
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const supabase = createClientComponentClient<Database>()
+
+      const {
+        data: { user: fetchedUser },
+      } = await supabase.auth.getUser()
+
+      setUser(fetchedUser || null)
+    }
+
+    fetchData()
+  }, [])
+
   if (loading) {
     return (
       <p className="text-white">
@@ -58,35 +73,9 @@ export default function Products() {
   }
   console.log('LIST-OF-PRODUCTS---->', products)
   return (
-    <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2">
-      <div className="flex flex-row self-center">
-        {products.length > 0 ? (
-          products.map((prod) =>
-            prod.clients !== null ? (
-              <div className="flex flex-col gap-2 items-center">
-                <Image
-                  src={iconMap[prod.product_name]}
-                  alt="The circulart products"
-                  width={70}
-                  height={70}
-                  // blurDataURL="data:..." automatically provided
-                  // placeholder="blur" // Optional blur-up while loading
-                />
-                <button
-                  className="m-8 w-auto text-white bg-green-700 rounded-full text-sm px-4 py-2 text-white mb-2 hover:bg-btn-background-hover"
-                  key={prod.id}
-                >
-                  {prod.product_name}
-                </button>
-              </div>
-            ) : (
-              <p>This client has not defined any products yet.</p>
-            )
-          )
-        ) : (
-          <p className="text-white">No Products available</p>
-        )}
-      </div>
+    <div className="flex flex-col gap-28">
+      <ClientGreeting clientID={clientID} />
+      <ProductsList user={user} products={products} />
     </div>
   )
 }

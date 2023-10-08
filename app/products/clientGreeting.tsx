@@ -1,43 +1,29 @@
 'use client'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
-import { useEffect, useState } from 'react'
-import RealtimeClients from './realTimeClients'
-
 import type { Database } from '../../types/supabase'
-import { redirect } from 'next/navigation'
+
+import { useEffect, useState } from 'react'
+
 import Loader from 'components/loader'
 
-export default function Clients() {
-  const [clients, setClients] = useState<any[]>([])
+function ClientGreeting({ clientID }: { clientID: string }) {
+  const [client, setClient] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
-  // Create a Supabase client configured to use cookies
-
   const supabase = createClientComponentClient<Database>()
-  useEffect(() => {
-    const checkUser = async () => {
-      const {
-        data: { session },
-      } = await supabase.auth.getSession()
-
-      if (!session) {
-        redirect('/unauthenticated')
-      }
-    }
-
-    checkUser()
-  }, [supabase])
-
   useEffect(() => {
     const getClients = async () => {
       try {
-        const { data, error } = await supabase.from('clients').select()
+        const { data, error } = await supabase
+          .from('clients')
+          .select('client_name')
+          .eq('id', clientID)
         if (error) {
           throw new Error(error.message)
         }
 
-        setClients(data || [])
+        setClient(data || {})
       } catch (error: any) {
         setError(error.message)
       } finally {
@@ -46,7 +32,7 @@ export default function Clients() {
     }
 
     getClients()
-  }, [supabase, setClients, setLoading, setError])
+  }, [supabase])
 
   if (loading) {
     return (
@@ -59,11 +45,15 @@ export default function Clients() {
   if (error) {
     return <p className="text-red-500">{error}</p>
   }
-  console.log('LIST-OF-clients---->', clients)
 
+  console.log('ESTEESTPMICLIENTENEEEEE', client)
   return (
-    <div className="flex flex-col">
-      <RealtimeClients clients={clients} />
+    <div className="flex flex-col justify-start text-white ml-8">
+      <h3>Hola</h3>
+      <h2>{client[0].client_name.toUpperCase()},</h2>
+      <h3>estos son tus products reciclados:</h3>
     </div>
   )
 }
+
+export default ClientGreeting

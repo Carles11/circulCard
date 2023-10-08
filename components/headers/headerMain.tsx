@@ -14,7 +14,6 @@ function mainHeader({ user }: { user: object }) {
   return (
     <div className="text-white flex flex-row justify-between border-b border-b-foreground/10 h-16">
       <div>
-        {' '}
         {!urlIsHome() && (
           <Link
             href="/"
