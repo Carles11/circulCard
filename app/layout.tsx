@@ -2,7 +2,7 @@ import './globals.css'
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
 
-import MainHeader from '@/components/headers/headerAuth'
+import MainHeader from '@/components/headers/headerMain'
 import AuthHeader from '@/components/headers/headerAuth'
 
 export const metadata = {
@@ -24,12 +24,10 @@ export default async function RootLayout({
   return (
     <html lang="es">
       <body>
-        <main className="min-h-screen bg-background flex flex-col items-center">
-          <div className="w-full h-full flex flex-col items-center">
-            <nav className="text-white w-full flex justify-center border-b border-b-foreground/10 h-16">
-              {user ? <MainHeader user={user} /> : <AuthHeader />}
-            </nav>
-          </div>
+        <main className="w-full min-h-screen bg-background flex flex-col items-center">
+          <nav className="w-full p-8">
+            {user ? <MainHeader user={user} /> : <AuthHeader />}
+          </nav>
 
           {children}
         </main>

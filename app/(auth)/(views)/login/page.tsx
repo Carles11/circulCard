@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 import { redirect } from 'next/navigation'
 import { User as SupabaseUser } from '@supabase/supabase-js'
 
-import type { Database } from '../../../../types/supabase'
+import type { Database } from 'types/supabase'
 
 interface User extends SupabaseUser {
   // Additional properties specific to your application
