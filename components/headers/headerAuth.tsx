@@ -1,17 +1,17 @@
 'use client'
 
-import { useRouter, usePathname } from 'next/navigation'
+import { useRouter } from 'next/navigation'
+import { urlIsHome } from 'utils/utils.service'
 
 import Link from 'next/link'
 
 function authHeader() {
   const router = useRouter()
-  const pathname = usePathname()
-  const urlIsHome = pathname === '/'
+
   return (
     // <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
     <div className="w-full max-w-4xl flex justify-between items-center p-3 text-sm text-foreground">
-      {!urlIsHome && (
+      {!urlIsHome() && (
         <Link
           href="/"
           className="absolute left-8 top-8 py-2 px-4 rounded-md no-underline text-foreground bg-btn-background hover:bg-btn-background-hover flex items-center group text-sm link-no-style"
