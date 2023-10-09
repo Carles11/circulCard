@@ -33,8 +33,8 @@ export default function Products() {
       try {
         const { data, error } = await supabase
           .from('products')
-          .select(`product_name`)
-        // .eq('products.clients.id', clientID)
+          .select(`product_name, clients(id, client_name )`)
+          .eq('clients.id', clientID)
 
         setProducts(data || [])
       } catch (error: any) {
