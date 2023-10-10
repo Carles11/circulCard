@@ -50,14 +50,16 @@ const MaterialsCard = ({ materials }: { materials: Database }) => {
               <div className="min-w-[90px] lg:min-w-[260px]">
                 <a
                   key={mat.id}
-                  className="relative flex flex-col group rounded-lg border p-6 hover:border-foreground place-self-center"
+                  className="relative flex flex-col group rounded-lg border p-6 hover:border-foreground place-self-center items-center"
                   href={'https://crix.design'}
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <h3 className="font-bold text-center align-center mb-2 min-h-[20px] text-white bg-green-700 rounded-full text-xl hover:bg-btn-background-hover">
-                    {mat.material_name}
-                  </h3>
+                  <div>
+                    <h3 className="font-bold text-center align-center mb-2 min-h-[20px] w-32 text-white bg-green-700 rounded-full text-xl hover:bg-btn-background-hover">
+                      {mat.material_name}
+                    </h3>
+                  </div>
 
                   <div className="flex flex-col grow gap-4 justify-between">
                     <p className="text-sm opacity-70">{mat.material_name}</p>
