@@ -1,12 +1,38 @@
 import type { Database } from 'types/supabase'
+// import Chart from 'chart.js/auto'
+import DoughnutChart from '@/components/charts/doughnutChart'
 
 const MaterialsCard = ({ materials }: { materials: Database }) => {
   return (
-    <div className="flex flex-row items-center justify-between m-16 gap-16">
+    <div className="flex flex-row flex-wrap items-center justify-between m-16 gap-2 md:gap-8 lg:gap-16">
       {materials.map((mat) => {
+        const DonughtChartData = {
+          labels: ['Recycled percentage'],
+          datasets: [
+            {
+              label: '%',
+              data: [mat.percentage, `${100 - mat.percentage}`],
+              backgroundColor: ['rgb(54, 162, 235)', 'transparent'],
+              borderWidth: 2,
+              borderAlign: 'inner',
+              cutout: '90%',
+              animation: { animateRotate: true, animateScale: true },
+              hoverOffset: 4,
+              // clip: { left: 5, top: false, right: -2, bottom: 0 },
+            },
+          ],
+        }
+
+        const options = {}
+
         return (
           <div className="flex flex-col gap-8 text-black">
-            <div className="text-white"> {mat.percentage}</div>
+            <div className="text-white text-center"> {mat.percentage}</div>
+            <DoughnutChart
+              data={DonughtChartData}
+              options={options}
+              innerText={`${mat.percentage}`}
+            />
             <div className="bg-white min-w-[90px] lg:min-w-[160px]">
               <a
                 key={mat.id}
