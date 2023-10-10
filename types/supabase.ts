@@ -7,6 +7,10 @@ export type Json =
   | Json[]
 
 export interface Database {
+  length: number
+  map(
+    arg0: (prod: ProductItemProps) => import('react').JSX.Element
+  ): import('react').ReactNode
   public: {
     Tables: {
       clients: {
