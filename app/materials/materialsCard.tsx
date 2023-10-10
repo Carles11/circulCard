@@ -4,7 +4,7 @@ import DoughnutChart from '@/components/charts/doughnutChart'
 
 const MaterialsCard = ({ materials }: { materials: Database }) => {
   return (
-    <div className="flex flex-row flex-wrap items-center justify-between m-16 gap-2 md:gap-8 lg:gap-16">
+    <div className="flex flex-row flex-wrap items-center justify-between m-16 gap-2 md:gap-4 lg:gap-8">
       {materials.map((mat) => {
         const DonughtChartData = {
           labels: ['Recycled percentage', 'to Go'],
@@ -16,7 +16,7 @@ const MaterialsCard = ({ materials }: { materials: Database }) => {
               // borderColor: '#787878',
               borderWidth: 1,
               borderAlign: 'inner',
-              cutout: '90%',
+              cutout: '80%',
               animation: { animateRotate: true, animateScale: true },
               hoverOffset: 2,
               // clip: { left: 5, top: false, right: -2, bottom: 0 },
@@ -33,13 +33,13 @@ const MaterialsCard = ({ materials }: { materials: Database }) => {
             },
           },
           layout: {
-            padding: 35,
+            padding: 20,
           },
         }
 
         return (
-          <div className="flex flex-col gap-8 text-black items-center">
-            <div className=" rounded-full border-8 border-gray-400 bg-white w-28 h-28">
+          <div className="flex flex-col gap-2 md:gap-4 text-black items-center">
+            <div className=" rounded-full border-8 border-gray-400 bg-white h-36 w-36">
               <DoughnutChart
                 data={DonughtChartData}
                 options={options}
@@ -47,7 +47,7 @@ const MaterialsCard = ({ materials }: { materials: Database }) => {
               />
             </div>
             <div className="bg-white rounded-3xl border-8 border-gray-300">
-              <div className="min-w-[90px] lg:min-w-[160px]">
+              <div className="min-w-[90px] lg:min-w-[260px]">
                 <a
                   key={mat.id}
                   className="relative flex flex-col group rounded-lg border p-6 hover:border-foreground place-self-center"
