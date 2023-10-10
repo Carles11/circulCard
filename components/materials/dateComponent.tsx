@@ -1,5 +1,5 @@
 import BarChart from 'components/charts/barChart'
-const DateComponent = (material) => {
+const DateComponent = ({ material }) => {
   const options = {
     responsive: true,
     plugins: {
@@ -25,24 +25,16 @@ const DateComponent = (material) => {
   }
 
   const labels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-  const showBars = labels.map((check) =>
-    check === material.material ? 100 : 0
-  )
-  console.log('showBarsshowBarsshowBars', showBars)
-  console.log({ material })
+  const showBars = labels.map((check) => (check === material ? 100 : 0))
+
   const BarChartData = {
     labels,
     datasets: [
       {
         label: 'Dataset 1',
         data: showBars,
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        backgroundColor: '#79d97c',
       },
-      //   {
-      //     label: 'Dataset 2',
-      //     data: labels.map(() => 35),
-      //     backgroundColor: 'rgba(53, 162, 235, 0.5)',
-      //   },
     ],
   }
 

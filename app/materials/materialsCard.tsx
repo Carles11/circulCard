@@ -1,49 +1,16 @@
 import type { Database } from 'types/supabase'
-// import Chart from 'chart.js/auto'
-import DoughnutChart from '@/components/charts/doughnutChart'
 
+import DoughnutComponent from 'components/materials/doughnutComponent'
 import DateComponent from 'components/materials/dateComponent'
 
 const MaterialsCard = ({ materials }: { materials: Database }) => {
   return (
     <div className="flex flex-row flex-wrap items-center justify-between m-16 gap-2 md:gap-4 lg:gap-8">
       {materials.map((mat) => {
-        const DonughtChartData = {
-          labels: ['Recycled percentage', 'to Go'],
-          datasets: [
-            {
-              label: '%',
-              data: [mat.percentage, `${100 - mat.percentage}`],
-              backgroundColor: ['#79d97c', 'transparent'],
-              // borderColor: '#787878',
-              borderWidth: 1,
-              borderAlign: 'inner',
-              cutout: '80%',
-              animation: { animateRotate: true, animateScale: true },
-              hoverOffset: 2,
-              // clip: { left: 5, top: false, right: -2, bottom: 0 },
-            },
-          ],
-        }
-
-        const options = {
-          responsive: true,
-          maintainAspectRatio: true,
-          plugins: {
-            legend: {
-              display: false,
-            },
-          },
-        }
-
         return (
           <div className="flex flex-col gap-2 md:gap-4 text-black items-center">
             <div className=" rounded-full border-8 border-gray-400 bg-white h-36 w-36">
-              <DoughnutChart
-                data={DonughtChartData}
-                options={options}
-                innerText={`${mat.percentage}`}
-              />
+              <DoughnutComponent mat={mat} />
             </div>
             <div className="bg-white rounded-3xl border-8 border-gray-300">
               <div className="min-w-[90px] lg:min-w-[260px]">
