@@ -1,7 +1,6 @@
 import DoughnutChart from '@/components/charts/doughnutChart'
 
 const DoughnutComponent = ({ mat }) => {
-  console.log({ mat })
   const DonughtChartData = {
     labels: ['Recycled percentage', 'to Go'],
     datasets: [

@@ -24,7 +24,7 @@ const iconMap: Record<string, StaticImageData> = {
 
 const Materials = () => {
   const [materials, setMaterials] = useState<any[]>([])
-  const [products, setProducts] = useState<any[]>([])
+  const [projects, setProjects] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
@@ -34,18 +34,17 @@ const Materials = () => {
   const productName = searchParams.get('productName')
 
   useEffect(() => {
-    const getProducts = async () => {
+    const getProjects = async () => {
       try {
         const { data, error } = await supabase
-          .from('products')
-          .select('id')
-          .eq('product_name', productName)
+          .from('second_life')
+          .select('life_name, life_icon')
 
         if (error) {
           throw new Error(error.message)
         }
 
-        setProducts(data || {})
+        setProjects(data || {})
       } catch (error: any) {
         setError(error.message)
       } finally {
@@ -53,7 +52,7 @@ const Materials = () => {
       }
     }
 
-    getProducts()
+    getProjects()
   }, [supabase])
 
   useEffect(() => {
@@ -93,14 +92,15 @@ const Materials = () => {
     return <p className="text-red-500">{error}</p>
   }
 
-  console.log('productsproducts', products)
-  console.log('materialsmaterials', materials)
-  console.log('productNameproductName', productName)
+  // console.log('productsproducts', products)
+  // console.log('materialsmaterials', materials)
+  // console.log('productNameproductName', productName)
+  console.log('projectsprojectsprojects', projects)
 
   return (
     <div>
       <MaterialsProduct icon={iconMap[productName]} productName={productName} />
-      <MaterialsCard materials={materials} />
+      <MaterialsCard materials={materials} projects={projects} />
     </div>
   )
 }
