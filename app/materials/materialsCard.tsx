@@ -7,17 +7,18 @@ const MaterialsCard = ({ materials }: { materials: Database }) => {
         return (
           <div className="flex flex-col gap-8 text-black">
             <div className="text-white"> {mat.percentage}</div>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 bg-white">
+            <div className="bg-white min-w-[90px] lg:min-w-[160px]">
               <a
                 key={mat.id}
-                className="relative flex flex-col group rounded-lg border p-6 hover:border-foreground"
+                className="relative flex flex-col group rounded-lg border p-6 hover:border-foreground place-self-center"
                 href={'https://crix.design'}
                 target="_blank"
                 rel="noreferrer"
               >
-                <h3 className="font-bold mb-2  min-h-[40px] lg:min-h-[60px] text-white bg-green-700 rounded-full text-xl px-8 py-2 text-white mb-2 hover:bg-btn-background-hover">
+                <h3 className="font-bold text-center align-center mb-2 min-h-[20px] text-white bg-green-700 rounded-full text-xl hover:bg-btn-background-hover">
                   {mat.material_name}
                 </h3>
+
                 <div className="flex flex-col grow gap-4 justify-between">
                   <p className="text-sm opacity-70">{mat.material_name}</p>
                   <div className="flex justify-between items-center">
