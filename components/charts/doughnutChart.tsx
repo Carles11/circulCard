@@ -13,12 +13,16 @@ const DoughnutChart = ({ data, options, innerText }) => {
         ctx.restore()
         var fontSize = (height / 160).toFixed(2)
         ctx.font = fontSize + 'em sans-serif'
-        ctx.textBaseline = 'top'
-        var text = `${innerText} %`,
-          textX = Math.round((width - ctx.measureText(text).width) / 2),
-          textY = height / 2
-        ctx.fillStyle = '#ffffff'
-        ctx.fillText(text, textX, textY)
+        ctx.textBaseline = 'middle'
+        ctx.textAlign = 'center'
+        var text = `${innerText} %`
+        const xCoor = chart.getDatasetMeta(0).data[0].x
+        const yCoor = chart.getDatasetMeta(0).data[0].y
+        // textX = Math.round((width - ctx.measureText(text).width) / 2),
+        // textY = height / 2
+
+        ctx.fillStyle = '#79d97c'
+        ctx.fillText(text, xCoor, yCoor)
         ctx.save()
       },
     },
