@@ -61,7 +61,9 @@ const Materials = () => {
       try {
         const { data, error } = await supabase
           .from('materials')
-          .select('material_name, percentage, products("product_name")')
+          .select(
+            'material_name, percentage, collect_date, products("product_name")'
+          )
         //   .eq('products.product_name', productName)
 
         if (error) {

@@ -2,6 +2,8 @@ import type { Database } from 'types/supabase'
 // import Chart from 'chart.js/auto'
 import DoughnutChart from '@/components/charts/doughnutChart'
 
+import DateComponent from 'components/materials/dateComponent'
+
 const MaterialsCard = ({ materials }: { materials: Database }) => {
   return (
     <div className="flex flex-row flex-wrap items-center justify-between m-16 gap-2 md:gap-4 lg:gap-8">
@@ -32,9 +34,6 @@ const MaterialsCard = ({ materials }: { materials: Database }) => {
               display: false,
             },
           },
-          layout: {
-            padding: 20,
-          },
         }
 
         return (
@@ -50,7 +49,7 @@ const MaterialsCard = ({ materials }: { materials: Database }) => {
               <div className="min-w-[90px] lg:min-w-[260px]">
                 <a
                   key={mat.id}
-                  className="relative flex flex-col group rounded-lg border p-6 hover:border-foreground place-self-center items-center"
+                  className="p-8 relative flex flex-col group rounded-lg border p-6 hover:border-foreground place-self-center items-center"
                   href={'https://crix.design'}
                   target="_blank"
                   rel="noreferrer"
@@ -60,9 +59,10 @@ const MaterialsCard = ({ materials }: { materials: Database }) => {
                       {mat.material_name}
                     </h3>
                   </div>
-
+                  <div className="rounded-3xl bg-slate-300">
+                    <DateComponent material={mat.collect_date} />
+                  </div>
                   <div className="flex flex-col grow gap-4 justify-between">
-                    <p className="text-sm opacity-70">{mat.material_name}</p>
                     <div className="flex justify-between items-center">
                       <svg
                         width="24"
