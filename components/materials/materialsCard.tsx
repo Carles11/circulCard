@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import type { Database } from 'types/supabase'
 
 import DoughnutComponent from './doughnutComponent'

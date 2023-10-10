@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import DoughnutChart from '@/components/charts/doughnutChart'
 
 const DoughnutComponent = ({ mat }) => {

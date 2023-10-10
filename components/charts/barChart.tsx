@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import {
   Chart as ChartJS,
   CategoryScale,

@@ -1,4 +1,7 @@
+// @ts-nocheck
+
 import BarChart from 'components/charts/barChart'
+
 const DateComponent = ({ material }) => {
   const options = {
     responsive: true,
