@@ -126,16 +126,16 @@ export interface Database {
         }
         Relationships: [
           {
-            foreignKeyName: "rel_clients_products_client_id_fkey"
-            columns: ["client_id"]
-            referencedRelation: "clients"
-            referencedColumns: ["id"]
+            foreignKeyName: 'rel_clients_products_client_id_fkey'
+            columns: ['client_id']
+            referencedRelation: 'clients'
+            referencedColumns: ['id']
           },
           {
-            foreignKeyName: "rel_clients_products_product_id_fkey"
-            columns: ["product_id"]
-            referencedRelation: "products"
-            referencedColumns: ["id"]
+            foreignKeyName: 'rel_clients_products_product_id_fkey'
+            columns: ['product_id']
+            referencedRelation: 'products'
+            referencedColumns: ['id']
           }
         ]
       }
@@ -160,16 +160,16 @@ export interface Database {
         }
         Relationships: [
           {
-            foreignKeyName: "rel_materials_secondLife_material_id_fkey"
-            columns: ["material_id"]
-            referencedRelation: "materials"
-            referencedColumns: ["id"]
+            foreignKeyName: 'rel_materials_secondLife_material_id_fkey'
+            columns: ['material_id']
+            referencedRelation: 'materials'
+            referencedColumns: ['id']
           },
           {
-            foreignKeyName: "rel_materials_secondLife_second_life_id_fkey"
-            columns: ["second_life_id"]
-            referencedRelation: "second_life"
-            referencedColumns: ["id"]
+            foreignKeyName: 'rel_materials_secondLife_second_life_id_fkey'
+            columns: ['second_life_id']
+            referencedRelation: 'second_life'
+            referencedColumns: ['id']
           }
         ]
       }
@@ -194,16 +194,16 @@ export interface Database {
         }
         Relationships: [
           {
-            foreignKeyName: "rel_products_materials_material_id_fkey"
-            columns: ["material_id"]
-            referencedRelation: "materials"
-            referencedColumns: ["id"]
+            foreignKeyName: 'rel_products_materials_material_id_fkey'
+            columns: ['material_id']
+            referencedRelation: 'materials'
+            referencedColumns: ['id']
           },
           {
-            foreignKeyName: "rel_products_materials_product_id_fkey"
-            columns: ["product_id"]
-            referencedRelation: "products"
-            referencedColumns: ["id"]
+            foreignKeyName: 'rel_products_materials_product_id_fkey'
+            columns: ['product_id']
+            referencedRelation: 'products'
+            referencedColumns: ['id']
           }
         ]
       }
@@ -228,16 +228,16 @@ export interface Database {
         }
         Relationships: [
           {
-            foreignKeyName: "rel_profiles_clients_client_id_fkey"
-            columns: ["client_id"]
-            referencedRelation: "clients"
-            referencedColumns: ["id"]
+            foreignKeyName: 'rel_profiles_clients_client_id_fkey'
+            columns: ['client_id']
+            referencedRelation: 'clients'
+            referencedColumns: ['id']
           },
           {
-            foreignKeyName: "rel_profiles_clients_profile_id_fkey"
-            columns: ["profile_id"]
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
+            foreignKeyName: 'rel_profiles_clients_profile_id_fkey'
+            columns: ['profile_id']
+            referencedRelation: 'profiles'
+            referencedColumns: ['id']
           }
         ]
       }
