@@ -1,5 +1,5 @@
-'use client'
 // @ts-nocheck
+'use client'
 
 import { useSearchParams } from 'next/navigation'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
