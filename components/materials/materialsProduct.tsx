@@ -1,8 +1,10 @@
 import Image from 'next/image'
+import { StaticImageData } from 'next/image'
+
 import { FC } from 'react'
 
 interface MaterialsProductProps {
-  icon: string
+  icon: string | StaticImageData
   productName: string | null
 }
 
