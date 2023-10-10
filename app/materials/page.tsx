@@ -38,7 +38,7 @@ const Materials = () => {
       try {
         const { data, error } = await supabase
           .from('second_life')
-          .select('life_name, life_icon')
+          .select('life_name, life_icon, materials(material_id)')
 
         if (error) {
           throw new Error(error.message)
