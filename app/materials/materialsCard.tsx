@@ -26,7 +26,7 @@ const MaterialsCard = ({ materials }: { materials: Database }) => {
                       {mat.material_name}
                     </h3>
                   </div>
-                  <div className="rounded-3xl bg-slate-300">
+                  <div className="rounded-3xl bg-gray-400">
                     <DateComponent material={mat.collect_date} />
                   </div>
                   <div className="flex flex-col grow gap-4 justify-between">
@@ -64,6 +64,14 @@ const MaterialsCard = ({ materials }: { materials: Database }) => {
                       >
                         <polyline points="9 18 15 12 9 6" />
                       </svg>
+                    </div>
+                    <div
+                      id="roundButton"
+                      className="flex items-center justify-center w-8 h-8 bg-green-500 rounded-full cursor-pointer"
+                    >
+                      <span className="text-white text-2xl font-bold pb-1">
+                        +
+                      </span>
                     </div>
                   </div>
                 </a>

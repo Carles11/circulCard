@@ -7,8 +7,7 @@ const DoughnutChart = ({ data, options, innerText }) => {
   const plugins = [
     {
       beforeDraw: function (chart: { width: any; height: any; ctx: any }) {
-        var width = chart.width,
-          height = chart.height,
+        var height = chart.height,
           ctx = chart.ctx
         ctx.restore()
         var fontSize = (height / 100).toFixed(2)
