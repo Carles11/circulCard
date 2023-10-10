@@ -92,14 +92,12 @@ const Materials = () => {
     return <p className="text-red-500">{error}</p>
   }
 
-  // console.log('productsproducts', products)
-  // console.log('materialsmaterials', materials)
-  // console.log('productNameproductName', productName)
-  console.log('projectsprojectsprojects', projects)
-
   return (
     <div>
-      <MaterialsProduct icon={iconMap[productName]} productName={productName} />
+      <MaterialsProduct
+        icon={iconMap[productName!]}
+        productName={productName}
+      />
       <MaterialsCard materials={materials} projects={projects} />
     </div>
   )
