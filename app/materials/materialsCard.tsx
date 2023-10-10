@@ -33,20 +33,20 @@ const MaterialsCard = ({ materials }: { materials: Database }) => {
             },
           },
           layout: {
-            padding: 40,
+            padding: 35,
           },
         }
 
         return (
-          <div className="flex flex-col gap-8 text-black">
-            <div className="rounded-full border-16 border-gray-400 bg-white w-48 h-48">
+          <div className="flex flex-col gap-8 text-black items-center">
+            <div className=" rounded-full border-8 border-gray-400 bg-white w-28 h-28">
               <DoughnutChart
                 data={DonughtChartData}
                 options={options}
                 innerText={`${mat.percentage}`}
               />
             </div>
-            <div className="bg-white">
+            <div className="bg-white rounded-3xl border-8 border-gray-300">
               <div className="min-w-[90px] lg:min-w-[160px]">
                 <a
                   key={mat.id}
