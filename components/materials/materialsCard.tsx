@@ -1,7 +1,8 @@
 import type { Database } from 'types/supabase'
 
-import DoughnutComponent from 'components/materials/doughnutComponent'
-import DateComponent from 'components/materials/dateComponent'
+import DoughnutComponent from './doughnutComponent'
+import DateComponent from './dateComponent'
+import MaterialsIcons from './materialsIcons'
 
 const MaterialsCard = ({ materials }: { materials: Database }) => {
   return (
@@ -29,42 +30,8 @@ const MaterialsCard = ({ materials }: { materials: Database }) => {
                   <div className="rounded-3xl bg-gray-400">
                     <DateComponent material={mat.collect_date} />
                   </div>
-                  <div className="flex flex-col grow gap-4 justify-between">
-                    <div className="flex justify-between items-center">
-                      <svg
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="opacity-80 group-hover:opacity-100"
-                      >
-                        <path
-                          d={
-                            'M7 4V20M17 4V20M3 8H7M17 8H21M3 12H21M3 16H7M17 16H21M4 20H20C20.5523 20 21 19.5523 21 19V5C21 4.44772 20.5523 4 20 4H4C3.44772 4 3 4.44772 3 5V19C3 19.5523 3.44772 20 4 20Z'
-                          }
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="ml-2 h-4 w-4 opacity-0 -translate-x-2 group-hover:translate-x-0 group-hover:opacity-100 transition-all"
-                      >
-                        <polyline points="9 18 15 12 9 6" />
-                      </svg>
-                    </div>
+                  <div className="flex flex-col grow gap-4 justify-between items-center">
+                    <MaterialsIcons />
                     <div
                       id="roundButton"
                       className="flex items-center justify-center w-8 h-8 bg-green-500 rounded-full cursor-pointer"

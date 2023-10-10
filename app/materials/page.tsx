@@ -13,8 +13,8 @@ import POSicon from 'assets/images/icons/pos-icon.png'
 import CARDSicon from 'assets/images/icons/cards-icon.png'
 import FURNITUREicon from 'assets/images/icons/furniture-icon.png'
 
-import MaterialsProduct from './materialsProduct'
-import MaterialsCard from './materialsCard'
+import MaterialsProduct from 'components/materials/materialsProduct'
+import MaterialsCard from 'components/materials/materialsCard'
 
 const iconMap: Record<string, StaticImageData> = {
   pos: POSicon,
