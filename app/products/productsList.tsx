@@ -1,7 +1,7 @@
 import Image, { StaticImageData } from 'next/image'
 import Link from 'next/link'
 
-import type { Database, ProductItemProps } from 'types/supabase'
+import type { Database } from 'types/supabase'
 
 import { capitalizeFirstLetter } from 'utils/utils.service'
 
@@ -13,6 +13,11 @@ const iconMap: Record<string, StaticImageData> = {
   pos: POSicon,
   cards: CARDSicon,
   furniture: FURNITUREicon,
+}
+
+interface ProductItemProps {
+  product_icon: string | null
+  product_name: string | null
 }
 
 function ProductsList({ products }: { products: Database }) {
