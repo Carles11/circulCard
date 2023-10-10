@@ -6,6 +6,11 @@ export type Json =
   | { [key: string]: Json | undefined }
   | Json[]
 
+  interface ProductItemProps {
+    product_icon: string | null
+    product_name: string | null
+  }
+  
 export interface Database {
   length: number
   map(
