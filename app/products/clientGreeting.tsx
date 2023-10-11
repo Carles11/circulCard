@@ -46,7 +46,6 @@ function ClientGreeting({ clientID }: { clientID: string }) {
     return <p className="text-red-500">{error}</p>
   }
 
-  console.log('ESTEESTPMICLIENTENEEEEE', client)
   return (
     <div className="flex flex-col justify-start text-white ml-8">
       <h3>Hola</h3>

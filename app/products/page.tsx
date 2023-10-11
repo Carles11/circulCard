@@ -34,7 +34,7 @@ export default function Products() {
       const {
         data: { session },
       } = await supabase.auth.getSession()
-      console.log({ session })
+
       if (!session) {
         router.push('/unauthenticated') // Use router.push instead of redirect
       }
@@ -87,7 +87,6 @@ export default function Products() {
   if (error) {
     return <p className="text-red-500">{error}</p>
   }
-  console.log('LIST-OF-PRODUCTS---->', products)
   return (
     <div className="flex flex-col gap-28">
       <ClientGreeting clientID={clientID} />

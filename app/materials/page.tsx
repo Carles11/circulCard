@@ -40,7 +40,7 @@ const Materials = () => {
       const {
         data: { session },
       } = await supabase.auth.getSession()
-      console.log({ session })
+
       if (!session) {
         router.push('/unauthenticated') // Use router.push instead of redirect
       }
