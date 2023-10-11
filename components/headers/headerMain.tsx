@@ -31,7 +31,7 @@ function mainHeader({ email }: { email: string | undefined }) {
 
   return (
     <div className="flex justify-between text-foreground ">
-      <div className="w-full absolute left-8 top-8 ">
+      <div className="w-full flex absolute left-8 top-8">
         {!urlIsHome() ? (
           <div>
             <Link href="/" className="flex items-center">
@@ -63,10 +63,11 @@ function mainHeader({ email }: { email: string | undefined }) {
             <p>Hola {email},</p>
           </div>
         )}
-        <LogoutButton />
+        <div className=" grid grid-rows-3 divide-x"></div>
+        | <LogoutButton /> |
       </div>
       <div
-        className="py-2 px-4 flex flex-col items-center grid grid-cols-1 divide-y"
+        className="py-2 px-4 flex flex-col items-center"
         // onMouseOver={onMouseOverHandler}
         // onMouseOut={onMouseOutHandler}
       >
