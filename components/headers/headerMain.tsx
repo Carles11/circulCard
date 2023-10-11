@@ -2,42 +2,39 @@
 
 import { useRouter } from 'next/navigation'
 import { urlIsHome } from 'utils/utils.service'
-import { useState } from 'react'
-import type { UserProps } from 'types/supabase'
+// import { useState } from 'react'
+// import type { UserProps } from 'types/supabase'
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { MouseEventHandler } from 'react'
+import ToolTip from 'components/toolTip'
 
 import LogoutButton from 'components/LogoutButton'
 import TheCirculArtBulb from 'assets/logos/circulart-green-bulb.svg'
 
-function mainHeader({ user }: { user: UserProps }) {
-  console.log({ user })
-  const [showLogout, setShowLogout] = useState(false)
+function mainHeader({ email }: { email: string | undefined }) {
+  console.log({ email })
+  // const [showLogout, setShowLogout] = useState(false)
   const router = useRouter()
 
-  const handleShowLogout = (view: boolean) => {
-    setShowLogout(view)
-  }
+  // const handleShowLogout = (view: boolean) => {
+  //   setShowLogout(view)
+  // }
 
-  const onMouseOverHandler: MouseEventHandler<HTMLDivElement> = () => {
-    handleShowLogout(true)
-  }
+  // const onMouseOverHandler: MouseEventHandler<HTMLDivElement> = () => {
+  //   handleShowLogout(true)
+  // }
 
-  const onMouseOutHandler: MouseEventHandler<HTMLDivElement> = () => {
-    handleShowLogout(false)
-  }
+  // const onMouseOutHandler: MouseEventHandler<HTMLDivElement> = () => {
+  //   handleShowLogout(false)
+  // }
 
   return (
-    <div className="flex justify-between text-foreground border-b border-b-foreground/10">
+    <div className="flex justify-between text-foreground ">
       <div className="w-full absolute left-8 top-8 ">
-        {!urlIsHome() && (
+        {!urlIsHome() ? (
           <div>
-            <Link
-              href="/"
-              className="py-2 px-4 rounded-md no-underline text-foreground bg-btn-background hover:bg-btn-background-hover flex items-center group text-sm"
-            >
+            <Link href="/" className="flex items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -52,32 +49,37 @@ function mainHeader({ user }: { user: UserProps }) {
               >
                 <polyline points="15 18 9 12 15 6" />
               </svg>{' '}
-              <button type="button" onClick={() => router.back()}>
+              <button
+                type="button"
+                onClick={() => router.back()}
+                className="py-2 px-4 rounded-md no-underline text-foreground bg-btn-background hover:bg-btn-background-hover flex items-center group text-sm"
+              >
                 Volver
               </button>
             </Link>
-            <div className="flex flex-col justify-start text-white ml-8">
-              <h3>Hola</h3>
-              <h2>{user.email},</h2>
-              <h3>estos son tus products reciclados:</h3>
-            </div>
+          </div>
+        ) : (
+          <div className="flex flex-col justify-start text-white ml-8">
+            <p>Hola {email},</p>
           </div>
         )}
+        <LogoutButton />
       </div>
       <div
-        className="py-2 px-4 flex flex-col items-center"
-        onMouseOver={onMouseOverHandler}
-        onMouseOut={onMouseOutHandler}
+        className="py-2 px-4 flex flex-col items-center grid grid-cols-1 divide-y"
+        // onMouseOver={onMouseOverHandler}
+        // onMouseOut={onMouseOutHandler}
       >
-        <Link href="https://thecirculart.com/" target="_blank" className=" ">
-          <Image
-            src={TheCirculArtBulb}
-            alt="The circulart bulb in green"
-            width={40}
-            height={40}
-          />
-        </Link>
-        {showLogout && <LogoutButton />}
+        <ToolTip text="Learn more about us on theCirculArt.com">
+          <Link href="https://thecirculart.com/" target="_blank" className=" ">
+            <Image
+              src={TheCirculArtBulb}
+              alt="The circulart bulb in green"
+              width={40}
+              height={40}
+            />
+          </Link>
+        </ToolTip>
       </div>
     </div>
   )
