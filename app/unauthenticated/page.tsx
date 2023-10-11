@@ -15,8 +15,8 @@ export default async function Unauthenticated() {
 
   return (
     <div className="flex flex-col items-center my-28">
-      <p className="text-lg text-white">
-        Debes registrate para ver esta aplicación.
+      <p className="text-2xl text-white">
+        Es necesario registrarse para ver esta aplicación.
       </p>
       <Link
         href={'/login'}
@@ -28,7 +28,7 @@ export default async function Unauthenticated() {
           </h4>
         </button>
       </Link>
-      <p className="text-lg text-white">
+      <p className="textmd text-white">
         o{' '}
         <a
           href="mailto:xavi@thecirculart.com"
@@ -38,7 +38,7 @@ export default async function Unauthenticated() {
         >
           contáctanos
         </a>{' '}
-        para recibir acceso.
+        para recibir datos de acceso.
       </p>
     </div>
   )
