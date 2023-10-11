@@ -15,28 +15,30 @@ export default async function Unauthenticated() {
 
   return (
     <div className="flex flex-col items-center my-28">
-      <p className="text-lg text-white">Please sign-in to see the app</p>
+      <p className="text-lg text-white">
+        Debes registrate para ver esta aplicación.
+      </p>
       <Link
         href={'/login'}
         className="py-2 px-4 rounded-md no-underline bg-btn-background"
       >
-        <button className="bg-[#79d97c] py-0 px-8 mt-16 rounded-full text-lg text-white hover:bg-btn-background-hover ">
+        <button className="bg-[#79d97c] py-2 px-8 mt-16 rounded-full text-lg text-white hover:bg-btn-background-hover ">
           <h4>
-            <strong>Entrar</strong>
+            <strong>Identifícate</strong>
           </h4>
         </button>
       </Link>
       <p className="text-lg text-white">
-        or{' '}
+        o{' '}
         <a
           href="mailto:xavi@thecirculart.com"
           rel="noopener"
           target="_blank"
           className="link-with-style"
         >
-          contact us
+          contáctanos
         </a>{' '}
-        to get access
+        para recibir acceso.
       </p>
     </div>
   )
