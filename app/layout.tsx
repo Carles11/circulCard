@@ -24,7 +24,7 @@ export default async function RootLayout({
   return (
     <html lang="es">
       <body className="grid grid-cols-1 divide-y">
-        <header className="w-full p-8 bg-background ">
+        <header className="w-full p-2 md:p-8 bg-background ">
           <nav className="h-16">
             {user ? <MainHeader user={user} /> : <AuthHeader />}
           </nav>

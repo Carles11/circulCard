@@ -12,12 +12,12 @@ import TheCirculArtBulb from 'assets/logos/circulart-green-bulb.svg'
 function mainHeader({ user }: { user: object }) {
   const router = useRouter()
   return (
-    <div className="fix-flex text-foreground border-b border-b-foreground/10">
-      <div>
+    <div className="flex justify-between text-foreground border-b border-b-foreground/10">
+      <div className="w-full absolute left-8 top-8 ">
         {!urlIsHome() && (
           <Link
             href="/"
-            className="absolute left-8 top-8 py-2 px-4 rounded-md no-underline text-foreground bg-btn-background hover:bg-btn-background-hover flex items-center group text-sm"
+            className="py-2 px-4 rounded-md no-underline text-foreground bg-btn-background hover:bg-btn-background-hover flex items-center group text-sm"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
