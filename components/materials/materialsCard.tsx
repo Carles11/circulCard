@@ -19,9 +19,9 @@ const MaterialsCard = ({
         return (
           <div
             key={mat.id}
-            className="flex flex-col gap-2 md:gap-4 text-black items-center"
+            className="flex flex-col gap-8 md:gap-4 text-black items-center"
           >
-            <div className=" rounded-full border-8 border-gray-400 bg-white h-36 w-36">
+            <div className="rounded-full border-4 border-gray-400 bg-white h-32 w-32">
               <DoughnutComponent mat={mat} />
             </div>
             <div className="bg-white rounded-3xl border-8 border-gray-300">

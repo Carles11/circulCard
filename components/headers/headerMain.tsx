@@ -31,7 +31,7 @@ function mainHeader({ email }: { email: string | undefined }) {
 
   return (
     <div className="flex justify-between text-foreground ">
-      <div className="w-full flex absolute left-8 top-8">
+      <div className="flex">
         {!urlIsHome() ? (
           <div>
             <Link href="/" className="flex items-center">

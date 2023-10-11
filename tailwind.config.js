@@ -1,6 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./app/**/*.{js,ts,jsx,tsx,mdx}'],
+  content: [
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
+    './pages/**/*.{html,js,jsx,ts,tsx}',
+    './components/**/*.{html,js,jsx,ts,tsx}',
+  ],
   theme: {
     borderWidth: {
       DEFAULT: '1px',
