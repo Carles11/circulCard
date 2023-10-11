@@ -1,7 +1,7 @@
 // @ts-nocheck
 'use client'
 
-import { useSearchParams } from 'next/navigation'
+import { useSearchParams, useRouter } from 'next/navigation'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useEffect, useState } from 'react'
 import type { Database } from 'types/supabase'
@@ -24,9 +24,24 @@ export default function Products() {
   const [products, setProducts] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const router = useRouter() // Initialize the useRouter hook
 
   // Create a Supabase client configured to use cookies
   const supabase = createClientComponentClient<Database>()
+
+  useEffect(() => {
+    const checkUser = async () => {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession()
+      console.log({ session })
+      if (!session) {
+        router.push('/unauthenticated') // Use router.push instead of redirect
+      }
+    }
+
+    checkUser()
+  }, [supabase, router])
 
   useEffect(() => {
     const getProducts = async () => {
