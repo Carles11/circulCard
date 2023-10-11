@@ -12,12 +12,12 @@ import TheCirculArtBulb from 'assets/logos/circulart-green-bulb.svg'
 function mainHeader({ user }: { user: object }) {
   const router = useRouter()
   return (
-    <div className="text-white flex flex-row justify-between border-b border-b-foreground/10 h-16">
+    <div className="fix-flex text-foreground border-b border-b-foreground/10">
       <div>
         {!urlIsHome() && (
           <Link
             href="/"
-            className="absolute left-8 top-8 py-2 px-4 rounded-md no-underline text-foreground bg-btn-background hover:bg-btn-background-hover flex items-center group text-sm  "
+            className="absolute left-8 top-8 py-2 px-4 rounded-md no-underline text-foreground bg-btn-background hover:bg-btn-background-hover flex items-center group text-sm"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -39,17 +39,16 @@ function mainHeader({ user }: { user: object }) {
           </Link>
         )}
       </div>
-      <div className="flex flex-col items-center">
+      <div className="py-2 px-4 flex flex-col items-center">
         <Link href="https://thecirculart.com/" target="_blank" className=" ">
           <Image
             src={TheCirculArtBulb}
             alt="The circulart bulb in green"
             width={40}
             height={40}
-            // blurDataURL="data:..." automatically provided
-            // placeholder="blur" // Optional blur-up while loading
           />
         </Link>
+
         <LogoutButton />
       </div>
     </div>

@@ -61,7 +61,7 @@ export default function Clients() {
   }
 
   return (
-    <div className="flex flex-col">
+    <div className=" flex flex-col">
       <RealtimeClients clients={clients} />
     </div>
   )

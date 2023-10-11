@@ -23,12 +23,13 @@ export default async function RootLayout({
   console.log('USER----->', user)
   return (
     <html lang="es">
-      <body>
-        <main className="w-full min-h-screen bg-background flex flex-col items-center">
-          <nav className="w-full p-8">
+      <body className="grid grid-cols-1 divide-y">
+        <header className="w-full p-8 bg-background ">
+          <nav className="h-16">
             {user ? <MainHeader user={user} /> : <AuthHeader />}
           </nav>
-
+        </header>
+        <main className="w-full min-h-screen bg-background flex flex-col items-center">
           {children}
         </main>
       </body>
