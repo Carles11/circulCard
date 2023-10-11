@@ -10,7 +10,7 @@ interface MaterialsProductProps {
 
 const MaterialsProduct: FC<MaterialsProductProps> = ({ icon, productName }) => {
   return (
-    <div className="flex flex-col gap-4 items-center">
+    <div className="m-8 flex flex-col items-center">
       <Image
         src={icon}
         alt="The circular products"
@@ -19,9 +19,9 @@ const MaterialsProduct: FC<MaterialsProductProps> = ({ icon, productName }) => {
         // blurDataURL="data:..." automatically provided
         // placeholder="blur" // Optional blur-up while loading
       />
-      <h4 className="text-white">
+      <h3 className="mt-4 text-white">
         {productName ? productName.toUpperCase() : ''}
-      </h4>
+      </h3>
     </div>
   )
 }

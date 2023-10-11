@@ -40,10 +40,10 @@ function ProductsList({ products }: { products: Database }) {
                     productName: prod.product_name,
                   },
                 }}
-                className="  py-2 px-4 rounded-md no-underline text-foreground bg-btn-background hover:bg-btn-background-hover flex items-center group text-sm"
+                className="no-underline flex items-center group text-sm"
               >
                 <button
-                  className="m-8 w-28 md:w-32 lg:w-48 text-white bg-green-700 rounded-full text-xl px-4 py-2 text-white mb-2 hover:bg-btn-background-hover"
+                  className="m-8 w-28 md:w-32 lg:w-48 bg-green-700 rounded-full text-xl px-4 py-2 text-white mb-2 hover:bg-btn-background-hover"
                   key={prod.id}
                 >
                   {capitalizeFirstLetter(prod.product_name)}

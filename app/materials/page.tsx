@@ -54,7 +54,7 @@ const Materials = () => {
       try {
         const { data, error } = await supabase
           .from('second_life')
-          .select('life_name, life_icon, materials(material_id)')
+          .select('life_name, life_icon, materials(material_name)')
 
         if (error) {
           throw new Error(error.message)
@@ -77,7 +77,7 @@ const Materials = () => {
         const { data, error } = await supabase
           .from('materials')
           .select(
-            'material_name, percentage, collect_date, products("product_name")'
+            'material_name, percentage, collect_date, products(product_name)'
           )
         //   .eq('products.product_name', productName)
 
@@ -109,7 +109,7 @@ const Materials = () => {
   }
 
   return (
-    <div>
+    <div className="flex flex-col gap-8">
       <MaterialsProduct
         icon={iconMap[productName!]}
         productName={productName}
