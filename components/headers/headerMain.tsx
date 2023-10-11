@@ -31,7 +31,7 @@ function mainHeader({ email }: { email: string | undefined }) {
 
   return (
     <div className="flex justify-between text-foreground ">
-      <div className="flex">
+      <div className="flex items-end">
         {!urlIsHome() ? (
           <div>
             <Link href="/" className="flex items-center">
@@ -63,8 +63,8 @@ function mainHeader({ email }: { email: string | undefined }) {
             <p>Hola {email},</p>
           </div>
         )}
-        <div className=" grid grid-rows-3 divide-x"></div>
-        | <LogoutButton /> |
+        <div className="flex align-center"></div>
+        <LogoutButton />
       </div>
       <div
         className="py-2 px-4 flex flex-col items-center"

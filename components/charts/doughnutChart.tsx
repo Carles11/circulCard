@@ -12,11 +12,11 @@ const DoughnutChart = ({ data, options, innerText }) => {
         var height = chart.height,
           ctx = chart.ctx
         ctx.restore()
-        var fontSize = (height / 100).toFixed(2)
+        var fontSize = (height / 80).toFixed(2)
         ctx.font = fontSize + 'em sans-serif'
         ctx.textBaseline = 'middle'
         ctx.textAlign = 'center'
-        var text = `${innerText} %`
+        var text = `${innerText}%`
         const xCoor = chart.getDatasetMeta(0).data[0].x
         const yCoor = chart.getDatasetMeta(0).data[0].y
         // textX = Math.round((width - ctx.measureText(text).width) / 2),

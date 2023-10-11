@@ -20,16 +20,18 @@ const MaterialsIcons = ({ projects }: { projects: Array<any> }) => {
           item: { life_icon: string | number; life_name: string },
           index: Key | null | undefined
         ) => (
-          <div key={index} className="flex flex-col gap-2 items-center">
+          <div
+            key={index}
+            className="flex flex-col gap-2 items-center  cursor-pointer"
+          >
             <Image
               src={iconMap[item.life_icon]}
               alt="The circular projects"
               height={75}
-              className="shadow shadow-blue-500/40 hover:shadow-indigo-500/40"
               // blurDataURL="data:..." automatically provided
               // placeholder="blur" // Optional blur-up while loading
             />
-            <h4 className="text-gray-200 text-xs">
+            <h4 className="text-gray-600 text-xs">
               {item.life_name.toUpperCase()}
             </h4>
           </div>

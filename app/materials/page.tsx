@@ -109,7 +109,7 @@ const Materials = () => {
   }
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="w-full flex flex-col">
       <MaterialsProduct
         icon={iconMap[productName!]}
         productName={productName}
