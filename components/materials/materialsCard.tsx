@@ -14,7 +14,7 @@ const MaterialsCard = ({
   projects: Database
 }) => {
   return (
-    <div className="flex flex-row flex-wrap place-content-center m-2 md:m-16 gap-6 md:gap-8 lg:gap-8">
+    <div className="flex flex-row flex-wrap place-content-center lg:m-16 gap-6 md:gap-8 lg:gap-8">
       {materials.map((mat) => {
         return (
           <div
@@ -24,8 +24,8 @@ const MaterialsCard = ({
             <div className="rounded-full border-8 border-gray-400 bg-white h-36 w-36">
               <DoughnutComponent mat={mat} />
             </div>
-            <div className="bg-white rounded-3xl border-8 border-gray-300">
-              <div className="min-w-[90px] lg:min-w-[320px] w-auto">
+            <div className="w-screen md:w-full bg-white rounded-t-3xl md:rounded-3xl border-8 border-gray-300">
+              <div className="min-w-full md:min-w-[320px] w-auto">
                 <div className="p-2 py-5 flex flex-col items-center">
                   <div>
                     <button className="w-28 md:w-32 lg:w-48 bg-green-700 rounded-full text-xl px-4 py-2 text-white mb-2 hover:bg-btn-background-hover">
