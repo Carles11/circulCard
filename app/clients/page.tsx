@@ -2,32 +2,32 @@
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useEffect, useState } from 'react'
 import RealtimeClients from './realTimeClients'
-
+import { useRouter } from 'next/navigation' // Import the useRouter hook
 import type { Database } from '../../types/supabase'
-import { redirect } from 'next/navigation'
 import Loader from 'components/loader'
 
 export default function Clients() {
   const [clients, setClients] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const router = useRouter() // Initialize the useRouter hook
 
   // Create a Supabase client configured to use cookies
-
   const supabase = createClientComponentClient<Database>()
+
   useEffect(() => {
     const checkUser = async () => {
       const {
         data: { session },
       } = await supabase.auth.getSession()
-
+      console.log({ session })
       if (!session) {
-        redirect('/unauthenticated')
+        router.push('/unauthenticated') // Use router.push instead of redirect
       }
     }
 
     checkUser()
-  }, [supabase])
+  }, [supabase, router])
 
   useEffect(() => {
     const getClients = async () => {
@@ -59,7 +59,6 @@ export default function Clients() {
   if (error) {
     return <p className="text-red-500">{error}</p>
   }
-  console.log('LIST-OF-clients---->', clients)
 
   return (
     <div className="flex flex-col">

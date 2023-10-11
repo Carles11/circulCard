@@ -28,7 +28,12 @@ export default async function Unauthenticated() {
       </Link>
       <p className="text-lg text-white">
         or{' '}
-        <a href="mailto:xavi@thecirculart.com" rel="noopener" target="_blank">
+        <a
+          href="mailto:xavi@thecirculart.com"
+          rel="noopener"
+          target="_blank"
+          className="link-with-style"
+        >
           contact us
         </a>{' '}
         to get access

@@ -17,7 +17,7 @@ function mainHeader({ user }: { user: object }) {
         {!urlIsHome() && (
           <Link
             href="/"
-            className="absolute left-8 top-8 py-2 px-4 rounded-md no-underline text-foreground bg-btn-background hover:bg-btn-background-hover flex items-center group text-sm link-no-style"
+            className="absolute left-8 top-8 py-2 px-4 rounded-md no-underline text-foreground bg-btn-background hover:bg-btn-background-hover flex items-center group text-sm  "
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -40,11 +40,7 @@ function mainHeader({ user }: { user: object }) {
         )}
       </div>
       <div className="flex flex-col items-center">
-        <Link
-          href="https://thecirculart.com/"
-          target="_blank"
-          className="link-no-style"
-        >
+        <Link href="https://thecirculart.com/" target="_blank" className=" ">
           <Image
             src={TheCirculArtBulb}
             alt="The circulart bulb in green"

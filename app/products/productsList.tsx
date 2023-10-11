@@ -40,7 +40,7 @@ function ProductsList({ products }: { products: Database }) {
                     productName: prod.product_name,
                   },
                 }}
-                className="link-no-style py-2 px-4 rounded-md no-underline text-foreground bg-btn-background hover:bg-btn-background-hover flex items-center group text-sm"
+                className="  py-2 px-4 rounded-md no-underline text-foreground bg-btn-background hover:bg-btn-background-hover flex items-center group text-sm"
               >
                 <button
                   className="m-8 w-28 md:w-32 lg:w-48 text-white bg-green-700 rounded-full text-xl px-4 py-2 text-white mb-2 hover:bg-btn-background-hover"

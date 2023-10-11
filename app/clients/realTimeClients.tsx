@@ -42,7 +42,7 @@ function realTimeClients({ clients }: { clients: any }) {
                 clientID: cli.id,
               },
             }}
-            className="link-no-style py-2 px-4 rounded-md no-underline text-foreground bg-btn-background hover:bg-btn-background-hover flex items-center group text-sm"
+            className="  py-2 px-4 rounded-md no-underline text-foreground bg-btn-background hover:bg-btn-background-hover flex items-center group text-sm"
           >
             <ClientItem client={cli} />
           </Link>
