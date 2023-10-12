@@ -2,7 +2,7 @@
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 
 import Link from 'next/link'
-import ClientItem from './clientItem'
+import ClientItem from 'components/clients/clientItem'
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 

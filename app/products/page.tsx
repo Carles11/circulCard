@@ -8,9 +8,9 @@ import type { Database } from 'types/supabase'
 import { User as SupabaseUser } from '@supabase/supabase-js'
 
 import Loader from 'components/loader'
-import ClientGreeting from './clientGreeting'
-import ProductsList from './productsList'
-import CTAsButtons from './ctasButtons'
+import ClientGreeting from 'components/products/clientGreeting'
+import ProductsList from 'components/products/productsList'
+import CTAsButtons from 'components/products/ctasButtons'
 
 interface User extends SupabaseUser {
   // Additional properties specific to your application

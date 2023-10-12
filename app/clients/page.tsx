@@ -1,7 +1,7 @@
 'use client'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useEffect, useState } from 'react'
-import RealtimeClients from './realTimeClients'
+import RealtimeClients from 'components/clients/realTimeClients'
 import { useRouter } from 'next/navigation' // Import the useRouter hook
 import type { Database } from '../../types/supabase'
 import Loader from 'components/loader'
