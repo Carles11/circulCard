@@ -7,7 +7,7 @@ import TheCirculArtText from 'assets/logos/__circulart-NO-bulb-text-white-green.
 function mainPageTopContent() {
   return (
     <div className="flex flex-col gap-2 justify-center items-center">
-      <Link href="https://thecirculart.com/" target="_blank" className=" ">
+      <Link href="https://thecirculart.com/" target="_blank">
         <Image
           src={TheCirculArtBulb}
           alt="The circulart bulb in green"

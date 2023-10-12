@@ -24,6 +24,7 @@ const Materials = () => {
   const searchParams = useSearchParams()
 
   const productName = searchParams.get('productName')
+  const clientID = searchParams.get('clientID')
 
   useEffect(() => {
     const checkUser = async () => {
@@ -104,7 +105,12 @@ const Materials = () => {
         icon={iconMap[productName!]}
         productName={productName}
       />
-      <MaterialsCard materials={materials} projects={projects} />
+      <MaterialsCard
+        materials={materials}
+        projects={projects}
+        clientID={clientID}
+        productName={productName}
+      />
     </div>
   )
 }

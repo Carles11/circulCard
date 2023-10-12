@@ -8,6 +8,9 @@ import type { Database } from 'types/supabase'
 import { User as SupabaseUser } from '@supabase/supabase-js'
 
 import ClientGreeting from 'components/clientGreeting'
+import TripCalender from 'components/trip/tripCalender'
+import TripCumulative from 'components/trip/tripCumulative'
+import TripHistorical from 'components/trip/tripHistorical'
 import Loader from 'components/loader'
 
 interface User extends SupabaseUser {
@@ -17,6 +20,8 @@ interface User extends SupabaseUser {
 export default function Trip() {
   const searchParams = useSearchParams()
   const materialID = searchParams.get('materialID')
+  const clientID = searchParams.get('clientID')
+  const productName = searchParams.get('productName')
   const [user, setUser] = useState<User | null>(null)
 
   const [trip, setTrip] = useState<any[]>([])
@@ -45,8 +50,10 @@ export default function Trip() {
     const getTrip = async () => {
       try {
         const { data, error } = await supabase
-          .from('trip')
-          .select(`trip_name, materials(id, material_name, collection_date )`)
+          .from('materials')
+          .select(
+            `material_name, collect_date, cumulative_total, clean_point_date, treatment_date, analysis_date, out_date)`
+          )
           .eq('materials.id', materialID)
 
         setTrip(data || [])
@@ -86,10 +93,17 @@ export default function Trip() {
     return <p className="text-red-500">{error}</p>
   }
   return (
-    <div className="flex flex-col gap-28">
-      <ClientGreeting clientID={clientID} page="trip" />
-      <ProductsList user={user} products={trip} />
-      <CTAsButtons />
+    <div className="w-full flex justify-between gap-16 mt-16 px-16">
+      <div className="flex flex-col gap-8">
+        <ClientGreeting
+          clientID={clientID}
+          productName={productName}
+          page="trip"
+        />
+        <TripCalender user={user} trip={trip} />
+        <TripCumulative />
+      </div>
+      <TripHistorical />
     </div>
   )
 }

@@ -11,16 +11,13 @@ interface GreetingTypes {
   trip: string
 }
 
-const pageGreetings: GreetingTypes = {
-  products: 'Estos son tus productos reciclados',
-  trip: 'Este es el viaje de tu tarjeta',
-}
-
 function ClientGreeting({
   clientID,
+  productName,
   page,
 }: {
   clientID: string
+  productName: string
   page: string
 }) {
   const [client, setClient] = useState<any[]>([])
@@ -29,6 +26,12 @@ function ClientGreeting({
 
   const pageRefProp = page as string
   const supabase = createClientComponentClient<Database>()
+
+  const pageGreetings: GreetingTypes = {
+    products: 'Estos son tus productos reciclados',
+    trip: `Este es el viaje de tu ${productName ? productName : 'producto'}`,
+  }
+
   useEffect(() => {
     const getClients = async () => {
       try {
@@ -64,7 +67,7 @@ function ClientGreeting({
   }
 
   return (
-    <div className="flex flex-col justify-start text-white ml-8">
+    <div className="flex flex-col justify-start text-white">
       <h3>Hola</h3>
       <h2>{client[0].client_name.toUpperCase()},</h2>
       <h3>{pageGreetings[pageRefProp as keyof GreetingTypes]}:</h3>

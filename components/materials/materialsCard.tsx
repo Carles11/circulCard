@@ -1,7 +1,7 @@
 // @ts-nocheck
 
 import type { Database } from 'types/supabase'
-
+import Link from 'next/link'
 import DoughnutComponent from './doughnutComponent'
 import DateComponent from './dateComponent'
 import MaterialsIcons from './materialsIcons'
@@ -9,13 +9,19 @@ import MaterialsIcons from './materialsIcons'
 const MaterialsCard = ({
   materials,
   projects,
+  clientID,
+  productName,
 }: {
   materials: Database
   projects: Database
+  clientID: string
+  productName: string
 }) => {
+  console.log({ clientID })
   return (
     <div className="flex flex-row flex-wrap place-content-center lg:m-16 gap-6 md:gap-8 lg:gap-8">
       {materials.map((mat) => {
+        console.log('materialID', mat.id)
         return (
           <div
             key={mat.id}
@@ -33,9 +39,19 @@ const MaterialsCard = ({
                       {mat.material_name}
                     </button>
                   </div>
-                  <div className="rounded-3xl bg-gray-400">
+                  <Link
+                    href={{
+                      pathname: 'trip',
+                      query: {
+                        materialID: mat.id,
+                        clientID: clientID,
+                        productName: productName,
+                      },
+                    }}
+                    className="rounded-3xl bg-gray-300"
+                  >
                     <DateComponent material={mat.collect_date} />
-                  </div>
+                  </Link>
                   <div className="flex flex-col grow gap-4 justify-between items-center">
                     <MaterialsIcons projects={projects} />
                     <div

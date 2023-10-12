@@ -90,7 +90,7 @@ export default function Products() {
   return (
     <div className="flex flex-col gap-28">
       <ClientGreeting clientID={clientID} page="products" />
-      <ProductsList user={user} products={products} />
+      <ProductsList user={user} products={products} clientID={clientID} />
       <CTAsButtons />
     </div>
   )

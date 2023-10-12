@@ -7,7 +7,13 @@ import type { Database, ProductItemProps } from 'types/supabase'
 
 import { capitalizeFirstLetter, iconMap } from 'utils/utils.service'
 
-function ProductsList({ products }: { products: Database }) {
+function ProductsList({
+  products,
+  clientID,
+}: {
+  products: Database
+  clientID: string
+}) {
   return (
     <div className="flex flex-col md:flex-row self-center gap-28 mt-12">
       {products.length > 0 ? (
@@ -28,6 +34,7 @@ function ProductsList({ products }: { products: Database }) {
                   pathname: '/materials',
                   query: {
                     productName: prod.product_name,
+                    clientID: clientID,
                   },
                 }}
                 className="no-underline flex items-center group text-sm"
