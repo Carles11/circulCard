@@ -1,21 +1,11 @@
 // @ts-nocheck
 
-import Image, { StaticImageData } from 'next/image'
+import Image from 'next/image'
 import Link from 'next/link'
 
 import type { Database, ProductItemProps } from 'types/supabase'
 
-import { capitalizeFirstLetter } from 'utils/utils.service'
-
-import POSicon from 'assets/images/icons/pos-icon.png'
-import CARDSicon from 'assets/images/icons/cards-icon.png'
-import FURNITUREicon from 'assets/images/icons/furniture-icon.png'
-
-const iconMap: Record<string, StaticImageData> = {
-  pos: POSicon,
-  cards: CARDSicon,
-  furniture: FURNITUREicon,
-}
+import { capitalizeFirstLetter, iconMap } from 'utils/utils.service'
 
 function ProductsList({ products }: { products: Database }) {
   return (

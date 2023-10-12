@@ -3,25 +3,15 @@
 
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import type { Database } from 'types/supabase'
+import { iconMap } from 'utils/utils.service'
 
 import { useEffect, useState } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
-import { StaticImageData } from 'next/image'
 
 import Loader from 'components/loader'
 
-import POSicon from 'assets/images/icons/pos-icon.png'
-import CARDSicon from 'assets/images/icons/cards-icon.png'
-import FURNITUREicon from 'assets/images/icons/furniture-icon.png'
-
 import MaterialsProduct from 'components/materials/materialsProduct'
 import MaterialsCard from 'components/materials/materialsCard'
-
-const iconMap: Record<string, StaticImageData> = {
-  pos: POSicon,
-  cards: CARDSicon,
-  furniture: FURNITUREicon,
-}
 
 const Materials = () => {
   const [materials, setMaterials] = useState<any[]>([])

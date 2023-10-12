@@ -1,16 +1,7 @@
 import Image from 'next/image'
-import { StaticImageData } from 'next/image'
+import { iconMap } from 'utils/utils.service'
 
-import HERZicon from 'assets/images/icons/herz.png'
-import FITNESSicon from 'assets/images/icons/fitness.png'
-import PROJECTSicon from 'assets/images/icons/projects.png'
 import { Key } from 'react'
-
-const iconMap: Record<string, StaticImageData> = {
-  herz: HERZicon,
-  fitness: FITNESSicon,
-  projects: PROJECTSicon,
-}
 
 const MaterialsIcons = ({ projects }: { projects: Array<any> }) => {
   return (
