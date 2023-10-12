@@ -7,21 +7,19 @@ import { useEffect, useState } from 'react'
 import type { Database } from 'types/supabase'
 import { User as SupabaseUser } from '@supabase/supabase-js'
 
-import Loader from 'components/loader'
 import ClientGreeting from 'components/clientGreeting'
-import ProductsList from 'components/products/productsList'
-import CTAsButtons from 'components/products/ctasButtons'
+import Loader from 'components/loader'
 
 interface User extends SupabaseUser {
   // Additional properties specific to your application
 }
 
-export default function Products() {
+export default function Trip() {
   const searchParams = useSearchParams()
-  const clientID = searchParams.get('clientID')
+  const materialID = searchParams.get('materialID')
   const [user, setUser] = useState<User | null>(null)
 
-  const [products, setProducts] = useState<any[]>([])
+  const [trip, setTrip] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const router = useRouter() // Initialize the useRouter hook
@@ -44,14 +42,14 @@ export default function Products() {
   }, [supabase, router])
 
   useEffect(() => {
-    const getProducts = async () => {
+    const getTrip = async () => {
       try {
         const { data, error } = await supabase
-          .from('products')
-          .select(`product_name, clients(id, client_name )`)
-          .eq('clients.id', clientID)
+          .from('trip')
+          .select(`trip_name, materials(id, material_name, collection_date )`)
+          .eq('materials.id', materialID)
 
-        setProducts(data || [])
+        setTrip(data || [])
       } catch (error: any) {
         setError(error.message)
       } finally {
@@ -59,8 +57,8 @@ export default function Products() {
       }
     }
 
-    getProducts()
-  }, [supabase, setProducts, setLoading, setError])
+    getTrip()
+  }, [supabase, setTrip, setLoading, setError])
 
   useEffect(() => {
     const fetchData = async () => {
@@ -89,8 +87,8 @@ export default function Products() {
   }
   return (
     <div className="flex flex-col gap-28">
-      <ClientGreeting clientID={clientID} page="products" />
-      <ProductsList user={user} products={products} />
+      <ClientGreeting clientID={clientID} page="trip" />
+      <ProductsList user={user} products={trip} />
       <CTAsButtons />
     </div>
   )
