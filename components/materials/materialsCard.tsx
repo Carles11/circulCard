@@ -17,11 +17,9 @@ const MaterialsCard = ({
   clientID: string
   productName: string
 }) => {
-  console.log({ clientID })
   return (
     <div className="flex flex-row flex-wrap place-content-center lg:m-16 gap-6 md:gap-8 lg:gap-8">
       {materials.map((mat) => {
-        console.log('materialID', mat.id)
         return (
           <div
             key={mat.id}
@@ -33,11 +31,8 @@ const MaterialsCard = ({
             <div className="w-screen md:w-full bg-white rounded-t-3xl md:rounded-3xl border-8 border-gray-300">
               <div className="min-w-full md:min-w-[320px] w-auto">
                 <div className="p-2 py-5 flex flex-col items-center">
-                  <div>
-                    <button className="w-28 md:w-32 lg:w-48 bg-green-700 rounded-full text-xl px-4 py-2 text-white mb-2 hover:bg-btn-background-hover">
-                      {' '}
-                      {mat.material_name}
-                    </button>
+                  <div className="w-28 md:w-32 lg:w-48 bg-green-700 rounded-full text-xl px-4 py-2 text-white mb-2 text-center">
+                    {mat.material_name}
                   </div>
                   <Link
                     href={{

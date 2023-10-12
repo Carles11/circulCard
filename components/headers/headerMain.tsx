@@ -13,7 +13,6 @@ import LogoutButton from 'components/LogoutButton'
 import TheCirculArtBulb from 'assets/logos/circulart-green-bulb.svg'
 
 function mainHeader({ email }: { email: string | undefined }) {
-  console.log({ email })
   // const [showLogout, setShowLogout] = useState(false)
   const router = useRouter()
 

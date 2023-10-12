@@ -15,6 +15,19 @@ export interface UserProps {
   id: string
   email?: string | undefined
 }
+export type TripProps = {
+  analysis_date: string
+  clean_point_date: string
+  collect_date: string
+  created_at: string
+  cumulative_total: string
+  id: string
+  material_name: string
+  out_date: string
+  percentage: number
+  treatment_date: string
+}
+
 export interface Database {
   length: number
   map(

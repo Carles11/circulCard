@@ -2,7 +2,7 @@ import React from 'react'
 
 const TripCalender = () => {
   return (
-    <div className="border rounded-3xl bg-gray-300 shadow shadow-xl h-fit w-auto">
+    <div className="w-full border rounded-xl bg-gray-300 shadow shadow-md shadow-gray-300 h-28 w-auto">
       TripCalender
     </div>
   )

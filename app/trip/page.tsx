@@ -22,11 +22,12 @@ export default function Trip() {
   const materialID = searchParams.get('materialID')
   const clientID = searchParams.get('clientID')
   const productName = searchParams.get('productName')
-  const [user, setUser] = useState<User | null>(null)
 
+  const [user, setUser] = useState<User | null>(null)
   const [trip, setTrip] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+
   const router = useRouter() // Initialize the useRouter hook
 
   // Create a Supabase client configured to use cookies
@@ -51,10 +52,8 @@ export default function Trip() {
       try {
         const { data, error } = await supabase
           .from('materials')
-          .select(
-            `material_name, collect_date, cumulative_total, clean_point_date, treatment_date, analysis_date, out_date)`
-          )
-          .eq('materials.id', materialID)
+          .select('*')
+          .eq('id', materialID)
 
         setTrip(data || [])
       } catch (error: any) {
@@ -92,18 +91,21 @@ export default function Trip() {
   if (error) {
     return <p className="text-red-500">{error}</p>
   }
+
   return (
-    <div className="w-full flex justify-between gap-16 mt-16 px-16">
-      <div className="flex flex-col gap-8">
+    <div className="w-full flex flex-col md:flex-row md:justify-around gap-16 mt-4 md:mt-16 md:px-16">
+      <div className="w-3/4 flex flex-col gap-8 ml-8">
         <ClientGreeting
           clientID={clientID}
           productName={productName}
           page="trip"
         />
         <TripCalender user={user} trip={trip} />
-        <TripCumulative />
+        <TripCumulative trip={trip} />
       </div>
-      <TripHistorical />
+      <div className="w-3/4 flex items-center">
+        <TripHistorical />
+      </div>
     </div>
   )
 }
