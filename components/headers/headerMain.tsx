@@ -33,7 +33,8 @@ function mainHeader({ email }: { email: string | undefined }) {
     <div className="flex justify-between text-foreground ">
       <div className="flex items-end">
         {!urlIsHome() ? (
-          <div>
+          <div className="flex align-center">
+            {' '}
             <Link href="/" className="flex items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -57,14 +58,16 @@ function mainHeader({ email }: { email: string | undefined }) {
                 Volver
               </button>
             </Link>
+            <LogoutButton />
           </div>
         ) : (
           <div className="flex flex-col justify-start text-white ml-8">
-            <p>Hola {email},</p>
+            <p>
+              Hola. {email}
+              {''}
+            </p>
           </div>
         )}
-        <div className="flex align-center"></div>
-        <LogoutButton />
       </div>
       <div
         className="py-2 px-4 flex flex-col items-center"
