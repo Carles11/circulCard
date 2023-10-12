@@ -6,7 +6,8 @@ const TripCumulative = ({ trip }: { trip: TripProps }) => {
   console.log({ trip })
   // Assuming 'trip' is an array of Trip objects
   const index = 0
-  const cumulativeTotal = trip[index].cumulative_total
+  // @ts-ignore
+  const cumulativeTotal = trip[index]['cumulative_total']
   return (
     <div className="relative w-full h-44 md:h-64 border rounded-xl bg-gray-300 shadow shadow-md shadow-gray-500">
       <div className="">
