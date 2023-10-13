@@ -1,9 +1,10 @@
-import React from 'react'
+import CustomCalendar from '@/components/calender'
+import type { TripProps } from 'types/supabase'
 
-const TripCalender = () => {
+const TripCalender = ({ trip }: { trip: TripProps }) => {
   return (
-    <div className="w-full border rounded-xl bg-gray-300 shadow shadow-md shadow-gray-300 h-28 w-auto">
-      TripCalender
+    <div className="w-full h-fit border rounded-xl bg-gray-200 shadow shadow-md shadow-gray-300 h-28 w-auto">
+      <CustomCalendar trip={trip} />
     </div>
   )
 }

@@ -193,3 +193,94 @@ a:hover.link-with-style {
     transform: rotate(405deg);
   }
 }
+
+/* STYLINGS FOR CALENDER */
+.rbc-time-view {
+  .rbc-label {
+    display: none;
+  }
+  .rbc-allday-cell {
+    height: calc(100vh - 98px);
+    max-height: unset;
+  }
+  .rbc-time-content {
+    display: none;
+  }
+}
+.rbc-calendar {
+  font-family: 'Champagne&Limousines';
+  .rbc-toolbar {
+    align-self: center;
+  }
+  .rbc-btn-group {
+    display: none;
+  }
+  .rbc-toolbar-label {
+  }
+}
+.rbc-time-view-resources .rbc-time-header-content {
+  width: 40vw;
+}
+
+@media only screen and (max-width: 600px) {
+  .rbc-time-view-resources .rbc-time-header-content {
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+  .rbc-time-view-resources .rbc-time-header-content {
+    width: 60vw;
+  }
+}
+
+.rbc-event.rbc-event-allday {
+  background-color: var(--btn-background);
+  height: 8rem;
+}
+
+/* flex component for calender table*/
+/* .rbc-time-view-resources .rbc-time-header-content {
+  min-width: auto;
+  flex: 0 1 0;
+  flex-basis: 0px;
+} */
+
+.rbc-row.rbc-row-resource {
+  order: 3;
+}
+
+.rbc-header.rbc-today {
+  width: fit-content;
+  height: auto;
+  word-spacing: 100vw;
+  .rbc-button-link {
+    font-size: 1.5rem;
+    padding: 4px;
+  }
+}
+
+.rbc-time-view-resources .rbc-header,
+.rbc-time-view-resources .rbc-day-bg {
+  height: fit-content;
+}
+
+/*Styles for titel below table*/
+.rbc-row.rbc-row-resource {
+  font-size: 162.5%; /* 26px */
+
+  .rbc-header {
+    text-align: right;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .rbc-row.rbc-row-resource {
+    font-size: 100%; /* 26px */
+  }
+}
+
+/*Green column inside table calendar*/
+.rbc-row-content {
+  margin-top: 2rem;
+}

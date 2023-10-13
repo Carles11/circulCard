@@ -89,7 +89,7 @@ export default function Products() {
   }
   return (
     <div className="w-full flex flex-col md:justify-around gap-8 md:gap-16 mt-4 md:mt-16 md:px-16 items-center">
-      <div className="w-3/4 flex flex-col gap-8 ml-0 md:ml-8">
+      <div className="w-full flex flex-col gap-8 ml-0 md:ml-8">
         <ClientGreeting clientID={clientID} page="products" />
       </div>
       <ProductsList user={user} products={products} clientID={clientID} />
