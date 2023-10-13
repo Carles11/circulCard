@@ -2,13 +2,15 @@
 
 import DoughnutChart from '@/components/charts/doughnutChart'
 
-const DoughnutComponent = ({ proj }) => {
+const DoughnutComponent = ({ proj, materialName }) => {
+  const materialData = proj[`project_${materialName}`]
+  console.log({ materialData })
   const DonughtChartData = {
     labels: ['Recycled percentage', 'to Go'],
     datasets: [
       {
         label: '%',
-        data: [proj.project_plastic, `${100 - proj.project_plastic}`],
+        data: [materialData, `${100 - materialData}`],
         backgroundColor: ['#79d97c', 'transparent'],
         borderColor: 'transparent',
         borderWidth: 1,
@@ -38,7 +40,7 @@ const DoughnutComponent = ({ proj }) => {
     <DoughnutChart
       data={DonughtChartData}
       options={options}
-      innerText={`${proj.project_plastic}`}
+      innerText={`${materialData}`}
     />
   )
 }

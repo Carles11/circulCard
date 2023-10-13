@@ -52,6 +52,9 @@ const MaterialsCard = ({
                     <Link
                       href={{
                         pathname: 'projects',
+                        query: {
+                          materialName: mat.material_name,
+                        },
                       }}
                       className="flex items-center justify-center w-8 h-8 bg-green-500 rounded-full cursor-pointer shadow shadow-lg shadow-gray-500"
                     >
