@@ -6,7 +6,6 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
 ChartJS.register(ArcElement, Tooltip, Legend)
 
 const DoughnutChart = ({ data, options, innerText }) => {
-  console.log({ innerText })
   const plugins = [
     {
       beforeDraw: function (chart: { width: any; height: any; ctx: any }) {

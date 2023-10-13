@@ -1,10 +1,11 @@
+// @ts-nocheck
 'use client'
 
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import type { Database } from 'types/supabase'
 
 import { useEffect, useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 
 import Loader from 'components/loader'
 
@@ -17,6 +18,9 @@ const SecondLife = () => {
   const router = useRouter() // Initialize the useRouter hook
 
   const supabase = createClientComponentClient<Database>()
+
+  const searchParams = useSearchParams()
+  const projectID = searchParams.get('projectID')
 
   useEffect(() => {
     const checkUser = async () => {
@@ -36,6 +40,7 @@ const SecondLife = () => {
     const getSecondLifes = async () => {
       try {
         const { data, error } = await supabase.from('second_life').select('*')
+        // .eq(`id, ${projectID}`)
 
         if (error) {
           throw new Error(error.message)
@@ -63,10 +68,10 @@ const SecondLife = () => {
   if (error) {
     return <p className="text-red-500">{error}</p>
   }
-
+  console.log({ secondLifes })
   return (
     <div className="w-full flex flex-col">
-      <SecondLifesCard secondLifes={secondLifes} />
+      <SecondLifesCard secondLifes={secondLifes} projectID={projectID} />
     </div>
   )
 }

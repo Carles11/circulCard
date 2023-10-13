@@ -7,6 +7,7 @@ import type { Database } from 'types/supabase'
 import { useEffect, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Image from 'next/image'
+import Link from 'next/link'
 
 import Loader from 'components/loader'
 import DoughnutComponent from 'components/projects/doughnutComponent'
@@ -87,14 +88,26 @@ const Projects = () => {
 
       <div className="flex flex-col md:flex-row gap-16 justify-between">
         {projects.map((proj) => {
+          const projectID = proj.id
           return (
             <div className="flex flex-col items-center gap-6">
-              <div className="rounded-full border-8 border-gray-400 bg-white ">
+              <div className="rounded-full border-8 border-gray-400 bg-white h-72 w-72">
                 <DoughnutComponent proj={proj} materialName={materialName} />
               </div>
-              <button className="bg-gray-400 rounded-xl text-lg px-4 py-2 text-white mb-2 hover:bg-btn-background-hover">
-                {proj.project_name.toUpperCase()}
-              </button>
+              <Link
+                key={proj.id}
+                href={{
+                  pathname: 'projects/second-life',
+                  query: {
+                    projectID: projectID,
+                  },
+                }}
+                className="no-underline flex items-center group text-sm"
+              >
+                <button className="bg-gray-400 rounded-xl text-lg px-4 py-2 text-white mb-2 hover:bg-btn-background-hover">
+                  {proj.project_name.toUpperCase()}
+                </button>
+              </Link>
             </div>
           )
         })}
