@@ -8,6 +8,8 @@ import { useEffect, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 
 import Loader from 'components/loader'
+import PlantOnHands from 'assets/images/icons/SVG/plant-on-hands.svg'
+import Image from 'next/image'
 
 import SecondLifesCard from 'components/projects/secondLifesCard'
 
@@ -21,6 +23,7 @@ const SecondLife = () => {
 
   const searchParams = useSearchParams()
   const projectID = searchParams.get('projectID')
+  const projectName = searchParams.get('projectName')
 
   useEffect(() => {
     const checkUser = async () => {
@@ -71,6 +74,15 @@ const SecondLife = () => {
   console.log({ secondLifes })
   return (
     <div className="w-full flex flex-col">
+      <div className="w-full flex flex-col items-center m-8">
+        <Image
+          src={PlantOnHands}
+          alt="The circulart recycling process"
+          width={75}
+          height={75}
+        />
+        <h1 className="text-white">Proyecto</h1> <h2>{projectName}</h2>{' '}
+      </div>
       <SecondLifesCard secondLifes={secondLifes} projectID={projectID} />
     </div>
   )

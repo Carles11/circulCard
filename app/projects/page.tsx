@@ -73,7 +73,6 @@ const Projects = () => {
     return <p className="text-red-500">{error}</p>
   }
 
-  console.log({ projects })
   return (
     <div className="w-full flex flex-col gap-16 items-center m-8">
       <div className="w-full flex flex-col items-center m-8">
@@ -83,12 +82,13 @@ const Projects = () => {
           width={75}
           height={75}
         />
-        <h1 className="text-white">RECICLAJE</h1>{' '}
+        <h1 className="text-white">RECICLAJE</h1> <h2>{materialName}</h2>{' '}
       </div>
 
       <div className="flex flex-col md:flex-row gap-16 justify-between">
         {projects.map((proj) => {
           const projectID = proj.id
+          const projectName = proj.project_name
           return (
             <div className="flex flex-col items-center gap-6">
               <div className="rounded-full border-8 border-gray-400 bg-white h-72 w-72">
@@ -100,6 +100,7 @@ const Projects = () => {
                   pathname: 'projects/second-life',
                   query: {
                     projectID: projectID,
+                    projectName: projectName,
                   },
                 }}
                 className="no-underline flex items-center group text-sm"
