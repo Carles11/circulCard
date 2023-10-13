@@ -79,8 +79,8 @@ const Projects = () => {
         <Image
           src={RecycleHands}
           alt="The circulart recycling process"
-          width={40}
-          height={40}
+          width={75}
+          height={75}
         />
         <h1 className="text-white">RECICLAJE</h1>{' '}
       </div>
@@ -92,7 +92,7 @@ const Projects = () => {
               <div className="rounded-full border-8 border-gray-400 bg-white ">
                 <DoughnutComponent proj={proj} materialName={materialName} />
               </div>
-              <button className="bg-gray-400 rounded-3xl text-lg px-4 py-2 text-white mb-2 hover:bg-btn-background-hover">
+              <button className="bg-gray-400 rounded-xl text-lg px-4 py-2 text-white mb-2 hover:bg-btn-background-hover">
                 {proj.project_name.toUpperCase()}
               </button>
             </div>
