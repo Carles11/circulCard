@@ -49,14 +49,16 @@ const MaterialsCard = ({
                   </Link>
                   <div className="flex flex-col grow gap-4 justify-between items-center">
                     <MaterialsIcons projects={projects} />
-                    <div
-                      id="roundButton"
+                    <Link
+                      href={{
+                        pathname: 'projects',
+                      }}
                       className="flex items-center justify-center w-8 h-8 bg-green-500 rounded-full cursor-pointer shadow shadow-lg shadow-gray-500"
                     >
                       <span className="text-white text-2xl font-bold pb-1">
                         +
                       </span>
-                    </div>
+                    </Link>
                   </div>
                 </div>
               </div>
