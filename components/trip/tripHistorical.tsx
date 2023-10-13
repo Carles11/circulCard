@@ -1,12 +1,45 @@
+// @ts-nocheck
 import Image from 'next/image'
+import type { TripProps } from 'types/supabase'
+
 import JourneyLine from 'assets/images/icons/SVG/journey/journey-line.svg'
 import JourneyDot from 'assets/images/icons/SVG/journey/journey-dot.svg'
-const TripHistorical = () => {
+
+const TripHistorical = ({ trip }: { trip: TripProps }) => {
+  // Assuming 'trip' is an array of Trip objects
+  const index = 0
+  const collectDate = trip[index]['collect_full_date']
+  const cleanPointDate = trip[index]['clean_point_date']
+  const treatmentDate = trip[index]['treatment_date']
+  const analysisDate = trip[index]['analysis_date']
+  const outDate = trip[index]['out_date']
   return (
-    <div className="mb-20 w-full flex border rounded-xl  bg-[#79d97c] shadow shadow-xs shadow-gray-300  h-64">
-      <div className="relative h-full w-1/2 ">textos</div>
-      <div className="relative h-full w-1/2">
-        <div className="absolute  right-0 top-0">
+    <div className="w-full flex flex-col md:flex-row p-2 sm:p-8 md:pl-20 border rounded-xl bg-[#79d97c] shadow shadow-xs shadow-gray-300 h-fit mb-20 md:mb-0">
+      <div className="flex flex-col justify-around h-full w-full md:w-1/2 m-2 md:m-8 h-auto">
+        <div>
+          <h5>Recogida</h5>
+          <h5 className="text-foreground">{collectDate}</h5>
+        </div>
+        <div>
+          <h5>Punto limpio</h5>
+          <h5 className="text-foreground">{cleanPointDate}</h5>
+        </div>
+        <div>
+          <h5>Tratamiento</h5>
+          <h5 className="text-foreground">{treatmentDate}</h5>
+        </div>
+        <div>
+          <h5>Análisis</h5>
+          <h5 className="text-foreground">Estimado el {analysisDate}</h5>
+        </div>
+        <div>
+          <h5>Salida</h5>
+          <h5 className="text-foreground">Estimado el {outDate}</h5>
+        </div>
+      </div>
+      <div className="relative h-full w-full md:w-1/2">
+        <h4 className="text-foreground text-right mr-32 mt-4">Histórico</h4>
+        <div className="relative md:absolute right-0 top-0">
           <Image
             src={JourneyLine}
             alt="theCirculArt Journey"
@@ -16,7 +49,7 @@ const TripHistorical = () => {
             style={{ width: '100%', height: '120%' }}
           />
         </div>
-        <div className="absolute right-20 top-20">
+        <div className="absolute right-12 sm:right-20 md:right-20 top-24 md:top-20">
           <Image
             src={JourneyDot}
             height={65}

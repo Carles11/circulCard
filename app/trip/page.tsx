@@ -93,7 +93,7 @@ export default function Trip() {
   }
 
   return (
-    <div className="w-full flex flex-col md:flex-row md:justify-around gap-8 md:gap-16 mt-4 md:mt-16 md:px-16 items-center">
+    <div className="w-full flex flex-col lg:flex-row md:justify-around gap-8 md:gap-16 mt-4 md:mt-16 md:px-16 items-center">
       <div className="w-3/4 flex flex-col gap-8 ml-0 md:ml-8">
         <ClientGreeting
           clientID={clientID}
@@ -103,7 +103,7 @@ export default function Trip() {
         <TripCalender user={user} trip={trip} />
         <TripCumulative trip={trip} />
       </div>
-      <div className="w-3/4 flex justify-center md:items-center">
+      <div className="w-3/4 ">
         <TripHistorical trip={trip} />
       </div>
     </div>

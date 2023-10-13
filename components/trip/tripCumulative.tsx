@@ -3,7 +3,6 @@ import RecycleGreenArrows from 'assets/images/icons/SVG/recycle-green-arrows.svg
 import type { TripProps } from 'types/supabase'
 
 const TripCumulative = ({ trip }: { trip: TripProps }) => {
-  console.log({ trip })
   // Assuming 'trip' is an array of Trip objects
   const index = 0
   // @ts-ignore
