@@ -74,7 +74,7 @@ export default function Trip() {
 
   return (
     <div className="w-full flex flex-col lg:flex-row md:justify-around gap-8 md:gap-16 mt-4 md:mt-16 md:px-16 items-center">
-      <div className="w-1/2 flex flex-col gap-8 ml-0 md:ml-8">
+      <div className="w-3/4 md:w-full lg:w-1/2 flex flex-col gap-8 ml-0 md:ml-8">
         <ClientGreeting
           clientID={clientID}
           productName={productName}

@@ -20,22 +20,21 @@ const resourceMap = [
 ]
 
 const styles = {
-  container: {
-    width: '80%',
-    height: 'auto',
-    margin: '2em',
-  },
-
-  '@media only screen and (min-width: 601px) and (max-width: 1024px)': {
-    container: {
-      width: '60vw',
-    },
-  },
-  '@media only screen and (min-width: 1025) ': {
-    container: {
-      width: '40vw',
-    },
-  },
+  // container: {
+  //   width: '80%',
+  //   height: 'auto',
+  //   margin: '2em',
+  // },
+  // '@media only screen and (min-width: 601px) and (max-width: 1024px)': {
+  //   container: {
+  //     width: '50vw',
+  //   },
+  // },
+  // '@media only screen and (min-width: 1025px) ': {
+  //   container: {
+  //     width: '40vw',
+  //   },
+  // },
 }
 
 // CustomWeekView.navigate = (date, action, { localizer }) => {
