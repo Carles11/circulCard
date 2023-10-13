@@ -14,7 +14,7 @@ const TripHistorical = ({ trip }: { trip: TripProps }) => {
   const analysisDate = trip[index]['analysis_date']
   const outDate = trip[index]['out_date']
   return (
-    <div className="w-full flex flex-col md:flex-row p-2 sm:p-8 md:pl-20 border rounded-xl bg-[#79d97c] shadow shadow-xs shadow-gray-300 h-fit mb-20 md:mb-0">
+    <div className="w-full flex flex-col md:flex-row p-2 sm:p-8 md:pl-20 border rounded-xl bg-[#79d97c] shadow shadow-xs shadow-gray-300 h-fit mb-20 md:mb-8">
       <div className="flex flex-col justify-around h-full w-full md:w-1/2 m-2 md:m-8 h-auto">
         <div>
           <h5>Recogida</h5>
@@ -44,19 +44,19 @@ const TripHistorical = ({ trip }: { trip: TripProps }) => {
             src={JourneyLine}
             alt="theCirculArt Journey"
             // fill={true}
-            objectFit="cover"
-            objectPosition="right"
-            style={{ width: '100%', height: '120%' }}
+            // objectFit="cover"
+            // objectPosition="right"
+            style={{ width: '120%', maxWidth: 'none' }}
           />
         </div>
-        <div className="absolute right-12 sm:right-20 md:right-20 top-24 md:top-20">
+        <div className="absolute right-20 md:right-6 top-52 sm:top-60 md:top-20">
           <Image
             src={JourneyDot}
             height={65}
             width={65}
             alt="theCirculArt Journey"
-            objectFit="contain"
-            objectPosition="right"
+            // objectFit="contain"
+            // objectPosition="right"
           />
         </div>
       </div>

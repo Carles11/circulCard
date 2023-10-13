@@ -8,29 +8,26 @@ const TripCumulative = ({ trip }: { trip: TripProps }) => {
   // @ts-ignore
   const cumulativeTotal = trip[index]['cumulative_total']
   return (
-    <div className="relative w-full h-44 md:h-64 border rounded-xl bg-gray-300 shadow shadow-md shadow-gray-500">
-      <div className="">
-        <Image
-          src={RecycleGreenArrows}
-          // height={200}
-          // width={300}
-          alt="TheCirculArt Green Recycle Arrows"
-          layout="fill"
-          objectFit="contain"
-          objectPosition="left"
-          className="z-0"
-        />
+    <div className="z-0 relative w-full h-44 md:h-64 border rounded-xl bg-gray-300 shadow shadow-md shadow-gray-500">
+      <Image
+        src={RecycleGreenArrows}
+        alt="TheCirculArt Green Recycle Arrows"
+        layout="fill"
+        objectFit="contain"
+        objectPosition="left"
+        style={{ zIndex: -1 }}
+      />
+      <div className="flex flex-col mr-2 items-end 9 md:mt-20">
+        <div className="flex flex-col mr-2 items-end">
+          <h1 className="z-1 text-gray-700">{cumulativeTotal}</h1>
+          <h3 className="z-1 text-gray-700">recogidas</h3>
+        </div>
+        <div>
+          <button className="rounded-full bg-white py-1 px-6 mt-4">
+            Certificado
+          </button>
+        </div>
       </div>
-      <h1 className="absolute right-10 md:right-48 top-8 md:top-32 z-1 text-gray-700">
-        {cumulativeTotal}
-      </h1>
-
-      <h3 className="absolute right-10 md:right-48 top-16 md:top-44 z-1 text-gray-700">
-        recogidas
-      </h3>
-      <button className="absolute right-10 bottom-5 rounded-full bg-white py-1 px-6">
-        Certificado
-      </button>
     </div>
   )
 }
