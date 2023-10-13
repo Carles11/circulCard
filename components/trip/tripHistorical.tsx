@@ -14,7 +14,7 @@ const TripHistorical = ({ trip }: { trip: TripProps }) => {
   const analysisDate = trip[index]['analysis_date']
   const outDate = trip[index]['out_date']
   return (
-    <div className="w-full flex flex-col md:flex-row p-2 sm:p-8 md:pl-20 border rounded-xl bg-[#79d97c] shadow shadow-xs shadow-gray-300 h-fit mb-20 md:mb-8">
+    <div className="w-full flex flex-col md:flex-row p-2 sm:p-8 md:pl-20 border rounded-xl bg-[#79d97c] shadow shadow-xs shadow-gray-300 h-fit mb-10 md:mb-8 mt-0 md:mt-60">
       <div className="flex flex-col justify-around h-full w-full md:w-1/2 m-2 md:m-8 h-auto">
         <div>
           <h5>Recogida</h5>

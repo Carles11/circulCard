@@ -83,9 +83,9 @@ export default function Trip() {
         <TripCalender trip={trip} />
         <TripCumulative trip={trip} />
       </div>
-      <div className="w-1/2 flex flex-col">
+      <div className="w-3/4 md:w-1/2 flex flex-col">
         <TripHistorical trip={trip} />
-        <button className="rounded-full bg-white py-1 px-6 mt-4 w-fit self-end">
+        <button className="rounded-full bg-white py-1 px-6 md:mt-4 w-fit self-end mb-10 ">
           Detalles
         </button>
       </div>
