@@ -11,7 +11,7 @@ function mainPageBottomContent({ user }: { user: object | null }) {
         </button>
       </Link>
       <Link href="/reset-password" className=" ">
-        <button className=" text-xs my-2 py-2 px-4 rounded-md no-underline bg-btn-background hover:bg-btn-background-hover">
+        <button className=" text-xs my-2 py-2 px-4 rounded-md no-underline bg-transparent hover:bg-btn-background-hover">
           He olvidado mi contraseña
         </button>
       </Link>

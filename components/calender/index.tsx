@@ -19,41 +19,6 @@ const resourceMap = [
   // { resourceId: 4, resourceTitle: 'Meeting room 2' },
 ]
 
-const styles = {
-  // container: {
-  //   width: '80%',
-  //   height: 'auto',
-  //   margin: '2em',
-  // },
-  // '@media only screen and (min-width: 601px) and (max-width: 1024px)': {
-  //   container: {
-  //     width: '50vw',
-  //   },
-  // },
-  // '@media only screen and (min-width: 1025px) ': {
-  //   container: {
-  //     width: '40vw',
-  //   },
-  // },
-}
-
-// CustomWeekView.navigate = (date, action, { localizer }) => {
-//   switch (action) {
-//     case Navigate.PREVIOUS:
-//       return localizer.add(date, -3, 'day')
-
-//     case Navigate.NEXT:
-//       return localizer.add(date, 3, 'day')
-
-//     default:
-//       return date
-//   }
-// }
-
-// CustomWeekView.title = (date) => {
-//   return `My awesome week: ${date.toLocaleDateString()}`
-// }
-
 export default function CustomCalendar({ trip }: { trip: TripProps }) {
   const index = 0
   const collectDate = trip[index]['collect_full_date']
@@ -98,7 +63,7 @@ export default function CustomCalendar({ trip }: { trip: TripProps }) {
   ]
 
   return (
-    <div style={styles.container}>
+    <div className="w-full">
       <BigCalendar
         localizer={localizer}
         events={events}

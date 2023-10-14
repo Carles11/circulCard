@@ -63,9 +63,9 @@ const Projects = () => {
 
   if (loading) {
     return (
-      <div className="text-white">
+      <p className="text-white">
         <Loader />
-      </div>
+      </p>
     )
   }
 
@@ -82,7 +82,7 @@ const Projects = () => {
           width={75}
           height={75}
         />
-        <h1 className="text-white">RECICLAJE</h1> <h2>{materialName}</h2>{' '}
+        <h1 className="text-foreground">RECICLAJE</h1> <h2>{materialName}</h2>{' '}
       </div>
 
       <div className="flex flex-col md:flex-row gap-16 justify-between">
@@ -105,7 +105,7 @@ const Projects = () => {
                 }}
                 className="no-underline flex items-center group text-sm"
               >
-                <button className="bg-gray-400 rounded-xl text-lg px-4 py-2 text-white mb-2 hover:bg-btn-background-hover">
+                <button className="bg-gray-400 rounded-xl text-lg px-4 py-2 text-foreground mb-2 hover:bg-btn-background-hover">
                   {proj.project_name.toUpperCase()}
                 </button>
               </Link>
