@@ -50,9 +50,9 @@ export default function Clients() {
 
   if (loading) {
     return (
-      <p className="text-white">
+      <div className="text-white">
         <Loader />
-      </p>
+      </div>
     )
   }
 
