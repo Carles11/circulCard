@@ -6,7 +6,37 @@ export type Json =
   | { [key: string]: Json | undefined }
   | Json[]
 
+export interface ProductItemProps {
+  product_icon: string | null
+  product_name: string | null
+}
+
+export interface UserProps {
+  id: string
+  email?: string | undefined
+}
+
+export type TripProps = {
+  trip: {
+    analysis_date: string
+    clean_point_date: string
+    collect_date: string
+    collect_full_date: string
+    created_at: string
+    cumulative_total: string
+    id: string
+    material_name: string
+    out_date: string
+    percentage: number
+    treatment_date: string
+  }[]
+}
+
 export interface Database {
+  length: number
+  map(
+    arg0: (prod: ProductItemProps) => import('react').JSX.Element
+  ): import('react').ReactNode
   public: {
     Tables: {
       clients: {
@@ -126,7 +156,7 @@ export interface Database {
       projects: {
         Row: {
           created_at: string
-          id: string | null
+          id: string
           project_icon: string | null
           project_metal: number | null
           project_name: string
@@ -136,7 +166,7 @@ export interface Database {
         }
         Insert: {
           created_at?: string
-          id?: string | null
+          id?: string
           project_icon?: string | null
           project_metal?: number | null
           project_name: string
@@ -146,7 +176,7 @@ export interface Database {
         }
         Update: {
           created_at?: string
-          id?: string | null
+          id?: string
           project_icon?: string | null
           project_metal?: number | null
           project_name?: string
@@ -177,16 +207,16 @@ export interface Database {
         }
         Relationships: [
           {
-            foreignKeyName: "rel_clients_products_client_id_fkey"
-            columns: ["client_id"]
-            referencedRelation: "clients"
-            referencedColumns: ["id"]
+            foreignKeyName: 'rel_clients_products_client_id_fkey'
+            columns: ['client_id']
+            referencedRelation: 'clients'
+            referencedColumns: ['id']
           },
           {
-            foreignKeyName: "rel_clients_products_product_id_fkey"
-            columns: ["product_id"]
-            referencedRelation: "products"
-            referencedColumns: ["id"]
+            foreignKeyName: 'rel_clients_products_product_id_fkey'
+            columns: ['product_id']
+            referencedRelation: 'products'
+            referencedColumns: ['id']
           }
         ]
       }
@@ -211,10 +241,16 @@ export interface Database {
         }
         Relationships: [
           {
-            foreignKeyName: "rel_materials_projects_material_id_fkey"
-            columns: ["material_id"]
-            referencedRelation: "materials"
-            referencedColumns: ["id"]
+            foreignKeyName: 'rel_materials_projects_material_id_fkey'
+            columns: ['material_id']
+            referencedRelation: 'materials'
+            referencedColumns: ['id']
+          },
+          {
+            foreignKeyName: 'rel_materials_projects_project_id_fkey'
+            columns: ['project_id']
+            referencedRelation: 'projects'
+            referencedColumns: ['id']
           }
         ]
       }
@@ -239,16 +275,16 @@ export interface Database {
         }
         Relationships: [
           {
-            foreignKeyName: "rel_products_materials_material_id_fkey"
-            columns: ["material_id"]
-            referencedRelation: "materials"
-            referencedColumns: ["id"]
+            foreignKeyName: 'rel_products_materials_material_id_fkey'
+            columns: ['material_id']
+            referencedRelation: 'materials'
+            referencedColumns: ['id']
           },
           {
-            foreignKeyName: "rel_products_materials_product_id_fkey"
-            columns: ["product_id"]
-            referencedRelation: "products"
-            referencedColumns: ["id"]
+            foreignKeyName: 'rel_products_materials_product_id_fkey'
+            columns: ['product_id']
+            referencedRelation: 'products'
+            referencedColumns: ['id']
           }
         ]
       }
@@ -273,16 +309,16 @@ export interface Database {
         }
         Relationships: [
           {
-            foreignKeyName: "rel_profiles_clients_client_id_fkey"
-            columns: ["client_id"]
-            referencedRelation: "clients"
-            referencedColumns: ["id"]
+            foreignKeyName: 'rel_profiles_clients_client_id_fkey'
+            columns: ['client_id']
+            referencedRelation: 'clients'
+            referencedColumns: ['id']
           },
           {
-            foreignKeyName: "rel_profiles_clients_profile_id_fkey"
-            columns: ["profile_id"]
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
+            foreignKeyName: 'rel_profiles_clients_profile_id_fkey'
+            columns: ['profile_id']
+            referencedRelation: 'profiles'
+            referencedColumns: ['id']
           }
         ]
       }
@@ -290,20 +326,26 @@ export interface Database {
         Row: {
           created_at: string
           id: string
+          life_description: string | null
           life_icon: string | null
           life_name: string | null
+          life_percentage: number | null
         }
         Insert: {
           created_at?: string
           id?: string
+          life_description?: string | null
           life_icon?: string | null
           life_name?: string | null
+          life_percentage?: number | null
         }
         Update: {
           created_at?: string
           id?: string
+          life_description?: string | null
           life_icon?: string | null
           life_name?: string | null
+          life_percentage?: number | null
         }
         Relationships: []
       }
