@@ -6,6 +6,8 @@ import Head from 'next/head'
 
 import MainHeader from '@/components/headers/headerMain'
 import AuthHeader from '@/components/headers/headerAuth'
+import { ThemeProvider } from './theme-provider'
+import { ThemeSwitcher } from 'components/themeSwitcher'
 
 export const metadata: Metadata = {
   title: 'TheCirculArt',
@@ -58,14 +60,17 @@ export default async function RootLayout({
         <meta name="theme-color" content="#ffffff" />
       </Head>
       <body className="grid grid-cols-1 divide-y">
-        <header className="w-full p-2 md:p-8 bg-background ">
+        <header className="w-full p-2 md:p-8 bg-white dark:bg-background ">
           <nav className="h-16">
             {user ? <MainHeader email={user.email} /> : <AuthHeader />}
           </nav>
         </header>
-        <main className="w-full min-h-screen bg-background flex flex-col items-center">
-          {children}
-        </main>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <ThemeSwitcher />
+          <main className="w-full min-h-screen bg-white dark:bg-background flex flex-col items-center">
+            {children}
+          </main>
+        </ThemeProvider>
       </body>
     </html>
   )

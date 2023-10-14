@@ -13,6 +13,7 @@
     "chart.js": "^4.4.0",
     "chartjs-plugin-doughnutlabel": "^2.0.3",
     "next": "latest",
+    "next-themes": "^0.2.1",
     "postcss": "8.4.24",
     "postcss-import": "^15.1.0",
     "react": "18.2.0",
