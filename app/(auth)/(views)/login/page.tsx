@@ -3,7 +3,7 @@ import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 
 import Messages from '../messages'
 import { useEffect, useState } from 'react'
-import { redirect } from 'next/navigation'
+import { redirect, useRouter } from 'next/navigation'
 import { User as SupabaseUser } from '@supabase/supabase-js'
 
 import type { Database } from 'types/supabase'
@@ -13,7 +13,7 @@ interface User extends SupabaseUser {
 }
 export default function Login() {
   const [user, setUser] = useState<User | null>(null)
-
+  const router = useRouter()
   useEffect(() => {
     const fetchData = async () => {
       const supabase = createClientComponentClient<Database>()
@@ -23,6 +23,7 @@ export default function Login() {
       } = await supabase.auth.getUser()
 
       setUser(fetchedUser || null)
+      router.refresh()
     }
 
     fetchData()
