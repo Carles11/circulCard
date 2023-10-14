@@ -4,7 +4,7 @@ import DoughnutChart from '@/components/charts/doughnutChart'
 
 const DoughnutComponent = ({ secLife }) => {
   const secLifeData = secLife.life_percentage
-  console.log({ secLifeData })
+
   const DonughtChartData = {
     labels: ['Recycled percentage', 'to Go'],
     datasets: [

@@ -98,7 +98,7 @@ const Materials = () => {
   if (error) {
     return <p className="text-red-500">{error}</p>
   }
-  console.log({ projects })
+
   return (
     <div className="w-full flex flex-col">
       <MaterialsProduct

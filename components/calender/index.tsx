@@ -56,7 +56,6 @@ const styles = {
 
 export default function CustomCalendar({ trip }: { trip: TripProps }) {
   const index = 0
-  console.log({ trip })
   const collectDate = trip[index]['collect_full_date']
   const cleanPointDate = trip[index]['clean_point_date']
   const treatmentDate = trip[index]['treatment_date']

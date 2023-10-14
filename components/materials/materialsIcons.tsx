@@ -4,7 +4,6 @@ import { iconMap } from 'utils/utils.service'
 import { Key } from 'react'
 
 const MaterialsIcons = ({ projects }: { projects: Array<any> }) => {
-  console.log('PROJECTS-FOR-ICONS', projects)
   return (
     <div className="flex items-center mt-4">
       {projects.map(

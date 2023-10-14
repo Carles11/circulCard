@@ -9,18 +9,14 @@ export async function POST(request: Request) {
   const requestUrl = new URL(request.url)
   const formData = await request.formData()
   const new_password = String(formData.get('new_password'))
-  console.log('AUTH-PASS-RESET-cookiiiiiiiiiiiiiiiiiiies', cookies())
 
   const supabase = createRouteHandlerClient({ cookies })
-
-  console.log('AUTH-PASS-RESET-NEWPASSWORD', new_password)
 
   try {
     const { data, error } = await supabase.auth.updateUser({
       password: new_password,
     })
 
-    console.log('AUTH-PASS-data----->', data)
     if (error) {
       console.error('Password update error:', error)
       Toaster(error)

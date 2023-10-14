@@ -71,7 +71,7 @@ const SecondLife = () => {
   if (error) {
     return <p className="text-red-500">{error}</p>
   }
-  console.log({ secondLifes })
+
   return (
     <div className="w-full flex flex-col">
       <div className="w-full flex flex-col items-center m-8">

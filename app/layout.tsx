@@ -21,7 +21,7 @@ export default async function RootLayout({
     data: { user },
   } = await supabase.auth.getUser()
 
-  console.log({ user })
+  // console.log({ user })
   return (
     <html lang="es">
       <body className="grid grid-cols-1 divide-y">
