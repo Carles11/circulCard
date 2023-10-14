@@ -1,7 +1,7 @@
 // @ts-nocheck
 
 import type { Database } from 'types/supabase'
-import Link from 'next/link'
+// import Link from 'next/link'
 import DoughnutComponent from './secLifeDoughnutComponent'
 
 const SecondLifeCard = ({ secondLifes }: { secondLifes: Database }) => {
@@ -28,7 +28,7 @@ const SecondLifeCard = ({ secondLifes }: { secondLifes: Database }) => {
                       {secLife.life_description}
                     </p>
                   </div>
-                  <Link
+                  {/* <Link
                     key={secLife.id}
                     href={{
                       pathname: '/second-life',
@@ -37,11 +37,9 @@ const SecondLifeCard = ({ secondLifes }: { secondLifes: Database }) => {
                       },
                     }}
                     className="flex items-center justify-center w-8 h-8 bg-green-500 rounded-full cursor-pointer shadow shadow-lg shadow-gray-500"
-                  >
-                    <span className="text-white text-2xl font-bold pb-1">
-                      +
-                    </span>
-                  </Link>
+                  > */}
+                  <span className="text-white text-2xl font-bold pb-1">+</span>
+                  {/* </Link> */}
                 </div>
               </div>
             </div>
