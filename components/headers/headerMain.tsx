@@ -69,7 +69,7 @@ function mainHeader({ email }: { email: string | undefined }) {
         )}
       </div>
       <div
-        className="py-2 px-4 flex flex-col items-center"
+        className="py-2 px-11 flex flex-col items-center"
         // onMouseOver={onMouseOverHandler}
         // onMouseOut={onMouseOutHandler}
       >
