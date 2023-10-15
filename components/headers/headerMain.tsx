@@ -73,7 +73,10 @@ function mainHeader({ email }: { email: string | undefined }) {
         // onMouseOver={onMouseOverHandler}
         // onMouseOut={onMouseOutHandler}
       >
-        <ToolTip text="Learn more about us on theCirculArt.com">
+        <ToolTip
+          text="Learn more about us on theCirculArt.com"
+          placement="bottom-start"
+        >
           <Link href="https://thecirculart.com/" target="_blank">
             <Image
               src={TheCirculArtBulb}
