@@ -29,7 +29,7 @@ function mainHeader({ email }: { email: string | undefined }) {
   // }
 
   return (
-    <div className="flex justify-between text-foreground ">
+    <div className="flex justify-between">
       <div className="flex items-end">
         {!urlIsHome() ? (
           <div className="flex align-center">
@@ -52,7 +52,7 @@ function mainHeader({ email }: { email: string | undefined }) {
               <button
                 type="button"
                 onClick={() => router.back()}
-                className="py-2 px-4 rounded-md no-underline text-foreground bg-transparent hover:bg-btn-background-hover flex items-center group text-sm"
+                className="py-2 px-4 rounded-md no-underline bg-transparent hover:scale-1.5 flex items-center group text-sm"
               >
                 Volver
               </button>
@@ -60,7 +60,7 @@ function mainHeader({ email }: { email: string | undefined }) {
             <LogoutButton />
           </div>
         ) : (
-          <div className="flex flex-col justify-start text-foreground ml-8">
+          <div className="flex flex-col justify-start ml-8">
             <p>
               Hola. {email}
               {''}
@@ -74,7 +74,7 @@ function mainHeader({ email }: { email: string | undefined }) {
         // onMouseOut={onMouseOutHandler}
       >
         <ToolTip text="Learn more about us on theCirculArt.com">
-          <Link href="https://thecirculart.com/" target="_blank" className=" ">
+          <Link href="https://thecirculart.com/" target="_blank">
             <Image
               src={TheCirculArtBulb}
               alt="The circulart bulb in green"

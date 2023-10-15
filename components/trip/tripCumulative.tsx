@@ -23,7 +23,7 @@ const TripCumulative = ({ trip }: { trip: TripProps }) => {
           <h3 className="z-1 text-gray-700">recogidas</h3>
         </div>
         <div>
-          <button className="rounded-full bg-white py-1 px-6 mt-4">
+          <button className="rounded-full bg-white text-gray-700 py-1 px-6 mt-4">
             Certificado
           </button>
         </div>

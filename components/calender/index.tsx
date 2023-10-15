@@ -63,7 +63,7 @@ export default function CustomCalendar({ trip }: { trip: TripProps }) {
   ]
 
   return (
-    <div className="w-full">
+    <div className="w-full text-gray-700">
       <BigCalendar
         localizer={localizer}
         events={events}

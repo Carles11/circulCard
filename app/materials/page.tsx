@@ -89,9 +89,7 @@ const Materials = () => {
 
   if (loading) {
     return (
-      <div className="text-white">
         <Loader />
-      </div>
     )
   }
 

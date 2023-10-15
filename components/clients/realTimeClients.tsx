@@ -31,7 +31,8 @@ function realTimeClients({ clients }: { clients: any }) {
   }, [supabase, router])
 
   return (
-    <div>
+    <div className="mt-4 md:mt-16">
+      <h3>Selecciona tu entidad</h3>
       {clients.length > 0 ? (
         clients.map((cli: any) => (
           <Link
@@ -48,7 +49,7 @@ function realTimeClients({ clients }: { clients: any }) {
           </Link>
         ))
       ) : (
-        <p className="text-white">No clients available</p>
+        <p>No clients available</p>
       )}
     </div>
   )

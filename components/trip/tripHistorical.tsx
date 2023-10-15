@@ -17,23 +17,23 @@ const TripHistorical = ({ trip }: { trip: TripProps }) => {
     <div className="w-full flex flex-col md:flex-row p-2 sm:p-8 md:pl-20 border rounded-xl bg-[#79d97c] shadow shadow-xs shadow-gray-300 h-fit mb-10 md:mb-8 mt-0 md:mt-60">
       <div className="flex flex-col justify-around h-full w-full md:w-1/2 m-2 md:m-8 h-auto">
         <div>
-          <h5>Recogida</h5>
+          <h5 className="text-gray-700">Recogida</h5>
           <h5 className="text-foreground">{collectDate}</h5>
         </div>
         <div>
-          <h5>Punto limpio</h5>
+          <h5 className="text-gray-700">Punto limpio</h5>
           <h5 className="text-foreground">{cleanPointDate}</h5>
         </div>
         <div>
-          <h5>Tratamiento</h5>
+          <h5 className="text-gray-700">Tratamiento</h5>
           <h5 className="text-foreground">{treatmentDate}</h5>
         </div>
         <div>
-          <h5>Análisis</h5>
+          <h5 className="text-gray-700">Análisis</h5>
           <h5 className="text-foreground">Estimado el {analysisDate}</h5>
         </div>
         <div>
-          <h5>Salida</h5>
+          <h5 className="text-gray-700">Salida</h5>
           <h5 className="text-foreground">Estimado el {outDate}</h5>
         </div>
       </div>

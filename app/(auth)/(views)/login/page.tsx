@@ -36,10 +36,11 @@ export default function Login() {
   return (
     <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2">
       <form
-        className="flex-1 flex flex-col w-full justify-center gap-2 text-foreground"
+        className="flex-1 flex flex-col w-full justify-center gap-2"
         action="/routes/sign-in"
         method="post"
       >
+        <h3 className="my-4">Accede con tus datos</h3>
         <label className="text-md" htmlFor="email">
           Email
         </label>
@@ -61,12 +62,12 @@ export default function Login() {
           required
           autoComplete="current-password"
         />
-        <button className="bg-green-700 rounded-full text-lg px-4 py-2 text-white mb-2 hover:bg-btn-background-hover">
+        <button className="bg-green-700 rounded-full text-lg px-4 py-2 mb-2 hover:bg-btn-background-hover">
           Validar
         </button>
         {/* <button
           formAction="/routes/sign-up"
-          className="border border-gray-700 rounded px-4 py-2 text-white mb-2"
+          className="border border-gray-700 rounded px-4 py-2 text-foreground mb-2"
         >
           Sign Up
         </button> */}

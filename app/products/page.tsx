@@ -78,9 +78,7 @@ export default function Products() {
 
   if (loading) {
     return (
-      <div className="text-white">
         <Loader />
-      </div>
     )
   }
 

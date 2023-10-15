@@ -62,11 +62,7 @@ const Projects = () => {
   }, [supabase])
 
   if (loading) {
-    return (
-      <p className="text-white">
-        <Loader />
-      </p>
-    )
+    return <Loader />
   }
 
   if (error) {
@@ -82,7 +78,7 @@ const Projects = () => {
           width={75}
           height={75}
         />
-        <h1 className="text-foreground">RECICLAJE</h1> <h2>{materialName}</h2>{' '}
+        <h1>RECICLAJE</h1> <h2>{materialName}</h2>{' '}
       </div>
 
       <div className="flex flex-col md:flex-row gap-16 justify-between">

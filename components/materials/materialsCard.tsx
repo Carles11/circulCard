@@ -31,7 +31,7 @@ const MaterialsCard = ({
             <div className="w-screen md:w-full bg-white rounded-t-3xl md:rounded-3xl border-8 border-gray-300">
               <div className="min-w-full md:min-w-[320px] w-auto">
                 <div className="p-2 py-5 flex flex-col items-center">
-                  <div className="w-28 md:w-32 lg:w-48 bg-green-700 rounded-full text-xl px-4 py-2 text-white mb-2 text-center">
+                  <div className="w-28 md:w-32 lg:w-48 bg-green-700 rounded-full text-xl px-4 py-2 text-foreground mb-2 text-center">
                     {mat.material_name}
                   </div>
                   <Link
@@ -58,7 +58,7 @@ const MaterialsCard = ({
                       }}
                       className="flex items-center justify-center w-8 h-8 bg-green-500 rounded-full cursor-pointer shadow shadow-lg shadow-gray-500"
                     >
-                      <span className="text-white text-2xl font-bold pb-1">
+                      <span className="text-foreground text-2xl font-bold pb-1">
                         +
                       </span>
                     </Link>

@@ -9,13 +9,13 @@ export default function PasswordUpdate() {
         method="post"
         className="flex-1 flex flex-col w-full my-28 py-2 px-4 rounded-md no-underline bg-btn-background"
       >
-        <h1 className="text-white">Recuperación de contraseña</h1>
+        <h3>Recuperación de contraseña</h3>
 
-        <label className="text-md text-white my-2" htmlFor="password">
+        <label className="text-md my-2" htmlFor="password">
           Nueva contraseña
         </label>
         <input
-          className="rounded-md px-4 py-2 bg-inherit border mb-6 text-white"
+          className="rounded-md px-4 py-2 bg-inherit border mb-6"
           type="password"
           name="new_password"
           placeholder="••••••••"
@@ -23,7 +23,7 @@ export default function PasswordUpdate() {
           autoComplete="new-password"
         />
 
-        <button className="bg-green-700 rounded-full text-lg px-4 py-2 text-white mb-2 hover:bg-btn-background-hover">
+        <button className="bg-green-700 rounded-full text-lg px-4 py-2 text-foreground mb-2 hover:bg-btn-background-hover">
           Actualizar
         </button>
       </form>

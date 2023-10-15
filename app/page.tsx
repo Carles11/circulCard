@@ -15,7 +15,7 @@ export default async function Index() {
 
   return (
     <div className="w-full h-full flex flex-col items-center">
-      <div className="animate-in flex flex-col gap-14 opacity-0 max-w-4xl px-3 py-16 lg:py-24 mt[25%] text-foreground">
+      <div className="animate-in flex flex-col gap-14 opacity-0 max-w-4xl px-3 py-16 lg:py-24 mt[25%]">
         <div className="flex flex-col items-center mt-20 md:my-32 lg:mb-12">
           <MainPageTopContent />
           <h1 className="sr-only">

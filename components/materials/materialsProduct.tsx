@@ -19,9 +19,7 @@ const MaterialsProduct: FC<MaterialsProductProps> = ({ icon, productName }) => {
         // blurDataURL="data:..." automatically provided
         // placeholder="blur" // Optional blur-up while loading
       />
-      <h3 className="mt-4 text-white">
-        {productName ? productName.toUpperCase() : ''}
-      </h3>
+      <h3 className="mt-4">{productName ? productName.toUpperCase() : ''}</h3>
     </div>
   )
 }

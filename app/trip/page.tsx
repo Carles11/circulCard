@@ -61,11 +61,7 @@ export default function Trip() {
   }, [supabase, setTrip, setLoading, setError])
 
   if (loading) {
-    return (
-      <div className="text-white">
-        <Loader />
-      </div>
-    )
+    return <Loader />
   }
 
   if (error) {
@@ -85,7 +81,7 @@ export default function Trip() {
       </div>
       <div className="w-3/4 md:w-1/2 flex flex-col">
         <TripHistorical trip={trip} />
-        <button className="rounded-full bg-white py-1 px-6 md:mt-4 w-fit self-end mb-10 ">
+        <button className="rounded-full bg-white text-gray-700 py-1 px-6 md:mt-4 w-fit self-end mb-10 ">
           Detalles
         </button>
       </div>

@@ -61,11 +61,7 @@ const SecondLife = () => {
   }, [supabase])
 
   if (loading) {
-    return (
-      <div className="text-white">
-        <Loader />
-      </div>
-    )
+    return <Loader />
   }
 
   if (error) {
@@ -74,14 +70,14 @@ const SecondLife = () => {
 
   return (
     <div className="w-full flex flex-col">
-      <div className="w-full flex flex-col items-center m-8">
+      <div className="w-full flex flex-col items-center mt-8">
         <Image
           src={PlantOnHands}
           alt="The circulart recycling process"
           width={75}
           height={75}
         />
-        <h1 className="text-white">Proyecto</h1> <h2>{projectName}</h2>{' '}
+        <h1>Proyecto</h1> <h2>{projectName}</h2>
       </div>
       <SecondLifesCard secondLifes={secondLifes} projectID={projectID} />
     </div>

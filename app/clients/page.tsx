@@ -49,11 +49,7 @@ export default function Clients() {
   }, [supabase, setClients, setLoading, setError])
 
   if (loading) {
-    return (
-      <div className="text-white">
-        <Loader />
-      </div>
-    )
+    return <Loader />
   }
 
   if (error) {
@@ -61,7 +57,7 @@ export default function Clients() {
   }
 
   return (
-    <div className=" flex flex-col">
+    <div className="flex flex-col">
       <RealtimeClients clients={clients} />
     </div>
   )
