@@ -69,21 +69,25 @@ export default function Trip() {
   }
 
   return (
-    <div className="w-full flex flex-col lg:flex-row md:justify-around gap-8 md:gap-16 mt-4 md:mt-16 md:px-16 items-center">
-      <div className="w-3/4 md:w-full lg:w-1/2 flex flex-col gap-8 ml-0 md:ml-8">
+    <div className="w-full flex flex-col md:px-16">
+      <div className="w-full mb-4 md:mb-16">
         <ClientGreeting
           clientID={clientID}
           productName={productName}
           page="trip"
         />
-        <TripCalender trip={trip} />
-        <TripCumulative trip={trip} />
       </div>
-      <div className="w-3/4 md:w-1/2 flex flex-col">
-        <TripHistorical trip={trip} />
-        <button className="rounded-full bg-white text-gray-700 py-1 px-6 md:mt-4 w-fit self-end mb-10 ">
-          Detalles
-        </button>
+      <div className="w-full flex flex-col lg:flex-row md:justify-around align-start gap-8 md:gap-16">
+        <div className="w-3/4 md:w-full lg:w-1/2 flex flex-col gap-8">
+          <TripCalender trip={trip} />
+          <TripCumulative trip={trip} />
+        </div>
+        <div className="w-3/4 md:w-1/2 flex flex-col">
+          <TripHistorical trip={trip} />
+          <button className="rounded-full py-1 px-6 md:mt-4 w-fit self-end mb-10 border border-black hover:bg-btn-background-hover hover:text-foreground ">
+            Detalles
+          </button>
+        </div>
       </div>
     </div>
   )
