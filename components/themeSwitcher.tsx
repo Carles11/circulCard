@@ -30,7 +30,6 @@ export const ThemeSwitcher = () => {
     setTheme(theme === 'light' ? 'dark' : 'light')
   }
 
-  console.log({ theme })
   return (
     <div className="relative">
       <button
