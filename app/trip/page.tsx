@@ -69,15 +69,15 @@ export default function Trip() {
   }
 
   return (
-    <div className="w-full flex flex-col md:px-16">
-      <div className="w-full mb-4 md:mb-16">
+    <div className="w-full flex flex-col md:px-16 ">
+      <div className="w-full mb-8 md:mb-16 ml-8 ">
         <ClientGreeting
           clientID={clientID}
           productName={productName}
           page="trip"
         />
       </div>
-      <div className="w-full flex flex-col lg:flex-row md:justify-around align-start gap-8 md:gap-16">
+      <div className="w-full flex flex-col lg:flex-row md:justify-around items-center md:align-start gap-8 md:gap-16">
         <div className="w-3/4 md:w-full lg:w-1/2 flex flex-col gap-8">
           <TripCalender trip={trip} />
           <TripCumulative trip={trip} />
