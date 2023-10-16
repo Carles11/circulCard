@@ -3,32 +3,53 @@ import { useState, useEffect } from 'react'
 import { useTheme } from 'next-themes'
 import ToolTip from 'components/toolTip'
 
+// import Sun from 'assets/images/icons/SVG/dark-mode/sun.svg'
+// import Moon from 'assets/images/icons/SVG/dark-mode/moon.svg'
+
+import { faSun } from '@fortawesome/free-solid-svg-icons'
+import { faMoon } from '@fortawesome/free-solid-svg-icons'
+
+import MyIcon from './myIcon'
+
 export const ThemeSwitcher = () => {
   const [mounted, setMounted] = useState(false)
   const { theme, setTheme } = useTheme()
+  const [isDark, setIsDark] = useState(false)
 
   useEffect(() => {
     setMounted(true)
-  }, [])
+    setIsDark(theme === 'dark')
+  }, [theme])
 
   if (!mounted) {
     return null
   }
 
+  const toggleDarkMode = () => {
+    setIsDark(!isDark)
+    setTheme(theme === 'light' ? 'dark' : 'light')
+  }
+
+  console.log({ theme })
   return (
-    <ToolTip text="Activa/desactiva el alto contraste" placement="bottom-end">
-      <div>
+    <ToolTip text="Activa/desactiva el alto contraste" placement="bottom-start">
+      <div className="relative">
         <button
-          className={`w-fit absolute right-5 top-11 p-2 rounded-md hover:scale-125 active:scale-100 duration-200 dark:bg-[#212933]`}
-          onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+          onClick={toggleDarkMode}
+          className="flex items-center focus:outline-none absolute top-5 right-16"
         >
-          <span
-            className="text-3xl"
-            dangerouslySetInnerHTML={{
-              __html: theme === 'light' ? '&#9789;' : '&#9788;',
-            }}
-          />
-        </button>{' '}
+          {isDark ? (
+            <div className="mr-2 text-2xl text-yellow-300">
+              <MyIcon icon={faSun} />
+            </div>
+          ) : (
+            <div className="mr-2 text-2xl text-gray-700">
+              <span className="text-yellow-300">
+                <MyIcon icon={faMoon} />
+              </span>
+            </div>
+          )}
+        </button>
       </div>
     </ToolTip>
   )

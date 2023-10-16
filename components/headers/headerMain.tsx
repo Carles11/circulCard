@@ -60,19 +60,15 @@ function mainHeader({ email }: { email: string | undefined }) {
             <LogoutButton />
           </div>
         ) : (
-          <div className="flex flex-col justify-start ml-8">
+          <div className="flex justify-start ml-8">
             <p>
-              Hola. {email}
+              Hola, {email}
               {''}
             </p>
           </div>
         )}
       </div>
-      <div
-        className="py-2 px-11 flex flex-col items-center"
-        // onMouseOver={onMouseOverHandler}
-        // onMouseOut={onMouseOutHandler}
-      >
+      <div className="py-2 px-11 flex items-center">
         <ToolTip
           text="Learn more about us on theCirculArt.com"
           placement="bottom-start"

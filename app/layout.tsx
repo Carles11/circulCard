@@ -27,7 +27,7 @@ export default async function RootLayout({
     data: { user },
   } = await supabase.auth.getUser()
 
-  // console.log({ user })
+  console.log({ user })
   return (
     <html lang="es" suppressHydrationWarning>
       <Head>
@@ -60,13 +60,13 @@ export default async function RootLayout({
         <meta name="theme-color" content="#ffffff" />
       </Head>
       <body className="grid grid-cols-1 divide-y">
-        <header className="w-full p-2 md:p-8 bg-white dark:bg-background ">
-          <nav className="h-16">
-            {user ? <MainHeader email={user.email} /> : <AuthHeader />}
-            <ThemeSwitcher />
-          </nav>
-        </header>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <header className="w-full p-2 md:p-8 bg-white dark:bg-background ">
+            <nav className="h-16">
+              {user ? <MainHeader email={user.email} /> : <AuthHeader />}
+              <ThemeSwitcher />
+            </nav>
+          </header>
           <main className="w-full min-h-screen bg-white dark:bg-background flex flex-col items-center">
             {children}
           </main>
