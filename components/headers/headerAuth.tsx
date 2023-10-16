@@ -6,6 +6,8 @@ import { urlIsHome } from 'utils/utils.service'
 import Link from 'next/link'
 import Image from 'next/image'
 import ToolTip from 'components/toolTip'
+import { ThemeSwitcher } from 'components/themeSwitcher'
+import HeaderBulbIcon from './headerBulbIcon'
 
 import TheCirculArtBulb from 'assets/logos/circulart-green-bulb.svg'
 
@@ -44,20 +46,9 @@ function authHeader() {
           </div>
         )}
       </div>
-      <div className="py-2 px-11 flex items-center">
-        <ToolTip
-          text="Learn more about us on theCirculArt.com"
-          placement="bottom-start"
-        >
-          <Link href="https://thecirculart.com/" target="_blank">
-            <Image
-              src={TheCirculArtBulb}
-              alt="The circulart bulb in green"
-              width={40}
-              height={40}
-            />
-          </Link>
-        </ToolTip>
+      <div className="flex items-end gap-4">
+        <HeaderBulbIcon />
+        <ThemeSwitcher />
       </div>
     </div>
   )

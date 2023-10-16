@@ -32,25 +32,26 @@ export const ThemeSwitcher = () => {
 
   console.log({ theme })
   return (
-    <ToolTip text="Activa/desactiva el alto contraste" placement="bottom-start">
-      <div className="relative">
-        <button
-          onClick={toggleDarkMode}
-          className="flex items-center focus:outline-none absolute top-5 right-16"
+    <div className="relative">
+      <button
+        onClick={toggleDarkMode}
+        className="flex items-center focus:outline-none"
+      >
+        <ToolTip
+          text="Activa/desactiva el alto contraste"
+          placement="bottom-start"
         >
           {isDark ? (
-            <div className="mr-2 text-2xl text-yellow-300">
+            <span className="mr-2 text-2xl text-yellow-300">
               <MyIcon icon={faSun} />
-            </div>
+            </span>
           ) : (
-            <div className="mr-2 text-2xl text-gray-700">
-              <span className="text-yellow-300">
-                <MyIcon icon={faMoon} />
-              </span>
-            </div>
+            <span className="mr-2 text-2xl text-yellow-300">
+              <MyIcon icon={faMoon} />
+            </span>
           )}
-        </button>
-      </div>
-    </ToolTip>
+        </ToolTip>
+      </button>
+    </div>
   )
 }
