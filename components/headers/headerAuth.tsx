@@ -4,12 +4,9 @@ import { useRouter } from 'next/navigation'
 import { urlIsHome } from 'utils/utils.service'
 
 import Link from 'next/link'
-import Image from 'next/image'
-import ToolTip from 'components/toolTip'
+
 import { ThemeSwitcher } from 'components/themeSwitcher'
 import HeaderBulbIcon from './headerBulbIcon'
-
-import TheCirculArtBulb from 'assets/logos/circulart-green-bulb.svg'
 
 function authHeader() {
   const router = useRouter()

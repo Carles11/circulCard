@@ -2,7 +2,7 @@ import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
 
 import MainPageTopContent from 'components/mainPage/mainPageTopContent'
-import MainPageBottomContent from '@/components/mainPage/mainPageBottomContent'
+import MainPageBottomContent from 'components/mainPage/mainPageBottomContent'
 
 export const dynamic = 'force-dynamic'
 
