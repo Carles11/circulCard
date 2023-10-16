@@ -26,7 +26,7 @@
       --background: 200 50% 3%;
       --btn-background: 122, 56%, 66%;
       --btn-background-hover: 200 10% 12%;
-      --foreground: 200 20% 96%;
+      --foreground: 0, 0%, 10%;
       --regular-text-color: #1a1a1a;
       --regular-button-text-color: var(--foreground);
       animation: fadeInAnimation ease 3s;
@@ -119,7 +119,7 @@ h6 {
 
 p {
   font-family: 'MarkPro';
-  color: var(--regular-text-color);
+  color: var(--foreground);
 }
 
 button {
