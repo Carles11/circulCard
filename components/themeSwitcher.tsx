@@ -2,14 +2,9 @@
 import { useState, useEffect } from 'react'
 import { useTheme } from 'next-themes'
 import ToolTip from 'components/toolTip'
-
-// import Sun from 'assets/images/icons/SVG/dark-mode/sun.svg'
-// import Moon from 'assets/images/icons/SVG/dark-mode/moon.svg'
-
-import { faSun } from '@fortawesome/free-solid-svg-icons'
-import { faMoon } from '@fortawesome/free-solid-svg-icons'
-
-import MyIcon from './myIcon'
+import Image from 'next/image'
+import Sun from 'assets/images/icons/SVG/dark-mode/sun.svg'
+import Moon from 'assets/images/icons/SVG/dark-mode/moon.svg'
 
 export const ThemeSwitcher = () => {
   const [mounted, setMounted] = useState(false)
@@ -41,12 +36,16 @@ export const ThemeSwitcher = () => {
           placement="bottom-start"
         >
           {isDark ? (
-            <span className="mr-2 text-2xl text-yellow-300">
-              <MyIcon icon={faSun} />
+            <span
+              className={`mr-2 text-2xl ${
+                isDark ? 'text-yellow-300' : 'text-green-200'
+              }`}
+            >
+              <Image src={Sun} alt="sun icon" width={35} height={35} />
             </span>
           ) : (
             <span className="mr-2 text-2xl text-yellow-300">
-              <MyIcon icon={faMoon} />
+              <Image src={Moon} alt="sun icon" width={20} height={20} />
             </span>
           )}
         </ToolTip>
