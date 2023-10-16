@@ -25,10 +25,10 @@ const MaterialsCard = ({
             key={mat.id}
             className="flex flex-col gap-4 md:gap-6 text-black items-center"
           >
-            <div className="rounded-full border-2 dark:border-8 border-gray-400 bg-white h-36 w-36">
+            <div className="rounded-full border-2 dark:border-8 border-gray-400 shadow-xl   bg-white h-36 w-36">
               <DoughnutComponent mat={mat} />
             </div>
-            <div className="w-screen md:w-full bg-white rounded-t-3xl md:rounded-3xl border-2 dark:border-8 border-gray-300">
+            <div className="w-screen md:w-full bg-white rounded-t-3xl md:rounded-3xl border-2 dark:border-8 border-gray-300 shadow-xl  ">
               <div className="min-w-full md:min-w-[320px] w-auto">
                 <div className="p-2 py-5 flex flex-col items-center">
                   <div className="w-28 md:w-32 lg:w-48 bg-green-700 rounded-full text-xl px-4 py-2 text-foreground mb-2 text-center">

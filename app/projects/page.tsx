@@ -87,7 +87,7 @@ const Projects = () => {
           const projectName = proj.project_name
           return (
             <div className="flex flex-col items-center gap-6">
-              <div className="rounded-full border-2 dark:border-8 border-gray-400 shadow-xl shadow-border-gray-400 dark:shadow-border-white bg-foreground h-72 w-72">
+              <div className="rounded-full border-2 dark:border-8 border-gray-400 shadow-xl   bg-foreground h-60 w-60">
                 <DoughnutComponent proj={proj} materialName={materialName} />
               </div>
               <Link
