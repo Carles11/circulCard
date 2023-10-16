@@ -14,6 +14,8 @@
     --btn-background: 200 10% 91%;
     --btn-background-hover: 200 10% 89%;
     --foreground: 200 50% 3%;
+    --regular-text-color: #b3b8aa;
+    --regular-button-text-color: #1a1a1a;
     animation: fadeInAnimation ease 3s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
@@ -25,6 +27,8 @@
       --btn-background: #79d97c;
       --btn-background-hover: 200 10% 12%;
       --foreground: 200 20% 96%;
+      --regular-text-color: #1a1a1a;
+      --regular-button-text-color: var(--foreground);
       animation: fadeInAnimation ease 3s;
       animation-iteration-count: 1;
       animation-fill-mode: forwards;
@@ -44,7 +48,7 @@
 @layer base {
   * {
     @apply border-foreground/20;
-    @apply transition-colors duration-200;
+    @apply transition-colors duration-100;
   }
 }
 
@@ -115,9 +119,14 @@ h6 {
 
 p {
   font-family: 'MarkPro';
+  color: var(--regular-text-color);
 }
 
-/* Your existing styles */
+button {
+  font-family: 'MarkPro';
+  color: var(--regular-button-text-color);
+  /* border: 2px solid var(--regular-button-text-color); */
+}
 
 a.link-with-style {
   background: linear-gradient(

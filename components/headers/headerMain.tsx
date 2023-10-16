@@ -12,20 +12,7 @@ import LogoutButton from 'components/LogoutButton'
 import HeaderBulbIcon from './headerBulbIcon'
 
 function mainHeader({ email }: { email: string | undefined }) {
-  // const [showLogout, setShowLogout] = useState(false)
   const router = useRouter()
-
-  // const handleShowLogout = (view: boolean) => {
-  //   setShowLogout(view)
-  // }
-
-  // const onMouseOverHandler: MouseEventHandler<HTMLDivElement> = () => {
-  //   handleShowLogout(true)
-  // }
-
-  // const onMouseOutHandler: MouseEventHandler<HTMLDivElement> = () => {
-  //   handleShowLogout(false)
-  // }
 
   return (
     <div className="flex justify-between">
