@@ -62,7 +62,7 @@ export default function Login() {
           required
           autoComplete="current-password"
         />
-        <button className="bg-green-700 rounded-full text-lg px-4 py-2 mb-2 hover:bg-btn-background-hover">
+        <button className="bg-lightgreenBg rounded-full text-lg px-4 py-2 mb-2 hover:bg-btn-background-hover">
           Validar
         </button>
         {/* <button

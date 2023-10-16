@@ -24,7 +24,7 @@
   @media (prefers-color-scheme: dark) {
     :root {
       --background: 200 50% 3%;
-      --btn-background: #79d97c;
+      --btn-background: 122, 56%, 66%;
       --btn-background-hover: 200 10% 12%;
       --foreground: 200 20% 96%;
       --regular-text-color: #1a1a1a;
@@ -98,7 +98,7 @@ h1 {
 
 h2 {
   font-size: 200%; /* 36px */
-  color: var(--btn-background);
+  color: #79d97c;
 }
 
 h3 {

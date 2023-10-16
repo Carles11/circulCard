@@ -47,10 +47,7 @@ function mainHeader({ email }: { email: string | undefined }) {
           </div>
         ) : (
           <div className="flex justify-start ml-8">
-            <p>
-              Hola, {email}
-              {''}
-            </p>
+            <p className="text-foreground">Hola, {email}</p>
           </div>
         )}
       </div>
