@@ -97,7 +97,6 @@ h6 {
 
 h1 {
   font-size: 250%; /* 45px */
-  color: var(--regular-text-color);
 }
 
 h2 {
@@ -107,27 +106,22 @@ h2 {
 
 h3 {
   font-size: 177.78%; /* 32px */
-  color: var(--regular-text-color);
 }
 
 h4 {
   font-size: 162.5%; /* 26px */
-  color: var(--regular-text-color);
 }
 
 h5 {
   font-size: 122%; /* 22px */
-  color: var(--regular-text-color);
 }
 
 h6 {
   font-size: 100%; /* 18px */
-  color: var(--regular-text-color);
 }
 
 p {
   font-family: 'MarkPro';
-  color: var(--regular-text-color);
 }
 
 button {
