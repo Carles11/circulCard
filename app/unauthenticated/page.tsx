@@ -20,10 +20,7 @@ export default async function Unauthenticated() {
       <p className="text-xl text-center">
         Es necesario registrarse para ver esta aplicación.
       </p>
-      <Link
-        href={'/login'}
-        className="py-2 px-4 rounded-md no-underline bg-btn-background m-16"
-      >
+      <Link href={'/login'} className="py-2 px-4 rounded-md no-underline m-16">
         <button className="bg-lightgreenBg py-2 px-8 rounded-full text-lg text-foreground hover:bg-btn-background-hover ">
           <h4>
             <strong>Identifícate</strong>
