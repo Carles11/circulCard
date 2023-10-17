@@ -32,30 +32,30 @@
       --foreground: #f9fafb;
       --regular-text-color: #1a1a1a;
       --regular-text-color: #f9fafb;
-      /* animation: fadeInAnimation ease 3s;
+      animation: fadeInAnimation ease 3s;
       animation-iteration-count: 1;
-      animation-fill-mode: forwards; */
+      animation-fill-mode: forwards;
     }
   }
 }
 
-/* @keyframes fadeInAnimation {
+@keyframes fadeInAnimation {
   0% {
     opacity: 0;
   }
   100% {
     opacity: 1;
   }
-} */
+}
 
 @layer base {
   * {
     @apply border-foreground;
-    /* @apply transition-colors duration-100; */
+    @apply transition-colors duration-100;
   }
 }
 
-/* .animate-in {
+.animate-in {
   animation: animateIn 0.3s ease 0.15s both;
 }
 
@@ -68,7 +68,7 @@
     opacity: 1;
     transform: translateY(0);
   }
-} */
+}
 
 @font-face {
   font-family: 'Champagne&Limousines';
