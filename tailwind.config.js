@@ -19,7 +19,7 @@ module.exports = {
     },
     extend: {
       colors: {
-        background: 'hsl(var(--background))',
+        background: 'var(--background)',
         foreground: 'hsl(var(--foreground))',
         lightgreenBg: 'hsl(var(--btn-background))',
         btn: {

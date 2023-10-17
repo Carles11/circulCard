@@ -64,7 +64,7 @@ export default async function RootLayout({
               {user ? <MainHeader email={user.email} /> : <AuthHeader />}
             </nav>
           </header>
-          <main className="w-full min-h-screen bg-background flex flex-col items-center">
+          <main className="w-full min-h-screen bg-white dark:bg-background flex flex-col items-center">
             {children}
           </main>
         </ThemeProvider>
