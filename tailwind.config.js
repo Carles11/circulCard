@@ -25,6 +25,7 @@ module.exports = {
         btn: {
           background: 'var(--btn-background)',
           'background-hover': 'var(--btn-background-hover)',
+          'text-color-hover': 'var(--btn-text-color-hover)',
         },
         text: {
           color: 'var(--btn-background)',

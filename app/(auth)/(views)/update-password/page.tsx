@@ -33,7 +33,7 @@ export default function PasswordUpdate() {
           autoComplete="new-password"
         />
 
-        <button className="bg-lightgreenBg rounded-full text-lg px-4 py-2 text-foreground mb-2 hover:bg-btn-background-hover">
+        <button className="bg-lightgreenBg rounded-full text-lg px-4 py-2 mb-2 hover:bg-btn-background-hover hover:text-btn-text-color-hover">
           Actualizar
         </button>
       </form>

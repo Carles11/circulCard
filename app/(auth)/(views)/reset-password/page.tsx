@@ -19,7 +19,7 @@ export default function PasswordReset() {
           required
           autoComplete="username"
         />
-        <button className="text-foreground bg-lightgreenBg rounded-full text-lg px-4 py-2 mb-2 hover:bg-btn-background-hover">
+        <button className="bg-lightgreenBg rounded-full text-lg px-4 py-2 mb-2 hover:bg-btn-background-hover hover:text-btn-text-color-hover">
           Validar
         </button>
       </form>

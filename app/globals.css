@@ -13,9 +13,10 @@
     --background: #f9fafb;
     --btn-background: #78d97b;
     --btn-background-hover: #1c2022;
+    --btn-text-color: #1a1a1a;
+    --btn-text-color-hover: #f9fafb;
     --foreground: #1a1a1a;
     --regular-text-color: #f9fafb;
-    --regular-button-text-color: #1a1a1a;
     animation: fadeInAnimation ease 3s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
@@ -26,9 +27,11 @@
       --background: #04090b;
       --btn-background: #78d97b;
       --btn-background-hover: #1c2022;
+      --btn-text-color: #f9fafb;
+      --btn-text-color-hover: #f9fafb;
       --foreground: #f9fafb;
       --regular-text-color: #1a1a1a;
-      --regular-button-text-color: #f9fafb;
+      --regular-text-color: #f9fafb;
       animation: fadeInAnimation ease 3s;
       animation-iteration-count: 1;
       animation-fill-mode: forwards;
@@ -129,8 +132,6 @@ p {
 
 button {
   font-family: 'MarkPro';
-  color: var(--regular-button-text-color);
-  /* border: 2px solid var(--regular-button-text-color); */
 }
 
 a.link-with-style {

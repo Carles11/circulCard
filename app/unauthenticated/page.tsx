@@ -21,7 +21,7 @@ export default async function Unauthenticated() {
         Es necesario registrarse para ver esta aplicación.
       </p>
       <Link href={'/login'} className="py-2 px-4 rounded-md no-underline m-16">
-        <button className="bg-lightgreenBg py-2 px-8 rounded-full text-lg text-foreground hover:bg-btn-background-hover ">
+        <button className="bg-lightgreenBg rounded-full text-lg px-4 py-2 mb-2 hover:bg-btn-background-hover hover:text-btn-text-color-hover">
           <h4>
             <strong>Identifícate</strong>
           </h4>
