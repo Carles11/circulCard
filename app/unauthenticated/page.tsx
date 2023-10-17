@@ -17,7 +17,7 @@ export default async function Unauthenticated() {
 
   return (
     <div className="flex flex-col items-center my-28 mx-36">
-      <p className="text-xl">
+      <p className="text-xl text-center">
         Es necesario registrarse para ver esta aplicación.
       </p>
       <Link
