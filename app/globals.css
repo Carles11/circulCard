@@ -11,10 +11,10 @@
 @layer base {
   :root {
     --background: #f9fafb;
-    --btn-background: #eae6e6;
-    --btn-background-hover: #e0e4e6;
+    --btn-background: #78d97b;
+    --btn-background-hover: #1c2022;
     --foreground: #1a1a1a;
-    --regular-text-color: #b3b8aa;
+    --regular-text-color: #f9fafb;
     --regular-button-text-color: #1a1a1a;
     animation: fadeInAnimation ease 3s;
     animation-iteration-count: 1;
@@ -28,7 +28,7 @@
       --btn-background-hover: #1c2022;
       --foreground: #f9fafb;
       --regular-text-color: #1a1a1a;
-      --regular-button-text-color: var(--foreground);
+      --regular-button-text-color: #f9fafb;
       animation: fadeInAnimation ease 3s;
       animation-iteration-count: 1;
       animation-fill-mode: forwards;
@@ -94,6 +94,7 @@ h6 {
 
 h1 {
   font-size: 250%; /* 45px */
+  color: var(--regular-text-color);
 }
 
 h2 {
@@ -103,23 +104,27 @@ h2 {
 
 h3 {
   font-size: 177.78%; /* 32px */
+  color: var(--regular-text-color);
 }
 
 h4 {
   font-size: 162.5%; /* 26px */
+  color: var(--regular-text-color);
 }
 
 h5 {
   font-size: 122%; /* 22px */
+  color: var(--regular-text-color);
 }
 
 h6 {
   font-size: 100%; /* 18px */
+  color: var(--regular-text-color);
 }
 
 p {
   font-family: 'MarkPro';
-  color: var(--foreground);
+  color: var(--regular-text-color);
 }
 
 button {
