@@ -6,7 +6,8 @@ import type { Database } from 'types/supabase'
 
 export async function middleware(req: NextRequest) {
   const res = NextResponse.next()
-
+  console.log({ req })
+  console.log({ res })
   // Create a Supabase client configured to use cookies
   const supabase = createMiddlewareClient<Database>({ req, res })
 
