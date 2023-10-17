@@ -57,8 +57,8 @@ export default async function RootLayout({
         <meta name="msapplication-TileColor" content="#da532c" />
         <meta name="theme-color" content="#ffffff" />
       </Head>
-      <body className="grid grid-cols-1 divide-y-0 dark:divide-y-2 divide-neutral-700  dark:divide-slate-600">
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+      <body className="grid grid-cols-1 divide-y-0 dark:divide-y-2 divide-neutral-700 dark:divide-slate-600">
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <header className="w-full p-2 md:p-8 bg-white dark:bg-background ">
             <nav className="h-16">
               {user ? <MainHeader email={user.email} /> : <AuthHeader />}
