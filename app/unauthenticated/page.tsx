@@ -16,15 +16,15 @@ export default async function Unauthenticated() {
   }
 
   return (
-    <div className="flex flex-col items-center my-28">
-      <p className="text-2xl">
+    <div className="flex flex-col items-center my-28 mx-36">
+      <p className="text-xl">
         Es necesario registrarse para ver esta aplicación.
       </p>
       <Link
         href={'/login'}
-        className="py-2 px-4 rounded-md no-underline bg-btn-background"
+        className="py-2 px-4 rounded-md no-underline bg-btn-background m-16"
       >
-        <button className="bg-[#79d97c] py-2 px-8 mt-16 rounded-full text-lg text-foreground hover:bg-btn-background-hover ">
+        <button className="bg-lightgreenBg py-2 px-8 rounded-full text-lg text-foreground hover:bg-btn-background-hover ">
           <h4>
             <strong>Identifícate</strong>
           </h4>
