@@ -19,12 +19,17 @@ module.exports = {
     },
     extend: {
       colors: {
-        background: 'hsl(var(--background))',
-        foreground: 'hsl(var(--foreground))',
-        lightgreenBg: 'hsl(var(--btn-background))',
+        background: 'var(--background)',
+        foreground: 'var(--foreground)',
+        lightgreenBg: 'var(--btn-background)',
         btn: {
-          background: 'hsl(var(--btn-background))',
-          'background-hover': 'hsl(var(--btn-background-hover))',
+          background: 'var(--btn-background)',
+          'background-hover': 'var(--btn-background-hover)',
+          'text-color-hover': 'var(--btn-text-color-hover)',
+        },
+        text: {
+          color: 'var(--btn-background)',
+          'background-hover': 'var(--btn-background-hover)',
         },
       },
     },
