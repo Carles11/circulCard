@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
     Toaster(error)
     // Handle unexpected errors
   }
-  return NextResponse.redirect(`${requestUrl.origin}/login`, {
+  return NextResponse.redirect(`${requestUrl.origin}/clients`, {
     // a 301 status is required to redirect from a POST to a GET route
     status: 301,
   })

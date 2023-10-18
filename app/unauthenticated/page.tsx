@@ -22,9 +22,9 @@ export default async function Unauthenticated() {
       </p>
       <Link href={'/login'} className="py-2 px-4 rounded-md no-underline m-16">
         <button className="bg-lightgreenBg rounded-full text-lg px-4 py-2 mb-2 hover:bg-btn-background-hover hover:text-btn-text-color-hover">
-          <h4>
+          <h5>
             <strong>Identifícate</strong>
-          </h4>
+          </h5>
         </button>
       </Link>
       <p className="text-md ">

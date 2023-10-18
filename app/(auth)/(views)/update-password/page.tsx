@@ -1,6 +1,45 @@
+'use client'
+import { useState, useEffect } from 'react'
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
+import type { Database } from 'types/supabase'
+
 import Messages from '../messages'
 
 export default function PasswordUpdate() {
+  const [accessToken, setAccessToken] = useState('')
+  const [refreshToken, setRefreshToken] = useState('')
+  const supabase = createClientComponentClient<Database>()
+
+  useEffect(() => {
+    // Get the access token and refresh token from the URL
+    if (typeof window !== 'undefined') {
+      const hashParams = new URLSearchParams(window.location.hash.substring(1))
+      setAccessToken(hashParams.get('access_token') || '')
+      setRefreshToken(hashParams.get('refresh_token') || '')
+    }
+  }, [])
+
+  useEffect(() => {
+    // Authenticate the user using the access token and refresh token
+    const getSessionWithTokens = async () => {
+      if (accessToken && refreshToken) {
+        const { data, error } = await supabase.auth.setSession({
+          access_token: accessToken,
+          refresh_token: refreshToken,
+        })
+
+        if (error) {
+          alert(`Error signing in: ${error.message}`)
+        }
+      }
+    }
+
+    // Call this function only when accessToken and refreshToken are available.
+    if (accessToken && refreshToken) {
+      getSessionWithTokens()
+    }
+  }, [accessToken, refreshToken])
+
   return (
     <div className="flex flex-col w-full px-8 sm:max-w-md justify-center gap-2">
       <form

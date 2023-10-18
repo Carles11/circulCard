@@ -7,15 +7,14 @@ export const dynamic = 'force-dynamic'
 export async function POST(request: Request) {
   const requestUrl = new URL(request.url)
   const formData = await request.formData()
-  const email = String(formData.get('email'))
-  const password = String(formData.get('password'))
+  //   const email = String(formData.get('email'))
+  const tokenHash = String(formData.get('token'))
   const supabase = createRouteHandlerClient({ cookies })
 
-  const { error } = await supabase.auth.signInWithPassword({
-    email,
-    password,
+  const { data, error } = await supabase.auth.verifyOtp({
+    token_hash: tokenHash,
+    type: 'email',
   })
-
   if (error) {
     return NextResponse.redirect(
       `${requestUrl.origin}/login?error=Could not authenticate user`,
