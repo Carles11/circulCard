@@ -6,16 +6,20 @@ import type { Database } from 'types/supabase'
 import Messages from '../messages'
 
 export default function PasswordUpdate() {
+  // ***********************
+  // added this code because /callback is not refreshing the session
+  // works also for email-invitations from supabase dashboard
   const [accessToken, setAccessToken] = useState('')
   const [refreshToken, setRefreshToken] = useState('')
+  const [token, setToken] = useState('')
   const supabase = createClientComponentClient<Database>()
-
   useEffect(() => {
     // Get the access token and refresh token from the URL
     if (typeof window !== 'undefined') {
       const hashParams = new URLSearchParams(window.location.hash.substring(1))
       setAccessToken(hashParams.get('access_token') || '')
       setRefreshToken(hashParams.get('refresh_token') || '')
+      setToken(hashParams.get('token') || '')
     }
   }, [])
 
@@ -39,6 +43,9 @@ export default function PasswordUpdate() {
       getSessionWithTokens()
     }
   }, [accessToken, refreshToken])
+
+  // ***********************
+  console.log({ accessToken, refreshToken, token })
 
   return (
     <div className="flex flex-col w-full px-8 sm:max-w-md justify-center gap-2">

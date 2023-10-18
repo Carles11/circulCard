@@ -11,7 +11,8 @@ export async function POST(request: Request) {
   const supabase = createRouteHandlerClient({ cookies })
   // console.log('AUTH-PASS-RESET-EMAIL', email)
   await supabase.auth.resetPasswordForEmail(email, {
-    redirectTo: `${requestUrl.origin}/update-password`,
+    // redirects actually to /update-password, which is setted in supabase email-templates
+    redirectTo: `${requestUrl.origin}`,
   })
   // console.log({ requestUrl })
   return NextResponse.redirect(`${requestUrl.origin}/`, {

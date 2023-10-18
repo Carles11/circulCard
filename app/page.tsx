@@ -13,7 +13,7 @@ export default async function Index() {
     data: { user },
   } = await supabase.auth.getUser()
 
-  console.log({ user })
+  // console.log({ user })
 
   return (
     <div className="w-full h-full flex flex-col items-center">
