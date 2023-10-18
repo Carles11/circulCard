@@ -308,3 +308,11 @@ a:hover.link-with-style {
 .rbc-row-content {
   margin-top: 2rem;
 }
+
+.rbc-event.rbc-event-allday {
+  display: flex;
+  align-items: flex-end;
+  .rbc-event-content {
+    font-size: small;
+  }
+}

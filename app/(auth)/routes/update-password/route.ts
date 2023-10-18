@@ -1,20 +1,26 @@
 import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server'
+import type { NextRequest } from 'next/server'
+
 import Toaster from 'components/toastComponent'
 
 export const dynamic = 'force-dynamic'
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   const requestUrl = new URL(request.url)
   const formData = await request.formData()
   const new_password = String(formData.get('new_password'))
 
   const supabase = createRouteHandlerClient({ cookies })
-
+  // console.log({ supabase })
+  // const {
+  //   data: { user },
+  // } = await supabase.auth.getUser()
+  // console.log({ user })
   try {
     const { data, error } = await supabase.auth.updateUser({
-      password: new_password,
+      password: new_password.trim(),
     })
 
     if (error) {

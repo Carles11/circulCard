@@ -25,7 +25,6 @@ export default function CustomCalendar({ trip }: { trip: TripProps }) {
   const cleanPointDate = trip[index]['clean_point_date']
   const treatmentDate = trip[index]['treatment_date']
   const outDate = trip[index]['out_date']
-
   const events = [
     {
       id: 0,
@@ -41,7 +40,7 @@ export default function CustomCalendar({ trip }: { trip: TripProps }) {
       allDay: true,
       start: cleanPointDate,
       end: cleanPointDate,
-      resourceId: 2,
+      resourceId: 1,
       allDay: true,
     },
     {
@@ -49,7 +48,7 @@ export default function CustomCalendar({ trip }: { trip: TripProps }) {
       title: 'Tratamiento',
       start: treatmentDate,
       end: treatmentDate,
-      resourceId: 3,
+      resourceId: 1,
       allDay: true,
     },
     {
@@ -57,7 +56,7 @@ export default function CustomCalendar({ trip }: { trip: TripProps }) {
       title: 'Salida',
       start: outDate,
       end: outDate,
-      resourceId: 4,
+      resourceId: 1,
       allDay: true,
     },
   ]
@@ -71,6 +70,7 @@ export default function CustomCalendar({ trip }: { trip: TripProps }) {
         views={CustomWeekView}
         steps={60}
         defaultDate={new Date()}
+        date={new Date()}
         resources={resourceMap}
         resourceIdAccessor="resourceId"
         resourceTitleAccessor="resourceTitle"
