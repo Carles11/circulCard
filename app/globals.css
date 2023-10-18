@@ -260,6 +260,7 @@ a:hover.link-with-style {
 .rbc-event.rbc-event-allday {
   background-color: var(--btn-background);
   height: 8rem;
+  max-width: fit-content;
 }
 
 /* flex component for calender table*/
