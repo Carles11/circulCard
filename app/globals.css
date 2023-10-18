@@ -17,7 +17,7 @@
     --btn-text-color-hover: #f9fafb;
     --foreground: #1a1a1a;
     --regular-text-color: #f9fafb;
-    animation: fadeInAnimation ease 3s;
+    animation: fadeInAnimation ease 2s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
   }
@@ -32,7 +32,7 @@
       --foreground: #f9fafb;
       --regular-text-color: #1a1a1a;
       --regular-text-color: #f9fafb;
-      animation: fadeInAnimation ease 3s;
+      animation: fadeInAnimation ease 2s;
       animation-iteration-count: 1;
       animation-fill-mode: forwards;
     }
@@ -51,7 +51,7 @@
 @layer base {
   * {
     @apply border-foreground;
-    @apply transition-colors duration-100;
+    @apply transition-colors duration-75;
   }
 }
 

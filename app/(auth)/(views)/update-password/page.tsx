@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import Messages from '../messages'
 
 export default function PasswordUpdate() {
@@ -9,7 +8,7 @@ export default function PasswordUpdate() {
         method="post"
         className="flex flex-col w-full my-28 py-2 px-4 rounded-md no-underline"
       >
-        <h3>Recuperación de contraseña</h3>
+        <h3>Actualiza tu contraseña</h3>
 
         <label className="sr-only" htmlFor="username">
           Username

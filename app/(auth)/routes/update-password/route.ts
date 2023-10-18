@@ -1,7 +1,7 @@
 import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server'
-import Toaster from '../../../../components/toastComponent'
+import Toaster from 'components/toastComponent'
 
 export const dynamic = 'force-dynamic'
 
@@ -30,7 +30,7 @@ export async function POST(request: Request) {
     Toaster(error)
     // Handle unexpected errors
   }
-  return NextResponse.redirect(`${requestUrl.origin}/`, {
+  return NextResponse.redirect(`${requestUrl.origin}/login`, {
     // a 301 status is required to redirect from a POST to a GET route
     status: 301,
   })
