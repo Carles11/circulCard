@@ -36,15 +36,11 @@ export const ThemeSwitcher = () => {
           placement="bottom-start"
         >
           {isDark ? (
-            <span
-              className={`mr-2 text-2xl ${
-                isDark ? 'text-yellow-300' : 'text-green-200'
-              }`}
-            >
+            <span className={`mr-2 text-2xl flip-2-ver-right-1`}>
               <Image src={Sun} alt="sun icon" width={35} height={35} />
             </span>
           ) : (
-            <span className="mr-2 text-2xl text-yellow-300">
+            <span className="mr-2 text-2xl flip-2-ver-right-2">
               <Image src={Moon} alt="sun icon" width={20} height={20} />
             </span>
           )}
