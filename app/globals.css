@@ -303,6 +303,11 @@ a:hover.link-with-style {
   .rbc-row.rbc-row-resource {
     font-size: 100%; /* 26px */
   }
+  .rbc-event-content:not(:-webkit-full-screen) {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    padding: 3px;
+  }
 }
 
 /*Green column inside table calendar*/
@@ -322,9 +327,9 @@ a:hover.link-with-style {
     text-overflow: ellipsis;
   }
   .rbc-event-content:not(:-webkit-full-screen) {
-    writing-mode: vertical-rl;
+    /* writing-mode: vertical-rl;
     transform: rotate(180deg);
-    padding: 3px;
+    padding: 3px; */
   }
 }
 

@@ -16,14 +16,15 @@ const TripCumulative = ({ trip }: { trip: TripProps }) => {
         objectFit="contain"
         objectPosition="left"
         style={{ zIndex: -1 }}
+        className="ml-4 md:ml-10"
       />
-      <div className="flex flex-col mr-2 items-end 9 md:mt-20">
-        <div className="flex flex-col mr-2 items-end">
-          <h1 className="z-1 text-gray-700">{cumulativeTotal}</h1>
-          <h3 className="z-1 text-gray-700">recogidas</h3>
+      <div className="flex flex-col mr-6 md:mr-20 items-end mt-6 md:mt-20">
+        <div className="flex flex-col mr-2 items-end align-center">
+          <h1 className="z-1 text-gray-600">{cumulativeTotal}</h1>
+          <h3 className="z-1 text-gray-600 -mt-5">recogidas</h3>
         </div>
         <div>
-          <button className="rounded-full bg-white text-gray-700 py-1 px-6 mt-4">
+          <button className="rounded-full bg-foreground text-gray-700 py-1 px-6 mt-4 border border-gray-500">
             Certificado
           </button>
         </div>
