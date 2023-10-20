@@ -5,7 +5,9 @@ import Link from 'next/link'
 
 import type { Database, ProductItemProps } from 'types/supabase'
 
-import { capitalizeFirstLetter, iconMap } from 'utils/utils.service'
+import { iconMap } from 'utils/utils.service'
+
+import GreenButtonWhiteTextWithHover from 'components/buttons/greenButtonWhiteTextWithHover'
 
 function ProductsList({
   products,
@@ -37,14 +39,11 @@ function ProductsList({
                     clientID: clientID,
                   },
                 }}
-                className="no-underline flex items-center group text-sm"
               >
-                <button
-                  className="m-8 w-28 md:w-32 lg:w-48 bg-lightgreenBg rounded-full text-xl px-4 py-2 text-foreground mb-2 hover:bg-btn-background-hover shadow-xl  "
+                <GreenButtonWhiteTextWithHover
                   key={prod.id}
-                >
-                  {capitalizeFirstLetter(prod.product_name)}
-                </button>
+                  btnText={prod.product_name}
+                />
               </Link>
             </div>
           ) : (
