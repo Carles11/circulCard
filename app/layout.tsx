@@ -7,6 +7,7 @@ import Head from 'next/head'
 import MainHeader from '@/components/headers/headerMain'
 import AuthHeader from '@/components/headers/headerAuth'
 import { ThemeProvider } from './theme-provider'
+import ScrollToTop from 'components/scrollToTop'
 
 export const metadata: Metadata = {
   title: 'TheCirculArt',
@@ -57,6 +58,7 @@ export default async function RootLayout({
         <meta name="msapplication-TileColor" content="#da532c" />
         <meta name="theme-color" content="#ffffff" />
       </Head>
+      <ScrollToTop />
       <body className="grid grid-cols-1 divide-y-0 dark:divide-y-2 divide-neutral-700 dark:divide-slate-600">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <header className="w-full p-2 md:p-8 ">
