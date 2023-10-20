@@ -8,7 +8,7 @@ const TripCumulative = ({ trip }: { trip: TripProps }) => {
   // @ts-ignore
   const cumulativeTotal = trip[index]['cumulative_total']
   return (
-    <div className="z-0 relative w-full h-44 md:h-64 border rounded-xl bg-gray-300 shadow shadow-md shadow-gray-500">
+    <div className="z-0 relative w-full h-44 md:h-64 border rounded-xl bg-none dark:bg-gray-300 dark:shadow dark:shadow-md dark:shadow-gray-500">
       <Image
         src={RecycleGreenArrows}
         alt="TheCirculArt Green Recycle Arrows"
