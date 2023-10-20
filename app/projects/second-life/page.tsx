@@ -8,7 +8,8 @@ import { useEffect, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 
 import Loader from 'components/loader'
-import PlantOnHands from 'assets/images/icons/SVG/plant-on-hands.svg'
+import PlantOnHandsDARK from 'assets/images/icons/SVG/plant-on-hands-dark-mode.svg'
+import PlantOnHandsLIGHT from 'assets/images/icons/SVG/plant-on-hands-light-mode.svg'
 import Image from 'next/image'
 
 import SecondLifesCard from 'components/projects/secondLifesCard'
@@ -71,11 +72,19 @@ const SecondLife = () => {
   return (
     <div className="w-full flex flex-col">
       <div className="w-full flex flex-col items-center mt-8">
+        {/*SWITCH LOGO DEPENDING ON THEME*/}
         <Image
-          src={PlantOnHands}
-          alt="The circulart recycling process"
+          src={PlantOnHandsDARK}
+          alt="dark-mode-thecirculart-plant-on-hands"
           width={75}
           height={75}
+          className="hidden dark:block"
+        />
+        <Image
+          className="block dark:hidden"
+          src={PlantOnHandsLIGHT}
+          alt="light-mode-thecirculart-plant-on-hands"
+          width={75}
         />
         <h1>Proyecto</h1> <h2>{projectName}</h2>
       </div>
