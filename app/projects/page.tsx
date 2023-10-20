@@ -11,8 +11,9 @@ import Link from 'next/link'
 
 import Loader from 'components/loader'
 import DoughnutComponent from 'components/projects/doughnutComponent'
-import RecycleHands from 'assets/images/icons/SVG/recycle-hands.svg'
 import DarkButtonWithHover from 'components/buttons/darkButtonWithHover'
+import RecycleHands from 'assets/images/icons/SVG/recycle-hands.svg'
+import RecycleWorld from 'assets/images/icons/SVG/recycle-green-world.svg'
 
 const Projects = () => {
   const [projects, setProjects] = useState<any[]>([])
@@ -75,9 +76,16 @@ const Projects = () => {
       <div className="w-full flex flex-col items-center m-8">
         <Image
           src={RecycleHands}
-          alt="The circulart recycling process"
+          alt="The circulart recycling hands logo"
           width={75}
           height={75}
+          className="hidden dark:block"
+        />
+        <Image
+          className="block dark:hidden"
+          src={RecycleWorld}
+          alt="The circulart recycling world logo"
+          width={75}
         />
         <h1>RECICLAJE</h1> <h2>{materialName}</h2>{' '}
       </div>
