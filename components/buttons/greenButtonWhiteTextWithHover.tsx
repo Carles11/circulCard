@@ -10,7 +10,7 @@ const GreenButtonWhiteTextWithHover = ({
   console.log({ btnText })
   return (
     <button
-      className="m-8 w-28 md:w-32 lg:w-48 bg-lightgreenBg rounded-full text-xl px-4 py-2 text-foreground mb-2 hover:bg-btn-background-hover shadow-xl  "
+      className="m-8 w-48 bg-lightgreenBg rounded-full text-xl px-4 py-2 text-foreground mb-2 hover:bg-btn-background-hover shadow-xl whitespace-nowrap"
       key={key}
     >
       {capitalizeFirstLetter(btnText)}

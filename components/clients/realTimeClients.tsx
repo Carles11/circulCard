@@ -43,7 +43,7 @@ function realTimeClients({ clients }: { clients: any }) {
                 clientID: cli.id,
               },
             }}
-            className="flex items-center group text-sm"
+            className="flex items-center place-content-center group text-sm"
           >
             <ClientItem client={cli} />
           </Link>
