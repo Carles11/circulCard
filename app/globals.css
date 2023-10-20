@@ -309,11 +309,21 @@ a:hover.link-with-style {
 .rbc-row-content {
   margin-top: 2rem;
 }
-
+.rbc-row-segment:not(:-webkit-full-screen) {
+  text-align: -webkit-center;
+}
 .rbc-event.rbc-event-allday {
   display: flex;
   align-items: flex-end;
   .rbc-event-content {
-    font-size: small;
+    font-size: medium;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .rbc-event-content:not(:-webkit-full-screen) {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    padding: 3px;
   }
 }
