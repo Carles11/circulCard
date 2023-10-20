@@ -12,6 +12,7 @@ import Link from 'next/link'
 import Loader from 'components/loader'
 import DoughnutComponent from 'components/projects/doughnutComponent'
 import RecycleHands from 'assets/images/icons/SVG/recycle-hands.svg'
+import DarkButtonWithHover from 'components/buttons/darkButtonWithHover'
 
 const Projects = () => {
   const [projects, setProjects] = useState<any[]>([])
@@ -99,11 +100,11 @@ const Projects = () => {
                     projectName: projectName,
                   },
                 }}
-                className="no-underline flex items-center group text-sm"
               >
-                <button className="bg-gray-400 rounded-xl text-lg px-4 py-2 text-foreground mb-2 hover:bg-btn-background-hover">
-                  {proj.project_name.toUpperCase()}
-                </button>
+                <DarkButtonWithHover
+                  href={undefined}
+                  btnText={proj.project_name}
+                />
               </Link>
             </div>
           )
