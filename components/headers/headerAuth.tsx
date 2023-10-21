@@ -15,9 +15,13 @@ function authHeader() {
     <div className="flex justify-between">
       <div className="flex items-end">
         {!urlIsHome() && (
-          <div className="flex align-center">
-            {' '}
-            <Link href="/" className="flex items-center">
+          <div className="flex align-center items-center">
+            <button
+              type="button"
+              onClick={() => router.back()}
+              className="py-2 px-4 rounded-md no-underline bg-transparent hover:scale-1.5 flex items-center group text-sm"
+            >
+              {' '}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -32,14 +36,8 @@ function authHeader() {
               >
                 <polyline points="15 18 9 12 15 6" />
               </svg>{' '}
-              <button
-                type="button"
-                onClick={() => router.back()}
-                className="py-2 px-4 rounded-md no-underline bg-transparent hover:scale-1.5 flex items-center group text-sm"
-              >
-                Volver
-              </button>
-            </Link>
+              Volver
+            </button>
           </div>
         )}
       </div>
