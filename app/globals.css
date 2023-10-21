@@ -242,9 +242,7 @@ a:hover.link-with-style {
     align-self: center;
   }
   .rbc-btn-group {
-    display: none;
-  }
-  .rbc-toolbar-label {
+    display: block;
   }
 }
 .rbc-time-view-resources .rbc-time-header-content {

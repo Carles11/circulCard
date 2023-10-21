@@ -1,15 +1,21 @@
 // @ts-nocheck
+'use client'
+
+import { useState } from 'react'
 import {
   Calendar as BigCalendar,
   momentLocalizer,
   Views,
 } from 'react-big-calendar'
+import 'moment/locale/es' // Import the Spanish locale
 import moment from 'moment'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
+
 import CustomWeekView from './customWeekView'
+import CustomToolbar from './customToolbar'
 import type { TripProps } from 'types/supabase'
 
-moment.locale('en-GB')
+moment.locale('es')
 const localizer = momentLocalizer(moment)
 
 const resourceMap = [
@@ -20,6 +26,7 @@ const resourceMap = [
 ]
 
 export default function CustomCalendar({ trip }: { trip: TripProps }) {
+  const [displayedDate, setDisplayedDate] = useState(new Date())
   const index = 0
   const collectDate = trip[index]['collect_full_date']
   const cleanPointDate = trip[index]['clean_point_date']
@@ -60,7 +67,29 @@ export default function CustomCalendar({ trip }: { trip: TripProps }) {
       allDay: true,
     },
   ]
+  const handleNavigate = (date, action) => {
+    // Calculate the new date based on the current date and the action
+    console.log({ date, action })
+    let newDate
+    if (action === 'PREV') {
+      // Go to the previous week
+      newDate = moment(date).subtract(7, 'days').toDate()
+    } else if (action === 'NEXT') {
+      // Go to the next week
+      newDate = moment(date).add(7, 'days').toDate()
+    } else {
+      // Handle other actions as needed
+      newDate = date
+    }
 
+    // Update the state or any variable that controls the displayed date in your calendar
+    // For example, you might use React state to manage the calendar's date
+    setDisplayedDate(newDate)
+  }
+
+  console.log(displayedDate)
+
+  // console.log('MAIN-CALENDER-LOCALIZER------->', localizer)
   return (
     <div className="w-full text-gray-700">
       <BigCalendar
@@ -69,12 +98,14 @@ export default function CustomCalendar({ trip }: { trip: TripProps }) {
         defaultView={Views.WEEK}
         views={CustomWeekView}
         steps={60}
-        defaultDate={new Date()}
-        date={new Date()}
+        // defaultDate={new Date()}
+        date={displayedDate}
         resources={resourceMap}
         resourceIdAccessor="resourceId"
         resourceTitleAccessor="resourceTitle"
-        // formats={formats}
+        components={{ toolbar: CustomToolbar }}
+        // formats={localizer.formats.dayHeaderFormat}
+        onNavigate={handleNavigate}
       />
     </div>
   )
