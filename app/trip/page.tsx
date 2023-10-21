@@ -84,7 +84,7 @@ export default function Trip() {
         </div>
         <div className="w-3/4 md:w-1/2 flex flex-col">
           <TripHistorical trip={trip} />
-          <button className="rounded-full py-1 px-6 md:mt-4 w-fit self-end mb-10 border border-black hover:bg-btn-background-hover hover:text-foreground ">
+          <button className="rounded-full py-1 px-6 md:mt-4 w-fit self-end mb-10 border border-btn-background-hover dark:border-foreground hover:bg-btn-background-hover hover:text-foreground ">
             Detalles
           </button>
         </div>
