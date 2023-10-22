@@ -23,9 +23,9 @@ export const capitalizeFirstLetter = (string: string) => {
 }
 
 export const iconMap: Record<string, StaticImageData> = {
-  pos: POSicon,
-  cards: CARDSicon,
-  furniture: FURNITUREicon,
+  datáfonos: POSicon,
+  tarjetas: CARDSicon,
+  mobiliario: FURNITUREicon,
   herz: HERZicon,
   fitness: FITNESSicon,
   projects: PROJECTSicon,
