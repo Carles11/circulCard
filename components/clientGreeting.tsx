@@ -29,7 +29,9 @@ function ClientGreeting({
 
   const pageGreetings: GreetingTypes = {
     products: 'Estos son tus productos reciclados',
-    trip: `Este es el viaje de tu ${productName ? productName : 'producto'}`,
+    trip: `Este es el viaje de tu${
+      productName && productName !== 'mobiliario' ? 's' : ''
+    } ${productName ? productName : 'producto'}`,
   }
 
   useEffect(() => {

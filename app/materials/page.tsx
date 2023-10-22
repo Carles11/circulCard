@@ -70,7 +70,8 @@ const Materials = () => {
           .select(
             'id, material_name, percentage, collect_date, products(product_name)'
           )
-        //   .eq('products.product_name', productName)
+          .eq('products.product_name', productName)
+          .not('products', 'is', null)
 
         if (error) {
           throw new Error(error.message)
@@ -88,9 +89,7 @@ const Materials = () => {
   }, [supabase])
 
   if (loading) {
-    return (
-        <Loader />
-    )
+    return <Loader />
   }
 
   if (error) {
