@@ -21,7 +21,6 @@ interface CustomToolbarProps {
 
 class CustomToolbar extends React.Component<CustomToolbarProps> {
   render() {
-    console.log('this.props-in-toolbar', this.props)
     let navigate: (action: string) => void
     const {
       localizer: { messages },
@@ -52,10 +51,8 @@ class CustomToolbar extends React.Component<CustomToolbarProps> {
     navigate = (action: string) => {
       if (action === 'PREVIOUS') {
         // Navigate to the previous route
-        console.log('preiousiing------')
         onNavigate(action, getLastWeeksDate())
       } else if (action === 'NEXT') {
-        console.log('nexting------')
         // Navigate to the next route
         onNavigate(action, nextweek())
       }

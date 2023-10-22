@@ -69,7 +69,6 @@ export default function CustomCalendar({ trip }: { trip: TripProps }) {
   ]
   const handleNavigate = (date, action) => {
     // Calculate the new date based on the current date and the action
-    console.log({ date, action })
     let newDate
     if (action === 'PREV') {
       // Go to the previous week
@@ -87,9 +86,6 @@ export default function CustomCalendar({ trip }: { trip: TripProps }) {
     setDisplayedDate(newDate)
   }
 
-  console.log(displayedDate)
-
-  // console.log('MAIN-CALENDER-LOCALIZER------->', localizer)
   return (
     <div className="w-full text-gray-700">
       <BigCalendar

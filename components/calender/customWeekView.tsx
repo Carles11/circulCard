@@ -56,7 +56,6 @@ CustomWeekView.range = (date, { localizer }) => {
 }
 
 CustomWeekView.navigate = (date, action, { localizer }) => {
-  console.log('CustomWeekView.navigate------->')
   switch (action) {
     case Navigate.PREVIOUS:
       return localizer.add(date, -3, 'day')
