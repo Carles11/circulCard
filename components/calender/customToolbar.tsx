@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 
 // import { useRouter } from 'next/router' // For Next.js routing
@@ -19,33 +21,45 @@ interface CustomToolbarProps {
   date: Date
 }
 
-class CustomToolbar extends React.Component<CustomToolbarProps> {
+class CustomToolbar extends React.Component<
+  CustomToolbarProps,
+  { updatedDate: Date }
+> {
+  constructor(props: CustomToolbarProps) {
+    super(props)
+    this.state = {
+      updatedDate: this.props.date,
+    }
+  }
+
   render() {
     let navigate: (action: string) => void
     const {
       localizer: { messages },
       label,
       onNavigate,
-      date,
     } = this.props
+    const { updatedDate } = this.state
+    var currentDisplayDate = this.state.updatedDate
 
-    var currentDisplayDate = date
-
-    function nextweek() {
+    const getNextWeekDate = () => {
       var nextweek = new Date(
         currentDisplayDate.getFullYear(),
         currentDisplayDate.getMonth(),
         currentDisplayDate.getDate() + 7
       )
-      return nextweek
+      this.setState({ updatedDate: nextweek })
+      return updatedDate
     }
 
-    function getLastWeeksDate() {
-      return new Date(
+    const getLastWeeksDate = () => {
+      var lastWeek = new Date(
         currentDisplayDate.getFullYear(),
         currentDisplayDate.getMonth(),
         currentDisplayDate.getDate() - 7
       )
+      this.setState({ updatedDate: lastWeek })
+      return updatedDate
     }
 
     navigate = (action: string) => {
@@ -54,7 +68,7 @@ class CustomToolbar extends React.Component<CustomToolbarProps> {
         onNavigate(action, getLastWeeksDate())
       } else if (action === 'NEXT') {
         // Navigate to the next route
-        onNavigate(action, nextweek())
+        onNavigate(action, getNextWeekDate())
       }
     }
 

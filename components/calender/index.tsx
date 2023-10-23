@@ -72,10 +72,10 @@ export default function CustomCalendar({ trip }: { trip: TripProps }) {
     let newDate
     if (action === 'PREV') {
       // Go to the previous week
-      newDate = moment(date).subtract(7, 'days').toDate()
+      // newDate = moment(date).subtract(7, 'days').toDate()
     } else if (action === 'NEXT') {
       // Go to the next week
-      newDate = moment(date).add(7, 'days').toDate()
+      // newDate = moment(date).add(7, 'days').toDate()
     } else {
       // Handle other actions as needed
       newDate = date
