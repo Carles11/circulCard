@@ -17,9 +17,8 @@ interface User extends SupabaseUser {
 }
 
 export default function Products() {
-  const searchParams = useSearchParams()
-  const clientID = searchParams.get('clientID')
   const [user, setUser] = useState<User | null>(null)
+  const searchParams = useSearchParams()
 
   const [products, setProducts] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
@@ -28,6 +27,7 @@ export default function Products() {
 
   // Create a Supabase client configured to use cookies
   const supabase = createClientComponentClient<Database>()
+  const clientID = searchParams.get('clientID')
 
   useEffect(() => {
     const checkUser = async () => {
@@ -44,11 +44,13 @@ export default function Products() {
   }, [supabase, router])
 
   useEffect(() => {
+    console.log(clientID)
     const getProducts = async () => {
       try {
         const { data, error } = await supabase
           .from('products')
-          .select(`product_name, clients(id, client_name )`)
+          .select(`id, product_name, clients(id, client_name)`)
+          // .filter('clients.id', 'eq', clientID)
           .eq('clients.id', clientID)
           .not('clients', 'is', null)
 

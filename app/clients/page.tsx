@@ -49,27 +49,29 @@ export default function Clients() {
 
   // Second useEffect to fetch clients using currentUser.id
   useEffect(() => {
-    const getClients = async () => {
-      try {
-        const { data, error } = await supabase
-          .from('clients')
-          .select('id, client_name, profiles(user_id, email)')
-          .not('profiles', 'is', null)
+    if (currentUser) {
+      const usID = currentUser.id
+      const getClients = async () => {
+        try {
+          const { data, error } = await supabase
+            .from('clients')
+            .select('id, client_name, profiles(user_id, email)')
+            .filter('profiles.user_id', 'eq', usID)
 
-        if (error) {
-          throw new Error(error.message)
+          if (error) {
+            throw new Error(error.message)
+          }
+
+          setClients(data || [])
+        } catch (error: any) {
+          setError(error.message)
+        } finally {
+          setLoading(false)
         }
-
-        setClients(data || [])
-      } catch (error: any) {
-        setError(error.message)
-      } finally {
-        setLoading(false)
       }
+      getClients()
     }
-
-    getClients()
-  }, [supabase, setClients, setLoading, setError])
+  }, [supabase, currentUser, setClients, setLoading, setError])
 
   if (loading) {
     return <Loader />
