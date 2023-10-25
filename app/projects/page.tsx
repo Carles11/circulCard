@@ -46,7 +46,9 @@ const Projects = () => {
         const { data, error } = await supabase
           .from('projects')
           .select('*, materials(id, material_name)')
-          .eq('materials.material_name', materialName)
+          .filter('materials.material_name', 'eq', materialName)
+          .not('materials', 'is', null)
+        // .eq('materials.material_name', materialName)
 
         if (error) {
           throw new Error(error.message)
@@ -70,7 +72,7 @@ const Projects = () => {
   if (error) {
     return <p className="text-red-500">{error}</p>
   }
-
+  console.log({ projects })
   return (
     <div className="w-full flex flex-col gap-16 items-center m-8">
       <div className="w-full flex flex-col items-center m-8">

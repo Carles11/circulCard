@@ -50,7 +50,7 @@ export default function Products() {
         const { data, error } = await supabase
           .from('products')
           .select(`id, product_name, clients(id, client_name)`)
-          // .filter('clients.id', 'eq', clientID)
+          //  .filter('clients.id', 'eq', clientID)
           .eq('clients.id', clientID)
           .not('clients', 'is', null)
 
