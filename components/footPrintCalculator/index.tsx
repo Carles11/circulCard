@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 
+import GreenButtonWhiteTextWithHover from 'components/buttons/greenButtonWhiteTextWithHover'
+
 const CarbonCalculator = () => {
   const [energyConsumption, setEnergyConsumption] = useState('Select an option')
   const [transportationHabits, setTransportationHabits] =
@@ -7,20 +9,20 @@ const CarbonCalculator = () => {
   const [lifestyleChoices, setLifestyleChoices] = useState('Select an option')
   const [carbonFootprint, setCarbonFootprint] = useState<number | null>(null) // Specify number | null
 
-  const energyOptions = ['Low', 'Moderate', 'High']
+  const energyOptions = ['Bajo', 'Moderado', 'Alto']
 
   const transportationOptions = [
-    'Public Transportation',
-    'Carpooling',
-    'Biking/Walking',
-    'Driving a Fuel-efficient Car',
-    'Driving a Conventional Car',
+    'Transporte Público',
+    'Compartir Coche',
+    'Bicicleta/Caminar',
+    'Conducir un Coche Eficiente en Combustible',
+    'Conducir un Coche Convencional',
   ]
 
   const lifestyleOptions = [
-    'Minimal Waste',
-    'Average Consumption',
-    'High Consumption',
+    'Residuo Mínimo',
+    'Consumo Promedio',
+    'Alto Consumo',
   ]
 
   const handleCalculate = () => {
@@ -28,14 +30,14 @@ const CarbonCalculator = () => {
 
     // Energy Consumption Calculation
     switch (energyConsumption) {
-      case 'Low':
-        footprint += 2 // Low energy consumption footprint
+      case 'Bajo':
+        footprint += 2 // Huella de carbono de bajo consumo de energía
         break
-      case 'Moderate':
-        footprint += 5 // Moderate energy consumption footprint
+      case 'Moderado':
+        footprint += 5 // Huella de carbono de consumo de energía moderado
         break
-      case 'High':
-        footprint += 10 // High energy consumption footprint
+      case 'Alto':
+        footprint += 10 // Huella de carbono de alto consumo de energía
         break
       default:
         break
@@ -43,20 +45,20 @@ const CarbonCalculator = () => {
 
     // Transportation Habits Calculation
     switch (transportationHabits) {
-      case 'Public Transportation':
-        footprint += 2 // Public transportation footprint
+      case 'Transporte Público':
+        footprint += 2 // Huella de carbono de transporte público
         break
-      case 'Carpooling':
-        footprint += 4 // Carpooling footprint
+      case 'Compartir Coche':
+        footprint += 4 // Huella de carbono de compartir coche
         break
-      case 'Biking/Walking':
-        footprint += 1 // Biking/Walking footprint
+      case 'Bicicleta/Caminar':
+        footprint += 1 // Huella de carbono de bicicleta/caminar
         break
-      case 'Driving a Fuel-efficient Car':
-        footprint += 5 // Fuel-efficient car footprint
+      case 'Conducir un Coche Eficiente en Combustible':
+        footprint += 5 // Huella de carbono de conducir un coche eficiente en combustible
         break
-      case 'Driving a Conventional Car':
-        footprint += 10 // Conventional car footprint
+      case 'Conducir un Coche Convencional':
+        footprint += 10 // Huella de carbono de conducir un coche convencional
         break
       default:
         break
@@ -64,14 +66,14 @@ const CarbonCalculator = () => {
 
     // Lifestyle Choices Calculation
     switch (lifestyleChoices) {
-      case 'Minimal Waste':
-        footprint += 3 // Minimal waste lifestyle footprint
+      case 'Residuo Mínimo':
+        footprint += 3 // Huella de carbono de estilo de vida con residuo mínimo
         break
-      case 'Average Consumption':
-        footprint += 6 // Average consumption lifestyle footprint
+      case 'Consumo Promedio':
+        footprint += 6 // Huella de carbono de estilo de vida con consumo promedio
         break
-      case 'High Consumption':
-        footprint += 10 // High consumption lifestyle footprint
+      case 'Alto Consumo':
+        footprint += 10 // Huella de carbono de estilo de vida con alto consumo
         break
       default:
         break
@@ -81,13 +83,13 @@ const CarbonCalculator = () => {
   }
 
   return (
-    <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+    <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 md:mb-8 sm:px-4">
       <h2 className="text-2xl font-semibold mb-4">
         Carbon Footprint Calculator
       </h2>
       <div className="mb-4">
         <label className="block text-gray-700 text-sm font-bold mb-2">
-          Energy Consumption:
+          Tu consumo de energía es:
         </label>
         <select
           className="block w-full p-2 border rounded"
@@ -103,7 +105,7 @@ const CarbonCalculator = () => {
       </div>
       <div className="mb-4">
         <label className="block text-gray-700 text-sm font-bold mb-2">
-          Transportation Habits:
+          Tus hábitos de transporte:
         </label>
         <select
           className="block w-full p-2 border rounded"
@@ -119,7 +121,7 @@ const CarbonCalculator = () => {
       </div>
       <div className="mb-4">
         <label className="block text-gray-700 text-sm font-bold mb-2">
-          Lifestyle Choices:
+          Tu estilo de vida:
         </label>
         <select
           className="block w-full p-2 border rounded"
@@ -133,16 +135,21 @@ const CarbonCalculator = () => {
           ))}
         </select>
       </div>
-      <button
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-        onClick={handleCalculate}
-      >
-        Calculate
-      </button>
+      <div className="flex justify-center">
+        <GreenButtonWhiteTextWithHover
+          btnText="Calcular"
+          onPress={handleCalculate}
+        />
+      </div>
       {carbonFootprint !== null && (
-        <p className="mt-4">
-          Your estimated carbon footprint is: {carbonFootprint} tons CO2 per
-          year.
+        <p className="mt-4 text-gray-700 text-center">
+          Tu huella de carbono estimada es de:
+          <br />
+          <span className="text-2xl text-lightgreenBg font-semibold">
+            {carbonFootprint} toneladas de CO2
+          </span>
+          <br />
+          por año.
         </p>
       )}
     </div>
