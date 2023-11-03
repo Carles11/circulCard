@@ -11,7 +11,7 @@ import Loader from 'components/loader'
 import ClientGreeting from 'components/clientGreeting'
 import ProductsList from 'components/products/productsList'
 import CTAsButtons from 'components/products/ctasButtons'
-
+import CarbonCalculator from 'components/footPrintCalculator'
 interface User extends SupabaseUser {
   // Additional properties specific to your application
 }
@@ -94,6 +94,7 @@ export default function Products() {
       </div>
       <ProductsList user={user} products={products} clientID={clientID} />
       <CTAsButtons />
+      <CarbonCalculator />
     </div>
   )
 }
