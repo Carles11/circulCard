@@ -38,7 +38,7 @@ function realTimeClients({ clients }: { clients: any }) {
           <Link
             key={cli.id}
             href={{
-              pathname: 'products',
+              pathname: 'dashboard',
               query: {
                 clientID: cli.id,
               },

@@ -44,7 +44,7 @@ export default function Products() {
   }, [supabase, router])
 
   useEffect(() => {
-    console.log(clientID)
+    // console.log(clientID)
     const getProducts = async () => {
       try {
         const { data, error } = await supabase

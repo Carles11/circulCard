@@ -89,7 +89,7 @@ const CarbonCalculator = () => {
       </h2>
       <div className="mb-4">
         <label className="block text-gray-700 text-sm font-bold mb-2">
-          Tu consumo de energía es:
+          Dirías que tu consumo general de energía es:
         </label>
         <select
           className="block w-full p-2 border rounded"
@@ -105,7 +105,7 @@ const CarbonCalculator = () => {
       </div>
       <div className="mb-4">
         <label className="block text-gray-700 text-sm font-bold mb-2">
-          Tus hábitos de transporte:
+          Cuáles son tus hábitos de transporte?
         </label>
         <select
           className="block w-full p-2 border rounded"
@@ -121,7 +121,7 @@ const CarbonCalculator = () => {
       </div>
       <div className="mb-4">
         <label className="block text-gray-700 text-sm font-bold mb-2">
-          Tu estilo de vida:
+          Cómo definirías tu estilo de vida?
         </label>
         <select
           className="block w-full p-2 border rounded"

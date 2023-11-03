@@ -7,8 +7,9 @@ import { useEffect, useState } from 'react'
 import Loader from 'components/loader'
 
 interface GreetingTypes {
-  products: string
-  trip: string
+  products?: string
+  trip?: string
+  dashboard?: string
 }
 
 function ClientGreeting({
@@ -17,7 +18,7 @@ function ClientGreeting({
   page,
 }: {
   clientID: string
-  productName: string
+  productName?: string
   page: string
 }) {
   const [client, setClient] = useState<any[]>([])
@@ -28,10 +29,11 @@ function ClientGreeting({
   const supabase = createClientComponentClient<Database>()
 
   const pageGreetings: GreetingTypes = {
-    products: 'Estos son tus productos reciclados',
+    products: 'Estos son tus productos reciclados:',
     trip: `Este es el viaje de tu${
-      productName && productName !== 'mobiliario' ? 's' : ''
-    } ${productName ? productName : 'producto'}`,
+      productName && productName !== 'mobiliario:' ? '' : ''
+    } ${productName ? productName : 'producto:'}`,
+    dashboard: '',
   }
 
   useEffect(() => {
@@ -68,7 +70,7 @@ function ClientGreeting({
     <div className="flex flex-col justify-star">
       <h3>Hola</h3>
       <h2>{client[0].client_name.toUpperCase()},</h2>
-      <h3>{pageGreetings[pageRefProp as keyof GreetingTypes]}:</h3>
+      <h3>{pageGreetings[pageRefProp as keyof GreetingTypes]}</h3>
     </div>
   )
 }

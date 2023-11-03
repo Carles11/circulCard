@@ -4,9 +4,20 @@ import type { TripProps } from 'types/supabase'
 
 const TripCumulative = ({ trip }: { trip: TripProps }) => {
   // Assuming 'trip' is an array of Trip objects
-  const index = 0
-  // @ts-ignore
-  const cumulativeTotal = trip[index]['cumulative_total']
+  const cumulativeTotalArray = trip.map((element: { [x: string]: string }) => {
+    // Replace commas with an empty string, and then parse as a floating-point number.
+    const value = parseFloat(element['cumulative_total'].replace(',', '.'))
+    return !isNaN(value) ? value : 0
+  })
+  const cumulativeTotal = cumulativeTotalArray.reduce(
+    (accumulator: any, currentValue: any) => accumulator + currentValue,
+    0
+  )
+
+  // 'sum' now contains the sum of all the valid numeric 'cumulative_total' values in the 'trip' array while preserving decimal values and handling commas.
+
+  // 'sum' now contains the sum of all the valid numeric 'cumulative_total' values in the 'trip' array while preserving decimal values.
+
   return (
     <div className="z-0 relative w-full h-44 md:h-64 border rounded-xl bg-none dark:bg-gray-300 dark:shadow dark:shadow-md dark:shadow-gray-500">
       <Image
@@ -20,7 +31,7 @@ const TripCumulative = ({ trip }: { trip: TripProps }) => {
       />
       <div className="flex flex-col mr-6 md:mr-20 items-end mt-6 md:mt-20">
         <div className="flex flex-col mr-2 items-end align-center">
-          <h1 className="z-1 text-gray-600">{cumulativeTotal}</h1>
+          <h1 className="z-1 text-gray-600">{cumulativeTotal} toneladas</h1>
           <h3 className="z-1 text-gray-600 -mt-5">recogidas</h3>
         </div>
         <div>

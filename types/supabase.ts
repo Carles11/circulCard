@@ -17,6 +17,8 @@ export interface UserProps {
 }
 
 export type TripProps = {
+  map: any
+  length: number
   trip: {
     analysis_date: string
     clean_point_date: string
