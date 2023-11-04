@@ -22,7 +22,7 @@ function mainHeader({ email }: { email: string | undefined }) {
             <button
               type="button"
               onClick={() => router.back()}
-              className="py-2 px-4 rounded-md no-underline bg-transparent hover:scale-1.5 flex items-center group text-sm"
+              className="py-4 px-4 rounded-md no-underline bg-transparent hover:scale-1.5 flex items-center group text-sm"
             >
               {' '}
               <svg
@@ -41,8 +41,6 @@ function mainHeader({ email }: { email: string | undefined }) {
               </svg>{' '}
               Volver
             </button>
-
-            <LogoutButton />
           </div>
         ) : (
           <div className="flex justify-start ml-8">
@@ -50,9 +48,14 @@ function mainHeader({ email }: { email: string | undefined }) {
           </div>
         )}
       </div>
-      <div className="flex items-end gap-4">
-        <HeaderBulbIcon />
-        <ThemeSwitcher />
+      <div className="flex flex-col items-end">
+        <div className="flex items-end gap-4">
+          <HeaderBulbIcon />
+          <ThemeSwitcher />
+        </div>
+        <div className="flex items-end">
+          <LogoutButton />
+        </div>
       </div>
     </div>
   )
