@@ -41,7 +41,7 @@ function ProductsList({
                 }}
               >
                 <GreenButtonWhiteTextWithHover
-                  key={prod.id}
+                  idAsKey={prod.id}
                   btnText={prod.product_name}
                 />
               </Link>

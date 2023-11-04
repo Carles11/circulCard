@@ -3,7 +3,7 @@ import GreenButtonWhiteTextWithHover from 'components/buttons/greenButtonWhiteTe
 function clientItem({ client }: { client: any }) {
   return (
     <GreenButtonWhiteTextWithHover
-      key={client.id}
+      idAsKey={client.id}
       btnText={client.client_name}
     />
   )

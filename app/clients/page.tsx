@@ -3,7 +3,6 @@ import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useEffect, useState } from 'react'
 import RealtimeClients from 'components/clients/realTimeClients'
 import { useRouter } from 'next/navigation' // Import the useRouter hook
-import { User as SupabaseUser } from '@supabase/supabase-js'
 
 import type { Database } from '../../types/supabase'
 import Loader from 'components/loader'
@@ -13,7 +12,9 @@ export default function Clients() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const router = useRouter() // Initialize the useRouter hook
-  const [currentUser, setCurrentUser] = useState<SupabaseUser | null>(null)
+  const [currentUserEmail, setCurrentUserEmail] = useState<string | undefined>(
+    ''
+  )
 
   // Create a Supabase client configured to use cookies
   const supabase = createClientComponentClient<Database>()
@@ -25,38 +26,23 @@ export default function Clients() {
 
       if (!session) {
         router.push('/unauthenticated') // Use router.push instead of redirect
+      } else {
+        setCurrentUserEmail(session.user.email)
       }
     }
 
     checkUser()
   }, [supabase, router])
 
+  // useEffect to fetch clients using currentUser.email
   useEffect(() => {
-    const fetchUserData = async () => {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser()
-      console.log({ user })
-      if (!user) {
-        router.push('/unauthenticated') // Use router.push instead of redirect
-      } else {
-        setCurrentUser(user)
-      }
-    }
-
-    fetchUserData()
-  }, [supabase, router])
-
-  // Second useEffect to fetch clients using currentUser.id
-  useEffect(() => {
-    if (currentUser) {
-      const usID = currentUser.id
+    if (currentUserEmail) {
       const getClients = async () => {
         try {
           const { data, error } = await supabase
             .from('clients')
             .select('id, client_name, profiles(user_id, email)')
-            .filter('profiles.user_id', 'eq', usID)
+            .filter('profiles.email', 'eq', currentUserEmail)
 
           if (error) {
             throw new Error(error.message)
@@ -71,7 +57,7 @@ export default function Clients() {
       }
       getClients()
     }
-  }, [supabase, currentUser, setClients, setLoading, setError])
+  }, [supabase, currentUserEmail, setClients, setLoading, setError])
 
   if (loading) {
     return <Loader />
@@ -81,7 +67,6 @@ export default function Clients() {
     return <p className="text-red-500">{error}</p>
   }
 
-  console.log({ clients })
   return (
     <div className="flex flex-col">
       <RealtimeClients clients={clients} />

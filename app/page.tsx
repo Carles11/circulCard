@@ -10,10 +10,8 @@ export default async function Index() {
   const supabase = createServerComponentClient({ cookies })
 
   const {
-    data: { user },
-  } = await supabase.auth.getUser()
-
-  // console.log({ user })
+    data: { session },
+  } = await supabase.auth.getSession()
 
   return (
     <div className="w-full h-full flex flex-col items-center">
@@ -24,7 +22,7 @@ export default async function Index() {
             Circular economy through recycling and generation of second live
             products.
           </h1>
-          <MainPageBottomContent user={user} />
+          <MainPageBottomContent session={session} />
         </div>
       </div>
     </div>

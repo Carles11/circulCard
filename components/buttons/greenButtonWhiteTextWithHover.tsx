@@ -1,18 +1,18 @@
 import { capitalizeFirstLetter } from 'utils/utils.service'
 
 const GreenButtonWhiteTextWithHover = ({
-  key,
+  idAsKey,
   btnText,
   onPress,
 }: {
-  key?: string | undefined
+  idAsKey?: string | undefined
   btnText: string
   onPress?: (event: React.MouseEvent<HTMLButtonElement>) => void
 }) => {
   return (
     <button
       className="m-8 w-48 bg-lightgreenBg rounded-full text-xl text-foreground px-4 py-2 mb-2 hover:bg-btn-background-hover shadow-xl whitespace-nowrap"
-      key={key}
+      key={idAsKey}
       onClick={onPress}
     >
       {capitalizeFirstLetter(btnText)}
