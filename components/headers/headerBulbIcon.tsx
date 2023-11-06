@@ -13,7 +13,7 @@ const HeaderBulbIcon = () => {
           alt="The circulart bulb in green"
           width={40}
           height={40}
-          className="hover:animate-scale-up"
+          className="transition-transform hover:scale-110"
         />
       </Link>
     </ToolTip>

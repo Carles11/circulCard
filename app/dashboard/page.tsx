@@ -89,12 +89,8 @@ export default function Dashboard() {
     getMaterials()
   }, [supabase])
 
-  if (!loading) {
-    return (
-      <div className="w-full mb-8 md:mb-16 pl-8">
-        <Loader />
-      </div>
-    )
+  if (loading) {
+    return <Loader />
   }
 
   if (error) {
