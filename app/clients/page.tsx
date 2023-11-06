@@ -43,6 +43,7 @@ export default function Clients() {
             .from('clients')
             .select('id, client_name, profiles(user_id, email)')
             .filter('profiles.email', 'eq', currentUserEmail)
+          console.log('datadata_CLIENTESSSSSSSS----', data)
 
           if (error) {
             throw new Error(error.message)

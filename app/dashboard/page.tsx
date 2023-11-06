@@ -44,16 +44,18 @@ export default function Dashboard() {
 
   useEffect(() => {
     // console.log(clientID)
+
     const getProducts = async () => {
       try {
         const { data, error } = await supabase
           .from('products')
           .select(`product_name, clients(id, client_name)`)
-          //  .filter('clients.id', 'eq', clientID)
-          .eq('clients.id', clientID)
+          .filter('clients.id', 'eq', clientID)
+          // .eq('clients.id', clientID)
           .not('clients', 'is', null)
 
         setProducts(data || [])
+        console.log('datadata_PRODUCTOSSSSS----', data)
       } catch (error: any) {
         setError(error.message)
       } finally {
@@ -63,23 +65,6 @@ export default function Dashboard() {
 
     getProducts()
   }, [supabase, setProductName, setLoading, setError])
-
-  //   useEffect(() => {
-  //     const getTrip = async () => {
-  //       try {
-  //         const { data, error } = await supabase.from('materials').select('*')
-  //         //   .eq('id', materialID)
-
-  //         setTrip(data || [])
-  //       } catch (error: any) {
-  //         setError(error.message)
-  //       } finally {
-  //         setLoading(false)
-  //       }
-  //     }
-
-  //     getTrip()
-  //   }, [supabase, setTrip, setLoading, setError])
 
   useEffect(() => {
     const getMaterials = async () => {
@@ -104,8 +89,12 @@ export default function Dashboard() {
     getMaterials()
   }, [supabase])
 
-  if (loading) {
-    return <Loader />
+  if (!loading) {
+    return (
+      <div className="w-full mb-8 md:mb-16 pl-8">
+        <Loader />
+      </div>
+    )
   }
 
   if (error) {
@@ -123,15 +112,8 @@ export default function Dashboard() {
       </div>
       <div className="w-full flex flex-col lg:flex-row md:justify-around items-center md:align-start gap-16">
         <div className="w-full lg:w-1/2 flex flex-col gap-16">
-          {/* <TripCalender trip={trip} /> */}
           <TripCumulative trip={materials} />
         </div>
-        {/* <div className="w-3/4 md:w-1/2 flex flex-col">
-          <TripHistorical trip={trip} />
-          <button className="rounded-full py-1 px-6 md:mt-4 w-fit self-end mb-10 border border-btn-background-hover dark:border-foreground hover:bg-btn-background-hover hover:text-foreground ">
-            Detalles
-          </button>
-        </div> */}
       </div>
     </div>
   )

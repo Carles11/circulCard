@@ -1,7 +1,7 @@
 export default function LogoutButton() {
   return (
-    <form action="/routes/sign-out" method="post" className="mt-2">
-      <button className="py-2 px-4 rounded-md no-underline bg-transparent text-sm hover:border hover:border-btn-background-hover dark:hover:border-foreground">
+    <form action="/routes/sign-out" method="post" className="mx-2">
+      <button className="py-4 px-2 transition rounded-md no-underline bg-transparent text-sm hover:animate-scale-up">
         Logout
       </button>
     </form>

@@ -15,14 +15,14 @@ function mainHeader({ email }: { email: string | undefined }) {
   const router = useRouter()
 
   return (
-    <div className="flex justify-between">
+    <div className="flex gap-2 justify-between">
       <div className="flex items-end">
         {!urlIsHome() ? (
           <div className="flex align-center flex items-center">
             <button
               type="button"
               onClick={() => router.back()}
-              className="py-4 px-4 rounded-md no-underline bg-transparent hover:scale-1.5 flex items-center group text-sm"
+              className="py-4 px-2 mb-4 rounded-md no-underline bg-transparent transition-scale hover:scale-1.5 flex items-center group text-sm"
             >
               {' '}
               <svg
@@ -48,12 +48,12 @@ function mainHeader({ email }: { email: string | undefined }) {
           </div>
         )}
       </div>
-      <div className="flex flex-col items-end">
+      <div className="flex flex-col items-end gap-2">
         <div className="flex items-end gap-4">
           <HeaderBulbIcon />
           <ThemeSwitcher />
         </div>
-        <div className="flex items-end">
+        <div className="flex items-end mb-4">
           <LogoutButton />
         </div>
       </div>

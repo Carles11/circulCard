@@ -32,6 +32,21 @@ module.exports = {
           'background-hover': 'var(--btn-background-hover)',
         },
       },
+      screens: {
+        '3xl': '1600px', // Adds a new `3xl:` screen variant to resize text in a responsive way. Example: className="text-base md:text-md 3xl:text-lg">
+      },
+      keyframes: {
+        'scale-up': {
+          '0%': { transform: 'scale(1)' },
+          '100%': { transform: 'scale(1.2)' },
+        },
+      },
+      animation: {
+        'scale-up': 'scale-up 0.3s ease-in-out',
+      },
+      transform: {
+        'scale-110': 'scale(1.2)',
+      },
     },
   },
   plugins: [],
