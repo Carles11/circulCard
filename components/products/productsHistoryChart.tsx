@@ -1,6 +1,7 @@
 // @ts-nocheck
 
 import BarChart from 'components/charts/barChart'
+import DarkButtonWithHover from 'components/buttons/darkButtonWithHover'
 
 const ProductsHistoryChartComponent = ({ yearsCollection }) => {
   const plugins = {
@@ -75,7 +76,6 @@ const ProductsHistoryChartComponent = ({ yearsCollection }) => {
     )
     gradient.addColorStop(0, '#f553ff') // Start with #f553ff at the bottom
     gradient.addColorStop(0.5, '#ccc') // Transition to white
-    // gradient.addColorStop(0.6, '#ccc') // Transition to light-gray
     gradient.addColorStop(1, '#78d97b') // End with #78d97b at the top
 
     return gradient
@@ -107,8 +107,9 @@ const ProductsHistoryChartComponent = ({ yearsCollection }) => {
   }
 
   return (
-    <div className="min-h-auto">
+    <div className="min-h-auto flex flex-col items-center justify-center gap-4">
       <BarChart data={BarChartData} options={options} plugins={plugins} />
+      <DarkButtonWithHover href={undefined} btnText="Histórico residuos" />
     </div>
   )
 }
