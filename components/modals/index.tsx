@@ -19,11 +19,7 @@ const Modal = ({
       <div className="modal-wrapper">
         <div className="modal">
           <div className="modal-header">
-            <a
-              href="#"
-              onClick={handleCloseClick}
-              className="text-gray-700 border rounded-full border-gray-700 p-2"
-            >
+            <a href="#" onClick={handleCloseClick} className="text-gray-500">
               Cerrar
             </a>
           </div>
