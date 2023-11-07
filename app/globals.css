@@ -151,6 +151,10 @@ a:hover.link-with-style {
   background-size: 0 3px, 100% 3px;
 }
 
+.bar-gradient-background {
+  background: linear-gradient(to bottom, #f553ff, #fff, #ccc, #79d97c);
+}
+
 .ring {
   position: absolute;
   top: 50%;

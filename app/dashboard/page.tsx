@@ -10,6 +10,7 @@ import ClientGreeting from 'components/clientGreeting'
 // import TripCalender from 'components/trip/tripCalender'
 import TripCumulative from 'components/trip/tripCumulative'
 import ProductsCard from 'components/products/productsCard'
+import ProductsHistoryChartComponent from 'components/products/productsHistoryChart'
 // import TripHistorical from 'components/trip/tripHistorical'
 import Loader from 'components/loader'
 
@@ -113,7 +114,7 @@ export default function Dashboard() {
           <ProductsCard />
         </div>
         <div className="w-full lg:w-1/2">
-          <TripCumulative trip={materials} />
+          <ProductsHistoryChartComponent products={products} />
         </div>
       </div>
     </div>
