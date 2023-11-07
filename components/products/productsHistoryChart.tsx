@@ -97,6 +97,7 @@ const ProductsHistoryChartComponent = ({ yearsCollection }) => {
     labels,
     datasets: [
       {
+        label: 'Toneladas',
         data: showBars,
         backgroundColor: gradientColor,
         borderWidth: 1, // Add a border width for bars

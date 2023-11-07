@@ -8,22 +8,16 @@ import type { Database } from 'types/supabase'
 import Link from 'next/link'
 
 import ClientGreeting from 'components/clientGreeting'
-// import TripCalender from 'components/trip/tripCalender'
 import TripCumulative from 'components/trip/tripCumulative'
 import ProductsCard from 'components/products/productsCard'
 import ProductsHistoryChartComponent from 'components/products/productsHistoryChart'
-// import TripHistorical from 'components/trip/tripHistorical'
 import Loader from 'components/loader'
 
 export default function Dashboard() {
   const searchParams = useSearchParams()
-  const [materials, setMaterials] = useState<any[]>([])
   const [totalAmountCollected, setTotalAmountCollected] = useState<any[]>([])
-  const [products, setProducts] = useState<any[]>([])
-  const [productName, setProductName] = useState<string>('')
   const clientID = searchParams.get('clientID')
 
-  //   const [trip, setTrip] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
@@ -45,29 +39,6 @@ export default function Dashboard() {
 
     checkUser()
   }, [supabase, router])
-
-  useEffect(() => {
-    // console.log(clientID)
-
-    const getProducts = async () => {
-      try {
-        const { data, error } = await supabase
-          .from('products')
-          .select(`product_name, clients(id, client_name)`)
-          .filter('clients.id', 'eq', clientID)
-          // .eq('clients.id', clientID)
-          .not('clients', 'is', null)
-
-        setProducts(data || [])
-      } catch (error: any) {
-        setError(error.message)
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    getProducts()
-  }, [supabase, setProductName, setLoading, setError])
 
   useEffect(() => {
     const getTotalAmountCollectedProducts = async () => {
@@ -93,29 +64,6 @@ export default function Dashboard() {
     getTotalAmountCollectedProducts()
   }, [supabase])
 
-  useEffect(() => {
-    const getMaterials = async () => {
-      try {
-        const { data, error } = await supabase
-          .from('materials')
-          .select('*, products(product_name)')
-          .not('products', 'is', null)
-
-        if (error) {
-          throw new Error(error.message)
-        }
-
-        setMaterials(data || {})
-      } catch (error: any) {
-        setError(error.message)
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    getMaterials()
-  }, [supabase])
-
   if (loading) {
     return <Loader />
   }
@@ -127,11 +75,7 @@ export default function Dashboard() {
   return (
     <div className="w-full flex flex-col md:px-16">
       <div className="w-full mb-8 md:mb-16 pl-8">
-        <ClientGreeting
-          clientID={clientID}
-          productName={productName}
-          page="dashboard"
-        />
+        <ClientGreeting clientID={clientID} page="dashboard" />
       </div>
       <div className="w-full flex flex-col lg:flex-row md:justify-around items-center md:align-start gap-16">
         <div className="w-full lg:w-1/2 flex flex-col gap-16">
