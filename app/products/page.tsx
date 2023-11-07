@@ -10,8 +10,8 @@ import { User as SupabaseUser } from '@supabase/supabase-js'
 import Loader from 'components/loader'
 import ClientGreeting from 'components/clientGreeting'
 import ProductsList from 'components/products/productsList'
-import CTAsButtons from 'components/products/ctasButtons'
-import CarbonCalculator from 'components/footPrintCalculator'
+// import CTAsButtons from 'components/products/ctasButtons'
+
 interface User extends SupabaseUser {
   // Additional properties specific to your application
 }
@@ -93,8 +93,7 @@ export default function Products() {
         <ClientGreeting clientID={clientID} page="products" />
       </div>
       <ProductsList user={user} products={products} clientID={clientID} />
-      <CTAsButtons />
-      <CarbonCalculator />
+      {/* <CTAsButtons /> */}
     </div>
   )
 }

@@ -12,6 +12,8 @@ import TripCumulative from 'components/trip/tripCumulative'
 import ProductsCard from 'components/products/productsCard'
 import ProductsHistoryChartComponent from 'components/products/productsHistoryChart'
 import Loader from 'components/loader'
+import CarbonCalculator from 'components/footPrintCalculator'
+import Modal from 'components/modals'
 
 export default function Dashboard() {
   const searchParams = useSearchParams()
@@ -20,6 +22,7 @@ export default function Dashboard() {
 
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [showModal, setShowModal] = useState(false)
 
   const router = useRouter() // Initialize the useRouter hook
 
@@ -73,7 +76,7 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="w-full flex flex-col md:px-16">
+    <div className="w-full flex flex-col md:px-16 gap-8">
       <div className="w-full mb-8 md:mb-16 pl-8">
         <ClientGreeting clientID={clientID} page="dashboard" />
       </div>
@@ -90,6 +93,9 @@ export default function Dashboard() {
           >
             <ProductsCard />
           </Link>
+          <button onClick={() => setShowModal(true)}>
+            <h3 className="text-left ml-2">Calcula tu huella personal</h3>
+          </button>
         </div>
         <div className="w-full lg:w-1/2">
           <ProductsHistoryChartComponent
@@ -97,6 +103,13 @@ export default function Dashboard() {
           />
         </div>
       </div>
+      {showModal && (
+        <Modal onClose={() => setShowModal(false)}>
+          <div className="w-full flex justify-center mt-8">
+            <CarbonCalculator />
+          </div>
+        </Modal>
+      )}
     </div>
   )
 }
