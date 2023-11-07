@@ -61,8 +61,8 @@ export default async function RootLayout({
       <ScrollToTop />
       <body className="grid grid-cols-1 divide-y-0 dark:divide-y-2 divide-neutral-700 dark:divide-slate-600">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-          <header className="w-full p-2 md:p-8 ">
-            <nav className="h-16">
+          <header className="w-full p-8">
+            <nav className="h-auto">
               {user ? <MainHeader email={user.email} /> : <AuthHeader />}
             </nav>
           </header>

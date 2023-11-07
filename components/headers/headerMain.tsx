@@ -15,7 +15,7 @@ function mainHeader({ email }: { email: string | undefined }) {
   const router = useRouter()
 
   return (
-    <div className="flex gap-2 justify-between">
+    <div className="flex justify-between">
       <div className="flex items-end">
         {!urlIsHome() ? (
           <div className="flex align-center flex items-center">
@@ -43,17 +43,17 @@ function mainHeader({ email }: { email: string | undefined }) {
             </button>
           </div>
         ) : (
-          <div className="flex justify-start ml-8">
+          <div className="flex justify-start ml-1 md:ml-8">
             <p>Hola, {email}</p>
           </div>
         )}
       </div>
-      <div className="flex flex-col items-end gap-2">
+      <div className="flex flex-col items-end gap-4">
         <div className="flex items-end gap-4">
           <HeaderBulbIcon />
           <ThemeSwitcher />
         </div>
-        <div className="flex items-end mb-4">
+        <div className="flex items-end">
           <LogoutButton />
         </div>
       </div>
