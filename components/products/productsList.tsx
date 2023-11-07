@@ -21,7 +21,7 @@ function ProductsList({
       {products.length > 0 ? (
         products.map((prod: ProductItemProps) =>
           prod.clients !== null ? (
-            <div className="flex flex-col gap-2 items-center">
+            <div className="flex flex-col gap-2 items-center justify-between">
               <Image
                 src={iconMap[prod.product_name]}
                 alt="The circulart products"

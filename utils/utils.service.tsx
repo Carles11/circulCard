@@ -4,9 +4,9 @@ import { useRouter, usePathname } from 'next/navigation'
 import { StaticImageData } from 'next/image'
 
 // Icons import
-import POSicon from 'assets/images/icons/pos-icon.png'
-import CARDSicon from 'assets/images/icons/cards-icon.png'
-import FURNITUREicon from 'assets/images/icons/furniture-icon.png'
+import POSicon from 'assets/images/icons/SVG/products/pos-icon.svg'
+import CARDSicon from 'assets/images/icons/SVG/products/cards-icon.svg'
+import FURNITUREicon from 'assets/images/icons/SVG/products/furniture-icon.svg'
 import HERZicon from 'assets/images/icons/herz.png'
 import FITNESSicon from 'assets/images/icons/fitness.png'
 import PROJECTSicon from 'assets/images/icons/projects.png'
