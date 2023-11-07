@@ -9,6 +9,7 @@ import type { Database } from 'types/supabase'
 import ClientGreeting from 'components/clientGreeting'
 // import TripCalender from 'components/trip/tripCalender'
 import TripCumulative from 'components/trip/tripCumulative'
+import ProductsCard from 'components/products/productsCard'
 // import TripHistorical from 'components/trip/tripHistorical'
 import Loader from 'components/loader'
 
@@ -96,7 +97,7 @@ export default function Dashboard() {
   if (error) {
     return <p className="text-red-500">{error}</p>
   }
-  console.log('TRIRIRIRIRIRIRPPPPPP', materials)
+  // console.log('TRIRIRIRIRIRIRPPPPPP', materials)
   return (
     <div className="w-full flex flex-col md:px-16">
       <div className="w-full mb-8 md:mb-16 pl-8">
@@ -108,6 +109,10 @@ export default function Dashboard() {
       </div>
       <div className="w-full flex flex-col lg:flex-row md:justify-around items-center md:align-start gap-16">
         <div className="w-full lg:w-1/2 flex flex-col gap-16">
+          <TripCumulative trip={materials} />
+          <ProductsCard />
+        </div>
+        <div className="w-full lg:w-1/2">
           <TripCumulative trip={materials} />
         </div>
       </div>

@@ -1,5 +1,4 @@
-import Image from 'next/image'
-import RecycleGreenArrows from 'assets/images/icons/SVG/recycle-green-arrows.svg'
+import RecycleGreenArrowsCard from 'components/cards/recycleGreenArrowsCard'
 import type { TripProps } from 'types/supabase'
 
 const TripCumulative = ({ trip }: { trip: TripProps }) => {
@@ -19,16 +18,7 @@ const TripCumulative = ({ trip }: { trip: TripProps }) => {
   // 'sum' now contains the sum of all the valid numeric 'cumulative_total' values in the 'trip' array while preserving decimal values.
 
   return (
-    <div className="z-0 relative w-full h-44 md:h-64 border rounded-xl bg-none dark:bg-gray-300 dark:shadow dark:shadow-md dark:shadow-gray-500">
-      <Image
-        src={RecycleGreenArrows}
-        alt="TheCirculArt Green Recycle Arrows"
-        layout="fill"
-        objectFit="contain"
-        objectPosition="left"
-        style={{ zIndex: -1 }}
-        className="ml-4 md:ml-10"
-      />
+    <RecycleGreenArrowsCard>
       <div className="flex flex-col mr-6 md:mr-20 items-end mt-6 md:mt-20">
         <div className="flex flex-col mr-2 items-end align-center">
           <h1 className="z-1 text-gray-600">{cumulativeTotal} toneladas</h1>
@@ -40,7 +30,7 @@ const TripCumulative = ({ trip }: { trip: TripProps }) => {
           </button>
         </div>
       </div>
-    </div>
+    </RecycleGreenArrowsCard>
   )
 }
 
