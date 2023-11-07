@@ -5,6 +5,7 @@ import { useSearchParams, useRouter } from 'next/navigation'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useEffect, useState } from 'react'
 import type { Database } from 'types/supabase'
+import Link from 'next/link'
 
 import ClientGreeting from 'components/clientGreeting'
 // import TripCalender from 'components/trip/tripCalender'
@@ -111,7 +112,16 @@ export default function Dashboard() {
       <div className="w-full flex flex-col lg:flex-row md:justify-around items-center md:align-start gap-16">
         <div className="w-full lg:w-1/2 flex flex-col gap-16">
           <TripCumulative trip={materials} />
-          <ProductsCard />
+          <Link
+            href={{
+              pathname: 'products',
+              query: {
+                clientID: clientID,
+              },
+            }}
+          >
+            <ProductsCard />
+          </Link>
         </div>
         <div className="w-full lg:w-1/2">
           <ProductsHistoryChartComponent products={products} />
