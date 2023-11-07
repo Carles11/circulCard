@@ -18,6 +18,7 @@ import Loader from 'components/loader'
 export default function Dashboard() {
   const searchParams = useSearchParams()
   const [materials, setMaterials] = useState<any[]>([])
+  const [totalAmountCollected, setTotalAmountCollected] = useState<any[]>([])
   const [products, setProducts] = useState<any[]>([])
   const [productName, setProductName] = useState<string>('')
   const clientID = searchParams.get('clientID')
@@ -58,7 +59,6 @@ export default function Dashboard() {
           .not('clients', 'is', null)
 
         setProducts(data || [])
-        console.log('datadata_PRODUCTOSSSSS----', data)
       } catch (error: any) {
         setError(error.message)
       } finally {
@@ -68,6 +68,30 @@ export default function Dashboard() {
 
     getProducts()
   }, [supabase, setProductName, setLoading, setError])
+
+  useEffect(() => {
+    const getTotalAmountCollectedProducts = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('rel_clients_products')
+          .select('*, clients(id, client_name)')
+          .filter('clients.id', 'eq', clientID)
+          .not('clients', 'is', null)
+
+        if (error) {
+          throw new Error(error.message)
+        }
+
+        setTotalAmountCollected(data || {})
+      } catch (error: any) {
+        setError(error.message)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    getTotalAmountCollectedProducts()
+  }, [supabase])
 
   useEffect(() => {
     const getMaterials = async () => {
@@ -99,7 +123,7 @@ export default function Dashboard() {
   if (error) {
     return <p className="text-red-500">{error}</p>
   }
-  // console.log('TRIRIRIRIRIRIRPPPPPP', materials)
+
   return (
     <div className="w-full flex flex-col md:px-16">
       <div className="w-full mb-8 md:mb-16 pl-8">
@@ -111,7 +135,7 @@ export default function Dashboard() {
       </div>
       <div className="w-full flex flex-col lg:flex-row md:justify-around items-center md:align-start gap-16">
         <div className="w-full lg:w-1/2 flex flex-col gap-16">
-          <TripCumulative trip={materials} />
+          <TripCumulative trip={totalAmountCollected} />
           <Link
             href={{
               pathname: 'products',

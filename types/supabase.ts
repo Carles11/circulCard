@@ -34,6 +34,18 @@ export type TripProps = {
   }[]
 }
 
+export type TotalAmountProps = {
+  client_id: string
+  client_name: string
+  created_at: string
+  id: number
+  product_id: string
+  product_name: string
+  total_amount_collected: { [year: string]: number }
+}[]
+
+export default TotalAmountProps
+
 export interface Database {
   length: number
   map(
