@@ -2,7 +2,7 @@
 
 import BarChart from 'components/charts/barChart'
 
-const ProductsHistoryChartComponent = ({ material }) => {
+const ProductsHistoryChartComponent = ({ yearsCollection }) => {
   const plugins = {
     afterLayout: (chart) => {
       let ctx = chart.chart.ctx
@@ -83,9 +83,15 @@ const ProductsHistoryChartComponent = ({ material }) => {
 
   const labels = ['2019', '2020', '2021', '2022', '2023']
   // Show green for 100 and white for the rest
-  const showBars = labels.map((check) =>
-    check === material ? 100 : Math.floor(Math.random() * 41) + 10
-  )
+  const showBars = labels.map((year) => {
+    let totalAmount = 0
+    yearsCollection.forEach((trip) => {
+      if (trip.total_amount_collected && trip.total_amount_collected[year]) {
+        totalAmount += trip.total_amount_collected[year]
+      }
+    })
+    return totalAmount
+  })
 
   const BarChartData = {
     labels,

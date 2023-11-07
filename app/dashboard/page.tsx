@@ -148,7 +148,9 @@ export default function Dashboard() {
           </Link>
         </div>
         <div className="w-full lg:w-1/2">
-          <ProductsHistoryChartComponent products={products} />
+          <ProductsHistoryChartComponent
+            yearsCollection={totalAmountCollected}
+          />
         </div>
       </div>
     </div>
