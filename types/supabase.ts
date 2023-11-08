@@ -16,6 +16,16 @@ export interface UserProps {
   email?: string | undefined
 }
 
+export type ProductProps = {
+  map: any
+  length: number
+  products: {
+    created_at: string
+    id: string
+    product_icon: string | null
+    product_name: string | null
+  }[]
+}
 export type TripProps = {
   map: any
   length: number

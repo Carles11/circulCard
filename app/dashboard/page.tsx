@@ -16,6 +16,9 @@ import CarbonCalculator from 'components/footPrintCalculator'
 import Modal from 'components/modals'
 
 export default function Dashboard() {
+  // Create a Supabase client configured to use cookies
+  const supabase = createClientComponentClient<Database>()
+
   const searchParams = useSearchParams()
   const [products, setProducts] = useState<number>(null)
   const [totalAmountCollected, setTotalAmountCollected] = useState<any[]>([])
@@ -26,9 +29,6 @@ export default function Dashboard() {
   const [showModal, setShowModal] = useState(false)
 
   const router = useRouter() // Initialize the useRouter hook
-
-  // Create a Supabase client configured to use cookies
-  const supabase = createClientComponentClient<Database>()
 
   useEffect(() => {
     const checkUser = async () => {

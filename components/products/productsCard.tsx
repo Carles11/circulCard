@@ -1,13 +1,7 @@
 import RecycleGreenArrowsCard from 'components/cards/recycleGreenArrowsCard'
-import {
-  ReactElement,
-  JSXElementConstructor,
-  ReactNode,
-  ReactPortal,
-  PromiseLikeOfReactNode,
-} from 'react'
+import type { ProductProps } from 'types/supabase'
 
-const ProductsCard = ({ products }) => {
+const ProductsCard = ({ products }: { products: ProductProps }) => {
   const productNames = products
     .map((item: { product_name: string }) => item.product_name)
     .map((prodItem: string) => (
