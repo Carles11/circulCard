@@ -17,6 +17,7 @@ import Modal from 'components/modals'
 
 export default function Dashboard() {
   const searchParams = useSearchParams()
+  const [products, setProducts] = useState<number>(null)
   const [totalAmountCollected, setTotalAmountCollected] = useState<any[]>([])
   const clientID = searchParams.get('clientID')
 
@@ -42,6 +43,28 @@ export default function Dashboard() {
 
     checkUser()
   }, [supabase, router])
+
+  useEffect(() => {
+    const getProductsCount = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('products')
+          .select('product_name, clients(id)')
+          .filter('clients.id', 'eq', clientID)
+          .not('clients', 'is', null)
+
+        if (error) {
+          throw new Error(error.message)
+        }
+        setProducts(data)
+      } catch (error) {
+        setError(error.message)
+      } finally {
+        setLoading(false)
+      }
+    }
+    getProductsCount()
+  }, [])
 
   useEffect(() => {
     const getTotalAmountCollectedProducts = async () => {
@@ -91,7 +114,7 @@ export default function Dashboard() {
               },
             }}
           >
-            <ProductsCard />
+            <ProductsCard products={products} />
           </Link>
           <button onClick={() => setShowModal(true)}>
             <h3 className="text-left ml-2">
