@@ -33,11 +33,11 @@ function ProductsList({
               <Link
                 key={prod.id}
                 href={{
-                  pathname: '/materials',
-                  query: {
-                    productName: prod.product_name,
-                    clientID: clientID,
-                  },
+                  pathname: 'projects/second-life',
+                  // query: {
+                  //   productName: prod.product_name,
+                  //   clientID: clientID,
+                  // },
                 }}
               >
                 <GreenButtonWhiteTextWithHover
@@ -47,7 +47,7 @@ function ProductsList({
               </Link>
             </div>
           ) : (
-            <p>This client has not defined any products yet.</p>
+            <p>This client has not assigned any materials yet.</p>
           )
         )
       ) : (

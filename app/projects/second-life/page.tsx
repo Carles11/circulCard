@@ -23,8 +23,8 @@ const SecondLife = () => {
   const supabase = createClientComponentClient<Database>()
 
   const searchParams = useSearchParams()
-  const projectID = searchParams.get('projectID')
-  const projectName = searchParams.get('projectName')
+  // const projectID = searchParams.get('projectID')
+  // const projectName = searchParams.get('projectName')
 
   useEffect(() => {
     const checkUser = async () => {
@@ -86,9 +86,9 @@ const SecondLife = () => {
           alt="light-mode-thecirculart-plant-on-hands"
           width={75}
         />
-        <h1>Proyecto</h1> <h2>{projectName}</h2>
+        <h1>Proyectos</h1> <h2>de segunda vida</h2>
       </div>
-      <SecondLifesCard secondLifes={secondLifes} projectID={projectID} />
+      <SecondLifesCard secondLifes={secondLifes} />
     </div>
   )
 }
