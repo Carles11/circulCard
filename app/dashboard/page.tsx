@@ -95,9 +95,8 @@ export default function Dashboard() {
           </Link>
           <button onClick={() => setShowModal(true)}>
             <h3 className="text-left ml-2">
-              {' '}
               <a href="#" className="link-with-style">
-                Calcula tu huella personal{' '}
+                Calcula tu huella personal
               </a>
             </h3>
           </button>
