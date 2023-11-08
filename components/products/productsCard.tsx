@@ -2,13 +2,14 @@ import RecycleGreenArrowsCard from 'components/cards/recycleGreenArrowsCard'
 import type { ProductProps } from 'types/supabase'
 
 const ProductsCard = ({ products }: { products: ProductProps }) => {
-  const productNames = products
-    ?.map((item: { product_name: string }) => item.product_name)
-    ?.map((prodItem: string) => (
-      <ul className="list-disc list-inside">
-        <li className="text-sm">{prodItem}</li>
-      </ul>
-    ))
+  // List of products with bullets
+  // const productNames = products
+  //   ?.map((item: { product_name: string }) => item.product_name)
+  //   ?.map((prodItem: string) => (
+  //     <ul className="list-disc list-inside">
+  //       <li className="text-sm">{prodItem}</li>
+  //     </ul>
+  //   ))
 
   return (
     <RecycleGreenArrowsCard>
@@ -17,7 +18,7 @@ const ProductsCard = ({ products }: { products: ProductProps }) => {
           <h1 className="z-1 text-gray-600">{products?.length} Productos</h1>
           <h3 className="z-1 text-gray-600 -mt-5">reciclados</h3>
         </div>
-        <h5 className="text-gray-500">{productNames}</h5>
+        {/* <h5 className="text-gray-500">{productNames}</h5> */}
       </div>
     </RecycleGreenArrowsCard>
   )
