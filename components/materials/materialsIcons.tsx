@@ -16,8 +16,6 @@ const MaterialsIcons = ({ projects }: { projects: Array<any> }) => {
               src={iconMap[item.project_icon]}
               alt="The circular projects"
               height={75}
-              // blurDataURL="data:..." automatically provided
-              // placeholder="blur" // Optional blur-up while loading
             />
             <h4 className="text-gray-600 text-xs">
               {item.project_name.toUpperCase()}

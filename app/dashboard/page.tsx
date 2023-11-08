@@ -45,7 +45,7 @@ export default function Dashboard() {
   }, [supabase, router])
 
   useEffect(() => {
-    const getProductsCount = async () => {
+    const getProducts = async () => {
       try {
         const { data, error } = await supabase
           .from('products')
@@ -63,7 +63,7 @@ export default function Dashboard() {
         setLoading(false)
       }
     }
-    getProductsCount()
+    getProducts()
   }, [])
 
   useEffect(() => {
@@ -105,7 +105,16 @@ export default function Dashboard() {
       </div>
       <div className="w-full flex flex-col lg:flex-row md:justify-around items-center md:align-start gap-16">
         <div className="w-full lg:w-1/2 flex flex-col gap-16">
-          <TripCumulative trip={totalAmountCollected} />
+          <Link
+            href={{
+              pathname: 'materials',
+              query: {
+                clientID: clientID,
+              },
+            }}
+          >
+            <TripCumulative trip={totalAmountCollected} />
+          </Link>
           <Link
             href={{
               pathname: 'products',

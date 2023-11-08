@@ -3,15 +3,15 @@
 
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import type { Database } from 'types/supabase'
-import { iconMap } from 'utils/utils.service'
 
 import { useEffect, useState } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 
 import Loader from 'components/loader'
 
-import MaterialsProduct from 'components/materials/materialsProduct'
-import MaterialsCard from 'components/materials/materialsCard'
+import TotalWasteMaterialsHeader from 'components/materials/materialsProduct'
+// import MaterialsCard from 'components/materials/materialsCard'
+import MaterialsInfo from 'components/materials/materialsInfo'
 
 const Materials = () => {
   const [materials, setMaterials] = useState<any[]>([])
@@ -70,7 +70,7 @@ const Materials = () => {
           .select(
             'id, material_name, percentage, collect_date, products(product_name)'
           )
-          .eq('products.product_name', productName)
+          // .eq('products.product_name', productName)
           .not('products', 'is', null)
 
         if (error) {
@@ -98,16 +98,14 @@ const Materials = () => {
 
   return (
     <div className="w-full flex flex-col">
-      <MaterialsProduct
-        icon={iconMap[productName!]}
-        productName={productName}
-      />
-      <MaterialsCard
+      <TotalWasteMaterialsHeader />
+      {/* <MaterialsCard
         materials={materials}
         projects={projects}
         clientID={clientID}
         productName={productName}
-      />
+      /> */}
+      <MaterialsInfo materials={materials} projects={projects} />
     </div>
   )
 }
