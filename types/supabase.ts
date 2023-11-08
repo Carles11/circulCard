@@ -54,8 +54,6 @@ export type TotalAmountProps = {
   total_amount_collected: { [year: string]: number }
 }[]
 
-export default TotalAmountProps
-
 export interface Database {
   length: number
   map(

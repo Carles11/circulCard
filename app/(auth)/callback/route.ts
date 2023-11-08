@@ -11,7 +11,7 @@ export async function GET(request: NextRequest) {
   // https://supabase.com/docs/guides/auth/auth-helpers/nextjs#managing-sign-in-with-code-exchange
   const requestUrl = new URL(request.url)
   const code = requestUrl.searchParams.get('code')
-  console.log('CALLBACK-CODE----------->', code)
+  // console.log('CALLBACK-CODE----------->', code)
   if (code) {
     const cookieStore = cookies()
     const supabase = createRouteHandlerClient<Database>({
@@ -21,7 +21,7 @@ export async function GET(request: NextRequest) {
   }
 
   // URL to redirect to after sign in process completes
-  console.log('CODE--callback--------------->: ', code)
+  // console.log('CODE--callback--------------->: ', code)
   // console.log({ requestUrl })
   return NextResponse.redirect(requestUrl.origin)
 }

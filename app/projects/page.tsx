@@ -72,7 +72,7 @@ const Projects = () => {
   if (error) {
     return <p className="text-red-500">{error}</p>
   }
-  console.log({ projects })
+
   return (
     <div className="w-full flex flex-col gap-16 items-center m-8">
       <div className="w-full flex flex-col items-center m-8">

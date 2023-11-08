@@ -86,7 +86,7 @@ export default function Products() {
   if (error) {
     return <p className="text-red-500">{error}</p>
   }
-  console.log({ products })
+
   return (
     <div className="w-full flex flex-col md:justify-around gap-8 md:gap-16 mt-4 md:mt-16 md:px-16 items-center">
       <div className="w-full flex flex-col gap-8 ml-8">

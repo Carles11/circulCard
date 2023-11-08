@@ -45,7 +45,7 @@ export default function PasswordUpdate() {
   }, [accessToken, refreshToken])
 
   // ***********************
-  console.log({ accessToken, refreshToken, token })
+  // console.log({ accessToken, refreshToken, token })
 
   return (
     <div className="flex flex-col w-full px-8 sm:max-w-md justify-center gap-2">
