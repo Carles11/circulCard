@@ -94,7 +94,12 @@ export default function Dashboard() {
             <ProductsCard />
           </Link>
           <button onClick={() => setShowModal(true)}>
-            <h3 className="text-left ml-2">Calcula tu huella personal</h3>
+            <h3 className="text-left ml-2">
+              {' '}
+              <a href="#" className="link-with-style">
+                Calcula tu huella personal{' '}
+              </a>
+            </h3>
           </button>
         </div>
         <div className="w-full lg:w-1/2">

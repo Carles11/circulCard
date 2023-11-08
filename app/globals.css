@@ -155,6 +155,8 @@ a:hover.link-with-style {
   background: linear-gradient(to bottom, #f553ff, #fff, #ccc, #79d97c);
 }
 
+/**LOADER STYLES**/
+
 .ring {
   position: absolute;
   top: 50%;
