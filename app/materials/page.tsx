@@ -100,7 +100,7 @@ const Materials = () => {
   return (
     <div className="w-full flex flex-col items-center">
       <TotalWasteMaterialsHeader />
-      <div className="w-[44rem] h-[44rem]">
+      <div className="w-96 h-96 md:w-[44rem] md:h-[44rem]">
         <PieComponent materials={materials} />
       </div>
       {/* <MaterialsCard

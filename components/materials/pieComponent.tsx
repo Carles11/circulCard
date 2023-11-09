@@ -34,7 +34,7 @@ const PieComponent = ({ materials }) => {
     maintainAspectRatio: false,
     layout: {
       padding: {
-        // set padding to avoid hiding the edge of pie when hovering
+        // set paddins to avoid cutted edges of the pie when scaling in hovering
         left(ctx) {
           const chart = ctx.chart
           let pl = 0
