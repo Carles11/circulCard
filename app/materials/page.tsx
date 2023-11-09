@@ -9,9 +9,10 @@ import { useSearchParams, useRouter } from 'next/navigation'
 
 import Loader from 'components/loader'
 
-import TotalWasteMaterialsHeader from 'components/materials/materialsProduct'
+import TotalWasteMaterialsHeader from 'components/materials/materialsHeader'
 // import MaterialsCard from 'components/materials/materialsCard'
 import MaterialsInfo from 'components/materials/materialsInfo'
+import PieComponent from 'components/materials/pieComponent'
 
 const Materials = () => {
   const [materials, setMaterials] = useState<any[]>([])
@@ -97,8 +98,11 @@ const Materials = () => {
   }
 
   return (
-    <div className="w-full flex flex-col">
+    <div className="w-full flex flex-col items-center">
       <TotalWasteMaterialsHeader />
+      <div className="w-[44rem] h-[44rem]">
+        <PieComponent materials={materials} />
+      </div>
       {/* <MaterialsCard
         materials={materials}
         projects={projects}

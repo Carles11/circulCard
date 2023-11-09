@@ -13,8 +13,8 @@ import { Bar } from 'react-chartjs-2'
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
-const barChart = ({ data, options }) => {
+const BarChart = ({ data, options }) => {
   return <Bar options={options} data={data} />
 }
 
-export default barChart
+export default BarChart
