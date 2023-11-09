@@ -16,7 +16,6 @@ export default function Clients() {
     ''
   )
 
-  // Create a Supabase client configured to use cookies
   const supabase = createClientComponentClient<Database>()
   useEffect(() => {
     const checkUser = async () => {

@@ -2,10 +2,6 @@
 
 import { useRouter } from 'next/navigation'
 import { urlIsHome } from 'utils/utils.service'
-// import { useState } from 'react'
-// import type { UserProps } from 'types/supabase'
-
-import Link from 'next/link'
 
 import { ThemeSwitcher } from 'components/themeSwitcher'
 import LogoutButton from 'components/LogoutButton'
@@ -24,7 +20,6 @@ function mainHeader({ email }: { email: string | undefined }) {
               onClick={() => router.back()}
               className="py-4 px-2 mb-4 rounded-md no-underline bg-transparent transition-scale hover:scale-1.5 flex items-center group text-sm"
             >
-              {' '}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
