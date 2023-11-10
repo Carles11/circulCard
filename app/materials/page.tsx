@@ -13,7 +13,7 @@ import TotalWasteMaterialsHeader from 'components/materials/materialsHeader'
 // import MaterialsCard from 'components/materials/materialsCard'
 import MaterialsInfo from 'components/materials/materialsInfo'
 import PieComponent from 'components/materials/pieComponent'
-
+import MultiCarousel from '@/components/cards/multiCarousel'
 const Materials = () => {
   const [materials, setMaterials] = useState<any[]>([])
   const [projects, setProjects] = useState<any[]>([])
@@ -109,7 +109,8 @@ const Materials = () => {
         clientID={clientID}
         productName={productName}
       /> */}
-      <MaterialsInfo materials={materials} projects={projects} />
+      <MultiCarousel materials={materials} projects={projects} />
+      {/* <MaterialsInfo materials={materials} projects={projects} /> */}
     </div>
   )
 }

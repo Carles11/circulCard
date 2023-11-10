@@ -69,9 +69,29 @@ const PieComponent = ({ materials }) => {
     },
     redraw: true,
     events: ['mousemove', 'mouseout', 'click', 'touchstart', 'touchmove'],
+    onClick: (evt, ctx) => {
+      document.getElementById('materials-pie').getContext('2d')
+      var myLine = new Chart(ctx, config)
+      console.log({ ctx })
+      document.getElementById('canvas').onclick = function (evt) {
+        var activePoint = myLine.getElementAtEvent(event)
+
+        // make sure click was on an actual point
+        if (activePoint.length > 0) {
+          var clickedDatasetIndex = activePoint[0]._datasetIndex
+          var clickedElementindex = activePoint[0]._index
+          var label = myLine.data.labels[clickedElementindex]
+          var value =
+            myLine.data.datasets[clickedDatasetIndex].data[clickedElementindex]
+          console.log('Clicked: ' + label + ' - ' + value)
+        }
+      }
+    },
   }
+
   return (
     <PieChart
+      id="materials-pie"
       data={PieChartData}
       options={options}
       innerText={`${matPercentages}`}
