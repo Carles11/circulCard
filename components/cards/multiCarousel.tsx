@@ -70,12 +70,12 @@ const MultiCarousel = ({
       autoPlay={!isMobile}
       centerMode={false}
       className=""
-      containerClass="w-screen "
+      containerClass="w-screen p-0 md:p-8 lg:p-16"
       dotListClass="dot-outside"
       draggable
       focusOnSelect={false}
       infinite={false}
-      itemClass="m-2"
+      itemClass="mx-0 md:mx-8 lg:mx-16"
       keyBoardControl
       minimumTouchDrag={80}
       pauseOnHover
@@ -88,7 +88,7 @@ const MultiCarousel = ({
       rtl={false}
       shouldResetAutoplay
       showDots={false}
-      sliderClass="slider-carousel"
+      sliderClass=""
       slidesToSlide={1}
       swipeable
       ssr={true}
@@ -98,7 +98,7 @@ const MultiCarousel = ({
         return (
           <div
             key={mat.id}
-            className="flex flex-col gap-6 text-black items-center mb-6"
+            className="flex flex-col gap-6 text-black items-center md:mb-6"
           >
             <div className="rounded-full border-2 dark:border-8 border-gray-400 shadow-xl   bg-white h-36 w-36">
               <DoughnutComponent mat={mat} />
