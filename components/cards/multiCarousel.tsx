@@ -20,12 +20,12 @@ const MultiCarousel = ({
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
       items: 3,
-      slidesToSlide: 3, // optional, default to 1.
+      slidesToSlide: 1, // optional, default to 1.
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
       items: 2,
-      slidesToSlide: 2, // optional, default to 1.
+      slidesToSlide: 1, // optional, default to 1.
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
@@ -66,16 +66,16 @@ const MultiCarousel = ({
       //   customRightArrow={<CustomRightArrow />}
       showDots={true}
       renderDotsOutside={true}
-      autoPlaySpeed={1500}
+      autoPlaySpeed={3000}
       autoPlay={!isMobile}
       centerMode={false}
       className=""
-      containerClass="container"
+      containerClass="w-screen "
       dotListClass="dot-outside"
       draggable
       focusOnSelect={false}
       infinite={false}
-      itemClass=""
+      itemClass="m-2"
       keyBoardControl
       minimumTouchDrag={80}
       pauseOnHover
@@ -88,7 +88,7 @@ const MultiCarousel = ({
       rtl={false}
       shouldResetAutoplay
       showDots={false}
-      sliderClass=""
+      sliderClass="slider-carousel"
       slidesToSlide={1}
       swipeable
       ssr={true}
@@ -106,7 +106,7 @@ const MultiCarousel = ({
             <div className="w-full bg-white rounded-t-3xl md:rounded-3xl border-2 dark:border-8 border-gray-300 shadow-xl  ">
               <div className="min-w-full md:min-w-[320px] w-auto">
                 <div className="p-2 py-5 flex flex-col items-center">
-                  <div className="w-28 md:w-32 lg:w-48 bg-lightgreenBg rounded-full text-xl px-4 py-2 text-foreground mb-2 text-center">
+                  <div className="whitespace-nowrap w-28 min-w-fit md:w-32 lg:w-48 bg-lightgreenBg rounded-full text-xl px-4 py-2 text-foreground mb-2 text-center">
                     {mat.material_name}
                   </div>
 

@@ -471,3 +471,12 @@ a:hover.link-with-style {
   display: flex;
   justify-content: flex-end;
 }
+
+/** REACT-MULTI-CAROUSEL STYLES **/
+
+.slider-carousel {
+  margin: 2rem;
+}
+.item-carousel {
+  margin: 2rem;
+}
