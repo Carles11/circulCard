@@ -70,12 +70,12 @@ const MultiCarousel = ({
       autoPlay={!isMobile}
       centerMode={false}
       className=""
-      containerClass="w-screen p-0 md:p-8 lg:p-16"
+      containerClass="w-full p-0 md:p-8 lg:p-16"
       dotListClass="dot-outside"
       draggable
       focusOnSelect={false}
       infinite={false}
-      itemClass="mx-0 md:mx-8 lg:mx-16"
+      itemClass=""
       keyBoardControl
       minimumTouchDrag={80}
       pauseOnHover
@@ -100,10 +100,10 @@ const MultiCarousel = ({
             key={mat.id}
             className="flex flex-col gap-6 text-black items-center md:mb-6"
           >
-            <div className="rounded-full border-2 dark:border-8 border-gray-400 shadow-xl   bg-white h-36 w-36">
+            <div className="rounded-full border-2 dark:border-8 border-gray-400 shadow-xl bg-white h-36 w-36">
               <DoughnutComponent mat={mat} />
             </div>
-            <div className="w-full bg-white rounded-t-3xl md:rounded-3xl border-2 dark:border-8 border-gray-300 shadow-xl  ">
+            <div className="w-screen md:max-w-fit md:w-full bg-white rounded-t-3xl md:rounded-3xl border-2 dark:border-8 border-gray-300 shadow-xl  ">
               <div className="min-w-full md:min-w-[320px] w-auto">
                 <div className="p-2 py-5 flex flex-col items-center">
                   <div className="whitespace-nowrap w-28 min-w-fit md:w-32 lg:w-48 bg-lightgreenBg rounded-full text-xl px-4 py-2 text-foreground mb-2 text-center">
