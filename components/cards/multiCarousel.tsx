@@ -1,5 +1,6 @@
 // @ts-nocheck
 import Carousel from 'react-multi-carousel'
+import { isMobile } from 'react-device-detect'
 
 import type { Database } from 'types/supabase'
 import Link from 'next/link'
@@ -33,18 +34,47 @@ const MultiCarousel = ({
     },
   }
 
+  //   const CustomRightArrow = ({ onClick, ...rest }) => {
+  //     const {
+  //       onMove,
+  //       carouselState: { currentSlide, deviceType },
+  //     } = rest
+  //     // onMove means if dragging or swiping in progress.
+  //     return <button onClick={() => onClick()} />
+  //   }
+
+  //   const CustomDot = ({ index, onClick, active }) => {
+  //     return (
+  //       <button
+  //         onClick={(e) => {
+  //           onClick()
+  //           e.preventDefault()
+  //         }}
+  //         className={classNames('custom-dot', {
+  //           'custom-dot--active': active,
+  //         })}
+  //       >
+  //         {React.Children.toArray(images)[index]}
+  //       </button>
+  //     )
+  //   }
+
   return (
     <Carousel
       additionalTransfrom={0}
-      arrows
-      autoPlaySpeed={3000}
-      centerMode
+      arrows={true}
+      //   customRightArrow={<CustomRightArrow />}
+      showDots={true}
+      renderDotsOutside={true}
+      autoPlaySpeed={1500}
+      autoPlay={!isMobile}
+      centerMode={false}
       className=""
       containerClass="container"
-      dotListClass=""
+      dotListClass="dot-outside"
       draggable
       focusOnSelect={false}
-      infinite
+      infinite={false}
       itemClass=""
       keyBoardControl
       minimumTouchDrag={80}
@@ -61,6 +91,8 @@ const MultiCarousel = ({
       sliderClass=""
       slidesToSlide={1}
       swipeable
+      ssr={true}
+      deviceType={isMobile ? 'mobile' : 'desktop'}
     >
       {materials.map((mat) => {
         return (

@@ -11,9 +11,10 @@ import Loader from 'components/loader'
 
 import TotalWasteMaterialsHeader from 'components/materials/materialsHeader'
 // import MaterialsCard from 'components/materials/materialsCard'
-import MaterialsInfo from 'components/materials/materialsInfo'
+// import MaterialsInfo from 'components/materials/materialsInfo'
 import PieComponent from 'components/materials/pieComponent'
 import MultiCarousel from '@/components/cards/multiCarousel'
+
 const Materials = () => {
   const [materials, setMaterials] = useState<any[]>([])
   const [projects, setProjects] = useState<any[]>([])
