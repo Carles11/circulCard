@@ -68,8 +68,8 @@ function ClientGreeting({
 
   return (
     <div className="flex flex-col justify-star">
-      <h3>Hola</h3>
-      <h2>{client[0].client_name.toUpperCase()},</h2>
+      <h3>Hola,{''}</h3>
+      <h2>{client[0].client_name.toUpperCase()}:</h2>
       <h3>{pageGreetings[pageRefProp as keyof GreetingTypes]}</h3>
     </div>
   )
