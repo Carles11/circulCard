@@ -99,7 +99,7 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="w-full flex flex-col md:px-16 gap-8">
+    <div className="w-full md:w-2/3 flex flex-col md:px-16 gap-8">
       <div className="w-full mb-8 md:mb-16 pl-8">
         <ClientGreeting clientID={clientID} page="dashboard" />
       </div>
@@ -125,13 +125,14 @@ export default function Dashboard() {
           >
             <ProductsCard products={products} />
           </Link>
-          <button onClick={() => setShowModal(true)}>
+          {/* Leave out this button for now */}
+          {/* <button onClick={() => setShowModal(true)}>
             <h3 className="text-left ml-2">
               <a href="#" className="link-with-style">
                 Calcula tu huella personal
               </a>
             </h3>
-          </button>
+          </button> */}
         </div>
         <div className="w-full lg:w-1/2">
           <ProductsHistoryChartComponent
