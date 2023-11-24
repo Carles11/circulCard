@@ -41,7 +41,7 @@ const TripCumulative = ({ trip }: { trip: TotalAmountProps }) => {
           <h1 className="z-1 text-gray-600">
             {parseFloat(totalSum.toFixed(1))} toneladas
           </h1>
-          <h3 className="z-1 text-gray-600 -mt-5">recogidas</h3>
+          <h3 className="z-1 text-gray-600 -mt-5">recicladas</h3>
         </div>
         <div>
           <button className="rounded-full bg-foreground text-gray-700 py-1 px-6 mt-4 border border-gray-500">
