@@ -8,7 +8,7 @@ export default function PasswordReset() {
         method="post"
         className="flex flex-col w-full my-28 py-2 px-4 rounded-md no-underline"
       >
-        <h3>Recuperación de contraseña</h3>
+        <h3>Actualiza tu contraseña</h3>
         <label className="text-md my-2" htmlFor="password">
           Email
         </label>
