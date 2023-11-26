@@ -1,5 +1,6 @@
 import RecycleGreenArrowsCard from 'components/cards/recycleGreenArrowsCard'
 import type { ProductProps } from 'types/supabase'
+import RecycleBins from 'assets/images/icons/papelera-de-reciclaje.png'
 
 const ProductsCard = ({ products }: { products: ProductProps }) => {
   // List of products with bullets
@@ -12,7 +13,7 @@ const ProductsCard = ({ products }: { products: ProductProps }) => {
   //   ))
 
   return (
-    <RecycleGreenArrowsCard>
+    <RecycleGreenArrowsCard icon={RecycleBins}>
       <div className="flex flex-col mr-6 md:mr-20 items-end mt-6 md:mt-20">
         <div className="flex flex-col mr-2">
           <h1 className="z-1 text-gray-600 leading-8">
