@@ -107,8 +107,10 @@ const ProductsHistoryChartComponent = ({ yearsCollection }) => {
   }
 
   return (
-    <div className="min-h-auto flex flex-col items-center justify-center gap-4">
-      <BarChart data={BarChartData} options={options} plugins={plugins} />
+    <div className="min-h-auto flex flex-col items-center justify-center gap-3">
+      <div className="transition ease-in-out delay-150 w-full rounded rounded-md hover:bg-gray-700 hover:scale-110">
+        <BarChart data={BarChartData} options={options} plugins={plugins} />
+      </div>{' '}
       <h3 className="text-right">Histórico residuos reciclados</h3>
       {/* <DarkButtonWithHover
         href={undefined}

@@ -4,13 +4,9 @@ import { ReactNode } from 'react' // Import ReactNode
 
 const RecycleGreenArrowsCard = ({ children }: { children: ReactNode }) => {
   return (
-    <div>
+    <div className="transition ease-in-out delay-150 w-full rounded rounded-md hover:scale-110">
       {/* first hover effect */}
-      <p className="m-16 relative group">
-        {' '}
-        <span>Hover over me</span>{' '}
-        <span className="absolute -bottom-1 left-0 w-0 h-2 bg-blue-400 transition-all group-hover:w-full"></span>
-      </p>
+
       <div className="z-0 relative w-full h-44 md:h-64 border rounded-xl bg-none dark:bg-gray-300 dark:shadow dark:shadow-md dark:shadow-gray-500">
         <Image
           src={RecycleGreenArrows}
