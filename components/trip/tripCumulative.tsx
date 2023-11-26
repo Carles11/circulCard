@@ -38,16 +38,16 @@ const TripCumulative = ({ trip }: { trip: TotalAmountProps }) => {
     <RecycleGreenArrowsCard>
       <div className="flex flex-col mr-6 md:mr-20 items-end mt-6 md:mt-20">
         <div className="flex flex-col mr-2 items-end align-center">
-          <h1 className="z-1 text-gray-600">
+          <h1 className="z-1 text-gray-600 leading-8">
             {parseFloat(totalSum.toFixed(1))} toneladas
           </h1>
-          <h3 className="z-1 text-gray-600 -mt-5">recicladas</h3>
+          <h3 className="z-1 text-gray-600">recicladas</h3>
         </div>
-        <div>
+        {/* <div>
           <button className="rounded-full bg-foreground text-gray-700 py-1 px-6 mt-4 border border-gray-500">
             Certificado
           </button>
-        </div>
+        </div> */}
       </div>
     </RecycleGreenArrowsCard>
   )
