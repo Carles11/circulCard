@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
-
+import Modal from '../modals'
 import type { Database, ProductItemProps } from 'types/supabase'
 
 import { iconMap } from 'utils/utils.service'
@@ -33,11 +33,8 @@ function ProductsList({
                 // placeholder="blur" // Optional blur-up while loading
               />
               <div
-                onMouseEnter={() => {
-                  setShowProductInfo(true)
-                }}
-                onMouseLeave={() => {
-                  setShowProductInfo(false)
+                onClick={() => {
+                  setShowProductInfo(!showProductInfo)
                 }}
               >
                 <GreenButtonWhiteTextWithHover
@@ -45,7 +42,11 @@ function ProductsList({
                   btnText={prod.product_name}
                 />
               </div>
-              {showProductInfo && <ProductListInfoLabel />}
+              {showProductInfo && (
+                <Modal onClose={() => setShowProductInfo(false)}>
+                  <ProductListInfoLabel />
+                </Modal>
+              )}
             </div>
           ) : (
             <p>This client has not assigned any materials yet.</p>

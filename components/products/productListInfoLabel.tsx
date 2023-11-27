@@ -2,8 +2,16 @@ import React from 'react'
 
 const ProductListInfoLabel = () => {
   return (
-    <div className="w-auto h-auto p-8 bg-gray-700 text-white border border-1 rounded rounded-sm">
-      <h1>ProductListInfoLabel</h1>
+    <div className="w-full p-8">
+      <h1 className="w-full rounded-md p-4 text-gray-700 border border-1 rounded rounded-sm">
+        Detalles del producto
+      </h1>
+      <div>
+        <ul className="text-gray-700 pl-4">
+          <li>Unidades gestionadas:</li>
+          <li>Total kilos:</li>
+        </ul>
+      </div>
     </div>
   )
 }
