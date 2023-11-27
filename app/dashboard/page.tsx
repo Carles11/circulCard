@@ -10,6 +10,8 @@ import Link from 'next/link'
 import ClientGreeting from 'components/clientGreeting'
 import TripCumulative from 'components/trip/tripCumulative'
 import ProductsCard from 'components/products/productsCard'
+import SecondLifeDashboardCard from 'components/projects/secondLifeDashboardCard'
+
 import ProductsHistoryChartComponent from 'components/products/productsHistoryChart'
 import Loader from 'components/loader'
 import CarbonCalculator from 'components/footPrintCalculator'
@@ -103,7 +105,7 @@ export default function Dashboard() {
       <div className="w-full mb-8 md:mb-16 pl-8">
         <ClientGreeting clientID={clientID} page="dashboard" />
       </div>
-      <div className="w-full flex flex-col lg:flex-row md:justify-around items-center md:align-start gap-16">
+      <div className="w-full flex flex-col lg:flex-row md:justify-around items-center md:align-middle gap-16">
         <div className="w-full lg:w-1/2 flex flex-col gap-16">
           <Link
             href={{
@@ -124,6 +126,13 @@ export default function Dashboard() {
             }}
           >
             <ProductsCard products={products} />
+          </Link>
+          <Link
+            href={{
+              pathname: 'projects/second-life',
+            }}
+          >
+            <SecondLifeDashboardCard />
           </Link>
           {/* Leave out this button for now */}
           {/* <button onClick={() => setShowModal(true)}>

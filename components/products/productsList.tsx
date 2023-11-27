@@ -1,12 +1,12 @@
 // @ts-nocheck
 
+import { useState } from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
 
 import type { Database, ProductItemProps } from 'types/supabase'
 
 import { iconMap } from 'utils/utils.service'
-
+import ProductListInfoLabel from 'components/products/productListInfoLabel'
 import GreenButtonWhiteTextWithHover from 'components/buttons/greenButtonWhiteTextWithHover'
 
 function ProductsList({
@@ -16,6 +16,8 @@ function ProductsList({
   products: Database
   clientID: string
 }) {
+  const [showProductInfo, setShowProductInfo] = useState(false)
+  console.log({ products })
   return (
     <div className="flex flex-col md:flex-row self-center gap-28 mt-12">
       {products.length > 0 ? (
@@ -30,21 +32,20 @@ function ProductsList({
                 // blurDataURL="data:..." automatically provided
                 // placeholder="blur" // Optional blur-up while loading
               />
-              <Link
-                key={prod.id}
-                href={{
-                  pathname: 'projects/second-life',
-                  // query: {
-                  //   productName: prod.product_name,
-                  //   clientID: clientID,
-                  // },
+              <div
+                onMouseEnter={() => {
+                  setShowProductInfo(true)
+                }}
+                onMouseLeave={() => {
+                  setShowProductInfo(false)
                 }}
               >
                 <GreenButtonWhiteTextWithHover
                   idAsKey={prod.id}
                   btnText={prod.product_name}
                 />
-              </Link>
+              </div>
+              {showProductInfo && <ProductListInfoLabel />}
             </div>
           ) : (
             <p>This client has not assigned any materials yet.</p>
