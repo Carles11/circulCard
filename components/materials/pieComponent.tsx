@@ -5,19 +5,15 @@ import PieChart from 'components/charts/pieChart'
 const PieComponent = ({ materials }) => {
   const matLabels = materials.map((matItem) => matItem.material_name)
   const matPercentages = materials.map((matItem) => matItem.percentage)
-
+  const matColors = materials.map((matItem) => matItem.color)
+  console.log({ materials })
   const PieChartData = {
     labels: matLabels,
     datasets: [
       {
         label: '%',
         data: matPercentages,
-        backgroundColor: [
-          'rgb(255, 99, 132)',
-          'rgb(54, 162, 235)',
-          'rgb(255, 205, 86)',
-          'rgb(144, 238, 144)',
-        ],
+        backgroundColor: matColors,
 
         borderColor: '#ffffff',
         borderWidth: 1.3,

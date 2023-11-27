@@ -5,7 +5,7 @@ import { Key } from 'react'
 
 const MaterialsIcons = ({ projects }: { projects: Array<any> }) => {
   return (
-    <div className="flex items-center mt-4">
+    <div className="flex flex-col md:flex-row items-center mt-4">
       {projects.map(
         (
           item: { project_icon: string | number; project_name: string },

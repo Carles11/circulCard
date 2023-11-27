@@ -70,7 +70,7 @@ const Materials = () => {
         const { data, error } = await supabase
           .from('materials')
           .select(
-            'id, material_name, percentage, collect_date, products(product_name)'
+            'id, material_name, percentage, color, collect_date, products(product_name)'
           )
           // .eq('products.product_name', productName)
           .not('products', 'is', null)
