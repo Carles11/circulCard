@@ -18,7 +18,7 @@ function mainHeader({ email }: { email: string | undefined }) {
             <button
               type="button"
               onClick={() => router.back()}
-              className="py-4 px-2 mb-4 rounded-md no-underline bg-transparent transition-scale hover:scale-1.5 flex items-center group text-sm"
+              className="px-2 rounded-md no-underline bg-transparent transition-scale hover:scale-1.5 flex items-center group text-sm"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
