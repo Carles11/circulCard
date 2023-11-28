@@ -1,13 +1,10 @@
 // @ts-nocheck
 
-import { useState } from 'react'
 import Image from 'next/image'
-import Modal from '../modals'
 import type { Database, ProductItemProps } from 'types/supabase'
 
 import { iconMap } from 'utils/utils.service'
 import ProductListInfoLabel from 'components/products/productListInfoLabel'
-import GreenButtonWhiteTextWithHover from 'components/buttons/greenButtonWhiteTextWithHover'
 
 function ProductsList({
   products,
@@ -16,7 +13,6 @@ function ProductsList({
   products: Database
   clientID: string
 }) {
-  const [showProductInfo, setShowProductInfo] = useState(false)
   console.log({ products })
   return (
     <div className="flex flex-col md:flex-row self-center gap-28 mt-12">
@@ -29,24 +25,36 @@ function ProductsList({
                 alt="The circulart products"
                 width={100}
                 height={100}
-                // blurDataURL="data:..." automatically provided
-                // placeholder="blur" // Optional blur-up while loading
               />
-              <div
-                onClick={() => {
-                  setShowProductInfo(!showProductInfo)
-                }}
-              >
-                <GreenButtonWhiteTextWithHover
-                  idAsKey={prod.id}
-                  btnText={prod.product_name}
-                />
-              </div>
-              {showProductInfo && (
-                <Modal onClose={() => setShowProductInfo(false)}>
+              <div className="dropdown">
+                <input type="checkbox" id="dropdown" />
+                <label className="dropdown__face" for="dropdown">
+                  <div className="dropdown__text">
+                    <h5>{prod.product_name}</h5>
+                  </div>
+
+                  <div className="dropdown__arrow"></div>
+                </label>
+                <div className="dropdown__items">
                   <ProductListInfoLabel />
-                </Modal>
-              )}
+                </div>
+              </div>
+              <svg>
+                <filter id="goo">
+                  <feGaussianBlur
+                    in="SourceGraphic"
+                    stdDeviation="10"
+                    result="blur"
+                  />
+                  <feColorMatrix
+                    in="blur"
+                    type="matrix"
+                    values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7"
+                    result="goo"
+                  />
+                  <feBlend in="SourceGraphic" in2="goo" />
+                </filter>
+              </svg>
             </div>
           ) : (
             <p>This client has not assigned any materials yet.</p>
