@@ -17,9 +17,12 @@ function ProductsList({
   return (
     <div className="flex flex-col md:flex-row self-center gap-28 mt-12">
       {products.length > 0 ? (
-        products.map((prod: ProductItemProps) =>
+        products.map((prod: ProductItemProps, index: number) =>
           prod.clients !== null ? (
-            <div className="flex flex-col gap-2 items-center justify-between">
+            <div
+              key={index}
+              className="flex flex-col gap-2 items-center justify-between"
+            >
               <Image
                 src={iconMap[prod.product_name]}
                 alt="The circulart products"
@@ -27,8 +30,8 @@ function ProductsList({
                 height={100}
               />
               <div className="dropdown">
-                <input type="checkbox" id="dropdown" />
-                <label className="dropdown__face" for="dropdown">
+                <input type="checkbox" id={`dropdown-${index}`} />
+                <label className="dropdown__face" htmlFor={`dropdown-${index}`}>
                   <div className="dropdown__text">
                     <h5>{prod.product_name}</h5>
                   </div>
