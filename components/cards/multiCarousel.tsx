@@ -98,7 +98,7 @@ const MultiCarousel = ({
         return (
           <div
             key={mat.id}
-            className="p-16 m-6 bg-white rounded-t-3xl md:rounded-xl border-2 dark:border-8 border-gray-300 shadow-xl flex flex-col gap-6 text-black items-center md:mb-6"
+            className="w-fit pt-8 bg-white rounded-t-3xl md:rounded-xl border-2 dark:border-8 border-gray-300 shadow-xl flex flex-col gap-6 text-black items-center"
           >
             <div className="rounded-full border-2 dark:border-8 border-gray-400 shadow-xl bg-white h-36 w-36">
               <DoughnutComponent mat={mat} />
@@ -109,7 +109,7 @@ const MultiCarousel = ({
                   {mat.material_name}
                 </div>
 
-                <div className="flex flex-col grow gap-4 justify-between items-center">
+                <div className="flex flex-col grow gap-16 justify-between items-center">
                   <MaterialsIcons projects={projects} />
                   <Link
                     href={{
@@ -120,7 +120,7 @@ const MultiCarousel = ({
                     }}
                     className="flex items-center justify-center w-8 h-8 bg-green-500 rounded-full cursor-pointer shadow shadow-lg shadow-gray-500"
                   >
-                    <span className="text-foreground text-2xl font-bold pb-1">
+                    <span className="text-foreground text-2xl font-bold">
                       +
                     </span>
                   </Link>
