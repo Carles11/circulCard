@@ -101,7 +101,7 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="w-full md:w-2/3 flex flex-col md:px-16 gap-8">
+    <div className="w-full md:w-2/3 flex flex-col py-16 gap-8">
       <div className="w-full mb-8 md:mb-16 pl-8">
         <ClientGreeting clientID={clientID} page="dashboard" />
       </div>
