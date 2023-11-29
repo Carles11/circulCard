@@ -560,3 +560,14 @@ body {
 * {
   box-sizing: border-box;
 }
+
+.carousel-item {
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+@media only screen and (max-width: 600px) {
+  .carousel-item {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}

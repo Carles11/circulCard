@@ -18,12 +18,12 @@ const MultiCarousel = ({
 }) => {
   const responsive = {
     desktop: {
-      breakpoint: { max: 3000, min: 1024 },
+      breakpoint: { max: 3000, min: 1025 },
       items: 3,
       slidesToSlide: 1, // optional, default to 1.
     },
     tablet: {
-      breakpoint: { max: 1024, min: 464 },
+      breakpoint: { max: 1024, min: 465 },
       items: 2,
       slidesToSlide: 1, // optional, default to 1.
     },
@@ -75,7 +75,7 @@ const MultiCarousel = ({
       draggable
       focusOnSelect={false}
       infinite={false}
-      itemClass=""
+      itemClass="carousel-item"
       keyBoardControl
       minimumTouchDrag={80}
       pauseOnHover
@@ -98,7 +98,7 @@ const MultiCarousel = ({
         return (
           <div
             key={mat.id}
-            className="w-fit pt-8 bg-white rounded-t-3xl md:rounded-xl border-2 dark:border-6 border-gray-300 shadow-xl flex flex-col gap-6 text-black items-center"
+            className="w-full lg:w-[420px] pt-8 bg-white rounded-t-3xl md:rounded-xl border-2 dark:border-6 border-gray-300 shadow-xl flex flex-col gap-6 text-black items-center"
           >
             <div className="rounded-full border-2 dark:border-2 border-gray-400 shadow-xl bg-white h-36 w-36">
               <DoughnutComponent mat={mat} />
