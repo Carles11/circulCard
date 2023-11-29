@@ -489,10 +489,10 @@ a:hover.link-with-style {
 
   &__face,
   &__items {
-    background-color: #b3b8aa;
-    padding: 20px;
+    background-color: #dddeda;
+    padding: 4px 20px 4px 20px;
     border-radius: 25px;
-    border: 3px solid #b3b8aa;
+    border: 3px solid #dddeda;
   }
   &__text {
     color: black;
@@ -520,7 +520,7 @@ a:hover.link-with-style {
 
     &::before {
       content: '';
-      background-color: #b3b8aa;
+      background-color: #dddeda;
       position: absolute;
       bottom: 100%;
       right: 20%;
