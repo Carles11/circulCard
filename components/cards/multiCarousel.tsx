@@ -98,9 +98,9 @@ const MultiCarousel = ({
         return (
           <div
             key={mat.id}
-            className="w-fit pt-8 bg-white rounded-t-3xl md:rounded-xl border-2 dark:border-8 border-gray-300 shadow-xl flex flex-col gap-6 text-black items-center"
+            className="w-fit pt-8 bg-white rounded-t-3xl md:rounded-xl border-2 dark:border-6 border-gray-300 shadow-xl flex flex-col gap-6 text-black items-center"
           >
-            <div className="rounded-full border-2 dark:border-8 border-gray-400 shadow-xl bg-white h-36 w-36">
+            <div className="rounded-full border-2 dark:border-2 border-gray-400 shadow-xl bg-white h-36 w-36">
               <DoughnutComponent mat={mat} />
             </div>
             <div className="min-w-full md:min-w-[320px] w-auto">
