@@ -113,19 +113,21 @@ const Projects = () => {
         title="Segunda vida"
         subTitle="residuos por sectores"
       />
-      <p className="text-2xl">
+      <p className="text-xl md:text-2xl mx-2 md:mx-8 px-2 md:px-8">
         Distribución por sectores de la cantidad total de residuos que hemos
         reciclado.
       </p>
       <div className="w-96 h-96 md:w-[44rem] md:h-[44rem]">
         <PieComponent projects={projects} />
       </div>
-      <p className="text-2xl">
+      <hr class="w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700" />
+
+      <p className="text-xl md:text-2xl mx-2 md:mx-8 px-2 md:px-8">
         Comprueba en qué proporción y para qué sectores reutilizamos cada
-        material que reciclamos.
+        material que hemos conseguido recuperar en tu empresa.
       </p>
-      <div className="flex flex-col gap-8 items-center p-6 border-2 border-lightgreenBg rounded rounded-md mb-8">
-        <div className="flex gap-6">
+      <div className="flex flex-col gap-8 items-center p-6 border-2 border-lightgreenBg rounded rounded-md mb-8 m-2">
+        <div className=" flex flex-wrap gap-2 md:gap-6">
           {materials.map((option, i) => {
             return (
               <div
@@ -147,7 +149,6 @@ const Projects = () => {
             const projectName = proj.project_name
             return (
               <div
-                id="project-card"
                 key={`option_${projectID}`}
                 className="flex flex-col items-center gap-6"
               >
@@ -171,7 +172,7 @@ const Projects = () => {
                     href={undefined}
                     btnText={proj.project_name}
                   /> */}
-                  <h2>{proj.project_name}</h2>
+                  <h2 id="project-card">{proj.project_name}</h2>
                 </Link>
               </div>
             )

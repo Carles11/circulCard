@@ -14,10 +14,7 @@ export function ScrollToTop() {
   }, [pathname])
   return <></>
 }
-export function ScrollIntoView(id: string) {
-  // when clicking a link, user will not scroll to the top of the page if the header is sticky.
-  // their current scroll position will persist to the next page.
-  // this useEffect is a workaround to 'fix' that behavior.
+export const ScrollIntoView = ({ id }: { id: string }) => {
   const element = document.getElementById(id)
   useEffect(() => {
     element?.scrollIntoView({
