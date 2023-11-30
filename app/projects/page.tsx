@@ -10,6 +10,7 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import HeaderInternalPage from 'components/headers/headerInternalPage'
 import PieComponent from 'components/materials/pieComponent'
+import { ScrollIntoView } from 'utils/autoScrollings'
 
 import Loader from 'components/loader'
 import DoughnutComponent from 'components/projects/doughnutComponent'
@@ -19,6 +20,7 @@ import RecycleWorld from 'assets/images/icons/SVG/recycle-green-world.svg'
 
 const Projects = () => {
   const [projects, setProjects] = useState<any[]>([])
+  const [filteredProjects, setFilteredProjects] = useState<any[]>([])
   const [materials, setMaterials] = useState<any[]>([])
   const [currentMaterial, setCurrentMaterials] = useState<string>('envases')
   const [loading, setLoading] = useState(true)
@@ -74,8 +76,12 @@ const Projects = () => {
         if (error) {
           throw new Error(error.message)
         }
+        const filterMatRelated = projects.filter(
+          (proj) => proj.materials.length > 0
+        )
 
         setProjects(data || {})
+        setFilteredProjects(filterMatRelated || {})
       } catch (error: any) {
         setError(error.message)
       } finally {
@@ -96,67 +102,81 @@ const Projects = () => {
 
   const handleTabSelection = (option) => {
     setCurrentMaterials(option)
+    ScrollIntoView('project-card')
   }
 
-  const filteredProjects = projects.filter((proj) => proj.materials !== null)
-  console.log({ filteredProjects })
   return (
     <div className="w-full flex flex-col gap-16 items-center m-8">
       <HeaderInternalPage
         iconDark={RecycleHands}
         iconLight={RecycleWorld}
         title="Segunda vida"
-        subTitle="residuos"
-      />{' '}
+        subTitle="residuos por sectores"
+      />
+      <p className="text-2xl">
+        Distribución por sectores de la cantidad total de residuos que hemos
+        reciclado.
+      </p>
       <div className="w-96 h-96 md:w-[44rem] md:h-[44rem]">
         <PieComponent projects={projects} />
       </div>
-      <div className="flex gap-6">
-        {materials.map((option, i) => {
-          return (
-            <div
-              key={`option_${i}`}
-              className="transition ease-in-out delay-150 px-2 py-1 border border-2 border-grey-700 rounded-md hover:scale-125 hover:cursor-pointer"
-              onClick={() => {
-                handleTabSelection(option.material_name)
-              }}
-            >
-              <h6>{option.material_name}</h6>
-            </div>
-          )
-        })}
-      </div>
-      <h2>{currentMaterial.toUpperCase()}</h2>
-      <div className="flex flex-col md:flex-row gap-16 justify-between max-w-full">
-        {filteredProjects.map((proj) => {
-          const projectID = proj.id
-          const projectName = proj.project_name
-          return (
-            <div className="flex flex-col items-center gap-6">
-              <div className="rounded-full border-2 dark:border-8 border-gray-400 shadow-xl   bg-foreground h-60 w-60">
-                <DoughnutComponent
-                  proj={proj}
-                  materialName="otros materiales"
-                />
-              </div>
-              <Link
-                key={proj.id}
-                href={{
-                  pathname: 'projects/second-life',
-                  query: {
-                    projectID: projectID,
-                    projectName: projectName,
-                  },
+      <p className="text-2xl">
+        Comprueba en qué proporción y para qué sectores reutilizamos cada
+        material que reciclamos.
+      </p>
+      <div className="flex flex-col gap-8 items-center p-6 border-2 border-lightgreenBg rounded rounded-md mb-8">
+        <div className="flex gap-6">
+          {materials.map((option, i) => {
+            return (
+              <div
+                key={`option_${i}`}
+                className="transition ease-in-out delay-150 px-2 py-1 border  border-lightgreenBg rounded-md hover:scale-125 hover:cursor-pointer"
+                onClick={() => {
+                  handleTabSelection(option.material_name)
                 }}
               >
-                <DarkButtonWithHover
-                  href={undefined}
-                  btnText={proj.project_name}
-                />
-              </Link>
-            </div>
-          )
-        })}
+                <h6>{option.material_name}</h6>
+              </div>
+            )
+          })}
+        </div>
+        <h2>{currentMaterial.toUpperCase()}</h2>
+        <div className="flex flex-col md:flex-row gap-16 justify-between max-w-full">
+          {filteredProjects?.map((proj) => {
+            const projectID = proj.id
+            const projectName = proj.project_name
+            return (
+              <div
+                id="project-card"
+                key={`option_${projectID}`}
+                className="flex flex-col items-center gap-6"
+              >
+                <div className="rounded-full border-2 dark:border-8 border-gray-400 shadow-xl   bg-foreground h-60 w-60">
+                  <DoughnutComponent
+                    proj={proj}
+                    materialName={currentMaterial}
+                  />
+                </div>
+                <Link
+                  key={proj.id}
+                  href={{
+                    pathname: 'projects/second-life',
+                    query: {
+                      projectID: projectID,
+                      projectName: projectName,
+                    },
+                  }}
+                >
+                  {/* <DarkButtonWithHover
+                    href={undefined}
+                    btnText={proj.project_name}
+                  /> */}
+                  <h2>{proj.project_name}</h2>
+                </Link>
+              </div>
+            )
+          })}
+        </div>
       </div>
     </div>
   )

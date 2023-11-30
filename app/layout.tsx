@@ -4,10 +4,10 @@ import { cookies } from 'next/headers'
 import type { Metadata } from 'next'
 import Head from 'next/head'
 
-import MainHeader from '@/components/headers/headerMain'
-import AuthHeader from '@/components/headers/headerAuth'
+import MainHeader from 'components/headers/headerMain'
+import AuthHeader from 'components/headers/headerAuth'
 import { ThemeProvider } from './theme-provider'
-import ScrollToTop from 'components/scrollToTop'
+import { ScrollToTop } from 'utils/autoScrollings'
 
 export const metadata: Metadata = {
   title: 'TheCirculArt',

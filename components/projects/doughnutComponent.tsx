@@ -34,12 +34,12 @@ const DoughnutComponent = ({ proj, materialName }) => {
       padding: 10,
     },
   }
-
+  console.log({ materialData })
   return (
     <DoughnutChart
       data={DonughtChartData}
       options={options}
-      innerText={`${materialData}`}
+      innerText={materialData}
     />
   )
 }
