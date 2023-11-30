@@ -9,11 +9,13 @@ import { useSearchParams, useRouter } from 'next/navigation'
 
 import Loader from 'components/loader'
 
-import TotalWasteMaterialsHeader from 'components/materials/materialsHeader'
+import HeaderInternalPage from 'components/headers/headerInternalPage'
 // import MaterialsCard from 'components/materials/materialsCard'
 // import MaterialsInfo from 'components/materials/materialsInfo'
 import PieComponent from 'components/materials/pieComponent'
 import MultiCarousel from '@/components/cards/multiCarousel'
+import RecycleHands from 'assets/images/icons/SVG/recycle-hands.svg'
+import RecycleWorld from 'assets/images/icons/SVG/recycle-green-world.svg'
 
 const Materials = () => {
   const [materials, setMaterials] = useState<any[]>([])
@@ -100,7 +102,11 @@ const Materials = () => {
 
   return (
     <div className="w-full flex flex-col items-center">
-      <TotalWasteMaterialsHeader />
+      <HeaderInternalPage
+        iconDark={RecycleHands}
+        iconLight={RecycleWorld}
+        title="Residuos totales"
+      />
 
       <div className="w-96 h-96 md:w-[44rem] md:h-[44rem]">
         <PieComponent materials={materials} />

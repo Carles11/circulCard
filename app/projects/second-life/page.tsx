@@ -10,9 +10,8 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import Loader from 'components/loader'
 import PlantOnHandsDARK from 'assets/images/icons/SVG/plant-on-hands-dark-mode.svg'
 import PlantOnHandsLIGHT from 'assets/images/icons/SVG/plant-on-hands-light-mode.svg'
-import Image from 'next/image'
-
 import SecondLifesCard from 'components/projects/secondLifesCard'
+import HeaderInternalPage from 'components/headers/headerInternalPage'
 
 const SecondLife = () => {
   const [secondLifes, setSecondLifes] = useState<any[]>([])
@@ -72,21 +71,12 @@ const SecondLife = () => {
   return (
     <div className="w-full flex flex-col">
       <div className="w-full flex flex-col items-center mt-8">
-        {/*SWITCH LOGO DEPENDING ON THEME*/}
-        <Image
-          src={PlantOnHandsDARK}
-          alt="dark-mode-thecirculart-plant-on-hands"
-          width={75}
-          height={75}
-          className="hidden dark:block"
+        <HeaderInternalPage
+          iconDark={PlantOnHandsDARK}
+          iconLight={PlantOnHandsLIGHT}
+          title="Proyectos"
+          subTitle="de segunda vida"
         />
-        <Image
-          className="block dark:hidden"
-          src={PlantOnHandsLIGHT}
-          alt="light-mode-thecirculart-plant-on-hands"
-          width={75}
-        />
-        <h1>Proyectos</h1> <h2>de segunda vida</h2>
       </div>
       <SecondLifesCard secondLifes={secondLifes} />
     </div>

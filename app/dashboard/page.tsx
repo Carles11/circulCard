@@ -129,7 +129,7 @@ export default function Dashboard() {
           </Link>
           <Link
             href={{
-              pathname: 'projects/second-life',
+              pathname: 'projects',
             }}
           >
             <SecondLifeDashboardCard />

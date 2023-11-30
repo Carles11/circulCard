@@ -5,9 +5,11 @@ import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import type { Database } from 'types/supabase'
 
 import { useEffect, useState } from 'react'
-import { useRouter, useSearchParams } from 'next/navigation'
-import Image from 'next/image'
+import { useRouter } from 'next/navigation'
+
 import Link from 'next/link'
+import HeaderInternalPage from 'components/headers/headerInternalPage'
+import PieComponent from 'components/materials/pieComponent'
 
 import Loader from 'components/loader'
 import DoughnutComponent from 'components/projects/doughnutComponent'
@@ -17,14 +19,33 @@ import RecycleWorld from 'assets/images/icons/SVG/recycle-green-world.svg'
 
 const Projects = () => {
   const [projects, setProjects] = useState<any[]>([])
-  const searchParams = useSearchParams()
-  const materialName = searchParams.get('materialName')
-
+  const [materials, setMaterials] = useState<any[]>([])
+  const [currentMaterial, setCurrentMaterials] = useState<string>('envases')
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const router = useRouter() // Initialize the useRouter hook
 
   const supabase = createClientComponentClient<Database>()
+
+  useEffect(() => {
+    const getMaterials = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('materials')
+          .select('id, material_name, percentage, color')
+
+        if (error) {
+          throw new Error(error.message)
+        }
+        setMaterials(data || {})
+      } catch (error: any) {
+        setError(error.message)
+      } finally {
+        setLoading(false)
+      }
+    }
+    getMaterials()
+  }, [supabase])
 
   useEffect(() => {
     const checkUser = async () => {
@@ -46,8 +67,8 @@ const Projects = () => {
         const { data, error } = await supabase
           .from('projects')
           .select('*, materials(id, material_name)')
-          .filter('materials.material_name', 'eq', materialName)
-          .not('materials', 'is', null)
+          .filter('materials.material_name', 'eq', currentMaterial)
+        // .not('materials', 'is', null)
         // .eq('materials.material_name', materialName)
 
         if (error) {
@@ -63,7 +84,7 @@ const Projects = () => {
     }
 
     getProjects()
-  }, [supabase])
+  }, [supabase, currentMaterial])
 
   if (loading) {
     return <Loader />
@@ -73,33 +94,50 @@ const Projects = () => {
     return <p className="text-red-500">{error}</p>
   }
 
+  const handleTabSelection = (option) => {
+    setCurrentMaterials(option)
+  }
+
+  const filteredProjects = projects.filter((proj) => proj.materials !== null)
+  console.log({ filteredProjects })
   return (
     <div className="w-full flex flex-col gap-16 items-center m-8">
-      <div className="w-full flex flex-col items-center m-8">
-        <Image
-          src={RecycleHands}
-          alt="The circulart recycling hands logo"
-          width={75}
-          height={75}
-          className="hidden dark:block"
-        />
-        <Image
-          className="block dark:hidden"
-          src={RecycleWorld}
-          alt="The circulart recycling world logo"
-          width={75}
-        />
-        <h1>RECICLAJE</h1> <h2>{materialName}</h2>{' '}
+      <HeaderInternalPage
+        iconDark={RecycleHands}
+        iconLight={RecycleWorld}
+        title="Segunda vida"
+        subTitle="residuos"
+      />{' '}
+      <div className="w-96 h-96 md:w-[44rem] md:h-[44rem]">
+        <PieComponent projects={projects} />
       </div>
-
-      <div className="flex flex-col md:flex-row gap-16 justify-between">
-        {projects.map((proj) => {
+      <div className="flex gap-6">
+        {materials.map((option, i) => {
+          return (
+            <div
+              key={`option_${i}`}
+              className="transition ease-in-out delay-150 px-2 py-1 border border-2 border-grey-700 rounded-md hover:scale-125 hover:cursor-pointer"
+              onClick={() => {
+                handleTabSelection(option.material_name)
+              }}
+            >
+              <h6>{option.material_name}</h6>
+            </div>
+          )
+        })}
+      </div>
+      <h2>{currentMaterial.toUpperCase()}</h2>
+      <div className="flex flex-col md:flex-row gap-16 justify-between max-w-full">
+        {filteredProjects.map((proj) => {
           const projectID = proj.id
           const projectName = proj.project_name
           return (
             <div className="flex flex-col items-center gap-6">
               <div className="rounded-full border-2 dark:border-8 border-gray-400 shadow-xl   bg-foreground h-60 w-60">
-                <DoughnutComponent proj={proj} materialName={materialName} />
+                <DoughnutComponent
+                  proj={proj}
+                  materialName="otros materiales"
+                />
               </div>
               <Link
                 key={proj.id}
