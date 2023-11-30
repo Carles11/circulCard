@@ -90,7 +90,7 @@ const Projects = () => {
     }
 
     getProjects()
-  }, [supabase, currentMaterial])
+  }, [supabase, currentMaterial, setCurrentMaterials])
 
   if (loading) {
     return <Loader />
@@ -102,7 +102,7 @@ const Projects = () => {
 
   const handleTabSelection = (option) => {
     setCurrentMaterials(option)
-    ScrollIntoView('project-card')
+    // ScrollIntoView('project-card')
   }
 
   return (
