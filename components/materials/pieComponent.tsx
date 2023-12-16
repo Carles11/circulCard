@@ -24,7 +24,7 @@ const PieComponent = ({ materials, projects }) => {
         rotation: 270,
         animation: { animateRotate: true, animateScale: true },
         hoverOffset: 66,
-        circumference: 180,
+        circumference: 360,
       },
     ],
   }
@@ -57,7 +57,7 @@ const PieComponent = ({ materials, projects }) => {
     },
     plugins: {
       legend: {
-        display: true,
+        display: false,
         labels: {
           color: '#787878',
         },

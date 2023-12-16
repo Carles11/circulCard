@@ -10,6 +10,8 @@ import { useSearchParams, useRouter } from 'next/navigation'
 import Loader from 'components/loader'
 
 import HeaderInternalPage from 'components/headers/headerInternalPage'
+import CircleList from 'components/circleList'
+
 // import MaterialsCard from 'components/materials/materialsCard'
 // import MaterialsInfo from 'components/materials/materialsInfo'
 import PieComponent from 'components/materials/pieComponent'
@@ -107,9 +109,13 @@ const Materials = () => {
         iconLight={RecycleWorld}
         title="Residuos totales"
       />
-
-      <div className="w-96 h-96 md:w-[44rem] md:h-[44rem]">
-        <PieComponent materials={materials} />
+      <div className="w-full flex items-center justify-around">
+        <div className="flex flex-col p-4">
+          <CircleList items={materials} />{' '}
+        </div>
+        <div className="w-96 h-96 md:w-[44rem] md:h-[44rem]">
+          <PieComponent materials={materials} />
+        </div>
       </div>
       {/* <MaterialsCard
         materials={materials}
@@ -117,8 +123,8 @@ const Materials = () => {
         clientID={clientID}
         productName={productName}
       /> */}
-      <MultiCarousel materials={materials} projects={projects} />
-      {/* <MaterialsInfo materials={materials} projects={projects} /> */}
+
+      {/* <MultiCarousel materials={materials} projects={projects} /><MaterialsInfo materials={materials} projects={projects} /> */}
     </div>
   )
 }

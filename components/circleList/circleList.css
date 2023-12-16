@@ -1,0 +1,95 @@
+/* font awesome import */
+@import url('https://pro.fontawesome.com/releases/v6.0.0-beta1/css/all.css');
+
+.ul-circles * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.ul-circles {
+  --innerSize: 6rem;
+  --rimSize: 1.5rem;
+
+  display: grid;
+  grid-template-columns: repeat(var(--repeatVal, 1), calc(var(--innerSize)));
+  justify-content: center;
+  gap: var(--rimSize);
+
+  padding: var(--rimSize);
+  font-family: sans-serif;
+  list-style: none;
+}
+.ul-circles.ul-circles-vertical {
+  --repeatVal: 1;
+}
+
+.ul-circles > li {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  gap: calc(var(--rimSize) / 16);
+
+  aspect-ratio: 1/1;
+  padding: calc(var(--rimSize) / 16);
+  border-radius: 50%;
+
+  text-align: center;
+  position: relative;
+}
+.ul-circles > li::before,
+.ul-circles > li::after {
+  content: '';
+  position: absolute;
+  aspect-ratio: 1/1;
+  border-radius: inherit;
+  z-index: -1;
+}
+
+.ul-circles > li::before {
+  width: calc(100% + calc(2 * var(--rimSize)));
+  left: calc(var(--rimSize) * -1);
+  top: calc(var(--rimSize) * -1);
+  background: var(--accent-color);
+  clip-path: polygon(
+    var(--clipX1, 0%) var(--clipY1, 0%),
+    var(--clipX2, 50%) var(--clipY1, 0%),
+    var(--clipX2, 50%) var(--clipY2, 100%),
+    var(--clipX1, 0%) var(--clipY2, 100%)
+  );
+  box-shadow: inset 2px -2px 10px rgba(255, 255, 255, 0.25),
+    inset -2px 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.ul-circles > li:nth-child(even)::before {
+  --clipX1: 50%;
+  --clipX2: 100%;
+}
+
+@media (min-width: 40rem) {
+  .ul-circles {
+    --repeatVal: auto-fit;
+  }
+  .ul-circles:not(.ul-circles-vertical) > li:nth-child(even)::before {
+    --clipX1: 0%;
+    --clipY1: 0%;
+    --clipX2: 100%;
+    --clipY2: 50%;
+  }
+  .ul-circles:not(.ul-circles-vertical) > li:nth-child(odd)::before {
+    --clipX1: 0%;
+    --clipY1: 50%;
+    --clipX2: 100%;
+    --clipY2: 100%;
+  }
+}
+
+.ul-circles > li::after {
+  width: 100%;
+  background: #fdfdfd;
+  box-shadow: -0.5rem 0.5rem 0.5rem rgba(0, 0, 0, 0.25);
+}
+
+.ul-circles > li > i {
+  font-size: 2.5rem;
+  color: var(--accent-color);
+  align-self: end;
+}

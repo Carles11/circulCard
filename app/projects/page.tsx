@@ -47,7 +47,7 @@ const Projects = () => {
       }
     }
     getMaterials()
-  }, [supabase])
+  }, [supabase, currentMaterial, setCurrentMaterials])
 
   useEffect(() => {
     const checkUser = async () => {
