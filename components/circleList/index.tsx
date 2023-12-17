@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { isMobile } from 'react-device-detect'
 
 import './circleList.css'
+import Link from 'next/link'
 
 const CircleList = ({
   items,
@@ -22,7 +23,8 @@ const CircleList = ({
               //@ts-ignore
               style={{ color: element.color, '--accent-color': element.color }}
             >
-              {materials ? (
+              <i className="fa-brands fa-codepen"></i>
+              {/* {materials ? (
                 <i className="fa-brands fa-codepen"></i>
               ) : (
                 <div className="flex items-center justify-center">
@@ -32,9 +34,17 @@ const CircleList = ({
                     height={30}
                   />
                 </div>
-              )}
+              )} */}
               <div className="flex flex-col gap-0 ">
-                <p className="text-sm ">{element[`${prefix}_name`]}</p>
+                {element[`${prefix}_name`] == 'proyectos personalizados' ? (
+                  <>
+                    <Link href={'/projects/second-life'}>
+                      <p className="text-sm ">{element[`${prefix}_name`]}</p>
+                    </Link>
+                  </>
+                ) : (
+                  <p className="text-sm ">{element[`${prefix}_name`]}</p>
+                )}
                 {materials && (
                   <p className="text-sm">{element.cumulative_total} T.</p>
                 )}
