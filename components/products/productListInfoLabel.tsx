@@ -26,8 +26,8 @@ const ProductListInfoLabel = ({
           certificates &&
           certificates.length > 0 && (
             <li>
-              <h2 className="text-xl">
-                <u>Certificados</u>
+              <h2 className="text-xl mt-4">
+                <u>Descarga los certificados:</u>
               </h2>
               <ul>
                 {certificates.map((pdfPath, index) => (

@@ -116,7 +116,7 @@ const Materials = () => {
         }`}
       >
         <div className="flex flex-col p-4">
-          <CircleList items={materials} />{' '}
+          <CircleList items={materials} materials />{' '}
         </div>
         <div className="w-96 h-96 md:w-[44rem] md:h-[44rem]">
           <PieComponent materials={materials} />

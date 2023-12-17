@@ -4,7 +4,15 @@ import { isMobile } from 'react-device-detect'
 
 import './circleList.css'
 
-const CircleList = ({ items }: { items: String[] }) => {
+const CircleList = ({
+  items,
+  materials,
+}: {
+  items: String[]
+  materials: boolean
+}) => {
+  const prefix = materials ? 'material' : 'project'
+
   return (
     <div>
       <ul className={`ul-circles ${!isMobile && `ul-circles-vertical`}`}>
@@ -14,15 +22,22 @@ const CircleList = ({ items }: { items: String[] }) => {
               //@ts-ignore
               style={{ color: element.color, '--accent-color': element.color }}
             >
-              <i className="fa-brands fa-codepen"></i>
-              {/* <Image
-                src={iconMap[element.material_icon]}
-                alt="The circular projects"
-                height={75}
-              /> */}
-              <div className="flex flex-col gap-0">
-                <p className="text-sm">{element.material_name}</p>
-                <p className="text-sm">{element.cumulative_total} T.</p>
+              {materials ? (
+                <i className="fa-brands fa-codepen"></i>
+              ) : (
+                <div className="flex items-center justify-center">
+                  <Image
+                    src={iconMap[element.project_icon]}
+                    alt="The circular projects"
+                    height={30}
+                  />
+                </div>
+              )}
+              <div className="flex flex-col gap-0 ">
+                <p className="text-sm ">{element[`${prefix}_name`]}</p>
+                {materials && (
+                  <p className="text-sm">{element.cumulative_total} T.</p>
+                )}
               </div>
             </li>
           )

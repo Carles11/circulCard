@@ -3,6 +3,7 @@
 
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import type { Database } from 'types/supabase'
+import { isMobile } from 'react-device-detect'
 
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
@@ -11,6 +12,7 @@ import Link from 'next/link'
 import HeaderInternalPage from 'components/headers/headerInternalPage'
 import PieComponent from 'components/materials/pieComponent'
 import { ScrollIntoView } from 'utils/autoScrollings'
+import CircleList from 'components/circleList'
 
 import Loader from 'components/loader'
 import DoughnutComponent from 'components/projects/doughnutComponent'
@@ -117,12 +119,21 @@ const Projects = () => {
         Distribución por sectores de la cantidad total de residuos que hemos
         reciclado.
       </p>
-      <div className="w-96 h-96 md:w-[44rem] md:h-[44rem]">
-        <PieComponent projects={projects} />
+      <div
+        className={`w-full flex items-center justify-around ${
+          isMobile && 'flex-col'
+        }`}
+      >
+        <div className="flex flex-col p-4">
+          <CircleList items={projects} />
+        </div>
+        <div className="w-96 h-96 md:w-[44rem] md:h-[44rem]">
+          <PieComponent projects={projects} />
+        </div>
       </div>
-      <hr class="w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700" />
+      {/*   <hr class="w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700" />
 
-      <p className="text-xl md:text-2xl mx-2 md:mx-8 px-2 md:px-8">
+         <p className="text-xl md:text-2xl mx-2 md:mx-8 px-2 md:px-8">
         Comprueba en qué proporción y para qué sectores reutilizamos cada
         material que hemos conseguido recuperar en tu empresa.
       </p>
@@ -168,17 +179,17 @@ const Projects = () => {
                     },
                   }}
                 >
-                  {/* <DarkButtonWithHover
+                <DarkButtonWithHover
                     href={undefined}
                     btnText={proj.project_name}
-                  /> */}
+                  /> 
                   <h2 id="project-card">{proj.project_name}</h2>
                 </Link>
               </div>
             )
           })}
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }

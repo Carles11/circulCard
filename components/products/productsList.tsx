@@ -28,7 +28,7 @@ function ProductsList({
           prod.clients !== null ? (
             <div
               key={index}
-              className="flex flex-col gap-2 items-center justify-between"
+              className="flex flex-col flex-wrap gap-2 align-bottom items-center justify-between mb-auto"
             >
               <Image
                 src={iconMap[prod.product_name]}
@@ -45,7 +45,7 @@ function ProductsList({
 
                   <div className="dropdown__arrow"></div>
                 </label>
-                <div className="dropdown__items w-auto">
+                <div className="dropdown__items w-auto max-w-screen">
                   <ProductListInfoLabel
                     productName={prod.product_name}
                     certificates={[
