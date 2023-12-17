@@ -3,6 +3,7 @@
 
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import type { Database } from 'types/supabase'
+import { isMobile } from 'react-device-detect'
 
 import { useEffect, useState } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
@@ -74,7 +75,7 @@ const Materials = () => {
         const { data, error } = await supabase
           .from('materials')
           .select(
-            'id, material_name, percentage, color, collect_date, products(product_name)'
+            'id, material_name, percentage, color, collect_date, cumulative_total, products(product_name)'
           )
           // .eq('products.product_name', productName)
           .not('products', 'is', null)
@@ -109,7 +110,11 @@ const Materials = () => {
         iconLight={RecycleWorld}
         title="Residuos totales"
       />
-      <div className="w-full flex items-center justify-around">
+      <div
+        className={`w-full flex items-center justify-around ${
+          isMobile && 'flex-col'
+        }`}
+      >
         <div className="flex flex-col p-4">
           <CircleList items={materials} />{' '}
         </div>

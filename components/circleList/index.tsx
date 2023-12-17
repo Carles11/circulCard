@@ -1,15 +1,17 @@
 import { iconMap } from 'utils/utils.service'
 import Image from 'next/image'
+import { isMobile } from 'react-device-detect'
 
 import './circleList.css'
 
 const CircleList = ({ items }: { items: String[] }) => {
   return (
     <div>
-      <ul className="ul-circles ul-circles-vertical">
+      <ul className={`ul-circles ${!isMobile && `ul-circles-vertical`}`}>
         {items.map((element: any) => {
           return (
             <li
+              //@ts-ignore
               style={{ color: element.color, '--accent-color': element.color }}
             >
               <i className="fa-brands fa-codepen"></i>
@@ -18,7 +20,10 @@ const CircleList = ({ items }: { items: String[] }) => {
                 alt="The circular projects"
                 height={75}
               /> */}
-              <p className="text-sm">{element.material_name}</p>
+              <div className="flex flex-col gap-0">
+                <p className="text-sm">{element.material_name}</p>
+                <p className="text-sm">{element.cumulative_total} T.</p>
+              </div>
             </li>
           )
         })}

@@ -7,7 +7,7 @@
   box-sizing: border-box;
 }
 .ul-circles {
-  --innerSize: 6rem;
+  --innerSize: 6.5rem;
   --rimSize: 1.5rem;
 
   display: grid;
