@@ -22,6 +22,11 @@ const CircleList = ({
             <li
               //@ts-ignore
               style={{ color: element.color, '--accent-color': element.color }}
+              className={`${
+                element[`${prefix}_name`] === 'proyectos personalizados'
+                  ? 'hover:scale-125'
+                  : ''
+              }`}
             >
               <i className="fa-brands fa-codepen"></i>
               {/* {materials ? (
@@ -37,13 +42,15 @@ const CircleList = ({
               )} */}
               <div className="flex flex-col gap-0 ">
                 {element[`${prefix}_name`] == 'proyectos personalizados' ? (
-                  <>
+                  <div>
                     <Link href={'/projects/second-life'}>
-                      <p className="text-sm ">{element[`${prefix}_name`]}</p>
+                      <p className="text-xs object-contain ">
+                        {element[`${prefix}_name`]}
+                      </p>
                     </Link>
-                  </>
+                  </div>
                 ) : (
-                  <p className="text-sm ">{element[`${prefix}_name`]}</p>
+                  <p className="text-xs">{element[`${prefix}_name`]}</p>
                 )}
                 {materials && (
                   <p className="text-sm">{element.cumulative_total} T.</p>
