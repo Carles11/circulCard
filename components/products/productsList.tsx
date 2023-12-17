@@ -22,13 +22,13 @@ function ProductsList({
 }) {
   console.log({ products })
   return (
-    <div className="flex flex-col md:flex-row self-center gap-28 mt-12">
+    <div className="flex flex-col md:flex-row self-center gap-28 mt-12 items-end">
       {products.length > 0 ? (
         products.map((prod: ProductItemProps, index: number) =>
           prod.clients !== null ? (
             <div
               key={index}
-              className="flex flex-col flex-wrap gap-2 align-bottom items-center justify-between mb-auto"
+              className="flex flex-col gap-8 items-center justify-between"
             >
               <Image
                 src={iconMap[prod.product_name]}
@@ -45,7 +45,7 @@ function ProductsList({
 
                   <div className="dropdown__arrow"></div>
                 </label>
-                <div className="dropdown__items w-auto max-w-screen">
+                <div className="dropdown__items w-auto max-w-screen md:max-w-auto">
                   <ProductListInfoLabel
                     productName={prod.product_name}
                     certificates={[
