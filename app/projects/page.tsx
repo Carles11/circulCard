@@ -19,6 +19,7 @@ import DoughnutComponent from 'components/projects/doughnutComponent'
 import DarkButtonWithHover from 'components/buttons/darkButtonWithHover'
 import RecycleHands from 'assets/images/icons/SVG/recycle-hands.svg'
 import RecycleWorld from 'assets/images/icons/SVG/recycle-green-world.svg'
+import trace_ONE from 'assets/documents/certificates/traceability/traceability-plastic-cards.pdf'
 
 const Projects = () => {
   const [projects, setProjects] = useState<any[]>([])
@@ -107,6 +108,15 @@ const Projects = () => {
     // ScrollIntoView('project-card')
   }
 
+  const handleDownload = (pdfPath: string) => () => {
+    const link = document.createElement('a')
+    link.href = pdfPath
+    link.download = pdfPath.split('/').pop() || 'thecirculart_certificado.pdf'
+    link.click()
+  }
+
+  const certificates = [trace_ONE]
+
   return (
     <div className="w-full flex flex-col gap-16 items-center m-8">
       <HeaderInternalPage
@@ -129,6 +139,16 @@ const Projects = () => {
         </div>
         <div className="w-96 h-96 md:w-[44rem] md:h-[44rem]">
           <PieComponent projects={projects} />
+          <h2>Descarga el certificado de trazabilidad:</h2>
+          <ul className="ml-16 list-disc">
+            {certificates.map((pdfPath, index) => (
+              <li key={index}>
+                <button onClick={handleDownload(pdfPath)}>
+                  {pdfPath.split('/').pop() || 'thecirculart_certificado.pdf'}
+                </button>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
       {/*   <hr class="w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700" />
