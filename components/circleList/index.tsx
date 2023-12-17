@@ -7,9 +7,11 @@ const CircleList = ({ items }: { items: String[] }) => {
   return (
     <div>
       <ul className="ul-circles ul-circles-vertical">
-        {items.map((element: { color: string; material_name: string }) => {
+        {items.map((element: any) => {
           return (
-            <li style={{ color: element.color }}>
+            <li
+              style={{ color: element.color, '--accent-color': element.color }}
+            >
               <i className="fa-brands fa-codepen"></i>
               {/* <Image
                 src={iconMap[element.material_icon]}
