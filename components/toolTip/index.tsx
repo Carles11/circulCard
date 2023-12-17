@@ -9,9 +9,9 @@ const ToolTip = ({
   placement,
   children,
 }: {
-  text: string
+  text: string | undefined
   placement?: string | undefined
-  children: ReactElement<any, string | JSXElementConstructor<any>> | undefined
+  children?: ReactElement<any, string | JSXElementConstructor<any>> | undefined
 }) => {
   return (
     <Tippy

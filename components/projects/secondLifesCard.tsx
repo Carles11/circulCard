@@ -5,6 +5,7 @@ import Link from 'next/link'
 import DoughnutComponent from './secLifeDoughnutComponent'
 import { iconMap } from 'utils/utils.service'
 import Image from 'next/image'
+import ToolTip from 'components/toolTip'
 
 const SecondLifeCard = ({ secondLifes }: { secondLifes: Database }) => {
   return (
@@ -29,18 +30,26 @@ const SecondLifeCard = ({ secondLifes }: { secondLifes: Database }) => {
                           {secLife.life_name}
                         </h4>
                       </div>
-                      <Image
-                        src={iconMap[secLife.life_origin]}
-                        alt="The circulart products"
-                        width={40}
-                        height={40}
-                      />
+                      <ToolTip
+                        text={secLife.life_origin}
+                        placement="bottom-start"
+                      >
+                        <span className={`ml-2 text-2xl flip-2-ver-right-1`}>
+                          <Image
+                            src={iconMap[secLife.life_origin]}
+                            alt="The circulart products"
+                            width={40}
+                            height={40}
+                          />{' '}
+                        </span>
+                      </ToolTip>
                     </div>
                     <p className="w-48 my-6">{secLife.life_description}</p>
                   </div>
                   <Link
                     key={secLife.id}
-                    href={{}}
+                    href="https://www.thecirculart.com"
+                    target="_blank"
                     className="flex items-center justify-center w-8 h-8 bg-green-500 rounded-full cursor-pointer shadow shadow-lg shadow-gray-500"
                   >
                     <span className="text-foreground text-2xl font-bold pb-1">
