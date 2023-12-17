@@ -42,9 +42,13 @@ const CircleList = ({
               )} */}
               <div className="flex flex-col gap-0 ">
                 {element[`${prefix}_name`] == 'proyectos personalizados' ? (
-                  <div>
+                  <div className="relative">
+                    <span className="absolute top-0 right-0 flex h-3 w-3">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
+                    </span>
                     <Link href={'/projects/second-life'}>
-                      <p className="text-xs object-contain ">
+                      <p className="text-xs object-contain">
                         {element[`${prefix}_name`]}
                       </p>
                     </Link>
