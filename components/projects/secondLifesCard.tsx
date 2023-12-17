@@ -3,6 +3,8 @@
 import type { Database } from 'types/supabase'
 import Link from 'next/link'
 import DoughnutComponent from './secLifeDoughnutComponent'
+import { iconMap } from 'utils/utils.service'
+import Image from 'next/image'
 
 const SecondLifeCard = ({ secondLifes }: { secondLifes: Database }) => {
   return (
@@ -20,11 +22,19 @@ const SecondLifeCard = ({ secondLifes }: { secondLifes: Database }) => {
               <div className="min-w-full md:min-w-[320px] w-auto">
                 <div className="p-2 py-5 flex flex-col items-center justify-between h-96">
                   <div className="flex flex-col items-center">
-                    <div className="w-48 bg-lightgreenBg rounded-full text-xl px-4 py-2 mb-2 text-center">
-                      <h4 className="mb-2 text-black">Proyecto</h4>
-                      <h4 className="mb-2 text-foreground">
-                        {secLife.life_name}
-                      </h4>
+                    <div className="flex gap-1 items-start justify-center">
+                      <div className="w-48 bg-lightgreenBg rounded-full text-xl px-4 py-2 mb-2 text-center">
+                        <h4 className="mb-2 text-black">Proyecto</h4>
+                        <h4 className="mb-2 text-foreground">
+                          {secLife.life_name}
+                        </h4>
+                      </div>
+                      <Image
+                        src={iconMap[secLife.life_origin]}
+                        alt="The circulart products"
+                        width={40}
+                        height={40}
+                      />
                     </div>
                     <p className="w-48 my-6">{secLife.life_description}</p>
                   </div>
