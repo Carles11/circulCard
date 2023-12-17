@@ -508,7 +508,7 @@ a:hover.link-with-style {
     position: absolute;
     right: 0;
     top: 50%;
-    width: 100%;
+    /* width: 100%; */
     list-style: none;
     list-style-type: none;
     display: flex;
