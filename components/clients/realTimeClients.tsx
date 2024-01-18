@@ -76,31 +76,41 @@ function realTimeClients({ clients }: { clients: any }) {
       )}
 
       {currentUserEmail && adminUsers.includes(currentUserEmail) && (
-        <div className="flex flex-col mt-16">
-          <h1>Hey, we´ve detected that you are an admin user!</h1>
+        <div className="flex flex-col my-16 px-8">
+          <hr className="w-full h-1 mx-auto my-4 bg-gray-400 border-0 rounded md:my-10 dark:bg-gray-700" />{' '}
+          <h2>Hey, we´ve detected that you are an admin user!</h2>
           <h5>How would you like to proceed?</h5>
-          <h6>(No worries, only admins can see these options below)</h6>
-          <div className="mt-8 flex items-center  align-middle gap-4">
+          <h6>
+            (No worries, only admins can see these options below the gray line)
+          </h6>
+          <div className="mt-16 flex flex-col items-center gap-4">
             <Link
               key="fake-key-id"
               href="https://www.thecirculart.com"
               target="_blank"
-              className="flex items-center justify-center w-8 h-8 bg-green-500 rounded-full cursor-pointer shadow shadow-lg shadow-gray-500"
+              className="flex items-center justify-center w-72 px-4 bg-green-500 rounded-full cursor-pointer shadow shadow-lg shadow-gray-500"
             >
-              <span className="text-foreground text-2xl font-bold pb-1">+</span>
+              <div className="flex items-center align-middle gap-4">
+                <span className="text-foreground text-2xl font-bold pb-1">
+                  +
+                </span>
+                <h4 className="text-foreground">Add a new client </h4>
+              </div>
             </Link>
-            <h2 className="">Add a new client </h2>
-          </div>
-          <div className="mt-8 flex items-center  align-middle gap-4">
+
             <Link
               key="fake-key-id"
               href="https://www.thecirculart.com"
               target="_blank"
-              className="flex items-center justify-center w-8 h-8 bg-green-500 rounded-full cursor-pointer shadow shadow-lg shadow-gray-500"
+              className="flex items-center justify-center w-72 px-4 bg-green-500 rounded-full cursor-pointer shadow shadow-lg shadow-gray-500"
             >
-              <span className="text-foreground text-2xl font-bold pb-1">-</span>
+              <div className="flex items-center align-middle gap-4">
+                <span className="text-foreground text-2xl font-bold pb-1">
+                  -
+                </span>
+                <h4 className="text-foreground">Delete a client </h4>
+              </div>
             </Link>
-            <h2 className="">Delete a client </h2>
           </div>
         </div>
       )}
