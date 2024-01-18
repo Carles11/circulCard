@@ -81,7 +81,8 @@ function realTimeClients({ clients }: { clients: any }) {
           <h2>Hey, we´ve detected that you are an admin user!</h2>
           <h5>How would you like to proceed?</h5>
           <h6>
-            (No worries, only admins can see these options below the gray line)
+            (No worries, <u>only admins</u> can see the contents below the gray
+            line)
           </h6>
           <div className="mt-16 flex flex-col items-center gap-4">
             <Link
