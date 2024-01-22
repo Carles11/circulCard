@@ -16,25 +16,45 @@ function realTimeClients({ clients }: { clients: any }) {
   )
   const [userIsAdmin, setUserIsAdmin] = useState<boolean | undefined>(false)
 
-  useEffect(() => {
-    const channel = supabase
-      .channel('realtime clients')
-      .on(
-        'postgres_changes',
-        {
-          event: '*',
-          schema: 'public',
-          table: 'clients',
-        },
-        () => {
-          router.refresh()
-        }
-      )
-      .subscribe()
-    return () => {
-      supabase.removeChannel(channel)
-    }
-  }, [supabase, router, clients])
+  // NOT WORKING!!! useEffect to subscribe to any changes into de CLIENTS table.
+
+  // useEffect(() => {
+  //   const channel = supabase
+  //     .channel('realtime clients')
+  //     .on(
+  //       'postgres_changes',
+  //       {
+  //         event: '*',
+  //         schema: 'public',
+  //         table: 'clients',
+  //       },
+  //       () => {
+  //         router.refresh()
+  //       }
+  //     )
+  //     .subscribe()
+  //   return () => {
+  //     supabase.removeChannel(channel)
+  //   }
+  // }, [supabase, router])
+
+  // NOT WORKING!!! useEffect to subscribe to any changes into de CLIENTS table.
+
+  // useEffect(() => {
+  //   const channels = supabase
+  //     .channel('custom-all-channel')
+  //     .on(
+  //       'postgres_changes',
+  //       { event: '*', schema: 'public', table: 'clients' },
+  //       (payload) => {
+  //         console.log('Change received!', payload)
+  //       }
+  //     )
+  //     .subscribe()
+  //   return () => {
+  //     supabase.removeChannel(channels)
+  //   }
+  // }, [supabase, router])
 
   useEffect(() => {
     const checkUser = async () => {
@@ -98,30 +118,31 @@ function realTimeClients({ clients }: { clients: any }) {
           </h6>
           <div className="mt-16 flex flex-col items-center gap-4">
             <Link
-              key="fake-key-id"
               href="https://www.thecirculart.com"
               target="_blank"
               className="flex items-center justify-center w-72 px-4 bg-green-500 rounded-full cursor-pointer shadow shadow-lg shadow-gray-500"
             >
               <div className="flex items-center align-middle gap-4">
-                <span className="text-foreground text-2xl font-bold pb-1">
-                  +
-                </span>
                 <h4 className="text-foreground">Add a new client </h4>
+              </div>
+            </Link>
+            <Link
+              href="https://www.thecirculart.com"
+              target="_blank"
+              className="flex items-center justify-center w-72 px-4 bg-green-500 rounded-full cursor-pointer shadow shadow-lg shadow-gray-500"
+            >
+              <div className="flex items-center align-middle gap-4">
+                <h4 className="text-foreground">Update client </h4>
               </div>
             </Link>
 
             <Link
-              key="fake-key-id"
               href="https://www.thecirculart.com"
               target="_blank"
               className="flex items-center justify-center w-72 px-4 bg-green-500 rounded-full cursor-pointer shadow shadow-lg shadow-gray-500"
             >
               <div className="flex items-center align-middle gap-4">
-                <span className="text-foreground text-2xl font-bold pb-1">
-                  -
-                </span>
-                <h4 className="text-foreground">Delete a client </h4>
+                <h4 className="text-foreground">Delete client </h4>
               </div>
             </Link>
           </div>
