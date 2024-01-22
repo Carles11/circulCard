@@ -14,8 +14,7 @@ function realTimeClients({ clients }: { clients: any }) {
   const [currentUserEmail, setCurrentUserEmail] = useState<string | undefined>(
     ''
   )
-
-  const adminUsers = ['info@thecirculart.com']
+  const [userIsAdmin, setUserIsAdmin] = useState<boolean | undefined>(false)
 
   useEffect(() => {
     const channel = supabase
@@ -35,7 +34,7 @@ function realTimeClients({ clients }: { clients: any }) {
     return () => {
       supabase.removeChannel(channel)
     }
-  }, [supabase, router])
+  }, [supabase, router, clients])
 
   useEffect(() => {
     const checkUser = async () => {
@@ -51,6 +50,19 @@ function realTimeClients({ clients }: { clients: any }) {
     }
 
     checkUser()
+  }, [supabase, router])
+
+  useEffect(() => {
+    const userIsAdmin = async () => {
+      const { data: profiles, error } = await supabase
+        .from('profiles')
+        .select('is_admin')
+
+      const profileIsAdmin = profiles ? profiles[0].is_admin : false
+      setUserIsAdmin(profileIsAdmin)
+    }
+
+    userIsAdmin()
   }, [supabase, router])
 
   return (
@@ -75,7 +87,7 @@ function realTimeClients({ clients }: { clients: any }) {
         <p>No clients available</p>
       )}
 
-      {currentUserEmail && adminUsers.includes(currentUserEmail) && (
+      {currentUserEmail && userIsAdmin && (
         <div className="flex flex-col my-16 px-8">
           <hr className="w-full h-1 mx-auto my-4 bg-gray-400 border-0 rounded md:my-10 dark:bg-gray-700" />{' '}
           <h2>Hey, we´ve detected that you are an admin user!</h2>
