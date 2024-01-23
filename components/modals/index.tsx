@@ -15,8 +15,8 @@ const Modal = ({
   }
 
   return (
-    <div className="modal-overlay">
-      <div className="modal-wrapper">
+    <div className="modal-overlay ">
+      <div className="modal-wrapper relative">
         <div className="modal">
           <div className="modal-header">
             <a
@@ -27,8 +27,8 @@ const Modal = ({
               Cerrar
             </a>
           </div>
-          {title && <h1>{title}</h1>}
-          <div className="modal-body">{children}</div>
+          {title && <h1 className="text-gray-700">{title}</h1>}
+          <div className="modal-body ">{children}</div>
         </div>
       </div>
     </div>
