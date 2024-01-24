@@ -77,16 +77,16 @@ function realTimeClients({ clients }: { clients: any }) {
         console.log({ error })
         setErrorMessage(error)
       } else {
-        setSuccessMessage('Cliente eliminado con éxito')
+        setSuccessMessage('Cliente eliminado con éxito.')
       }
     }
 
     removeClient(id)
-    // CLEAR ANY MESSAGE OF SUCCESS OR ERROR ON SCREEN AFTER 3 secs
+    // CLEAR ANY MESSAGE OF SUCCESS OR ERROR ON SCREEN AFTER 5 secs
     setTimeout(() => {
       setErrorMessage(null)
       setSuccessMessage('')
-    }, 3000)
+    }, 5000)
   }
 
   return (

@@ -34,11 +34,13 @@ const Modal = ({
           </div>
           {title && <h2>{title}</h2>}
           <div className="modal-body ">{children}</div>
-          <p className="text-red-500">
-            {typeof screenMessage !== 'string'
-              ? screenMessage?.message
-              : screenMessage}
-          </p>
+
+          {typeof screenMessage !== 'string' ? (
+            <p className="text-red-500">{screenMessage?.message}</p>
+          ) : (
+            <p className="text-lightgreenBg">{screenMessage}</p>
+          )}
+
           {/* <div className="absolute bottom-4 right-8">
             <a
               href="#"
