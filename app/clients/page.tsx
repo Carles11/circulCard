@@ -65,14 +65,9 @@ export default function Clients() {
             table: 'clients',
           },
           (payload) => {
-            const eventType = payload.eventType
-            const newRecord = payload.new
-            const oldRecord = payload.old
-            console.log('EVENT-TYPE', eventType)
-            console.log('NEW-RECORD', newRecord)
-            console.log('OLD-RECORD', oldRecord)
-            console.log('FUCKIN-PAYLOAD', payload)
-            getClients()
+            if (payload) {
+              getClients()
+            }
           }
         )
         .subscribe()
