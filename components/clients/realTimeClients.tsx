@@ -1,5 +1,7 @@
 'use client'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
+import { createClient } from '@supabase/supabase-js'
+
 import { useRouter } from 'next/navigation'
 import { Key, useEffect, useState } from 'react'
 
@@ -16,6 +18,7 @@ import TrashIcon from '../icons/trashIcon'
 
 function realTimeClients({ clients }: { clients: any }) {
   const supabase = createClientComponentClient()
+
   const router = useRouter()
 
   const [currentUserEmail, setCurrentUserEmail] = useState<string | undefined>(
@@ -27,11 +30,10 @@ function realTimeClients({ clients }: { clients: any }) {
   const [errorMessage, setErrorMessage] = useState<PostgrestError | null>(null)
   const [successMessage, setSuccessMessage] = useState<string | undefined>('')
   const [confirmOpen, setConfirmOpen] = useState<boolean>(false)
-  // NOT WORKING!!! useEffect to subscribe to any changes into de CLIENTS table.
 
   // useEffect(() => {
-  //   const channel = supabase
-  //     .channel('realtime clients')
+  //   const channelA = supabase
+  //     .channel('clients-db-changes')
   //     .on(
   //       'postgres_changes',
   //       {
@@ -39,32 +41,17 @@ function realTimeClients({ clients }: { clients: any }) {
   //         schema: 'public',
   //         table: 'clients',
   //       },
-  //       () => {
-  //         router.refresh()
-  //       }
-  //     )
-  //     .subscribe()
-  //   return () => {
-  //     supabase.removeChannel(channel)
-  //   }
-  // }, [supabase, router])
-
-  // NOT WORKING!!! useEffect to subscribe to any changes into de CLIENTS table.
-
-  // useEffect(() => {
-  //   const channels = supabase
-  //     .channel('custom-all-channel')
-  //     .on(
-  //       'postgres_changes',
-  //       { event: '*', schema: 'public', table: 'clients' },
   //       (payload) => {
-  //         console.log('Change received!', payload)
+  //         const eventType = payload.eventType
+  //         const newRecord = payload.new
+  //         const oldRecord = payload.old
+  //         console.log('EVENT-TYPE', eventType)
+  //         console.log('NEW-RECORD', newRecord)
+  //         console.log('OLD-RECORD', oldRecord)
+  //         console.log('FUCKIN-PAYLOAD', payload)
   //       }
   //     )
   //     .subscribe()
-  //   return () => {
-  //     supabase.removeChannel(channels)
-  //   }
   // }, [supabase, router])
 
   useEffect(() => {
@@ -114,7 +101,6 @@ function realTimeClients({ clients }: { clients: any }) {
         setErrorMessage(error)
       } else {
         setSuccessMessage('Cliente eliminado con éxito')
-        router.refresh()
       }
     }
     // var shouldDelete = confirm(

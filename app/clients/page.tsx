@@ -54,9 +54,32 @@ export default function Clients() {
           setLoading(false)
         }
       }
+
+      const channelA = supabase
+        .channel('clients-db-changes')
+        .on(
+          'postgres_changes',
+          {
+            event: '*',
+            schema: 'public',
+            table: 'clients',
+          },
+          (payload) => {
+            const eventType = payload.eventType
+            const newRecord = payload.new
+            const oldRecord = payload.old
+            console.log('EVENT-TYPE', eventType)
+            console.log('NEW-RECORD', newRecord)
+            console.log('OLD-RECORD', oldRecord)
+            console.log('FUCKIN-PAYLOAD', payload)
+            getClients()
+          }
+        )
+        .subscribe()
+
       getClients()
     }
-  }, [supabase, currentUserEmail, setClients, setLoading, setError])
+  }, [supabase, router, currentUserEmail, setClients, setLoading, setError])
 
   if (loading) {
     return <Loader />
