@@ -31,29 +31,6 @@ function realTimeClients({ clients }: { clients: any }) {
   const [successMessage, setSuccessMessage] = useState<string | undefined>('')
   const [confirmOpen, setConfirmOpen] = useState<boolean>(false)
 
-  // useEffect(() => {
-  //   const channelA = supabase
-  //     .channel('clients-db-changes')
-  //     .on(
-  //       'postgres_changes',
-  //       {
-  //         event: '*',
-  //         schema: 'public',
-  //         table: 'clients',
-  //       },
-  //       (payload) => {
-  //         const eventType = payload.eventType
-  //         const newRecord = payload.new
-  //         const oldRecord = payload.old
-  //         console.log('EVENT-TYPE', eventType)
-  //         console.log('NEW-RECORD', newRecord)
-  //         console.log('OLD-RECORD', oldRecord)
-  //         console.log('FUCKIN-PAYLOAD', payload)
-  //       }
-  //     )
-  //     .subscribe()
-  // }, [supabase, router])
-
   useEffect(() => {
     const checkUser = async () => {
       const {
@@ -103,14 +80,13 @@ function realTimeClients({ clients }: { clients: any }) {
         setSuccessMessage('Cliente eliminado con éxito')
       }
     }
-    // var shouldDelete = confirm(
-    //   `Estás seguro de quere eliminar el cliente ${name.toUpperCase()}? Esto es irreversible.`
-    // )
-    if (confirmOpen) {
-      removeClient(id)
-    } else {
-      return
-    }
+
+    removeClient(id)
+    // CLEAR ANY MESSAGE OF SUCCESS OR ERROR ON SCREEN AFTER 3 secs
+    setTimeout(() => {
+      setErrorMessage(null)
+      setSuccessMessage('')
+    }, 3000)
   }
 
   return (
