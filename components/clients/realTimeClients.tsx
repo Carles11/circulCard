@@ -1,11 +1,18 @@
 'use client'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
-import Modal from 'components/modals'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
+import { PostgrestError } from '@supabase/supabase-js'
+import Modal from 'components/modals'
 import Link from 'next/link'
 import ClientItem from 'components/clients/clientItem'
+import ConfirmDialog from '../confirmDialog/confirmDialog'
+import IconButton from '../icons/iconButton'
+import TrashIcon from '../icons/trashIcon'
+
+// import FontAwesomeCustomIcon from 'components/icons/fontAwesomeIcon'
+// import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
 
 function realTimeClients({ clients }: { clients: any }) {
   const supabase = createClientComponentClient()
@@ -17,7 +24,9 @@ function realTimeClients({ clients }: { clients: any }) {
   const [userIsAdmin, setUserIsAdmin] = useState<boolean | undefined>(false)
   const [userName, setUserName] = useState<string | undefined>('')
   const [showModal, setShowModal] = useState<boolean>(false)
-
+  const [errorMessage, setErrorMessage] = useState<PostgrestError | null>(null)
+  const [successMessage, setSuccessMessage] = useState<string | undefined>('')
+  const [confirmOpen, setConfirmOpen] = useState<boolean>(false)
   // NOT WORKING!!! useEffect to subscribe to any changes into de CLIENTS table.
 
   // useEffect(() => {
@@ -93,6 +102,31 @@ function realTimeClients({ clients }: { clients: any }) {
     setShowModal(!showModal)
   }
 
+  const handleDeleteClient = (id: string, name: string) => {
+    const removeClient = async (clientId: string) => {
+      const { error } = await supabase
+        .from('clients')
+        .delete()
+        .eq('id', clientId)
+
+      if (error) {
+        console.log({ error })
+        setErrorMessage(error)
+      } else {
+        setSuccessMessage('Cliente eliminado con éxito')
+        router.refresh()
+      }
+    }
+    // var shouldDelete = confirm(
+    //   `Estás seguro de quere eliminar el cliente ${name.toUpperCase()}? Esto es irreversible.`
+    // )
+    if (confirmOpen) {
+      removeClient(id)
+    } else {
+      return
+    }
+  }
+
   return (
     <div className="flex flex-col items-center mt-4 md:mt-16">
       <h3>Selecciona tu entidad</h3>
@@ -118,11 +152,10 @@ function realTimeClients({ clients }: { clients: any }) {
       {currentUserEmail && userName && userIsAdmin && (
         <div className="flex flex-col my-16 px-8">
           <hr className="w-full h-1 mx-auto my-4 bg-gray-400 border-0 rounded md:my-10 dark:bg-gray-700" />{' '}
-          <h2>Hey, Welcome back {userName}!</h2>
-          <h5>How would you like to proceed?</h5>
+          <h2>{userName}, esta es tu sección de administrador.</h2>
           <h6>
-            (No worries, <u>only admins</u> can see the contents below the gray
-            line)
+            (No te preocupes, <u>solo administradores</u> pueden ver los
+            contenidos más allá de la línea gris.)
           </h6>
           <div className="mt-16 flex flex-col items-center gap-4">
             <Link
@@ -131,7 +164,7 @@ function realTimeClients({ clients }: { clients: any }) {
               className="flex items-center justify-center w-72 px-4 bg-green-500 rounded-full cursor-pointer shadow shadow-lg shadow-gray-500"
             >
               <div className="flex items-center align-middle gap-4">
-                <h4 className="text-foreground">Add a new client </h4>
+                <h4 className="text-foreground">Añade un cliente</h4>
               </div>
             </Link>
             <Link
@@ -140,35 +173,57 @@ function realTimeClients({ clients }: { clients: any }) {
               className="flex items-center justify-center w-72 px-4 bg-green-500 rounded-full cursor-pointer shadow shadow-lg shadow-gray-500"
             >
               <div className="flex items-center align-middle gap-4">
-                <h4 className="text-foreground">Update client </h4>
+                <h4 className="text-foreground">Actualiza un cliente</h4>
               </div>
             </Link>
 
             <div className="flex items-center justify-center w-72 px-4 bg-green-500 rounded-full cursor-pointer shadow shadow-lg shadow-gray-500">
               <button onClick={() => handleModalView()}>
-                <h4 className="text-foreground">Delete client </h4>
+                <h4 className="text-foreground">Elimina un cliente </h4>
               </button>
             </div>
             {showModal && (
-              <Modal onClose={handleModalView} title={'Eliminar cliente'}>
-                <div className=" flex flex-col p-2 text-gray-700">
-                  <h4>
-                    Pulsa sobre un cliente para eliminarlo de la lista de
-                    clientes.
-                  </h4>
+              <Modal
+                onClose={handleModalView}
+                title={'Eliminar cliente'}
+                screenMessage={errorMessage || successMessage}
+              >
+                <div className="flex flex-col p-4 text-foreground">
+                  <h4>Pulsa sobre un cliente para eliminarlo de la lista.</h4>
                   <div className="flex flex-col items-center gap-2 mt-16">
                     {clients.length > 0 &&
                       clients.map((item: any) => (
-                        <div className="flex justify-center w-48 px-4 bg-green-500 rounded-full cursor-pointer shadow shadow-lg shadow-gray-500">
-                          <h6 className="text-foreground" key={item.client_id}>
+                        <div className="w-full flex items-baseline justify-between border border-gray-600 rounded-sm p-2">
+                          <h5 className="text-foreground" key={item.id}>
                             {item.client_name}
-                          </h6>
+                          </h5>
+                          <div>
+                            <IconButton
+                              aria-label="delete"
+                              onClick={() => setConfirmOpen(true)}
+                            >
+                              {/* <FontAwesomeCustomIcon icon={faTrashCan} /> */}
+                              <TrashIcon />
+                            </IconButton>
+                            <ConfirmDialog
+                              title={`Eliminar ${item.client_name.toUpperCase()}?`}
+                              open={confirmOpen}
+                              onClose={() => setConfirmOpen(false)}
+                              onConfirm={() =>
+                                handleDeleteClient(item.id, item.client_name)
+                              }
+                            >
+                              <h6 className="text-grey-400">
+                                Esto es irreversible.
+                              </h6>
+                            </ConfirmDialog>
+                          </div>
                         </div>
                       ))}
                   </div>
-                  <button className="absolute bottom-8 right-8">
+                  {/* <button className="absolute bottom-8 right-8">
                     Eliminar cliente
-                  </button>
+                  </button> */}
                 </div>
               </Modal>
             )}

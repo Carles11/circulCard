@@ -444,9 +444,10 @@ a:hover.link-with-style {
 }
 
 .modal {
-  background: white;
+  background: var(--background);
   height: 100%;
   width: 100%;
+  border: 1px solid #f9fafb;
   border-radius: 15px;
   padding: 15px;
 }

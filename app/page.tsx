@@ -4,6 +4,10 @@ import { cookies } from 'next/headers'
 import MainPageTopContent from 'components/mainPage/mainPageTopContent'
 import MainPageBottomContent from 'components/mainPage/mainPageBottomContent'
 
+// import { config } from '@fortawesome/fontawesome-svg-core'
+// import '@fortawesome/fontawesome-svg-core/styles.css'
+// config.autoAddCss = false
+
 export const dynamic = 'force-dynamic'
 
 export default async function Index() {
