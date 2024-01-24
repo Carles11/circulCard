@@ -44,7 +44,7 @@ const AdminSection = ({
               setModalType('Añadir cliente')
             }}
           >
-            <h4 className="text-foreground">Añade un cliente </h4>
+            <h4 className="text-foreground">Añade clientes </h4>
           </button>
         </div>
         <div className="flex items-center justify-center w-72 px-4 bg-green-500 rounded-full cursor-pointer shadow shadow-lg shadow-gray-500">
@@ -54,17 +54,17 @@ const AdminSection = ({
               setModalType('Actualizar cliente')
             }}
           >
-            <h4 className="text-foreground">Actualiza un cliente </h4>
+            <h4 className="text-foreground">Actualiza clientes </h4>
           </button>
         </div>
-        <div className="flex items-center justify-center w-72 px-4 bg-green-500 rounded-full cursor-pointer shadow shadow-lg shadow-gray-500">
+        <div className="flex items-center justify-center w-72 px-4 bg-green-500 rounded-full cursor-pointer shadow shadow-lg shadow-gray-500 mb-16">
           <button
             onClick={() => {
               handleModalView()
               setModalType('Eliminar cliente')
             }}
           >
-            <h4 className="text-foreground">Elimina un cliente </h4>
+            <h4 className="text-foreground">Elimina clientes </h4>
           </button>
         </div>
         {showModal && (

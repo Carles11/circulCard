@@ -36,22 +36,40 @@ const UpdateClientForm = ({
 
   return (
     <>
-      <div className="w-full">
+      <div className="mb-4">
+        {/* Label for the Name input */}
+        <label
+          htmlFor="clientName"
+          className="block text-sm font-medium text-gray-400"
+        >
+          Nombre del cliente
+        </label>
         <input
+          id="clientName"
           type="text"
           value={clientName}
-          className="rounded-ms w-full p-2"
+          className="rounded-ms w-full p-2 border border-gray-300 focus:outline-none focus:ring focus:border-blue-300"
           onChange={handleNameChange}
         />
       </div>
-      <div className="w-full mt-2">
+
+      <div className="mb-4">
+        {/* Label for the Email input */}
+        <label
+          htmlFor="clientEmail"
+          className="block text-sm font-medium text-gray-400"
+        >
+          Correo electrónico del cliente
+        </label>
         <input
+          id="clientEmail"
           type="text"
           value={clientEmail}
-          className="rounded-ms w-full p-2"
+          className="rounded-ms w-full p-2 border border-gray-300 focus:outline-none focus:ring focus:border-blue-300"
           onChange={handleEmailChange}
         />
       </div>
+
       <button
         className="mt-4 border border-gray-700 p-2 rounded-xl bg-btn-background mr-2"
         onClick={handleUpdate}
