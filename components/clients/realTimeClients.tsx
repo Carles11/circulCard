@@ -109,6 +109,10 @@ function realTimeClients({ clients }: { clients: any }) {
     }, 5000)
   }
 
+  const handleCreateClient = (clientName: string, clientEmail: string) => {
+    console.log('CREATING CLIENT', clientName, clientEmail)
+  }
+
   return (
     <div className="flex flex-col items-center mt-4 md:mt-16">
       <h3>Selecciona tu entidad</h3>
@@ -136,6 +140,7 @@ function realTimeClients({ clients }: { clients: any }) {
           <AdminSection
             userName={userName}
             handleModalView={handleModalView}
+            handleCreateClient={handleCreateClient}
             handleUpdateClient={handleUpdateClient}
             handleDeleteClient={handleDeleteClient}
             screenMessage={errorMessage || successMessage}

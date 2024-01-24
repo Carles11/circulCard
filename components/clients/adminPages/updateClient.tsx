@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import EditIcon from 'components/icons/editIcon'
 import UpdateClientForm from './updateClientForm'
-import Modal from 'components/modals'
 
 const UpdateClient = ({
   clients,

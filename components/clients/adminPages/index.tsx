@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { PostgrestError } from '@supabase/supabase-js'
 
 import Modal from 'components/modals'
+import AddClient from './addClient'
 import UpdateClient from './updateClient'
 import DeleteClient from './deleteClient'
 
@@ -12,6 +13,7 @@ import IconButton from 'components/icons/iconButton'
 const AdminSection = ({
   userName,
   handleModalView,
+  handleCreateClient,
   handleUpdateClient,
   handleDeleteClient,
   showModal,
@@ -20,6 +22,7 @@ const AdminSection = ({
 }: {
   userName: string
   handleModalView: Function
+  handleCreateClient: Function
   handleUpdateClient: Function
   handleDeleteClient: Function
   showModal: boolean
@@ -73,6 +76,12 @@ const AdminSection = ({
             title={modalType}
             screenMessage={screenMessage}
           >
+            {modalType === 'Añadir cliente' && (
+              <AddClient
+                onCreateClient={handleCreateClient}
+                onClose={handleModalView}
+              />
+            )}
             {modalType === 'Actualizar cliente' && (
               <UpdateClient
                 clients={clients}
