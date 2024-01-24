@@ -1,5 +1,6 @@
 import { PostgrestError } from '@supabase/supabase-js'
 import React, { ReactNode } from 'react'
+import { ScrollToTop } from 'utils/autoScrollings'
 
 const Modal = ({
   onClose,
@@ -19,6 +20,7 @@ const Modal = ({
 
   return (
     <div className="modal-overlay">
+      <ScrollToTop />
       <div className="modal-wrapper relative">
         <div className="modal">
           <div className="modal-header absolute top-8 right-8">
@@ -37,7 +39,7 @@ const Modal = ({
               ? screenMessage?.message
               : screenMessage}
           </p>
-          <div className="modal-header absolute bottom-8 right-8">
+          {/* <div className="absolute bottom-4 right-8">
             <a
               href="#"
               onClick={handleCloseClick}
@@ -45,7 +47,7 @@ const Modal = ({
             >
               Volver
             </a>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

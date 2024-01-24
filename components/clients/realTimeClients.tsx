@@ -1,7 +1,7 @@
 'use client'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { Key, useEffect, useState } from 'react'
 
 import { PostgrestError } from '@supabase/supabase-js'
 import Modal from 'components/modals'
@@ -188,38 +188,43 @@ function realTimeClients({ clients }: { clients: any }) {
                 title={'Eliminar cliente'}
                 screenMessage={errorMessage || successMessage}
               >
-                <div className="flex flex-col p-4 text-foreground">
+                <div className="flex flex-col p-4 text-foreground  ">
                   <h4>Pulsa sobre un cliente para eliminarlo de la lista.</h4>
                   <div className="flex flex-col items-center gap-2 mt-16">
                     {clients.length > 0 &&
-                      clients.map((item: any) => (
-                        <div className="w-full flex items-baseline justify-between border border-gray-600 rounded-sm p-2">
-                          <h5 className="text-foreground" key={item.id}>
-                            {item.client_name}
-                          </h5>
-                          <div>
-                            <IconButton
-                              aria-label="delete"
-                              onClick={() => setConfirmOpen(true)}
-                            >
-                              {/* <FontAwesomeCustomIcon icon={faTrashCan} /> */}
-                              <TrashIcon />
-                            </IconButton>
-                            <ConfirmDialog
-                              title={`Eliminar ${item.client_name.toUpperCase()}?`}
-                              open={confirmOpen}
-                              onClose={() => setConfirmOpen(false)}
-                              onConfirm={() =>
-                                handleDeleteClient(item.id, item.client_name)
-                              }
-                            >
-                              <h6 className="text-grey-400">
-                                Esto es irreversible.
-                              </h6>
-                            </ConfirmDialog>
+                      clients.map(
+                        (item: any, index: Key | null | undefined) => (
+                          <div
+                            key={index}
+                            className="w-full flex items-baseline justify-between border border-gray-600 rounded-sm p-2"
+                          >
+                            <h5 className="text-foreground" key={item.id}>
+                              {item.client_name}
+                            </h5>
+                            <div>
+                              <IconButton
+                                aria-label="delete"
+                                onClick={() => setConfirmOpen(true)}
+                              >
+                                {/* <FontAwesomeCustomIcon icon={faTrashCan} /> */}
+                                <TrashIcon />
+                              </IconButton>
+                              <ConfirmDialog
+                                title={`Eliminar ${item.client_name.toUpperCase()}?`}
+                                open={confirmOpen}
+                                onClose={() => setConfirmOpen(false)}
+                                onConfirm={() =>
+                                  handleDeleteClient(item.id, item.client_name)
+                                }
+                              >
+                                <h6 className="text-grey-400">
+                                  Esto es irreversible.
+                                </h6>
+                              </ConfirmDialog>
+                            </div>
                           </div>
-                        </div>
-                      ))}
+                        )
+                      )}
                   </div>
                   {/* <button className="absolute bottom-8 right-8">
                     Eliminar cliente

@@ -440,7 +440,7 @@ a:hover.link-with-style {
 
 .modal-wrapper {
   width: 500px;
-  height: 600px;
+  height: fit-content;
 }
 
 .modal {
@@ -457,7 +457,7 @@ a:hover.link-with-style {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
