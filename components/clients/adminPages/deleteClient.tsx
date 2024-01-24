@@ -1,4 +1,4 @@
-import React, { Key, SetStateAction } from 'react'
+import React, { Key } from 'react'
 import TrashIcon from 'components/icons/trashIcon'
 
 const DeleteClient = ({
@@ -18,7 +18,7 @@ const DeleteClient = ({
 }) => {
   return (
     <div className="flex flex-col p-4 text-foreground  ">
-      <h4>Pulsa sobre un cliente para eliminarlo de la lista.</h4>
+      <h4>Pulsa sobre el icono para eliminarlo de la lista.</h4>
       <div className="flex flex-col items-center gap-2 mt-16">
         {clients?.length > 0 &&
           clients?.map((item: any, index: Key | null | undefined) => (

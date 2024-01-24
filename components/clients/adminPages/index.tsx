@@ -1,4 +1,4 @@
-import { Key, useState } from 'react'
+import { useState } from 'react'
 
 import { PostgrestError } from '@supabase/supabase-js'
 
@@ -7,7 +7,6 @@ import DeleteClient from './deleteClient'
 
 import ConfirmDialog from 'components/confirmDialog/confirmDialog'
 import IconButton from 'components/icons/iconButton'
-import TrashIcon from 'components/icons/trashIcon'
 
 const AdminSection = ({
   userName,
@@ -72,14 +71,16 @@ const AdminSection = ({
             title={modalType}
             screenMessage={screenMessage}
           >
-            <DeleteClient
-              clients={clients}
-              IconButton={IconButton}
-              ConfirmDialog={ConfirmDialog}
-              setConfirmOpen={setConfirmOpen}
-              confirmOpen={confirmOpen}
-              handleDeleteClient={handleDeleteClient}
-            />
+            {modalType === 'Eliminar cliente' && (
+              <DeleteClient
+                clients={clients}
+                IconButton={IconButton}
+                ConfirmDialog={ConfirmDialog}
+                setConfirmOpen={setConfirmOpen}
+                confirmOpen={confirmOpen}
+                handleDeleteClient={handleDeleteClient}
+              />
+            )}
           </Modal>
         )}
       </div>
