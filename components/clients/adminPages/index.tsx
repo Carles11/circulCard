@@ -1,4 +1,4 @@
-import { Key, useEffect, useState } from 'react'
+import { Key, useState } from 'react'
 
 import { PostgrestError } from '@supabase/supabase-js'
 

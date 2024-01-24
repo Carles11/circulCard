@@ -2,17 +2,13 @@
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 
 import { useRouter } from 'next/navigation'
-import { Key, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { PostgrestError } from '@supabase/supabase-js'
 import AdminSection from './adminPages'
 
 import ClientItem from 'components/clients/clientItem'
-import Modal from 'components/modals'
 import Link from 'next/link'
-import ConfirmDialog from '../confirmDialog/confirmDialog'
-import IconButton from '../icons/iconButton'
-import TrashIcon from '../icons/trashIcon'
 
 // import FontAwesomeCustomIcon from 'components/icons/fontAwesomeIcon'
 // import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
