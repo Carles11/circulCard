@@ -12,6 +12,7 @@ import IconButton from 'components/icons/iconButton'
 const AdminSection = ({
   userName,
   handleModalView,
+  handleUpdateClient,
   handleDeleteClient,
   showModal,
   screenMessage,
@@ -19,6 +20,7 @@ const AdminSection = ({
 }: {
   userName: string
   handleModalView: Function
+  handleUpdateClient: Function
   handleDeleteClient: Function
   showModal: boolean
   screenMessage: PostgrestError | null | string | undefined
@@ -75,8 +77,7 @@ const AdminSection = ({
               <UpdateClient
                 clients={clients}
                 IconButton={IconButton}
-                ConfirmDialog={ConfirmDialog}
-                handleDeleteClient={handleDeleteClient}
+                handleUpdateClient={handleUpdateClient}
               />
             )}
 

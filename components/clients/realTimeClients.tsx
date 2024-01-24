@@ -86,6 +86,29 @@ function realTimeClients({ clients }: { clients: any }) {
     }, 5000)
   }
 
+  const handleUpdateClient = (id: string, name: string, email: string) => {
+    const updateClient = async (clientId: string) => {
+      const { data, error } = await supabase
+        .from('clients')
+        .update({ client_name: name, client_email: email })
+        .eq('id', clientId)
+        .select()
+      if (error) {
+        console.log({ error })
+        setErrorMessage(error)
+      } else {
+        setSuccessMessage('Cliente actualizado con éxito.')
+      }
+    }
+    updateClient(id)
+    console.log('updating CLIENT', id, name, email)
+    // CLEAR ANY MESSAGE OF SUCCESS OR ERROR ON SCREEN AFTER 5 secs
+    setTimeout(() => {
+      setErrorMessage(null)
+      setSuccessMessage('')
+    }, 5000)
+  }
+
   return (
     <div className="flex flex-col items-center mt-4 md:mt-16">
       <h3>Selecciona tu entidad</h3>
@@ -113,6 +136,7 @@ function realTimeClients({ clients }: { clients: any }) {
           <AdminSection
             userName={userName}
             handleModalView={handleModalView}
+            handleUpdateClient={handleUpdateClient}
             handleDeleteClient={handleDeleteClient}
             screenMessage={errorMessage || successMessage}
             clients={clients}

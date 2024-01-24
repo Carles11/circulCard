@@ -40,7 +40,7 @@ export default function Clients() {
         try {
           const { data, error } = await supabase
             .from('clients')
-            .select('id, client_name, profiles(user_id, email)')
+            .select('id, client_name, client_email, profiles(user_id, email)')
             .filter('profiles.email', 'eq', currentUserEmail)
 
           if (error) {
