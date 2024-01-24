@@ -101,7 +101,6 @@ function realTimeClients({ clients }: { clients: any }) {
       }
     }
     updateClient(id)
-    console.log('updating CLIENT', id, name, email)
     // CLEAR ANY MESSAGE OF SUCCESS OR ERROR ON SCREEN AFTER 5 secs
     setTimeout(() => {
       setErrorMessage(null)
@@ -109,8 +108,26 @@ function realTimeClients({ clients }: { clients: any }) {
     }, 5000)
   }
 
-  const handleCreateClient = (clientName: string, clientEmail: string) => {
-    console.log('CREATING CLIENT', clientName, clientEmail)
+  const handleCreateClient = (newName: string, newEmail: string) => {
+    const createClient = async (clientName: string, clientEmail: string) => {
+      const { data, error } = await supabase
+        .from('clients')
+        .insert([{ client_name: clientName, client_email: clientEmail }])
+        .select()
+
+      if (error) {
+        console.log({ error })
+        setErrorMessage(error)
+      } else {
+        setSuccessMessage(`Nuevo client ${clientName} creado con éxito`)
+      }
+    }
+    createClient(newName, newEmail)
+    // CLEAR ANY MESSAGE OF SUCCESS OR ERROR ON SCREEN AFTER 5 secs
+    setTimeout(() => {
+      setErrorMessage(null)
+      setSuccessMessage('')
+    }, 5000)
   }
 
   return (
