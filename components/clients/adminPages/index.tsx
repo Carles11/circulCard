@@ -24,7 +24,6 @@ const AdminSection = ({
   screenMessage: PostgrestError | null | string | undefined
   clients: any
 }) => {
-  const [confirmOpen, setConfirmOpen] = useState<boolean>(false)
   const [modalType, setModalType] = useState<string>('')
 
   return (
@@ -77,8 +76,6 @@ const AdminSection = ({
                 clients={clients}
                 IconButton={IconButton}
                 ConfirmDialog={ConfirmDialog}
-                setConfirmOpen={setConfirmOpen}
-                confirmOpen={confirmOpen}
                 handleDeleteClient={handleDeleteClient}
               />
             )}
@@ -88,8 +85,6 @@ const AdminSection = ({
                 clients={clients}
                 IconButton={IconButton}
                 ConfirmDialog={ConfirmDialog}
-                setConfirmOpen={setConfirmOpen}
-                confirmOpen={confirmOpen}
                 handleDeleteClient={handleDeleteClient}
               />
             )}
