@@ -2,11 +2,11 @@ import './globals.css'
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
 import type { Metadata } from 'next'
-// import Head from 'next/head'
 
 import MainHeader from 'components/headers/headerMain'
 import AuthHeader from 'components/headers/headerAuth'
 import { ThemeProvider } from './theme-provider'
+import Context from 'context/context'
 import { ScrollToTop } from 'utils/autoScrollings'
 
 export const metadata: Metadata = {
@@ -40,14 +40,16 @@ export default async function RootLayout({
       <ScrollToTop />
       <body className="grid grid-cols-1 divide-y-0 dark:divide-y-2 divide-neutral-700 dark:divide-slate-600">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-          <header className="w-full p-8">
-            <nav className="h-auto">
-              {user ? <MainHeader email={user.email} /> : <AuthHeader />}
-            </nav>
-          </header>
-          <main className="w-full min-h-screen flex flex-col items-center">
-            {children}
-          </main>
+          <Context>
+            <header className="w-full p-8">
+              <nav className="h-auto">
+                {user ? <MainHeader email={user.email} /> : <AuthHeader />}
+              </nav>
+            </header>
+            <main className="w-full min-h-screen flex flex-col items-center">
+              {children}
+            </main>
+          </Context>
         </ThemeProvider>
       </body>
     </html>

@@ -3,8 +3,9 @@ import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
-
 import { PostgrestError } from '@supabase/supabase-js'
+
+import { CheckIfUserIsAdmin } from 'utils/supabase.service'
 import AdminSection from 'components/adminPages'
 
 import ClientItem from 'components/clients/clientItem'
@@ -26,7 +27,6 @@ function realTimeClients({ clients }: { clients: any }) {
   const [showModal, setShowModal] = useState<boolean>(false)
   const [errorMessage, setErrorMessage] = useState<PostgrestError | null>(null)
   const [successMessage, setSuccessMessage] = useState<string | undefined>('')
-  const [confirmOpen, setConfirmOpen] = useState<boolean>(false)
 
   useEffect(() => {
     const checkUser = async () => {

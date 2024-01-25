@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation'
 import { urlIsHome } from 'utils/utils.service'
+import { CheckIfUserIsAdmin } from 'utils/supabase.service'
 
 import { ThemeSwitcher } from 'components/theme-switcher/themeSwitcher'
 import { AdminSwitcher } from 'components/adminPages/adminSwitcher'
@@ -11,6 +12,8 @@ import HeaderBulbIcon from './headerBulbIcon'
 
 function mainHeader({ email }: { email: string | undefined }) {
   const router = useRouter()
+  const adminStatus = CheckIfUserIsAdmin()
+  const userIsAdmin = adminStatus.userIsAdmin
 
   return (
     <div className="flex justify-between">
@@ -51,8 +54,8 @@ function mainHeader({ email }: { email: string | undefined }) {
           <ThemeSwitcher />
         </div>
         <div className="flex items-end">
-          <LogoutButton /> |{''}
-          <AdminSwitcher />
+          <LogoutButton />
+          {userIsAdmin && <AdminSwitcher />}
         </div>
       </div>
     </div>

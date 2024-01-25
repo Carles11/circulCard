@@ -1,22 +1,23 @@
-'use client'
-import { useState } from 'react'
+import { useContext } from 'react'
 import ToolTip from 'components/toolTip'
 import Image from 'next/image'
+import { AdminUserContext } from 'context/context'
+
 import AdminON from 'assets/images/icons/icon-admin-on.png'
 import AdminOFFblack from 'assets/images/icons/icon-admin-off.png'
 import AdminOFFwhite from 'assets/images/icons/icon-admin-off_white.png'
 
 export const AdminSwitcher = () => {
-  const [showAdminSection, setShowAdminSection] = useState(false)
+  const { showAdminSection, setShowAdminSection } = useContext(AdminUserContext)
 
-  const toggleDarkMode = () => {
-    setShowAdminSection(!showAdminSection)
+  const toggleAdminIcon = () => {
+    setShowAdminSection((prevState) => !prevState) // Use functional update to ensure correct state updates
   }
 
   return (
     <div className="relative ml-2">
       <button
-        onClick={toggleDarkMode}
+        onClick={toggleAdminIcon}
         className="flex items-center focus:outline-none"
       >
         <ToolTip
