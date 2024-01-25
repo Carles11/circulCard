@@ -15,7 +15,7 @@ export const AdminSwitcher = () => {
   }
 
   return (
-    <div className="relative ml-2">
+    <div className="relative">
       <button
         onClick={toggleAdminIcon}
         className="flex items-center focus:outline-none"
