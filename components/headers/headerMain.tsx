@@ -3,8 +3,10 @@
 import { useRouter } from 'next/navigation'
 import { urlIsHome } from 'utils/utils.service'
 
-import { ThemeSwitcher } from 'components/themeSwitcher'
-import LogoutButton from 'components/LogoutButton'
+import { ThemeSwitcher } from 'components/theme-switcher/themeSwitcher'
+import { AdminSwitcher } from 'components/adminPages/adminSwitcher'
+
+import LogoutButton from 'components/buttons/LogoutButton'
 import HeaderBulbIcon from './headerBulbIcon'
 
 function mainHeader({ email }: { email: string | undefined }) {
@@ -49,7 +51,8 @@ function mainHeader({ email }: { email: string | undefined }) {
           <ThemeSwitcher />
         </div>
         <div className="flex items-end">
-          <LogoutButton />
+          <LogoutButton /> |{''}
+          <AdminSwitcher />
         </div>
       </div>
     </div>

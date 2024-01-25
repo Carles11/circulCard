@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 import { PostgrestError } from '@supabase/supabase-js'
-import AdminSection from './adminPages'
+import AdminSection from 'components/adminPages'
 
 import ClientItem from 'components/clients/clientItem'
 import Link from 'next/link'

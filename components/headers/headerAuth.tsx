@@ -3,9 +3,7 @@
 import { useRouter } from 'next/navigation'
 import { urlIsHome } from 'utils/utils.service'
 
-import Link from 'next/link'
-
-import { ThemeSwitcher } from 'components/themeSwitcher'
+import { ThemeSwitcher } from 'components/theme-switcher/themeSwitcher'
 import HeaderBulbIcon from './headerBulbIcon'
 
 function authHeader() {
