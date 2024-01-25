@@ -1,6 +1,6 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
+import { useRouter, usePathname } from 'next/navigation'
 import { urlIsHome } from 'utils/utils.service'
 import { CheckIfUserIsAdmin } from 'utils/supabase.service'
 
@@ -12,8 +12,15 @@ import HeaderBulbIcon from './headerBulbIcon'
 
 function mainHeader({ email }: { email: string | undefined }) {
   const router = useRouter()
+  const pathname = usePathname()
+
   const adminStatus = CheckIfUserIsAdmin()
   const userIsAdmin = adminStatus.userIsAdmin
+  const isClientsProductsOrMaterials = [
+    '/clients',
+    '/products',
+    '/materials',
+  ].includes(pathname)
 
   return (
     <div className="flex justify-between">
@@ -55,7 +62,7 @@ function mainHeader({ email }: { email: string | undefined }) {
         </div>
         <div className="flex items-end">
           <LogoutButton />
-          {userIsAdmin && <AdminSwitcher />}
+          {userIsAdmin && isClientsProductsOrMaterials && <AdminSwitcher />}
         </div>
       </div>
     </div>
