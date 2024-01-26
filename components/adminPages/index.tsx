@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { useContext } from 'react'
 import { AdminUserContext } from 'context/context'
+import IconButton from 'components/icons/iconButton'
+import EditIcon from 'components/icons/editIcon'
 
 import { PostgrestError } from '@supabase/supabase-js'
 
@@ -9,6 +11,8 @@ import AdminTitles from './adminTitles'
 import AdminClients from './adminClients'
 
 import AddProduct from './adminProducts/addProduct'
+import UpdateProduct from './adminProducts/updateProduct'
+import DeleteProduct from './adminProducts/deleteProduct'
 
 import ConfirmDialog from 'components/confirmDialog/confirmDialog'
 
@@ -19,8 +23,8 @@ const AdminSection = ({
   handleUpdateClient,
   handleDeleteClient,
   handleCreateProduct,
-  // handleUpdateProduct,
-  // handleDeleteProduct,
+  handleUpdateProduct,
+  handleDeleteProduct,
   showModal,
   screenMessage,
   clients,
@@ -33,8 +37,8 @@ const AdminSection = ({
   handleUpdateClient: Function
   handleDeleteClient: Function
   handleCreateProduct: Function
-  // handleUpdateProduct: Function
-  // handleDeleteProduct: Function
+  handleUpdateProduct: Function
+  handleDeleteProduct: Function
   showModal: boolean
   screenMessage: PostgrestError | null | string | undefined
   clients?: any
@@ -102,10 +106,11 @@ const AdminSection = ({
                     onClose={handleModalView}
                   />
                 )}
-                {/*  {products && modalType === 'Actualizar productos' && (
+                {products && modalType === 'Actualizar productos' && (
                   <UpdateProduct
                     products={products}
                     IconButton={IconButton}
+                    EditIcon={EditIcon}
                     handleUpdateProduct={handleUpdateProduct}
                   />
                 )}
@@ -117,7 +122,7 @@ const AdminSection = ({
                     ConfirmDialog={ConfirmDialog}
                     handleDeleteProduct={handleDeleteProduct}
                   />
-                )} */}
+                )}
               </Modal>
             )}
           </div>

@@ -116,6 +116,38 @@ export default function Clients() {
         setLoading(false)
       }
     }
+
+    // LISTEN TO CHANGES IN DB REALTIME
+    const channelUPDATE = supabase
+      .channel('products-db-updates')
+      .on(
+        'postgres_changes',
+        { event: 'UPDATE', schema: 'public', table: 'products' },
+        (payload) => {
+          if (payload) {
+            getProducts()
+          } else {
+            console.log('NO PAYLOAD AVAILABLE')
+          }
+        }
+      )
+      .subscribe()
+
+    const channelDELETE = supabase
+      .channel('products-db-deletes')
+      .on(
+        'postgres_changes',
+        { event: 'DELETE', schema: 'public', table: 'products' },
+        (payload) => {
+          if (payload) {
+            getProducts()
+          } else {
+            console.log('NO PAYLOAD AVAILABLE')
+          }
+        }
+      )
+      .subscribe()
+
     getProducts()
   }, [])
 
@@ -221,6 +253,60 @@ export default function Clients() {
     addProduct(productName)
   }
 
+  const handleUpdateProduct = (updateId: string, updatedName: string) => {
+    console.log({ updateId, updatedName })
+    const updateProduct = async (prodId: string, prodName: string) => {
+      try {
+        const { error } = await supabase
+          .from('products')
+          .update({ product_name: prodName })
+          .eq('id', prodId)
+          .select()
+
+        if (error) {
+          console.log({ error })
+          setErrorMessage(error)
+        } else {
+          setSuccessMessage('Producto actualizado con éxito.')
+        }
+      } catch (error) {
+        console.error('Error: ', error)
+        setErrorMessage(error as PostgrestError | null)
+      }
+
+      // CLEAR ANY MESSAGES OF SUCCESS OR ERROR ON SCREEN AFTER 5 SECONDS
+      setTimeout(() => {
+        setErrorMessage(null)
+        setSuccessMessage('')
+      }, 5000)
+    }
+
+    updateProduct(updateId, updatedName)
+  }
+
+  const handleDeleteProduct = (idToDelete: string) => {
+    const removeProduct = async (productId: string) => {
+      const { error } = await supabase
+        .from('products')
+        .delete()
+        .eq('id', productId)
+
+      if (error) {
+        console.log({ error })
+        setErrorMessage(error)
+      } else {
+        setSuccessMessage('Producto eliminado con éxito.')
+      }
+    }
+
+    removeProduct(idToDelete)
+    // CLEAR ANY MESSAGE OF SUCCESS OR ERROR ON SCREEN AFTER 5 secs
+    setTimeout(() => {
+      setErrorMessage(null)
+      setSuccessMessage('')
+    }, 5000)
+  }
+
   if (loading) {
     return <Loader />
   }
@@ -241,6 +327,8 @@ export default function Clients() {
             handleUpdateClient={handleUpdateClient}
             handleDeleteClient={handleDeleteClient}
             handleCreateProduct={handleCreateProduct}
+            handleUpdateProduct={handleUpdateProduct}
+            handleDeleteProduct={handleDeleteProduct}
             screenMessage={errorMessage || successMessage}
             clients={clients}
             products={products}
