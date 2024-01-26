@@ -27,3 +27,24 @@ export const CheckIfUserIsAdmin = () => {
 
   return { userIsAdmin, userName }
 }
+
+// export const CheckIfSessionIsActive = () => {
+//   const supabase = createClientComponentClient()
+//   const router = useRouter()
+
+//   useEffect(() => {
+//     const checkUser = async () => {
+//       const {
+//         data: { session },
+//       } = await supabase.auth.getSession()
+
+//       if (!session) {
+//         router.push('/unauthenticated') // Use router.push instead of redirect
+//       }
+//     }
+
+//     checkUser()
+//   }, [supabase, router])
+
+//   return
+// }

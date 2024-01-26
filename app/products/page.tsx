@@ -1,15 +1,22 @@
 // @ts-nocheck
 'use client'
 
+import { useEffect, useState } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
-import { useEffect, useState } from 'react'
+
 import type { Database } from 'types/supabase'
 import { User as SupabaseUser } from '@supabase/supabase-js'
 
+import {
+  CheckIfUserIsAdmin,
+  // CheckIfSessionIsActive,
+} from 'utils/supabase.service'
 import Loader from 'components/loader'
 import ClientGreeting from 'components/clientGreeting'
 import ProductsList from 'components/products/productsList'
+import AdminSection from 'components/adminPages'
+
 // import CTAsButtons from 'components/products/ctasButtons'
 
 interface User extends SupabaseUser {
@@ -17,19 +24,51 @@ interface User extends SupabaseUser {
 }
 
 export default function Products() {
-  const [user, setUser] = useState<User | null>(null)
+  const supabase = createClientComponentClient<Database>()
   const searchParams = useSearchParams()
-
-  const [products, setProducts] = useState<any[]>([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
+  const clientID = searchParams.get('clientID')
   const router = useRouter() // Initialize the useRouter hook
 
+  const [user, setUser] = useState<User | null>(null)
+  const [products, setProducts] = useState<any[]>([])
+
+  const [loading, setLoading] = useState(true)
+  const [showModal, setShowModal] = useState<boolean>(false)
+  const [errorMessage, setErrorMessage] = useState<PostgrestError | null>(null)
+  const [successMessage, setSuccessMessage] = useState<string | undefined>('')
+
+  const adminStatus = CheckIfUserIsAdmin()
+  const userIsAdmin = adminStatus.userIsAdmin
+  const userName = adminStatus.userName
   // Create a Supabase client configured to use cookies
-  const supabase = createClientComponentClient<Database>()
-  const clientID = searchParams.get('clientID')
+
+  const handleModalView = () => {
+    setShowModal(!showModal)
+  }
+
+  const handleCreateProduct = (newProduct) => {
+    const createProduct = async (
+      productName: string
+      // productWeight: number
+    ) => {
+      const { data, error } = await supabase
+        .from('products')
+        .insert([{ product_name: productName }])
+        .select()
+    }
+    createProduct(newProduct)
+  }
+  const handleUpdateProduct = () => {
+    {
+    }
+  }
+  const handleDeleteProduct = () => {
+    {
+    }
+  }
 
   useEffect(() => {
+    // CheckIfSessionIsActive()
     const checkUser = async () => {
       const {
         data: { session },
@@ -56,14 +95,14 @@ export default function Products() {
 
         setProducts(data || [])
       } catch (error: any) {
-        setError(error.message)
+        setErrorMessage(error.message)
       } finally {
         setLoading(false)
       }
     }
 
     getProducts()
-  }, [supabase, setProducts, setLoading, setError])
+  }, [supabase, setProducts, setLoading, setErrorMessage])
 
   useEffect(() => {
     const fetchData = async () => {
@@ -83,8 +122,8 @@ export default function Products() {
     return <Loader />
   }
 
-  if (error) {
-    return <p className="text-red-500">{error}</p>
+  if (errorMessage) {
+    return <p className="text-red-500">{errorMessage}</p>
   }
 
   return (
@@ -93,7 +132,22 @@ export default function Products() {
         <ClientGreeting clientID={clientID} page="products" />
       </div>
       <ProductsList user={user} products={products} clientID={clientID} />
-      {/* <CTAsButtons /> */}
+      <div>
+        {userName && userIsAdmin && (
+          <>
+            <AdminSection
+              userName={userName}
+              handleModalView={handleModalView}
+              handleCreateProduct={handleCreateProduct}
+              handleUpdateProduct={handleUpdateProduct}
+              handleDeleteProduct={handleDeleteProduct}
+              screenMessage={errorMessage || successMessage}
+              products={products}
+              showModal={showModal}
+            />
+          </>
+        )}
+      </div>
     </div>
   )
 }
