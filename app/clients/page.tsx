@@ -119,25 +119,10 @@ export default function Clients() {
 
     // LISTEN TO CHANGES IN DB REALTIME
     const channelUPDATE = supabase
-      .channel('products-db-updates')
+      .channel('products-db-changes')
       .on(
         'postgres_changes',
-        { event: 'UPDATE', schema: 'public', table: 'products' },
-        (payload) => {
-          if (payload) {
-            getProducts()
-          } else {
-            console.log('NO PAYLOAD AVAILABLE')
-          }
-        }
-      )
-      .subscribe()
-
-    const channelDELETE = supabase
-      .channel('products-db-deletes')
-      .on(
-        'postgres_changes',
-        { event: 'DELETE', schema: 'public', table: 'products' },
+        { event: '*', schema: 'public', table: 'products' },
         (payload) => {
           if (payload) {
             getProducts()

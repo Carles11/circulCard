@@ -1,15 +1,16 @@
 import React, { useState } from 'react'
+
+import EditIcon from 'components/icons/editIcon'
+
 import UpdateProductForm from './updateProductForm'
 
 const UpdateProduct = ({
   products,
   IconButton,
-  EditIcon,
   handleUpdateProduct,
 }: {
   products: any
   IconButton: any
-  EditIcon: any
   handleUpdateProduct: Function
 }) => {
   const [confirmOpen, setConfirmOpen] = useState<number | null>(null)

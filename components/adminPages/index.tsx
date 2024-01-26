@@ -110,7 +110,6 @@ const AdminSection = ({
                   <UpdateProduct
                     products={products}
                     IconButton={IconButton}
-                    EditIcon={EditIcon}
                     handleUpdateProduct={handleUpdateProduct}
                   />
                 )}
