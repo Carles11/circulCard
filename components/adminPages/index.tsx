@@ -8,13 +8,9 @@ import Modal from 'components/modals'
 import AdminTitles from './adminTitles'
 import AdminClients from './adminClients'
 
-import AddClient from './adminClients/addClient'
-import UpdateClient from './adminClients/updateClient'
-import DeleteClient from './adminClients/deleteClient'
 import AddProduct from './adminProducts/addProduct'
 
 import ConfirmDialog from 'components/confirmDialog/confirmDialog'
-import IconButton from 'components/icons/iconButton'
 
 const AdminSection = ({
   userName,
@@ -23,8 +19,8 @@ const AdminSection = ({
   handleUpdateClient,
   handleDeleteClient,
   handleCreateProduct,
-  handleUpdateProduct,
-  handleDeleteProduct,
+  // handleUpdateProduct,
+  // handleDeleteProduct,
   showModal,
   screenMessage,
   clients,
@@ -37,8 +33,8 @@ const AdminSection = ({
   handleUpdateClient: Function
   handleDeleteClient: Function
   handleCreateProduct: Function
-  handleUpdateProduct: Function
-  handleDeleteProduct: Function
+  // handleUpdateProduct: Function
+  // handleDeleteProduct: Function
   showModal: boolean
   screenMessage: PostgrestError | null | string | undefined
   clients?: any
@@ -58,11 +54,29 @@ const AdminSection = ({
             (Descuida, <u>solo administradores</u> pueden ver el icono de "modo
             administrador" y los contenidos más allá de la línea gris.)
           </h6>
-          <AdminTitles
-            handleModalView={handleModalView}
-            setModalType={setModalType}
-            title={'clientes'}
-          />
+          <div className="flex justify-between gap-4">
+            {clients && (
+              <AdminTitles
+                handleModalView={handleModalView}
+                setModalType={setModalType}
+                title={'clientes'}
+              />
+            )}
+            {products && (
+              <AdminTitles
+                handleModalView={handleModalView}
+                setModalType={setModalType}
+                title={'productos'}
+              />
+            )}
+            {materials && (
+              <AdminTitles
+                handleModalView={handleModalView}
+                setModalType={setModalType}
+                title={'materiales'}
+              />
+            )}
+          </div>
           <div className="mt-16 flex flex-col items-center gap-4">
             {showModal && (
               <Modal
@@ -75,9 +89,9 @@ const AdminSection = ({
                     clients={clients}
                     handleModalView={handleModalView}
                     modalType={modalType}
+                    ConfirmDialog={ConfirmDialog}
                     handleCreateClient={handleCreateClient}
                     handleUpdateClient={handleUpdateClient}
-                    ConfirmDialog={ConfirmDialog}
                     handleDeleteClient={handleDeleteClient}
                   />
                 )}

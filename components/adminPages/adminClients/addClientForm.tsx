@@ -18,11 +18,11 @@ const AddClientForm = ({
     setClientEmail(e.target.value)
   }
 
-  const handleUpdate = () => {
-    // Call the onUpdate function with the updated values
+  const handleSubmit = () => {
     onCreateClient(clientName, clientEmail)
-    // Close the form after updating
-    onClose()
+    // Reset Inputs
+    setClientName('')
+    setClientEmail('')
   }
 
   return (
@@ -63,7 +63,7 @@ const AddClientForm = ({
 
       <button
         className="mt-4 border border-gray-700 p-2 rounded-xl bg-btn-background mr-2"
-        onClick={handleUpdate}
+        onClick={handleSubmit}
       >
         Guardar cambios
       </button>

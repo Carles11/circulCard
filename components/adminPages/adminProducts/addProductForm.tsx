@@ -8,21 +8,15 @@ const AddProductForm = ({
   onCreateProduct: Function
 }) => {
   const [productName, setProductName] = useState<string>('')
-  const [clientEmail, setClientEmail] = useState<string>('')
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setProductName(e.target.value)
   }
 
-  //   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //     setClientEmail(e.target.value)
-  //   }
-
-  const handleUpdate = () => {
-    // Call the onUpdate function with the updated values
+  const handleSubmit = () => {
     onCreateProduct(productName)
-    // Close the form after updating
-    onClose()
+    // Reset Inputs
+    setProductName('')
   }
 
   return (
@@ -33,7 +27,7 @@ const AddProductForm = ({
           htmlFor="clientName"
           className="block text-sm font-medium text-gray-400"
         >
-          Nombre del cliente
+          Nombre del producto
         </label>
         <input
           id="productName"
@@ -44,26 +38,11 @@ const AddProductForm = ({
         />
       </div>
 
-      <div className="mb-4">
-        {/* Label for the Email input */}
-        {/* <label
-          htmlFor="clientEmail"
-          className="block text-sm font-medium text-gray-400"
-        >
-          Correo electrónico del cliente
-        </label>
-        <input
-          id="clientEmail"
-          type="text"
-          value={clientEmail}
-          className="rounded-ms w-full p-2 border border-gray-300 focus:outline-none focus:ring focus:border-blue-300"
-          onChange={handleEmailChange}
-        />*/}
-      </div>
+      <div className="mb-4"></div>
 
       <button
         className="mt-4 border border-gray-700 p-2 rounded-xl bg-btn-background mr-2"
-        onClick={handleUpdate}
+        onClick={handleSubmit}
       >
         Guardar cambios
       </button>

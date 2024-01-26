@@ -11,34 +11,37 @@ const AdminTitles = ({
 }) => {
   return (
     <div className="mt-16 flex flex-col items-center gap-4">
-      <div className="flex items-center justify-center w-72 px-4 bg-green-500 rounded-sm cursor-pointer shadow shadow-md shadow-gray-500">
+      <h4>
+        <u>Sección {title}</u>
+      </h4>
+      <div className="flex items-center justify-center w-72 px-4 bg-green-500 rounded-sm cursor-pointer shadow shadow-xs shadow-gray-500">
         <button
           onClick={() => {
             handleModalView()
-            setModalType(`Añadir clientes`)
+            setModalType(`Añadir ${title}`)
           }}
         >
-          <h4 className="text-foreground"> {`Añade clientes`} </h4>
+          <h5 className="text-foreground p-2"> {`Añade ${title}`} </h5>
         </button>
       </div>
-      <div className="flex items-center justify-center w-72 px-4 bg-green-500 rounded-sm cursor-pointer shadow shadow-md shadow-gray-500">
+      <div className="flex items-center justify-center w-72 px-4 bg-green-500 rounded-sm cursor-pointer shadow shadow-xs shadow-gray-500">
         <button
           onClick={() => {
             handleModalView()
-            setModalType(`Actualizar clientes`)
+            setModalType(`Actualizar ${title}`)
           }}
         >
-          <h4 className="text-foreground"> {`Actualiza clientes`} </h4>
+          <h5 className="text-foreground p-2"> {`Actualiza ${title}`} </h5>
         </button>
       </div>
-      <div className="flex items-center justify-center w-72 px-4 bg-green-500 rounded-sm cursor-pointer shadow shadow-md shadow-gray-500 mb-16">
+      <div className="flex items-center justify-center w-72 px-4 bg-green-500 rounded-sm cursor-pointer shadow shadow-xs shadow-gray-500 mb-16">
         <button
           onClick={() => {
             handleModalView()
-            setModalType(`Eliminar clientes`)
+            setModalType(`Eliminar ${title}`)
           }}
         >
-          <h4 className="text-foreground"> {`Elimina clientes`} </h4>
+          <h5 className="text-foreground p-2"> {`Elimina ${title}`} </h5>
         </button>
       </div>
     </div>

@@ -11,7 +11,7 @@ const Modal = ({
   onClose: Function
   children: ReactNode
   title: string
-  screenMessage?: PostgrestError | string | null
+  screenMessage: PostgrestError | null | string | undefined
 }) => {
   const handleCloseClick = (e: { preventDefault: () => void }) => {
     e.preventDefault()
@@ -33,23 +33,13 @@ const Modal = ({
             </a>
           </div>
           {title && <h2>{title}</h2>}
-          <div className="modal-body ">{children}</div>
+          <div className="modal-body mb-4">{children}</div>
 
           {typeof screenMessage !== 'string' ? (
             <p className="text-red-500">{screenMessage?.message}</p>
           ) : (
             <p className="text-lightgreenBg">{screenMessage}</p>
           )}
-
-          {/* <div className="absolute bottom-4 right-8">
-            <a
-              href="#"
-              onClick={handleCloseClick}
-              className="text-gray-400 link-with-style"
-            >
-              Volver
-            </a>
-          </div> */}
         </div>
       </div>
     </div>

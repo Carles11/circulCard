@@ -15,6 +15,7 @@ export default function Clients() {
   const supabase = createClientComponentClient<Database>()
 
   const [clients, setClients] = useState<any[]>([])
+  const [products, setProducts] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const router = useRouter() // Initialize the useRouter hook
@@ -47,7 +48,11 @@ export default function Clients() {
     checkUser()
   }, [supabase, router])
 
-  // Fetch clients
+  const handleModalView = () => {
+    setShowModal(!showModal)
+  }
+
+  // FETCH ALL CLIENTS
   useEffect(() => {
     if (currentUserEmail) {
       const getClients = async () => {
@@ -91,27 +96,50 @@ export default function Clients() {
     }
   }, [supabase, router, currentUserEmail, setClients, setLoading, setError])
 
-  const handleModalView = () => {
-    setShowModal(!showModal)
-  }
+  // FETCH ALL PRODUCTS
 
-  const handleDeleteClient = (id: string) => {
-    const removeClient = async (clientId: string) => {
-      const { error } = await supabase
-        .from('clients')
-        .delete()
-        .eq('id', clientId)
+  useEffect(() => {
+    const getProducts = async () => {
+      try {
+        let { data: products, error } = await supabase
+          .from('products')
+          .select('*')
 
-      if (error) {
-        console.log({ error })
-        setErrorMessage(error)
-      } else {
-        setSuccessMessage('Cliente eliminado con éxito.')
+        if (error) {
+          throw new Error(error.message)
+        }
+
+        setProducts(products || [])
+      } catch (error: any) {
+        setError(error.message)
+      } finally {
+        setLoading(false)
       }
     }
+    getProducts()
+  }, [])
 
-    removeClient(id)
-    // CLEAR ANY MESSAGE OF SUCCESS OR ERROR ON SCREEN AFTER 5 secs
+  // ############### SUPABASE CLIENT HANDLERS ###############
+
+  const handleCreateClient = async (newName: string, newEmail: string) => {
+    try {
+      const { data, error } = await supabase
+        .from('clients')
+        .insert([{ client_name: newName, client_email: newEmail }])
+        .select()
+
+      if (error) {
+        console.error({ error })
+        setErrorMessage(error)
+      } else {
+        setSuccessMessage(`Nuevo cliente ${newName} creado con éxito`)
+      }
+    } catch (error) {
+      console.error('Error: ', error)
+      setErrorMessage(error as PostgrestError | null)
+    }
+
+    // CLEAR ANY MESSAGES OF SUCCESS OR ERROR ON SCREEN AFTER 5 SECONDS
     setTimeout(() => {
       setErrorMessage(null)
       setSuccessMessage('')
@@ -140,29 +168,57 @@ export default function Clients() {
     }, 5000)
   }
 
-  const handleCreateClient = async (newName: string, newEmail: string) => {
-    try {
-      const { data, error } = await supabase
+  const handleDeleteClient = (id: string) => {
+    const removeClient = async (clientId: string) => {
+      const { error } = await supabase
         .from('clients')
-        .insert([{ client_name: newName, client_email: newEmail }])
-        .select()
+        .delete()
+        .eq('id', clientId)
 
       if (error) {
-        console.error({ error })
+        console.log({ error })
         setErrorMessage(error)
       } else {
-        setSuccessMessage(`Nuevo cliente ${newName} creado con éxito`)
+        setSuccessMessage('Cliente eliminado con éxito.')
       }
-    } catch (error) {
-      console.error('Error: ', error)
-      setErrorMessage(error as PostgrestError | null)
     }
 
-    // CLEAR ANY MESSAGES OF SUCCESS OR ERROR ON SCREEN AFTER 5 SECONDS
+    removeClient(id)
+    // CLEAR ANY MESSAGE OF SUCCESS OR ERROR ON SCREEN AFTER 5 secs
     setTimeout(() => {
       setErrorMessage(null)
       setSuccessMessage('')
     }, 5000)
+  }
+
+  // ############### SUPABASE PRODUCT HANDLERS ###############
+
+  const handleCreateProduct = (productName: string) => {
+    const addProduct = async (nameOfProduct: string) => {
+      try {
+        const { error } = await supabase
+          .from('products')
+          .insert([{ product_name: nameOfProduct }])
+          .select()
+        if (error) {
+          console.log({ error })
+          setErrorMessage(error)
+        } else {
+          setSuccessMessage('Producto generado con éxito.')
+        }
+      } catch (error) {
+        console.error('Error: ', error)
+        setErrorMessage(error as PostgrestError | null)
+      }
+
+      // CLEAR ANY MESSAGES OF SUCCESS OR ERROR ON SCREEN AFTER 5 SECONDS
+      setTimeout(() => {
+        setErrorMessage(null)
+        setSuccessMessage('')
+      }, 5000)
+    }
+
+    addProduct(productName)
   }
 
   if (loading) {
@@ -184,8 +240,10 @@ export default function Clients() {
             handleCreateClient={handleCreateClient}
             handleUpdateClient={handleUpdateClient}
             handleDeleteClient={handleDeleteClient}
+            handleCreateProduct={handleCreateProduct}
             screenMessage={errorMessage || successMessage}
             clients={clients}
+            products={products}
             showModal={showModal}
           />
         </>

@@ -1,4 +1,4 @@
-import IconButton from '@/components/icons/iconButton'
+import IconButton from 'components/icons/iconButton'
 import React from 'react'
 import AddClient from './addClient'
 import DeleteClient from './deleteClient'
