@@ -2,13 +2,13 @@ import { useState } from 'react'
 import { useContext } from 'react'
 import { AdminUserContext } from 'context/context'
 import IconButton from 'components/icons/iconButton'
-import EditIcon from 'components/icons/editIcon'
 
 import { PostgrestError } from '@supabase/supabase-js'
 
 import Modal from 'components/modals'
 import AdminTitles from './adminTitles'
 import AdminClients from './adminClients'
+import AdminProducts from './adminProducts'
 
 import AddProduct from './adminProducts/addProduct'
 import UpdateProduct from './adminProducts/updateProduct'
@@ -99,26 +99,14 @@ const AdminSection = ({
                     handleDeleteClient={handleDeleteClient}
                   />
                 )}
-
-                {products && modalType === 'Añadir productos' && (
-                  <AddProduct
-                    onCreateProduct={handleCreateProduct}
-                    onClose={handleModalView}
-                  />
-                )}
-                {products && modalType === 'Actualizar productos' && (
-                  <UpdateProduct
+                {products && (
+                  <AdminProducts
                     products={products}
-                    IconButton={IconButton}
-                    handleUpdateProduct={handleUpdateProduct}
-                  />
-                )}
-
-                {products && modalType === 'Eliminar productos' && (
-                  <DeleteProduct
-                    products={products}
-                    IconButton={IconButton}
+                    handleModalView={handleModalView}
+                    modalType={modalType}
                     ConfirmDialog={ConfirmDialog}
+                    handleCreateProduct={handleCreateProduct}
+                    handleUpdateProduct={handleUpdateProduct}
                     handleDeleteProduct={handleDeleteProduct}
                   />
                 )}

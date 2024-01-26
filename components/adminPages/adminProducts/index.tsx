@@ -24,20 +24,20 @@ const AdminProducts = ({
   return (
     <div>
       {' '}
-      {products && modalType === 'Añadir Productes' && (
+      {products && modalType === 'Añadir productos' && (
         <AddProduct
           onCreateProduct={handleCreateProduct}
           onClose={handleModalView}
         />
       )}
-      {products && modalType === 'Actualizar Productes' && (
+      {products && modalType === 'Actualizar productos' && (
         <UpdateProduct
           products={products}
           IconButton={IconButton}
           handleUpdateProduct={handleUpdateProduct}
         />
       )}
-      {products && modalType === 'Eliminar Productes' && (
+      {products && modalType === 'Eliminar productos' && (
         <DeleteProduct
           products={products}
           IconButton={IconButton}
