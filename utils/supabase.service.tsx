@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 
@@ -28,6 +30,7 @@ export const CheckIfUserIsAdmin = () => {
   return { userIsAdmin, userName }
 }
 
+// THROWING ERROR INVALID HOOK CALL WHEN USED. Need to check
 // export const CheckIfSessionIsActive = () => {
 //   const supabase = createClientComponentClient()
 //   const router = useRouter()

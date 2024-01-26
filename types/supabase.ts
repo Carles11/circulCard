@@ -71,8 +71,6 @@ export interface Database {
         Insert: {
           client_email?: string | null
           client_name?: string | null
-          created_at?: string
-          id: string
         }
         Update: {
           client_email?: string | null

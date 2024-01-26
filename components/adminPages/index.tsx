@@ -5,6 +5,9 @@ import { AdminUserContext } from 'context/context'
 import { PostgrestError } from '@supabase/supabase-js'
 
 import Modal from 'components/modals'
+import AdminTitles from './adminTitles'
+import AdminClients from './adminClients'
+
 import AddClient from './adminClients/addClient'
 import UpdateClient from './adminClients/updateClient'
 import DeleteClient from './adminClients/deleteClient'
@@ -44,7 +47,6 @@ const AdminSection = ({
 }) => {
   const { showAdminSection } = useContext(AdminUserContext)
   const [modalType, setModalType] = useState<string>('')
-  const title = clients ? 'clientes' : 'productos'
 
   return (
     <>
@@ -56,65 +58,30 @@ const AdminSection = ({
             (Descuida, <u>solo administradores</u> pueden ver el icono de "modo
             administrador" y los contenidos más allá de la línea gris.)
           </h6>
+          <AdminTitles
+            handleModalView={handleModalView}
+            setModalType={setModalType}
+            title={'clientes'}
+          />
           <div className="mt-16 flex flex-col items-center gap-4">
-            <div className="flex items-center justify-center w-72 px-4 bg-green-500 rounded-sm cursor-pointer shadow shadow-md shadow-gray-500">
-              <button
-                onClick={() => {
-                  handleModalView()
-                  setModalType(`Añadir ${title}`)
-                }}
-              >
-                <h4 className="text-foreground"> {`Añade ${title}`} </h4>
-              </button>
-            </div>
-            <div className="flex items-center justify-center w-72 px-4 bg-green-500 rounded-sm cursor-pointer shadow shadow-md shadow-gray-500">
-              <button
-                onClick={() => {
-                  handleModalView()
-                  setModalType(`Actualizar ${title}`)
-                }}
-              >
-                <h4 className="text-foreground"> {`Actualiza ${title}`} </h4>
-              </button>
-            </div>
-            <div className="flex items-center justify-center w-72 px-4 bg-green-500 rounded-sm cursor-pointer shadow shadow-md shadow-gray-500 mb-16">
-              <button
-                onClick={() => {
-                  handleModalView()
-                  setModalType(`Eliminar ${title}`)
-                }}
-              >
-                <h4 className="text-foreground"> {`Elimina ${title}`} </h4>
-              </button>
-            </div>
             {showModal && (
               <Modal
                 onClose={handleModalView}
                 title={modalType}
                 screenMessage={screenMessage}
               >
-                {clients && modalType === 'Añadir clientes' && (
-                  <AddClient
-                    onCreateClient={handleCreateClient}
-                    onClose={handleModalView}
-                  />
-                )}
-                {clients && modalType === 'Actualizar clientes' && (
-                  <UpdateClient
+                {clients && (
+                  <AdminClients
                     clients={clients}
-                    IconButton={IconButton}
+                    handleModalView={handleModalView}
+                    modalType={modalType}
+                    handleCreateClient={handleCreateClient}
                     handleUpdateClient={handleUpdateClient}
-                  />
-                )}
-
-                {clients && modalType === 'Eliminar clientes' && (
-                  <DeleteClient
-                    clients={clients}
-                    IconButton={IconButton}
                     ConfirmDialog={ConfirmDialog}
                     handleDeleteClient={handleDeleteClient}
                   />
                 )}
+
                 {products && modalType === 'Añadir productos' && (
                   <AddProduct
                     onCreateProduct={handleCreateProduct}

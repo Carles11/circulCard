@@ -30,6 +30,7 @@ export default function Clients() {
   const userIsAdmin = adminStatus.userIsAdmin
   const userName = adminStatus.userName
 
+  // If Session in not active, kick user out.
   useEffect(() => {
     const checkUser = async () => {
       const {
@@ -46,7 +47,7 @@ export default function Clients() {
     checkUser()
   }, [supabase, router])
 
-  // useEffect to fetch clients using currentUser.email
+  // Fetch clients
   useEffect(() => {
     if (currentUserEmail) {
       const getClients = async () => {
@@ -68,6 +69,7 @@ export default function Clients() {
         }
       }
 
+      // LISTEN TO CHANGES IN DB REALTIME
       const channelA = supabase
         .channel('clients-db-changes')
         .on(
@@ -138,22 +140,25 @@ export default function Clients() {
     }, 5000)
   }
 
-  const handleCreateClient = (newName: string, newEmail: string) => {
-    const createClient = async (clientName: string, clientEmail: string) => {
+  const handleCreateClient = async (newName: string, newEmail: string) => {
+    try {
       const { data, error } = await supabase
         .from('clients')
-        .insert([{ client_name: clientName, client_email: clientEmail }])
+        .insert([{ client_name: newName, client_email: newEmail }])
         .select()
 
       if (error) {
-        console.log({ error })
+        console.error({ error })
         setErrorMessage(error)
       } else {
-        setSuccessMessage(`Nuevo client ${clientName} creado con éxito`)
+        setSuccessMessage(`Nuevo cliente ${newName} creado con éxito`)
       }
+    } catch (error) {
+      console.error('Error: ', error)
+      setErrorMessage(error as PostgrestError | null)
     }
-    createClient(newName, newEmail)
-    // CLEAR ANY MESSAGE OF SUCCESS OR ERROR ON SCREEN AFTER 5 secs
+
+    // CLEAR ANY MESSAGES OF SUCCESS OR ERROR ON SCREEN AFTER 5 SECONDS
     setTimeout(() => {
       setErrorMessage(null)
       setSuccessMessage('')
