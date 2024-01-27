@@ -16,6 +16,8 @@ export default function Clients() {
 
   const [clients, setClients] = useState<any[]>([])
   const [products, setProducts] = useState<any[]>([])
+  const [materials, setMaterials] = useState<any[]>([])
+
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const router = useRouter() // Initialize the useRouter hook
@@ -136,6 +138,46 @@ export default function Clients() {
     getProducts()
   }, [])
 
+  // FETCH ALL MATERIALS
+
+  useEffect(() => {
+    const getMaterials = async () => {
+      try {
+        let { data: materials, error } = await supabase
+          .from('materials')
+          .select('*')
+
+        if (error) {
+          throw new Error(error.message)
+        }
+
+        setMaterials(materials || [])
+      } catch (error: any) {
+        setError(error.message)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    // LISTEN TO CHANGES IN DB REALTIME
+    const channelUPDATE = supabase
+      .channel('materials-db-changes')
+      .on(
+        'postgres_changes',
+        { event: '*', schema: 'public', table: 'materials' },
+        (payload) => {
+          if (payload) {
+            getMaterials()
+          } else {
+            console.log('NO PAYLOAD AVAILABLE')
+          }
+        }
+      )
+      .subscribe()
+
+    getMaterials()
+  }, [])
+
   // ############### SUPABASE CLIENT HANDLERS ###############
 
   const handleCreateClient = async (newName: string, newEmail: string) => {
@@ -239,7 +281,6 @@ export default function Clients() {
   }
 
   const handleUpdateProduct = (updateId: string, updatedName: string) => {
-    console.log({ updateId, updatedName })
     const updateProduct = async (prodId: string, prodName: string) => {
       try {
         const { error } = await supabase
@@ -295,13 +336,82 @@ export default function Clients() {
   // ############### SUPABASE MATERIALS HANDLERS ###############
 
   const handleCreateMaterial = (matName: string) => {
-    console.log('ADD-MATERIAL-NAME IN DB', matName)
+    const addMaterial = async (nameOfMaterial: string) => {
+      try {
+        const { error } = await supabase
+          .from('materials')
+          .insert([{ material_name: nameOfMaterial }])
+          .select()
+        if (error) {
+          console.log({ error })
+          setErrorMessage(error)
+        } else {
+          setSuccessMessage('Material generado con éxito.')
+        }
+      } catch (error) {
+        console.error('Error: ', error)
+        setErrorMessage(error as PostgrestError | null)
+      }
+
+      // CLEAR ANY MESSAGES OF SUCCESS OR ERROR ON SCREEN AFTER 5 SECONDS
+      setTimeout(() => {
+        setErrorMessage(null)
+        setSuccessMessage('')
+      }, 5000)
+    }
+
+    addMaterial(matName)
   }
-  const handleUpdateMaterial = (matName: string) => {
-    console.log('EDIT-MATERIAL-NAME IN DB', matName)
+  const handleUpdateMaterial = (matId: string, matName: string) => {
+    const updateMaterial = async (updateId: string, updatedName: string) => {
+      try {
+        const { error } = await supabase
+          .from('materials')
+          .update({ material_name: updatedName })
+          .eq('id', updateId)
+          .select()
+
+        if (error) {
+          console.log({ error })
+          setErrorMessage(error)
+        } else {
+          setSuccessMessage('Material actualizado con éxito.')
+        }
+      } catch (error) {
+        console.error('Error: ', error)
+        setErrorMessage(error as PostgrestError | null)
+      }
+
+      // CLEAR ANY MESSAGES OF SUCCESS OR ERROR ON SCREEN AFTER 5 SECONDS
+      setTimeout(() => {
+        setErrorMessage(null)
+        setSuccessMessage('')
+      }, 5000)
+    }
+
+    updateMaterial(matId, matName)
   }
-  const handleDeleteMaterial = (matName: string) => {
-    console.log('DELETE-MATERIAL-NAME IN DB', matName)
+  const handleDeleteMaterial = (matId: string) => {
+    const removeMaterial = async (MaterialId: string) => {
+      const { error } = await supabase
+        .from('materials')
+        .delete()
+        .eq('id', MaterialId)
+
+      if (error) {
+        console.log({ error })
+        setErrorMessage(error)
+      } else {
+        setSuccessMessage('Material eliminado con éxito.')
+      }
+    }
+
+    removeMaterial(matId)
+    // CLEAR ANY MESSAGE OF SUCCESS OR ERROR ON SCREEN AFTER 5 secs
+    setTimeout(() => {
+      setErrorMessage(null)
+      setSuccessMessage('')
+    }, 5000)
   }
 
   if (loading) {
@@ -332,6 +442,7 @@ export default function Clients() {
             screenMessage={errorMessage || successMessage}
             clients={clients}
             products={products}
+            materials={materials}
             showModal={showModal}
           />
         </>

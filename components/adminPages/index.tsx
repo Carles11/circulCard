@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { useContext } from 'react'
 import { AdminUserContext } from 'context/context'
-import IconButton from 'components/icons/iconButton'
 
 import { PostgrestError } from '@supabase/supabase-js'
 
@@ -10,10 +9,6 @@ import AdminTitles from './adminTitles'
 import AdminClients from './adminClients'
 import AdminProducts from './adminProducts'
 import AdminMaterials from './adminMaterials'
-
-import AddProduct from './adminProducts/addProduct'
-import UpdateProduct from './adminProducts/updateProduct'
-import DeleteProduct from './adminProducts/deleteProduct'
 
 import ConfirmDialog from 'components/confirmDialog/confirmDialog'
 

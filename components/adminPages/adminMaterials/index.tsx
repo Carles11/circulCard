@@ -24,20 +24,20 @@ const AdminMaterials = ({
   return (
     <div>
       {' '}
-      {materials && modalType === 'Añadir productos' && (
+      {materials && modalType === 'Añadir materiales' && (
         <AddMaterial
           onCreateMaterial={handleCreateMaterial}
           onClose={handleModalView}
         />
       )}
-      {materials && modalType === 'Actualizar productos' && (
+      {materials && modalType === 'Actualizar materiales' && (
         <UpdateMaterial
           materials={materials}
           IconButton={IconButton}
           handleUpdateMaterial={handleUpdateMaterial}
         />
       )}
-      {materials && modalType === 'Eliminar productos' && (
+      {materials && modalType === 'Eliminar materiales' && (
         <DeleteMaterial
           materials={materials}
           IconButton={IconButton}
