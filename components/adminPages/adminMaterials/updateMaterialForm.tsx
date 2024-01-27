@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 
-const UpdateProductForm = ({
-  product,
+const UpdateMaterialForm = ({
+  material,
   open,
   onClose,
   onUpdate,
 }: {
-  product: any
+  material: any
   open: boolean
   onClose: Function
   onUpdate: Function
@@ -15,15 +15,17 @@ const UpdateProductForm = ({
     return <></>
   }
 
-  const [productName, setProductName] = useState<string>(product.product_name)
+  const [materialName, setMaterialName] = useState<string>(
+    material.material_name
+  )
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setProductName(e.target.value)
+    setMaterialName(e.target.value)
   }
 
   const handleUpdate = () => {
     // Call the onUpdate function with the updated values
-    onUpdate(product.id, productName)
+    onUpdate(material.id, materialName)
     // Close the form after updating
     onClose()
   }
@@ -33,15 +35,15 @@ const UpdateProductForm = ({
       <div className="mb-4">
         {/* Label for the Name input */}
         <label
-          htmlFor="productName"
+          htmlFor="materialName"
           className="block text-sm font-medium text-gray-400"
         >
-          Nombre del producto
+          Nombre del material
         </label>
         <input
-          id="productName"
+          id="materialName"
           type="text"
-          value={productName}
+          value={materialName}
           className="rounded-ms w-full p-2 border border-gray-300 focus:outline-none focus:ring focus:border-blue-300"
           onChange={handleNameChange}
         />
@@ -66,4 +68,4 @@ const UpdateProductForm = ({
   )
 }
 
-export default UpdateProductForm
+export default UpdateMaterialForm

@@ -9,6 +9,7 @@ import Modal from 'components/modals'
 import AdminTitles from './adminTitles'
 import AdminClients from './adminClients'
 import AdminProducts from './adminProducts'
+import AdminMaterials from './adminMaterials'
 
 import AddProduct from './adminProducts/addProduct'
 import UpdateProduct from './adminProducts/updateProduct'
@@ -25,6 +26,9 @@ const AdminSection = ({
   handleCreateProduct,
   handleUpdateProduct,
   handleDeleteProduct,
+  handleCreateMaterial,
+  handleUpdateMaterial,
+  handleDeleteMaterial,
   showModal,
   screenMessage,
   clients,
@@ -39,6 +43,9 @@ const AdminSection = ({
   handleCreateProduct: Function
   handleUpdateProduct: Function
   handleDeleteProduct: Function
+  handleCreateMaterial: Function
+  handleUpdateMaterial: Function
+  handleDeleteMaterial: Function
   showModal: boolean
   screenMessage: PostgrestError | null | string | undefined
   clients?: any
@@ -47,7 +54,11 @@ const AdminSection = ({
 }) => {
   const { showAdminSection } = useContext(AdminUserContext)
   const [modalType, setModalType] = useState<string>('')
-
+  const adminColumns = [
+    `${clients && 'clientes'}`,
+    `${products && 'productos'}`,
+    `${materials && 'materiales'}`,
+  ]
   return (
     <>
       {showAdminSection && (
@@ -58,28 +69,20 @@ const AdminSection = ({
             (Descuida, <u>solo administradores</u> pueden ver el icono de "modo
             administrador" y los contenidos más allá de la línea gris.)
           </h6>
-          <div className="flex justify-between gap-4">
-            {clients && (
-              <AdminTitles
-                handleModalView={handleModalView}
-                setModalType={setModalType}
-                title={'clientes'}
-              />
-            )}
-            {products && (
-              <AdminTitles
-                handleModalView={handleModalView}
-                setModalType={setModalType}
-                title={'productos'}
-              />
-            )}
-            {materials && (
-              <AdminTitles
-                handleModalView={handleModalView}
-                setModalType={setModalType}
-                title={'materiales'}
-              />
-            )}
+          <div className="flex flex-col md:flex-row justify-between gap-4">
+            {adminColumns.map((colTitle, i) => {
+              if (colTitle !== 'undefined') {
+                return (
+                  <AdminTitles
+                    key={i}
+                    handleModalView={handleModalView}
+                    setModalType={setModalType}
+                    title={colTitle}
+                  />
+                )
+              }
+              // return null // Or you can omit this line if you want to skip rendering for undefined values
+            })}
           </div>
           <div className="mt-16 flex flex-col items-center gap-4">
             {showModal && (
@@ -108,6 +111,17 @@ const AdminSection = ({
                     handleCreateProduct={handleCreateProduct}
                     handleUpdateProduct={handleUpdateProduct}
                     handleDeleteProduct={handleDeleteProduct}
+                  />
+                )}
+                {materials && (
+                  <AdminMaterials
+                    materials={materials}
+                    handleModalView={handleModalView}
+                    modalType={modalType}
+                    ConfirmDialog={ConfirmDialog}
+                    handleCreateMaterial={handleCreateMaterial}
+                    handleUpdateMaterial={handleUpdateMaterial}
+                    handleDeleteMaterial={handleDeleteMaterial}
                   />
                 )}
               </Modal>

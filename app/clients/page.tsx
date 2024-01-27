@@ -292,6 +292,18 @@ export default function Clients() {
     }, 5000)
   }
 
+  // ############### SUPABASE MATERIALS HANDLERS ###############
+
+  const handleCreateMaterial = (matName: string) => {
+    console.log('ADD-MATERIAL-NAME IN DB', matName)
+  }
+  const handleUpdateMaterial = (matName: string) => {
+    console.log('EDIT-MATERIAL-NAME IN DB', matName)
+  }
+  const handleDeleteMaterial = (matName: string) => {
+    console.log('DELETE-MATERIAL-NAME IN DB', matName)
+  }
+
   if (loading) {
     return <Loader />
   }
@@ -314,6 +326,9 @@ export default function Clients() {
             handleCreateProduct={handleCreateProduct}
             handleUpdateProduct={handleUpdateProduct}
             handleDeleteProduct={handleDeleteProduct}
+            handleCreateMaterial={handleCreateMaterial}
+            handleUpdateMaterial={handleUpdateMaterial}
+            handleDeleteMaterial={handleDeleteMaterial}
             screenMessage={errorMessage || successMessage}
             clients={clients}
             products={products}
