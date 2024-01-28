@@ -1,5 +1,3 @@
-import { iconMap } from 'utils/utils.service'
-import Image from 'next/image'
 import { isMobile } from 'react-device-detect'
 
 import './circleList.css'
@@ -7,19 +5,22 @@ import Link from 'next/link'
 
 const CircleList = ({
   items,
-  materials,
-}: {
+  isMaterial,
+}: // percentage,
+{
   items: String[]
-  materials: boolean
+  isMaterial: boolean
+  // percentage: number
 }) => {
-  const prefix = materials ? 'material' : 'project'
+  const prefix = isMaterial ? 'material' : 'project'
 
   return (
     <div>
       <ul className={`ul-circles ${!isMobile && `ul-circles-vertical`}`}>
-        {items.map((element: any) => {
+        {items.map((element: any, index) => {
           return (
             <li
+              key={index}
               //@ts-ignore
               style={{ color: element.color, '--accent-color': element.color }}
               className={`${
@@ -29,7 +30,7 @@ const CircleList = ({
               }`}
             >
               <i className="fa-brands fa-codepen"></i>
-              {/* {materials ? (
+              {/* {isMaterial ? (
                 <i className="fa-brands fa-codepen"></i>
               ) : (
                 <div className="flex items-center justify-center">
@@ -56,7 +57,7 @@ const CircleList = ({
                 ) : (
                   <p className="text-xs">{element[`${prefix}_name`]}</p>
                 )}
-                {materials && (
+                {isMaterial && (
                   <p className="text-sm">{element.cumulative_total} T.</p>
                 )}
               </div>

@@ -88,7 +88,8 @@ const PieComponent = ({ materials, projects }) => {
       }
     },
   }
-
+  // console.log({ PieChartData })
+  // console.log({ matPercentages })
   return (
     <PieChart
       id="materials-pie"

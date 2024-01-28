@@ -75,7 +75,7 @@ const Materials = () => {
         const { data, error } = await supabase
           .from('materials')
           .select(
-            'id, material_name, percentage, color, collect_date, cumulative_total, products(product_name)'
+            'id, material_name, percentage_mat-prod, percentage, color, collect_date, cumulative_total, products(product_name)'
           )
           // .eq('products.product_name', productName)
           .not('products', 'is', null)
@@ -102,6 +102,7 @@ const Materials = () => {
   if (error) {
     return <p className="text-red-500">{error}</p>
   }
+  console.log({ materials })
 
   return (
     <div className="w-full flex flex-col items-center">
@@ -116,7 +117,7 @@ const Materials = () => {
         }`}
       >
         <div className="flex flex-col p-4">
-          <CircleList items={materials} materials />{' '}
+          <CircleList items={materials} isMaterial />{' '}
         </div>
         <div className="w-96 h-96 md:w-[44rem] md:h-[44rem]">
           <PieComponent materials={materials} />
