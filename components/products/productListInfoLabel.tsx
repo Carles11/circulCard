@@ -1,9 +1,11 @@
 const ProductListInfoLabel = ({
   certificates,
   productName,
+  units,
 }: {
   certificates: string[]
   productName: String
+  units: any
 }) => {
   const handleDownload = (pdfPath: string) => () => {
     const link = document.createElement('a')
@@ -17,10 +19,10 @@ const ProductListInfoLabel = ({
       <ul className="text-gray-700">
         <li>
           <h6>Unidades gestionadas:</h6>
-          560.000
+          {units[0].unidades_gestionadas_total || 'sin datos'}
         </li>
         <li>
-          <h6>Total kilos:</h6> 4000
+          <h6>Total kilos:</h6> {units[0].peso_total || 'sin datos'}
         </li>
         {productName === 'tarjetas' &&
           certificates &&

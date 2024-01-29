@@ -24,7 +24,7 @@ const AddProductForm = ({
       <div className="mb-4">
         {/* Label for the Name input */}
         <label
-          htmlFor="clientName"
+          htmlFor="productName"
           className="block text-sm font-medium text-gray-400"
         >
           Nombre del producto

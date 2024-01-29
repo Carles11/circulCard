@@ -80,7 +80,7 @@ export default function Dashboard() {
         if (error) {
           throw new Error(error.message)
         }
-
+        console.log({ data })
         setTotalAmountCollected(data || {})
       } catch (error: any) {
         setError(error.message)
@@ -122,6 +122,7 @@ export default function Dashboard() {
               pathname: 'products',
               query: {
                 clientID: clientID,
+                clientName: totalAmountCollected[0]?.client_name,
               },
             }}
           >

@@ -13,6 +13,7 @@ const AdminTitles = ({
   relateItems: boolean
 }) => {
   const addItemLegend = relateItems ? 'Vincula' : 'Añade'
+  const titleItemLegend = relateItems ? 'Vincular' : 'Añadir'
   const removeItemLegend = relateItems ? 'Desvincula' : 'Elimina'
   return (
     <div className="mt-16 flex flex-col items-center gap-4">
@@ -23,7 +24,7 @@ const AdminTitles = ({
         <button
           onClick={() => {
             handleModalView()
-            setModalType(`Añadir ${title}`)
+            setModalType(`${titleItemLegend} ${title}`)
           }}
         >
           <h5 className="text-foreground p-2">{`${addItemLegend} ${title}`}</h5>
@@ -43,7 +44,7 @@ const AdminTitles = ({
         <button
           onClick={() => {
             handleModalView()
-            setModalType(`Eliminar ${title}`)
+            setModalType(`${removeItemLegend}r ${title}`)
           }}
         >
           <h5 className="text-foreground p-2">

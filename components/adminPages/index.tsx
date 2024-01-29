@@ -14,6 +14,7 @@ import ConfirmDialog from 'components/confirmDialog/confirmDialog'
 
 const AdminSection = ({
   userName,
+  clientName,
   handleModalView,
   handleCreateClient,
   handleUpdateClient,
@@ -21,16 +22,22 @@ const AdminSection = ({
   handleCreateProduct,
   handleUpdateProduct,
   handleDeleteProduct,
+  handleRelateNewProduct,
+  handleUpdateRelatedProduct,
+  handleDeleteRelatedProduct,
   handleCreateMaterial,
   handleUpdateMaterial,
   handleDeleteMaterial,
   showModal,
+  relateItems,
   screenMessage,
   clients,
   products,
+  allTheProducts,
   materials,
 }: {
   userName: string
+  clientName: string
   handleModalView: Function
   handleCreateClient: Function
   handleUpdateClient: Function
@@ -38,13 +45,18 @@ const AdminSection = ({
   handleCreateProduct: Function
   handleUpdateProduct: Function
   handleDeleteProduct: Function
+  handleRelateNewProduct: Function
+  handleUpdateRelatedProduct: Function
+  handleDeleteRelatedProduct: Function
   handleCreateMaterial: Function
   handleUpdateMaterial: Function
   handleDeleteMaterial: Function
   showModal: boolean
+  relateItems: boolean
   screenMessage: PostgrestError | null | string | undefined
   clients?: any
   products?: any
+  allTheProducts?: any
   materials?: any
 }) => {
   const { showAdminSection } = useContext(AdminUserContext)
@@ -73,7 +85,7 @@ const AdminSection = ({
                     handleModalView={handleModalView}
                     setModalType={setModalType}
                     title={colTitle}
-                    relateItems={true}
+                    relateItems={relateItems}
                   />
                 )
               }
@@ -101,12 +113,18 @@ const AdminSection = ({
                 {products && (
                   <AdminProducts
                     products={products}
+                    allTheProducts={allTheProducts}
+                    clientName={clientName}
+                    relateItems={relateItems}
                     handleModalView={handleModalView}
                     modalType={modalType}
                     ConfirmDialog={ConfirmDialog}
                     handleCreateProduct={handleCreateProduct}
                     handleUpdateProduct={handleUpdateProduct}
                     handleDeleteProduct={handleDeleteProduct}
+                    handleRelateNewProduct={handleRelateNewProduct}
+                    handleUpdateRelatedProduct={handleUpdateRelatedProduct}
+                    handleDeleteRelatedProduct={handleDeleteRelatedProduct}
                   />
                 )}
                 {materials && (

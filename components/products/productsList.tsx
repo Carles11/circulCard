@@ -13,14 +13,7 @@ import waste_mngment_FOUR from 'assets/documents/certificates/waste-management/E
 import { iconMap } from 'utils/utils.service'
 import ProductListInfoLabel from 'components/products/productListInfoLabel'
 
-function ProductsList({
-  products,
-  clientID,
-}: {
-  products: Database
-  clientID: string
-}) {
-  console.log({ products })
+function ProductsList({ products }: { products: Database }) {
   return (
     <div className="flex flex-col md:flex-row self-center gap-28 mt-12 items-end">
       {products.length > 0 ? (
@@ -48,6 +41,7 @@ function ProductsList({
                 <div className="dropdown__items w-auto max-w-screen md:max-w-auto">
                   <ProductListInfoLabel
                     productName={prod.product_name}
+                    units={prod.rel_clients_products}
                     certificates={[
                       waste_mngment_ONE,
                       waste_mngment_TWO,

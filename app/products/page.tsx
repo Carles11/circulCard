@@ -27,10 +27,12 @@ export default function Products() {
   const supabase = createClientComponentClient<Database>()
   const searchParams = useSearchParams()
   const clientID = searchParams.get('clientID')
+  const clientName = searchParams.get('clientName')
   const router = useRouter() // Initialize the useRouter hook
 
   const [user, setUser] = useState<User | null>(null)
   const [products, setProducts] = useState<any[]>([])
+  const [allTheProducts, setAllTheProducts] = useState<any[]>([])
 
   const [loading, setLoading] = useState(true)
   const [showModal, setShowModal] = useState<boolean>(false)
@@ -42,30 +44,19 @@ export default function Products() {
   const userName = adminStatus.userName
   // Create a Supabase client configured to use cookies
 
-  const handleModalView = () => {
-    setShowModal(!showModal)
-  }
+  useEffect(() => {
+    const fetchData = async () => {
+      const supabase = createClientComponentClient<Database>()
 
-  const handleCreateProduct = (newProduct) => {
-    const createProduct = async (
-      productName: string
-      // productWeight: number
-    ) => {
-      const { data, error } = await supabase
-        .from('products')
-        .insert([{ product_name: productName }])
-        .select()
+      const {
+        data: { user: fetchedUser },
+      } = await supabase.auth.getUser()
+
+      setUser(fetchedUser || null)
     }
-    createProduct(newProduct)
-  }
-  const handleUpdateProduct = () => {
-    {
-    }
-  }
-  const handleDeleteProduct = () => {
-    {
-    }
-  }
+
+    fetchData()
+  }, [])
 
   useEffect(() => {
     // CheckIfSessionIsActive()
@@ -88,10 +79,13 @@ export default function Products() {
       try {
         const { data, error } = await supabase
           .from('products')
-          .select(`id, product_name, clients(id, client_name)`)
+          .select(
+            `id, product_name, clients(id, client_name), rel_clients_products(unidades_gestionadas_total, peso_total, historical_data)`
+          )
           //  .filter('clients.id', 'eq', clientID)
           .eq('clients.id', clientID)
           .not('clients', 'is', null)
+          .eq('rel_clients_products.client_id', clientID)
 
         setProducts(data || [])
       } catch (error: any) {
@@ -102,21 +96,68 @@ export default function Products() {
     }
 
     getProducts()
-  }, [supabase, setProducts, setLoading, setErrorMessage])
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const supabase = createClientComponentClient<Database>()
-
-      const {
-        data: { user: fetchedUser },
-      } = await supabase.auth.getUser()
-
-      setUser(fetchedUser || null)
+    const getAllTheProducts = async () => {
+      try {
+        const { data: fullProductsList, error } = await supabase
+          .from('products')
+          .select(`*`)
+        console.log({ fullProductsList })
+        setAllTheProducts(fullProductsList || [])
+      } catch (error: any) {
+        setErrorMessage(error.message)
+      } finally {
+        setLoading(false)
+      }
     }
 
-    fetchData()
-  }, [])
+    getAllTheProducts()
+  }, [supabase, setAllTheProducts, setLoading, setErrorMessage])
+
+  const handleModalView = () => {
+    setShowModal(!showModal)
+  }
+
+  // ########## HANDLE  RELATIOINAL ACTIONS ###############
+  const handleRelateNewProduct = (
+    newProduct,
+    clientName,
+    newWeight,
+    newUnits
+  ) => {
+    const createProductRelation = async (
+      productName: string,
+      clientID: string,
+      clientName: string,
+      productWeight: number,
+      productUnits: number
+    ) => {
+      const { data, error } = await supabase
+        .from('rel_clients_products')
+        .insert([
+          {
+            product_name: productName,
+            product_id: '41411a7d-2149-467e-8686-95d37fc9c5b0',
+            client_id: clientID,
+            client_name: clientName,
+            peso_total: productWeight,
+            unidades_gestionadas_total: productUnits,
+          },
+        ])
+        .select()
+      console.log({ data })
+    }
+    createProductRelation(newProduct, clientID, clientName, newWeight, newUnits)
+  }
+  const handleUpdateRelatedProduct = () => {
+    {
+      console.log('UPDATING RELATIOOOOOOOOOOOOOOOOOOON')
+    }
+  }
+  const handleDeleteRelatedProduct = () => {
+    {
+      console.log('DELETING RELATIOOOOOOOOOOOOOOOOOOON')
+    }
+  }
 
   if (loading) {
     return <Loader />
@@ -131,19 +172,22 @@ export default function Products() {
       <div className="w-full flex flex-col gap-8 ml-8">
         <ClientGreeting clientID={clientID} page="products" />
       </div>
-      <ProductsList user={user} products={products} clientID={clientID} />
+      <ProductsList user={user} products={products} />
       <div>
         {userName && userIsAdmin && (
           <>
             <AdminSection
               userName={userName}
+              clientName={clientName}
               handleModalView={handleModalView}
-              handleCreateProduct={handleCreateProduct}
-              handleUpdateProduct={handleUpdateProduct}
-              handleDeleteProduct={handleDeleteProduct}
+              handleRelateNewProduct={handleRelateNewProduct}
+              handleUpdateRelatedProduct={handleUpdateRelatedProduct}
+              handleDeleteRelatedProduct={handleDeleteRelatedProduct}
               screenMessage={errorMessage || successMessage}
               products={products}
+              allTheProducts={allTheProducts}
               showModal={showModal}
+              relateItems={true}
             />
           </>
         )}
