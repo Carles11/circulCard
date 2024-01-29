@@ -47,6 +47,7 @@ const AdminProducts = ({
           onClose={handleModalView}
           clientName={clientName}
           allTheProducts={allTheProducts}
+          relatedProducts={products}
         />
       )}
       {!relateItems && products && modalType === 'Actualizar productos' ? (

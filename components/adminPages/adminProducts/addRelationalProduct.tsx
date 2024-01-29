@@ -5,11 +5,13 @@ const AddRelationalProduct = ({
   onClose,
   clientName,
   allTheProducts,
+  relatedProducts,
 }: {
   onCreateProduct: Function
   onClose: Function
   clientName: String
   allTheProducts: any
+  relatedProducts: any
 }) => {
   if (!onClose) {
     return <></>
@@ -21,6 +23,7 @@ const AddRelationalProduct = ({
         onCreateProduct={onCreateProduct}
         clientName={clientName}
         allTheProducts={allTheProducts}
+        relatedProducts={relatedProducts}
       />
     </div>
   )

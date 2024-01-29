@@ -5,13 +5,16 @@ const AddRelationalProductForm = ({
   onClose,
   clientName,
   allTheProducts,
+  relatedProducts,
 }: {
   onClose: Function
   clientName: String
   onCreateProduct: Function
   allTheProducts: any
+  relatedProducts: any
 }) => {
   const [productName, setProductName] = useState<string>('')
+  const [productId, setProductId] = useState<string>('')
   const [totalWeight, setTotalWeight] = useState<number>(0)
   const [units, setUnits] = useState<number>(0)
 
@@ -26,34 +29,62 @@ const AddRelationalProductForm = ({
   }
 
   const handleSubmit = () => {
-    onCreateProduct(productName, clientName, totalWeight, units)
+    onCreateProduct(productName, productId, clientName, totalWeight, units)
     // Reset Inputs
     setProductName('')
   }
-  const completeListOfProducts = allTheProducts
-  console.log({ completeListOfProducts })
+
+  // Compare both arrays and return products that are not in both arrays
+  const notRelatedProducts = allTheProducts?.filter((product1: any) => {
+    // Check if the product from the first array is not present in the second array
+    return !relatedProducts?.some(
+      (product2: any) => product2.id === product1.id
+    )
+  })
+
   return (
     <div>
       <div className="mb-4">
-        {/* Label for the Name input */}
-        <label
-          htmlFor="productName"
-          className="block text-sm font-medium text-gray-400"
-        >
-          Vincula a {clientName} un nuevo producto. Te mostramos a continuación
-          los productos disponibles (solo podrás añadir uno a la vez).
-        </label>
-
-        <div className="flex gap-2 p-4">
-          {completeListOfProducts.length > 0 &&
-            completeListOfProducts.map((fullProds: any) => {
-              console.log({ fullProds })
-              return (
-                <div className="relative grid select-none items-center whitespace-nowrap rounded-full bg-gray-900 py-1.5 px-3 font-sans text-xs font-bold uppercase text-white">
-                  <span className="">{fullProds?.product_name}</span>
-                </div>
-              )
-            })}
+        <div>
+          {notRelatedProducts.length > 0 ? (
+            <div className="flex flex-col gap-2 p-4">
+              {/* Label for the Name input */}
+              <label
+                htmlFor="productName"
+                className="block text-sm font-medium text-gray-400"
+              >
+                Vincula a {clientName} un nuevo producto. Te mostramos a
+                continuación los productos disponibles (solo podrás añadir uno a
+                la vez).
+              </label>
+              <div className="flex gap-1">
+                {notRelatedProducts.map((notRelProd: any) => {
+                  const isSelected = productName === notRelProd?.product_name
+                  console.log({ isSelected })
+                  return (
+                    <div className="w-fit">
+                      <div
+                        className={`${
+                          isSelected ? 'bg-green-700' : 'bg-gray-700'
+                        } relative grid select-none items-center whitespace-nowrap rounded-full  py-1.5 px-3 font-sans text-xs font-bold uppercase text-white`}
+                      >
+                        <button
+                          onClick={() => {
+                            setProductName(notRelProd?.product_name)
+                            setProductId(notRelProd?.id)
+                          }}
+                        >
+                          <span className="">{notRelProd?.product_name} +</span>
+                        </button>
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+          ) : (
+            <p>Este cliente ya tiene todos los productos vinculados</p>
+          )}
           {/* <div className="relative grid select-none items-center whitespace-nowrap rounded-full bg-gradient-to-tr from-gray-900 to-gray-800 py-1.5 px-3 font-sans text-xs font-bold uppercase text-white">
             <span className="">chip gradient</span>
           </div>
@@ -85,13 +116,14 @@ const AddRelationalProductForm = ({
           value={productName}
           className="rounded-ms w-full p-2 border border-gray-300 focus:outline-none focus:ring focus:border-blue-300"
           onChange={handleNameChange}
+          disabled
         />
         {/* Label for the Name input */}
         <label
           htmlFor="units"
-          className="block text-sm font-medium text-gray-400"
+          className="mt-2 block text-sm font-medium text-gray-400"
         >
-          Unidades gestionadas del producto
+          Unidades gestionadas de {productName}
         </label>
         <input
           id="units"
@@ -103,9 +135,9 @@ const AddRelationalProductForm = ({
         {/* Label for the WEIGHT input */}
         <label
           htmlFor="totalWeight"
-          className="block text-sm font-medium text-gray-400"
+          className="mt-2 block text-sm font-medium text-gray-400"
         >
-          Peso total del producto
+          Peso total del producto retirado
         </label>
         <input
           id="totalWeight"

@@ -75,7 +75,7 @@ export default function Products() {
 
   useEffect(() => {
     // console.log(clientID)
-    const getProducts = async () => {
+    const getRelatedProducts = async () => {
       try {
         const { data, error } = await supabase
           .from('products')
@@ -95,13 +95,11 @@ export default function Products() {
       }
     }
 
-    getProducts()
     const getAllTheProducts = async () => {
       try {
         const { data: fullProductsList, error } = await supabase
           .from('products')
           .select(`*`)
-        console.log({ fullProductsList })
         setAllTheProducts(fullProductsList || [])
       } catch (error: any) {
         setErrorMessage(error.message)
@@ -110,8 +108,22 @@ export default function Products() {
       }
     }
 
+    const channels = supabase
+      .channel('custom-all-channel')
+      .on(
+        'postgres_changes',
+        { event: '*', schema: 'public', table: 'rel_clients_products' },
+        (payload) => {
+          if (payload) {
+            getRelatedProducts()
+          }
+        }
+      )
+      .subscribe()
+
+    getRelatedProducts()
     getAllTheProducts()
-  }, [supabase, setAllTheProducts, setLoading, setErrorMessage])
+  }, [supabase, setAllTheProducts, setProducts, setLoading, setErrorMessage])
 
   const handleModalView = () => {
     setShowModal(!showModal)
@@ -119,13 +131,15 @@ export default function Products() {
 
   // ########## HANDLE  RELATIOINAL ACTIONS ###############
   const handleRelateNewProduct = (
-    newProduct,
+    relatingProduct,
+    relatingProduct_ID,
     clientName,
     newWeight,
     newUnits
   ) => {
     const createProductRelation = async (
       productName: string,
+      relatingProductID: string,
       clientID: string,
       clientName: string,
       productWeight: number,
@@ -136,7 +150,7 @@ export default function Products() {
         .insert([
           {
             product_name: productName,
-            product_id: '41411a7d-2149-467e-8686-95d37fc9c5b0',
+            product_id: relatingProductID,
             client_id: clientID,
             client_name: clientName,
             peso_total: productWeight,
@@ -146,7 +160,14 @@ export default function Products() {
         .select()
       console.log({ data })
     }
-    createProductRelation(newProduct, clientID, clientName, newWeight, newUnits)
+    createProductRelation(
+      relatingProduct,
+      relatingProduct_ID,
+      clientID,
+      clientName,
+      newWeight,
+      newUnits
+    )
   }
   const handleUpdateRelatedProduct = () => {
     {
@@ -167,6 +188,7 @@ export default function Products() {
     return <p className="text-red-500">{errorMessage}</p>
   }
 
+  console.log({ products })
   return (
     <div className="w-full flex flex-col md:justify-around gap-8 md:gap-16 mt-4 md:mt-16 md:px-16 items-center">
       <div className="w-full flex flex-col gap-8 ml-8">
