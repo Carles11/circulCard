@@ -73,6 +73,7 @@ const AdminSection = ({
                     handleModalView={handleModalView}
                     setModalType={setModalType}
                     title={colTitle}
+                    relateItems={true}
                   />
                 )
               }
