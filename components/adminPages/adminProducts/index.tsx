@@ -16,7 +16,7 @@ const AdminProducts = ({
   handleCreateProduct,
   handleDeleteProduct,
   handleUpdateProduct,
-  handleRelateNewProduct,
+  handleCreateRelatedProduct,
   handleUpdateRelatedProduct,
   handleDeleteRelatedProduct,
   handleModalView,
@@ -30,7 +30,7 @@ const AdminProducts = ({
   handleCreateProduct: Function
   handleDeleteProduct: Function
   handleUpdateProduct: Function
-  handleRelateNewProduct: Function
+  handleCreateRelatedProduct: Function
   handleUpdateRelatedProduct: Function
   handleDeleteRelatedProduct: Function
   handleModalView: Function
@@ -56,7 +56,7 @@ const AdminProducts = ({
         ) : (
           <div>
             <AddRelationalProduct
-              onCreateProduct={handleRelateNewProduct}
+              onCreateProduct={handleCreateRelatedProduct}
               onClose={handleModalView}
               clientName={clientName}
               allTheProducts={allTheProducts}

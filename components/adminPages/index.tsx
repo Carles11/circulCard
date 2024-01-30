@@ -22,7 +22,7 @@ const AdminSection = ({
   handleCreateProduct,
   handleUpdateProduct,
   handleDeleteProduct,
-  handleRelateNewProduct,
+  handleCreateRelatedProduct,
   handleUpdateRelatedProduct,
   handleDeleteRelatedProduct,
   handleCreateMaterial,
@@ -45,9 +45,9 @@ const AdminSection = ({
   handleCreateProduct: Function
   handleUpdateProduct: Function
   handleDeleteProduct: Function
-  handleRelateNewProduct: Function
-  handleUpdateRelatedProduct: Function
-  handleDeleteRelatedProduct: Function
+  handleCreateRelatedProduct: () => void
+  handleUpdateRelatedProduct: () => void
+  handleDeleteRelatedProduct: () => void
   handleCreateMaterial: Function
   handleUpdateMaterial: Function
   handleDeleteMaterial: Function
@@ -122,7 +122,7 @@ const AdminSection = ({
                     handleCreateProduct={handleCreateProduct}
                     handleUpdateProduct={handleUpdateProduct}
                     handleDeleteProduct={handleDeleteProduct}
-                    handleRelateNewProduct={handleRelateNewProduct}
+                    handleCreateRelatedProduct={handleCreateRelatedProduct}
                     handleUpdateRelatedProduct={handleUpdateRelatedProduct}
                     handleDeleteRelatedProduct={handleDeleteRelatedProduct}
                   />

@@ -446,9 +446,15 @@ export default function Clients() {
             showModal={showModal}
             relateItems={false}
             clientName={''}
-            handleRelateNewProduct={undefined}
-            handleUpdateRelatedProduct={undefined}
-            handleDeleteRelatedProduct={undefined}
+            handleCreateRelatedProduct={function (): void {
+              throw new Error('Function not implemented.')
+            }}
+            handleUpdateRelatedProduct={function (): void {
+              throw new Error('Function not implemented.')
+            }}
+            handleDeleteRelatedProduct={function (): void {
+              throw new Error('Function not implemented.')
+            }}
           />
         </>
       )}

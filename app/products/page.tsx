@@ -130,7 +130,7 @@ export default function Products() {
   }
 
   // ########## HANDLE  RELATIOINAL ACTIONS ###############
-  const handleRelateNewProduct = (
+  const handleCreateRelatedProduct = (
     relatingProduct,
     relatingProduct_ID,
     clientName,
@@ -224,7 +224,7 @@ export default function Products() {
               userName={userName}
               clientName={clientName}
               handleModalView={handleModalView}
-              handleRelateNewProduct={handleRelateNewProduct}
+              handleCreateRelatedProduct={handleCreateRelatedProduct}
               handleUpdateRelatedProduct={handleUpdateRelatedProduct}
               handleDeleteRelatedProduct={handleDeleteRelatedProduct}
               screenMessage={errorMessage || successMessage}
