@@ -24,7 +24,7 @@ function ProductsList({ products }: { products: Database }) {
               className="flex flex-col gap-8 items-center justify-between"
             >
               <Image
-                src={iconMap[prod.product_name]}
+                src={iconMap[prod.product_icon]}
                 alt="The circulart products"
                 width={100}
                 height={100}
@@ -69,11 +69,11 @@ function ProductsList({ products }: { products: Database }) {
               </svg>
             </div>
           ) : (
-            <p>This client has not assigned any materials yet.</p>
+            <p>Este cliente no tiene todavía productos asignados.</p>
           )
         )
       ) : (
-        <p>No Products available</p>
+        <p>No se encontraron productos.</p>
       )}
     </div>
   )

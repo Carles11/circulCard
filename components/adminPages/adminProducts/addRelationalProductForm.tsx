@@ -41,7 +41,6 @@ const AddRelationalProductForm = ({
       (product2: any) => product2.id === product1.id
     )
   })
-  console.log({ notRelatedProducts })
   return (
     <div>
       <div className="mb-4">

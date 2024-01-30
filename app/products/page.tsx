@@ -80,7 +80,7 @@ export default function Products() {
         const { data, error } = await supabase
           .from('products')
           .select(
-            `id, product_name, clients(id, client_name), rel_clients_products(unidades_gestionadas_total, peso_total, historical_data)`
+            `id, product_name, product_icon, clients(id, client_name), rel_clients_products(unidades_gestionadas_total, peso_total, historical_data)`
           )
           //  .filter('clients.id', 'eq', clientID)
           .eq('clients.id', clientID)
@@ -168,10 +168,11 @@ export default function Products() {
       newUnits
     )
   }
-  const handleUpdateRelatedProduct = (newWeight, newUnits) => {
-    console.log('UPDATING RELATIOOOOOOOOOOOOOOOOOOON')
+  const handleUpdateRelatedProduct = (prodId, newWeight, newUnits) => {
+    console.log('UPDATING RELATIOOOOOOOOOOOOOOOOOOON', newWeight, newUnits)
 
     const updateProductRelation = async (
+      prID,
       productWeight: number,
       productUnits: number
     ) => {
@@ -183,13 +184,15 @@ export default function Products() {
             unidades_gestionadas_total: productUnits,
           })
           .eq('client_id', clientID)
+          .eq('product_id', prID)
           .select()
       } catch (error) {
         console.error(error)
       }
     }
-    updateProductRelation(newWeight, newUnits)
+    updateProductRelation(prodId, newWeight, newUnits)
   }
+
   const handleDeleteRelatedProduct = () => {
     {
       console.log('DELETING RELATIOOOOOOOOOOOOOOOOOOON')

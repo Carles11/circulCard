@@ -2,16 +2,16 @@ import React, { useState } from 'react'
 
 import EditIcon from 'components/icons/editIcon'
 
-import UpdateProductForm from './updateProductForm'
+import UpdateRelationalProductForm from './updateRelationalProductForm'
 
 const UpdateRelationalProduct = ({
   products,
   IconButton,
-  handleUpdateProduct,
+  handleUpdateRelationalProduct,
 }: {
   products: any
   IconButton?: any
-  handleUpdateProduct: Function
+  handleUpdateRelationalProduct: Function
 }) => {
   const [confirmOpen, setConfirmOpen] = useState<number | null>(null)
 
@@ -36,12 +36,12 @@ const UpdateRelationalProduct = ({
                   </IconButton>
                 )}
 
-                <UpdateProductForm
+                <UpdateRelationalProductForm
                   product={item}
                   open={confirmOpen === index}
                   onClose={() => setConfirmOpen(null)}
-                  onUpdate={handleUpdateProduct}
-                ></UpdateProductForm>
+                  onUpdate={handleUpdateRelationalProduct}
+                ></UpdateRelationalProductForm>
               </div>
             </div>
           ))}

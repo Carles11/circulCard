@@ -10,6 +10,7 @@ import FURNITUREicon from 'assets/images/icons/SVG/products/furniture-icon.svg'
 import HERZicon from 'assets/images/icons/herz.png'
 import FITNESSicon from 'assets/images/icons/fitness.png'
 import PROJECTSicon from 'assets/images/icons/projects.png'
+import DEFAULTicon from 'assets/images/icons/SVG/products/default-product-icon.svg'
 
 export const urlIsHome = () => {
   const pathname = usePathname()
@@ -29,9 +30,10 @@ export const convertToTons = (weight: any) => {
 }
 
 export const iconMap: Record<string, StaticImageData> = {
-  datáfonos: POSicon,
-  tarjetas: CARDSicon,
-  mobiliario: FURNITUREicon,
+  pos: POSicon,
+  cards: CARDSicon,
+  furniture: FURNITUREicon,
+  default: DEFAULTicon,
   herz: HERZicon,
   fitness: FITNESSicon,
   projects: PROJECTSicon,

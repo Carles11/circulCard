@@ -35,10 +35,18 @@ const AdminProducts = ({
   ConfirmDialog: any
   relateItems: boolean
 }) => {
+  console.log({ modalType })
+  const addItemsOfAnyKind = ['Añadir productos', 'Vincular productos'].includes(
+    modalType
+  )
+  const removeItemsOfAnyKind = [
+    'Eliminar productos',
+    'Desvincular productos',
+  ].includes(modalType)
   return (
     <div>
       {products &&
-        modalType === 'Añadir productos' &&
+        addItemsOfAnyKind &&
         (!relateItems ? (
           <AddProduct
             onCreateProduct={handleCreateProduct}
@@ -67,7 +75,7 @@ const AdminProducts = ({
         ) : (
           <div>
             <UpdateRelationalProduct
-              handleUpdateProduct={handleRelateNewProduct}
+              handleUpdateRelationalProduct={handleUpdateRelatedProduct}
               products={allTheProducts}
               IconButton={IconButton}
 
@@ -75,14 +83,18 @@ const AdminProducts = ({
             />
           </div>
         ))}
-      {!relateItems && products && modalType === 'Eliminar productos' ? (
-        <DeleteProduct
-          products={products}
-          IconButton={IconButton}
-          ConfirmDialog={ConfirmDialog}
-          handleDeleteProduct={handleDeleteProduct}
-        />
-      ) : null}
+      {products &&
+        removeItemsOfAnyKind &&
+        (!relateItems ? (
+          <DeleteProduct
+            products={products}
+            IconButton={IconButton}
+            ConfirmDialog={ConfirmDialog}
+            handleDeleteProduct={handleDeleteProduct}
+          />
+        ) : (
+          <h2>Desvincula!!</h2>
+        ))}
     </div>
   )
 }
