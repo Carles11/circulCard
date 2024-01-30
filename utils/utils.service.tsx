@@ -23,8 +23,9 @@ export const capitalizeFirstLetter = (string: string) => {
 }
 
 export const convertToTons = (weight: any) => {
-  console.log({ weight })
-  return weight > 800 ? { weight: weight / 1000, isInTons: true } : weight
+  return weight > 800
+    ? { weight: weight / 1000, isInTons: true }
+    : { weight, isInTons: true }
 }
 
 export const iconMap: Record<string, StaticImageData> = {

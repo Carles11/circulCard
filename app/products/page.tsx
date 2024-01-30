@@ -158,7 +158,6 @@ export default function Products() {
           },
         ])
         .select()
-      console.log({ data })
     }
     createProductRelation(
       relatingProduct,

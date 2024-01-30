@@ -18,7 +18,7 @@ const ProductListInfoLabel = ({
   }
   const handleConversion = (weight: number) => {
     const conv = convertToTons(weight)
-    console.log({ conv })
+    // console.log({ conv })
     return {
       convertedWeight: conv.isInTons ? conv.weight : weight,
       weightUnit: conv.isInTons ? 'T.' : 'Kg.',

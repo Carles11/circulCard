@@ -80,7 +80,6 @@ export default function Dashboard() {
         if (error) {
           throw new Error(error.message)
         }
-        console.log({ data })
         setTotalAmountCollected(data || {})
       } catch (error: any) {
         setError(error.message)

@@ -35,8 +35,6 @@ const AdminProducts = ({
   ConfirmDialog: any
   relateItems: boolean
 }) => {
-  console.log({ relateItems, products, modalType })
-
   return (
     <div>
       {products &&

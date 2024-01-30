@@ -72,7 +72,7 @@ const PieComponent = ({ materials, projects }) => {
     onClick: (evt, ctx) => {
       document.getElementById('materials-pie').getContext('2d')
       var myLine = new Chart(ctx, config)
-      console.log({ ctx })
+      // console.log({ ctx })
       document.getElementById('canvas').onclick = function (evt) {
         var activePoint = myLine.getElementAtEvent(event)
 

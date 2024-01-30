@@ -41,7 +41,7 @@ const AddRelationalProductForm = ({
       (product2: any) => product2.id === product1.id
     )
   })
-
+  console.log({ notRelatedProducts })
   return (
     <div>
       <div className="mb-4">
@@ -60,7 +60,6 @@ const AddRelationalProductForm = ({
               <div className="flex gap-1">
                 {notRelatedProducts.map((notRelProd: any) => {
                   const isSelected = productName === notRelProd?.product_name
-                  console.log({ isSelected })
                   return (
                     <div className="w-fit">
                       <div
