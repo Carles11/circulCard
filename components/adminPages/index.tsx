@@ -45,9 +45,9 @@ const AdminSection = ({
   handleCreateProduct: Function
   handleUpdateProduct: Function
   handleDeleteProduct: Function
-  handleRelateNewProduct?: Function
-  handleUpdateRelatedProduct?: Function
-  handleDeleteRelatedProduct?: Function
+  handleRelateNewProduct: Function
+  handleUpdateRelatedProduct: Function
+  handleDeleteRelatedProduct: Function
   handleCreateMaterial: Function
   handleUpdateMaterial: Function
   handleDeleteMaterial: Function
