@@ -1,10 +1,12 @@
 import IconButton from 'components/icons/iconButton'
 import React from 'react'
+
 import AddProduct from './addProduct'
 import AddRelationalProduct from './addRelationalProduct'
+import UpdateProduct from './updateProduct'
 import UpdateRelationalProduct from './updateRelationalProduct'
 import DeleteProduct from './deleteProduct'
-import UpdateProduct from './updateProduct'
+import DeleteRelationalProduct from './deleteRelationalProduct'
 
 const AdminProducts = ({
   products,
@@ -35,7 +37,6 @@ const AdminProducts = ({
   ConfirmDialog: any
   relateItems: boolean
 }) => {
-  console.log({ modalType })
   const addItemsOfAnyKind = ['Añadir productos', 'Vincular productos'].includes(
     modalType
   )
@@ -93,7 +94,12 @@ const AdminProducts = ({
             handleDeleteProduct={handleDeleteProduct}
           />
         ) : (
-          <h2>Desvincula!!</h2>
+          <DeleteRelationalProduct
+            products={products}
+            IconButton={IconButton}
+            ConfirmDialog={ConfirmDialog}
+            handleDeleteRelationalProduct={handleDeleteRelatedProduct}
+          />
         ))}
     </div>
   )

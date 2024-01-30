@@ -193,10 +193,14 @@ export default function Products() {
     updateProductRelation(prodId, newWeight, newUnits)
   }
 
-  const handleDeleteRelatedProduct = () => {
-    {
-      console.log('DELETING RELATIOOOOOOOOOOOOOOOOOOON')
+  const handleDeleteRelatedProduct = (id: string) => {
+    const removeRelation = async (productID) => {
+      const { error } = await supabase
+        .from('rel_clients_products')
+        .delete()
+        .eq('product_id', productID)
     }
+    removeRelation(id)
   }
 
   if (loading) {
