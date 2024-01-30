@@ -155,6 +155,11 @@ export default function Products() {
             client_name: clientName,
             peso_total: productWeight,
             unidades_gestionadas_total: productUnits,
+            historical_data: {
+              peso_total: productWeight,
+              unidades_gestionadas_total: productUnits,
+              date_saved: new Date(),
+            },
           },
         ])
         .select()
@@ -168,29 +173,47 @@ export default function Products() {
       newUnits
     )
   }
-  const handleUpdateRelatedProduct = (prodId, newWeight, newUnits) => {
-    console.log('UPDATING RELATIOOOOOOOOOOOOOOOOOOON', newWeight, newUnits)
 
-    const updateProductRelation = async (
-      prID,
-      productWeight: number,
-      productUnits: number
-    ) => {
-      try {
-        const { data, error } = await supabase
-          .from('rel_clients_products')
-          .update({
-            peso_total: productWeight,
-            unidades_gestionadas_total: productUnits,
-          })
-          .eq('client_id', clientID)
-          .eq('product_id', prID)
-          .select()
-      } catch (error) {
-        console.error(error)
+  const handleUpdateRelatedProduct = async (prodId, newWeight, newUnits) => {
+    try {
+      // Fetch the existing historical_data array
+      const { data: existingData, error: fetchError } = await supabase
+        .from('rel_clients_products')
+        .select('historical_data')
+        .eq('client_id', clientID)
+        .eq('product_id', prodId)
+        .single()
+
+      if (fetchError) {
+        console.error('Error fetching existing data:', fetchError.message)
+        return
       }
+
+      // Append new historical data to the existing array
+      const updatedHistoricalData = existingData?.historical_data || []
+      updatedHistoricalData.push({
+        peso_total: newWeight,
+        unidades_gestionadas_total: newUnits,
+        date_saved: new Date().toISOString(),
+      })
+      // Perform the update operation
+      await supabase
+        .from('rel_clients_products')
+        .update({
+          client_id: clientID,
+          product_id: prodId,
+          peso_total: newWeight,
+          unidades_gestionadas_total: newUnits,
+          historical_data: updatedHistoricalData,
+        })
+        .eq('client_id', clientID)
+        .eq('product_id', prodId)
+    } catch (error) {
+      console.error(
+        'Error updating and inserting related product:',
+        error.message
+      )
     }
-    updateProductRelation(prodId, newWeight, newUnits)
   }
 
   const handleDeleteRelatedProduct = (id: string) => {

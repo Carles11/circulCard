@@ -73,7 +73,7 @@ export default function Dashboard() {
       try {
         const { data, error } = await supabase
           .from('rel_clients_products')
-          .select('*, clients(id, client_name)')
+          .select('historical_data, clients(id, client_name)')
           .filter('clients.id', 'eq', clientID)
           .not('clients', 'is', null)
 
@@ -98,7 +98,7 @@ export default function Dashboard() {
   if (error) {
     return <p className="text-red-500">{error}</p>
   }
-
+  console.log({ totalAmountCollected })
   return (
     <div className="w-full md:w-2/3 flex flex-col py-16 gap-8">
       <div className="w-full mb-8 md:mb-16 pl-8">
