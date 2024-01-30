@@ -23,10 +23,16 @@ export const capitalizeFirstLetter = (string: string) => {
   return string?.charAt(0).toUpperCase() + string?.slice(1)
 }
 
-export const convertToTons = (weight: any) => {
+export const convertToTons = (weight: number) => {
+  const weightInTons = weight / 1000
+  const formattedWeight =
+    weightInTons % 1 === 0
+      ? weightInTons.toFixed(0) // If weight in tons is a whole number, remove decimal point
+      : weightInTons.toFixed(1) // Otherwise, show one decimal place
+
   return weight > 800
-    ? { weight: weight / 1000, isInTons: true }
-    : { weight, isInTons: true }
+    ? { weight: formattedWeight, isInTons: true }
+    : { weight, isInTons: false }
 }
 
 export const iconMap: Record<string, StaticImageData> = {

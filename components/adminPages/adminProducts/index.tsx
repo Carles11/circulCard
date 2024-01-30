@@ -76,7 +76,7 @@ const AdminProducts = ({
           <div>
             <UpdateRelationalProduct
               handleUpdateRelationalProduct={handleUpdateRelatedProduct}
-              products={allTheProducts}
+              products={products}
               IconButton={IconButton}
 
               // relatedProducts={products}
