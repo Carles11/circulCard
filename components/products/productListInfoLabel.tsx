@@ -34,19 +34,19 @@ const ProductListInfoLabel = ({
       <ul className="text-gray-700">
         <li>
           <h5>Unidades gestionadas:</h5>
-          <div className="flex gap-2 justify-end items-baseline">
+          <div className="flex gap-2 items-baseline">
             <h2> {units[0].unidades_gestionadas_total || 0} </h2>{' '}
             <p>{productName}</p>
           </div>
         </li>
         <li>
           <h5>Hemos recogido</h5>
-          <div className="flex gap-2">
+          <div className="flex gap-2 items-center">
             <h2>
               {units[0].peso_total ? convertedWeight : 0}
               {weightUnit}
             </h2>
-            <p>de productos en tu empresa.</p>
+            <p>de este producto en tu empresa.</p>
           </div>
         </li>
         {productName === 'tarjetas' &&
