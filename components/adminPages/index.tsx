@@ -89,7 +89,7 @@ const AdminSection = ({
                   />
                 )
               }
-              // return null // Or you can omit this line if you want to skip rendering for undefined values
+              return null // Or you can omit this line if you want to skip rendering for undefined values
             })}
           </div>
           <div className="mt-16 flex flex-col items-center gap-4">
