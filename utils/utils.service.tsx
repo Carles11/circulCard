@@ -22,6 +22,11 @@ export const capitalizeFirstLetter = (string: string) => {
   return string?.charAt(0).toUpperCase() + string?.slice(1)
 }
 
+export const convertToTons = (weight: any) => {
+  console.log({ weight })
+  return weight > 800 ? { weight: weight / 1000, isInTons: true } : weight
+}
+
 export const iconMap: Record<string, StaticImageData> = {
   datáfonos: POSicon,
   tarjetas: CARDSicon,

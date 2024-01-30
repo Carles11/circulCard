@@ -1,3 +1,6 @@
+import { useState } from 'react'
+import { convertToTons } from 'utils/utils.service'
+
 const ProductListInfoLabel = ({
   certificates,
   productName,
@@ -13,16 +16,38 @@ const ProductListInfoLabel = ({
     link.download = pdfPath.split('/').pop() || 'thecirculart_certificado.pdf'
     link.click()
   }
+  const handleConversion = (weight: number) => {
+    const conv = convertToTons(weight)
+    console.log({ conv })
+    return {
+      convertedWeight: conv.isInTons ? conv.weight : weight,
+      weightUnit: conv.isInTons ? 'T.' : 'Kg.',
+    }
+  }
+
+  const { convertedWeight, weightUnit } = handleConversion(
+    units[0].peso_total || 0
+  )
 
   return (
     <div className="w-full text-left">
       <ul className="text-gray-700">
         <li>
-          <h6>Unidades gestionadas:</h6>
-          {units[0].unidades_gestionadas_total || 'sin datos'}
+          <h5>Unidades gestionadas:</h5>
+          <div className="flex gap-2 justify-end items-baseline">
+            <h2> {units[0].unidades_gestionadas_total || 0} </h2>{' '}
+            <p>{productName}</p>
+          </div>
         </li>
         <li>
-          <h6>Total kilos:</h6> {units[0].peso_total || 'sin datos'}
+          <h5>Hemos recogido</h5>
+          <div className="flex gap-2">
+            <h2>
+              {units[0].peso_total ? convertedWeight : 0}
+              {weightUnit}
+            </h2>
+            <p>de productos en tu empresa.</p>
+          </div>
         </li>
         {productName === 'tarjetas' &&
           certificates &&
