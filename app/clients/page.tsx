@@ -445,6 +445,10 @@ export default function Clients() {
             materials={materials}
             showModal={showModal}
             relateItems={false}
+            clientName={''}
+            handleRelateNewProduct={undefined}
+            handleUpdateRelatedProduct={undefined}
+            handleDeleteRelatedProduct={undefined}
           />
         </>
       )}
