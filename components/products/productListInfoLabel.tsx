@@ -1,5 +1,4 @@
-import { useState } from 'react'
-import { convertToTons } from 'utils/utils.service'
+import { convertToTons, handleUnitsDisplayValue } from 'utils/utils.service'
 
 const ProductListInfoLabel = ({
   certificates,
@@ -10,6 +9,7 @@ const ProductListInfoLabel = ({
   productName: String
   units: any
 }) => {
+  console.log({ units })
   const handleDownload = (pdfPath: string) => () => {
     const link = document.createElement('a')
     link.href = pdfPath
@@ -18,10 +18,10 @@ const ProductListInfoLabel = ({
   }
   const handleConversion = (weight: number) => {
     const conv = convertToTons(weight)
-    // console.log({ conv })
+    const valueIsInTones = conv.isInTons
     return {
-      convertedWeight: conv.isInTons ? conv.weight : weight,
-      weightUnit: conv.isInTons ? 'T.' : 'Kg.',
+      convertedWeight: valueIsInTones ? conv.weight : weight,
+      weightUnit: valueIsInTones ? 'T.' : 'Kg.',
     }
   }
 
@@ -29,16 +29,24 @@ const ProductListInfoLabel = ({
     units[0].peso_total || 0
   )
 
+  const formatUnits = (units: any) => {
+    const formattedUnits = handleUnitsDisplayValue(units)
+    return formattedUnits
+  }
+
+  const getTheNumberOfUnits = (units: any) => {
+    console.log({ units })
+    let formattedUnits = units // = handleUnitsDisplayValue(units)
+    return formattedUnits
+  }
   return (
     <div className="w-full text-left">
       <ul className="text-gray-700">
         <li>
           <h5>Hasta hoy hemos gestionado </h5>
           <div className="flex gap-2 items-center">
-            <h2 className="text-5xl">
-              {' '}
-              {units[0].unidades_gestionadas_total || 0}{' '}
-            </h2>{' '}
+            {/* <h2 className="text-5xl"> {units[0].historical_data || 0} </h2>{' '} */}
+            <h2 className="text-5xl"> {units[0].peso_total || 0} </h2>{' '}
             <p>unidades de {productName} para ti.</p>
           </div>
         </li>

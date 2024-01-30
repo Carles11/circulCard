@@ -6,7 +6,6 @@ import { calculateTotalPeso, convertToTons } from 'utils/utils.service'
 
 const TripCumulative = ({ trip }: { trip: TotalAmountProps }) => {
   const totalPeso = calculateTotalPeso(trip)
-  console.log({ totalPeso })
   return (
     <RecycleGreenArrowsCard>
       <div className="flex flex-col mr-6 md:mr-20 items-end mt-6 md:mt-20">

@@ -43,11 +43,33 @@ export const calculateTotalPeso = (trip: any) => {
   trip.forEach((tripItem: any) => {
     // Add the value of "peso_total" for the current tripItem to the totalSum
     totalSum += tripItem.historical_data[0]['peso_total']
-    console.log({ tripItem })
   })
 
   return totalSum
 }
+
+export const convertThousandsToMillions = (number: number) => {
+  if (number >= 1000000) {
+    return (number / 1000000).toFixed(1) + 'M.'
+  } else {
+    return number.toString()
+  }
+}
+
+export const handleUnitsDisplayValue = (weight: number) => {
+  const conv = convertThousandsToMillions(weight)
+  const valueIsInMillions = typeof conv === 'string' && conv.includes('M')
+
+  return {
+    convertedWeight: valueIsInMillions ? conv : weight,
+    weightUnit: valueIsInMillions ? 'M' : 'Kg.',
+  }
+}
+
+// // Example usage:
+// const weightInThousands = 15000000
+// const conversionResult = handleUnitsDisplayValue(weightInThousands)
+// console.log(conversionResult) // Output: { convertedWeight: '15M', weightUnit: 'M' }
 
 export const iconMap: Record<string, StaticImageData> = {
   pos: POSicon,
