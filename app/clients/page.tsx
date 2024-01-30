@@ -444,6 +444,7 @@ export default function Clients() {
             products={products}
             materials={materials}
             showModal={showModal}
+            relateItems={false}
           />
         </>
       )}

@@ -169,10 +169,27 @@ export default function Products() {
       newUnits
     )
   }
-  const handleUpdateRelatedProduct = () => {
-    {
-      console.log('UPDATING RELATIOOOOOOOOOOOOOOOOOOON')
+  const handleUpdateRelatedProduct = (newWeight, newUnits) => {
+    console.log('UPDATING RELATIOOOOOOOOOOOOOOOOOOON')
+
+    const updateProductRelation = async (
+      productWeight: number,
+      productUnits: number
+    ) => {
+      try {
+        const { data, error } = await supabase
+          .from('rel_clients_products')
+          .update({
+            peso_total: productWeight,
+            unidades_gestionadas_total: productUnits,
+          })
+          .eq('client_id', clientID)
+          .select()
+      } catch (error) {
+        console.error(error)
+      }
     }
+    updateProductRelation(newWeight, newUnits)
   }
   const handleDeleteRelatedProduct = () => {
     {
@@ -188,7 +205,6 @@ export default function Products() {
     return <p className="text-red-500">{errorMessage}</p>
   }
 
-  console.log({ products })
   return (
     <div className="w-full flex flex-col md:justify-around gap-8 md:gap-16 mt-4 md:mt-16 md:px-16 items-center">
       <div className="w-full flex flex-col gap-8 ml-8">

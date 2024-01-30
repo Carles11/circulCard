@@ -2,6 +2,7 @@ import IconButton from 'components/icons/iconButton'
 import React from 'react'
 import AddProduct from './addProduct'
 import AddRelationalProduct from './addRelationalProduct'
+import UpdateRelationalProduct from './updateRelationalProduct'
 import DeleteProduct from './deleteProduct'
 import UpdateProduct from './updateProduct'
 
@@ -34,29 +35,48 @@ const AdminProducts = ({
   ConfirmDialog: any
   relateItems: boolean
 }) => {
+  console.log({ relateItems, products, modalType })
+
   return (
     <div>
-      {!relateItems && products && modalType === 'Añadir productos' ? (
-        <AddProduct
-          onCreateProduct={handleCreateProduct}
-          onClose={handleModalView}
-        />
-      ) : (
-        <AddRelationalProduct
-          onCreateProduct={handleRelateNewProduct}
-          onClose={handleModalView}
-          clientName={clientName}
-          allTheProducts={allTheProducts}
-          relatedProducts={products}
-        />
-      )}
-      {!relateItems && products && modalType === 'Actualizar productos' ? (
-        <UpdateProduct
-          products={products}
-          IconButton={IconButton}
-          handleUpdateProduct={handleUpdateProduct}
-        />
-      ) : null}
+      {products &&
+        modalType === 'Añadir productos' &&
+        (!relateItems ? (
+          <AddProduct
+            onCreateProduct={handleCreateProduct}
+            onClose={handleModalView}
+          />
+        ) : (
+          <div>
+            <AddRelationalProduct
+              onCreateProduct={handleRelateNewProduct}
+              onClose={handleModalView}
+              clientName={clientName}
+              allTheProducts={allTheProducts}
+              relatedProducts={products}
+            />
+          </div>
+        ))}
+
+      {products &&
+        modalType === 'Actualizar productos' &&
+        (!relateItems ? (
+          <UpdateProduct
+            products={products}
+            IconButton={IconButton}
+            handleUpdateProduct={handleUpdateProduct}
+          />
+        ) : (
+          <div>
+            <UpdateRelationalProduct
+              handleUpdateProduct={handleRelateNewProduct}
+              products={allTheProducts}
+              IconButton={IconButton}
+
+              // relatedProducts={products}
+            />
+          </div>
+        ))}
       {!relateItems && products && modalType === 'Eliminar productos' ? (
         <DeleteProduct
           products={products}

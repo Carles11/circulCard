@@ -46,7 +46,7 @@ const AddRelationalProductForm = ({
     <div>
       <div className="mb-4">
         <div>
-          {notRelatedProducts.length > 0 ? (
+          {notRelatedProducts?.length > 0 ? (
             <div className="flex flex-col gap-2 p-4">
               {/* Label for the Name input */}
               <label
