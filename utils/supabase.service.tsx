@@ -19,7 +19,7 @@ export const CheckIfUserIsAdmin = () => {
         .select('username, is_admin')
 
       const profileIsAdmin = profiles ? profiles[0].is_admin : false
-      const userName = profiles ? profiles[0].username : false
+      const userName = profiles ? profiles[0].username : ''
       setUserIsAdmin(profileIsAdmin)
       setUserName(userName)
     }

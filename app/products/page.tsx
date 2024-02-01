@@ -145,6 +145,12 @@ export default function Products() {
       productWeight: number,
       productUnits: number
     ) => {
+      const updatedHistoricalData = []
+      updatedHistoricalData.push({
+        peso_total: productWeight,
+        unidades_gestionadas_total: productUnits,
+        date_saved: new Date().toISOString(),
+      })
       const { data, error } = await supabase
         .from('rel_clients_products')
         .insert([
@@ -155,11 +161,7 @@ export default function Products() {
             client_name: clientName,
             peso_total: productWeight,
             unidades_gestionadas_total: productUnits,
-            historical_data: {
-              peso_total: productWeight,
-              unidades_gestionadas_total: productUnits,
-              date_saved: new Date(),
-            },
+            historical_data: updatedHistoricalData,
           },
         ])
         .select()

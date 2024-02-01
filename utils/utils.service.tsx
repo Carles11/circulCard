@@ -38,12 +38,15 @@ export const convertToTons = (weight: number) => {
 export const calculateTotalPeso = (trip: any) => {
   // Initialize a variable to store the total sum
   let totalSum = 0
-
   // Loop through each trip in the array
   trip.forEach((tripItem: any) => {
+    console.log(tripItem)
     // Add the value of "peso_total" for the current tripItem to the totalSum
-    totalSum += tripItem.historical_data[0]['peso_total']
+    totalSum += tripItem.historical_data
+      ? tripItem.historical_data[0]['peso_total']
+      : 0
   })
+  // console.log({ totalSum })
 
   return totalSum
 }

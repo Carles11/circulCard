@@ -98,7 +98,8 @@ export default function Dashboard() {
   if (error) {
     return <p className="text-red-500">{error}</p>
   }
-  console.log({ totalAmountCollected })
+
+  const clientNameAsProp = totalAmountCollected[0]?.clients?.client_name
   return (
     <div className="w-full md:w-2/3 flex flex-col py-16 gap-8">
       <div className="w-full mb-8 md:mb-16 pl-8">
@@ -121,7 +122,7 @@ export default function Dashboard() {
               pathname: 'products',
               query: {
                 clientID: clientID,
-                clientName: totalAmountCollected[0]?.client_name,
+                clientName: clientNameAsProp,
               },
             }}
           >

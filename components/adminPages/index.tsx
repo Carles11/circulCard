@@ -76,6 +76,7 @@ const AdminSection = ({
             (Descuida, <u>solo administradores</u> pueden ver el icono de "modo
             administrador" y los contenidos más allá de la línea gris.)
           </h6>
+
           <div className="flex flex-col md:flex-row justify-between gap-4">
             {adminColumns.map((colTitle, i) => {
               if (colTitle !== 'undefined') {
