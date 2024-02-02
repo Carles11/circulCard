@@ -5,10 +5,10 @@ import { calculateTotalPeso, convertToTons } from 'utils/utils.service'
 // import type { TripProps } from 'types/supabase'
 
 const TripCumulative = ({ trip }: { trip: TotalAmountProps }) => {
-  console.log({ trip })
   const totalPeso = calculateTotalPeso(trip)
   const displayInTones = convertToTons(totalPeso)
   const isInTons = displayInTones.isInTons
+  const displayWeight = displayInTones.weight
   // console.log({ trip, totalPeso, displayInTones })
 
   return (
@@ -17,7 +17,7 @@ const TripCumulative = ({ trip }: { trip: TotalAmountProps }) => {
         <div className="flex flex-col mr-2 items-end align-center">
           {/* <h3 className="z-1 text-left text-gray-600">Más de</h3> */}
           <h1 className="z-1 text-gray-600 leading-8">
-            {displayInTones.weight} {isInTons ? 'toneladas' : 'kilos'}
+            {displayWeight} {isInTons ? 'toneladas' : 'kilos'}
           </h1>
           <h3 className="z-1 text-gray-600">
             {isInTons ? 'recogidas' : 'recogidos'}

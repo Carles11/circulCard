@@ -1,7 +1,7 @@
 // @ts-nocheck
 
 import BarChart from 'components/charts/barChart'
-import DarkButtonWithHover from 'components/buttons/darkButtonWithHover'
+import { calculateTotalYearWeight } from 'utils/utils.service'
 
 const ProductsHistoryChartComponent = ({ yearsCollection }) => {
   const plugins = {
@@ -81,24 +81,15 @@ const ProductsHistoryChartComponent = ({ yearsCollection }) => {
     return gradient
   }
 
-  const labels = ['2019', '2020', '2021', '2022', '2023']
-  // Show green for 100 and white for the rest
-  const showBars = labels.map((year) => {
-    let totalAmount = 0
-    yearsCollection.forEach((trip) => {
-      if (trip.total_amount_collected && trip.total_amount_collected[year]) {
-        totalAmount += trip.total_amount_collected[year]
-      }
-    })
-    return totalAmount
-  })
+  const labels = ['2021', '2022', '2023', '2024']
+  const showBarsNew = calculateTotalYearWeight(yearsCollection)
 
   const BarChartData = {
     labels,
     datasets: [
       {
         label: 'Toneladas',
-        data: showBars,
+        data: showBarsNew,
         backgroundColor: gradientColor,
         borderWidth: 1, // Add a border width for bars
         borderColor: 'black', // Border color for bars

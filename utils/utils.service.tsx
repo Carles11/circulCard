@@ -99,6 +99,48 @@ export const handleWeightConversion = (weight: number) => {
   }
 }
 
+export function calculateTotalYearWeight(data: any) {
+  const yearTotals = {}
+
+  data.forEach((item: any) => {
+    item.historical_data.forEach(
+      (dataPoint: { date_saved: string | number | Date; peso_total: any }) => {
+        const year = new Date(dataPoint.date_saved).getFullYear()
+        if (!yearTotals[year]) {
+          yearTotals[year] = 0
+        }
+        yearTotals[year] += dataPoint.peso_total
+      }
+    )
+  })
+
+  return yearTotals
+}
+
+const object = [
+  {
+    historical_data: [
+      {
+        date_saved: '2024-02-02T20:07:06.642Z',
+        peso_total: 500,
+        unidades_gestionadas_total: 1000000,
+      },
+      {
+        date_saved: '2024-02-02T20:07:48.516Z',
+        peso_total: 1000,
+        unidades_gestionadas_total: 2000000,
+      },
+    ],
+    clients: {
+      id: 'cc13717e-d09c-4853-86ab-a0c174770710',
+      client_name: 'La Caixa',
+    },
+  },
+]
+
+const totalYearWeight = calculateTotalYearWeight(object)
+console.log(totalYearWeight)
+
 // // Example usage:
 // const weightInThousands = 15000000
 // const conversionResult = handleUnitsDisplayValue(weightInThousands)
