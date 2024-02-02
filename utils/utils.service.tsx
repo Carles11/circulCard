@@ -92,7 +92,8 @@ export const getTheNumberOfUnits = (unitsArray: any) => {
 
 export const handleWeightConversion = (units: any) => {
   const sumPesoTotal = units[0].historical_data.reduce(
-    (total, dataPoint) => total + dataPoint.peso_total,
+    (total: any, dataPoint: { peso_total: any }) =>
+      total + dataPoint.peso_total,
     0
   )
 
