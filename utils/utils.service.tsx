@@ -44,22 +44,37 @@ export const calculateTotalPeso = (tripObject: any) => {
   })
   return totalPeso
 }
+export const calculateTotalUnits = (tripObject: any) => {
+  let totalUnits = 0
+  tripObject.forEach((trip: { historical_data: any[] }) => {
+    trip.historical_data?.forEach(
+      (data: { unidades_gestionadas_total: number }) => {
+        totalUnits += data.unidades_gestionadas_total
+      }
+    )
+  })
+  return totalUnits
+}
 
-export const convertThousandsToShort = (number: number) => {
+export const convertMillionsToShortVersion = (number: number) => {
   if (number >= 1000000) {
-    return (number / 1000000).toFixed(1) + 'M.'
+    return (number / 1000000).toFixed(1)
   } else {
     return number.toString()
   }
 }
 
-export const handleUnitsDisplayValue = (weight: number) => {
-  const conv = convertThousandsToShort(weight)
-  const valueIsInMillions = typeof conv === 'string' && conv.includes('M')
+export const handleUnitsDisplayValue = (units: number) => {
+  console.log({ units })
+  const extractTheTotal = calculateTotalUnits(units)
+  console.log({ extractTheTotal })
+  const conv = convertMillionsToShortVersion(extractTheTotal)
+  console.log({ conv })
+  const isConverted = extractTheTotal >= 1000000
 
   return {
-    convertedWeight: valueIsInMillions ? conv : weight,
-    weightUnit: valueIsInMillions ? 'M' : '',
+    numberOfUnits: conv || extractTheTotal,
+    unitsUnit: isConverted ? 'Mill.' : '',
   }
 }
 
@@ -73,6 +88,15 @@ export const getTheNumberOfUnits = (unitsArray: any) => {
     )
   })
   return totalPeso
+}
+
+export const handleWeightConversion = (weight: number) => {
+  const conv = convertToTons(weight)
+  const valueIsInTones = conv.isInTons
+  return {
+    convertedWeight: valueIsInTones ? conv.weight : weight,
+    weightUnit: valueIsInTones ? 'T.' : 'Kg.',
+  }
 }
 
 // // Example usage:

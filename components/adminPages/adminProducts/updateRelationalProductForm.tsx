@@ -67,7 +67,7 @@ const updateRelationalProductForm = ({
           id="units"
           type="number"
           inputMode="numeric"
-          value={newUnits}
+          value={newUnits.toString()}
           className="rounded-ms w-full p-2 border border-gray-300 focus:outline-none focus:ring focus:border-blue-300"
           onChange={handleUnitsChange}
         />
@@ -82,7 +82,7 @@ const updateRelationalProductForm = ({
           id="totalWeight"
           type="number"
           inputMode="numeric"
-          value={newTotalWeight}
+          value={newTotalWeight.toString()}
           className="rounded-ms w-full p-2 border border-gray-300 focus:outline-none focus:ring focus:border-blue-300"
           onChange={handleWeightChange}
         />

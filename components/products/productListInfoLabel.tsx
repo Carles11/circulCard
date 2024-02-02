@@ -1,5 +1,5 @@
 import {
-  convertToTons,
+  handleWeightConversion,
   handleUnitsDisplayValue,
   getTheNumberOfUnits,
 } from 'utils/utils.service'
@@ -13,30 +13,23 @@ const ProductListInfoLabel = ({
   productName: String
   units: any
 }) => {
-  // console.log({ units })
   const handleDownload = (pdfPath: string) => () => {
     const link = document.createElement('a')
     link.href = pdfPath
     link.download = pdfPath.split('/').pop() || 'thecirculart_certificado.pdf'
     link.click()
   }
-  const handleConversion = (weight: number) => {
-    const conv = convertToTons(weight)
-    const valueIsInTones = conv.isInTons
-    return {
-      convertedWeight: valueIsInTones ? conv.weight : weight,
-      weightUnit: valueIsInTones ? 'T.' : 'Kg.',
-    }
-  }
 
-  const { convertedWeight, weightUnit } = handleConversion(
+  const { convertedWeight, weightUnit } = handleWeightConversion(
     units[0].peso_total || 0
   )
+  const { numberOfUnits, unitsUnit } = handleUnitsDisplayValue(units || null)
+  console.log({ numberOfUnits, unitsUnit })
 
   const formatUnits = (units: any) => {
     const formattedUnits = handleUnitsDisplayValue(units)
 
-    return formattedUnits.weightUnit
+    return formattedUnits.unitsUnit
   }
 
   return (
@@ -45,14 +38,15 @@ const ProductListInfoLabel = ({
         <li>
           <h5>Hasta hoy hemos gestionado </h5>
           <div className="flex gap-2 items-center">
-            {/* <h2 className="text-5xl"> {units[0].historical_data || 0} </h2>{' '} */}
-            <h2 className="text-5xl"> {getTheNumberOfUnits(units) || 0} </h2>{' '}
-            <h2 className="text-5xl"> {formatUnits(units) || ''} </h2>{' '}
-            {/* <h2 className="text-5xl">
-              {' '}
-              {getTheNumberOfUnits(units).peso_total}{' '}
-            </h2>{' '} */}
-            <p>unidades de {productName} para ti.</p>
+            {/* <h2 className="text-5xl"> {getTheNumberOfUnits(units) || 0} </h2>{' '}
+            <h2 className="text-5xl"> {formatUnits(units) || ''} </h2>{' '} */}
+            <h2 className="text-6xl">
+              {numberOfUnits}
+              {unitsUnit}
+            </h2>
+            <p>
+              {unitsUnit !== '' && 'de '}unidades de {productName} para ti.
+            </p>
           </div>
         </li>
         <hr className="w-full h-px bg-gray-400 border-0 rounded md:my-2 dark:bg-gray-500" />
@@ -60,7 +54,7 @@ const ProductListInfoLabel = ({
           <div className="flex gap-1 items-center">
             <h5>En total hemos recogido</h5>
             <h2 className="text-6xl">
-              {units[0].peso_total ? convertedWeight : 0}
+              {convertedWeight}
               {weightUnit}
             </h2>
           </div>
