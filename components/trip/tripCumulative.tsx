@@ -5,10 +5,11 @@ import { calculateTotalPeso, convertToTons } from 'utils/utils.service'
 // import type { TripProps } from 'types/supabase'
 
 const TripCumulative = ({ trip }: { trip: TotalAmountProps }) => {
+  console.log({ trip })
   const totalPeso = calculateTotalPeso(trip)
   const displayInTones = convertToTons(totalPeso)
   const isInTons = displayInTones.isInTons
-  console.log({ trip, totalPeso, displayInTones })
+  // console.log({ trip, totalPeso, displayInTones })
 
   return (
     <RecycleGreenArrowsCard>
@@ -19,7 +20,7 @@ const TripCumulative = ({ trip }: { trip: TotalAmountProps }) => {
             {displayInTones.weight} {isInTons ? 'toneladas' : 'kilos'}
           </h1>
           <h3 className="z-1 text-gray-600">
-            {isInTons ? 'recicladas' : 'reciclados'}
+            {isInTons ? 'recogidas' : 'recogidos'}
           </h3>
         </div>
         {/* <div>

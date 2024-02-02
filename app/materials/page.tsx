@@ -102,7 +102,7 @@ const Materials = () => {
   if (error) {
     return <p className="text-red-500">{error}</p>
   }
-  console.log({ materials })
+  // console.log({ materials })
 
   return (
     <div className="w-full flex flex-col items-center">

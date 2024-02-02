@@ -35,23 +35,17 @@ export const convertToTons = (weight: number) => {
     : { weight, isInTons: false }
 }
 
-export const calculateTotalPeso = (trip: any) => {
-  // Initialize a variable to store the total sum
-  let totalSum = 0
-  // Loop through each trip in the array
-  trip.forEach((tripItem: any) => {
-    console.log(tripItem)
-    // Add the value of "peso_total" for the current tripItem to the totalSum
-    totalSum += tripItem.historical_data
-      ? tripItem.historical_data[0]['peso_total']
-      : 0
+export const calculateTotalPeso = (tripObject: any) => {
+  let totalPeso = 0
+  tripObject.forEach((trip: { historical_data: any[] }) => {
+    trip.historical_data?.forEach((data: { peso_total: number }) => {
+      totalPeso += data.peso_total
+    })
   })
-  // console.log({ totalSum })
-
-  return totalSum
+  return totalPeso
 }
 
-export const convertThousandsToMillions = (number: number) => {
+export const convertThousandsToShort = (number: number) => {
   if (number >= 1000000) {
     return (number / 1000000).toFixed(1) + 'M.'
   } else {
@@ -60,13 +54,25 @@ export const convertThousandsToMillions = (number: number) => {
 }
 
 export const handleUnitsDisplayValue = (weight: number) => {
-  const conv = convertThousandsToMillions(weight)
+  const conv = convertThousandsToShort(weight)
   const valueIsInMillions = typeof conv === 'string' && conv.includes('M')
 
   return {
     convertedWeight: valueIsInMillions ? conv : weight,
-    weightUnit: valueIsInMillions ? 'M' : 'Kg.',
+    weightUnit: valueIsInMillions ? 'M' : '',
   }
+}
+
+export const getTheNumberOfUnits = (unitsArray: any) => {
+  let totalPeso = 0
+  unitsArray.forEach((unit: { historical_data: any[] }) => {
+    unit.historical_data?.forEach(
+      (data: { unidades_gestionadas_total: number }) => {
+        totalPeso += data.unidades_gestionadas_total
+      }
+    )
+  })
+  return totalPeso
 }
 
 // // Example usage:

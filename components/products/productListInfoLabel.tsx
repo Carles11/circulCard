@@ -1,4 +1,8 @@
-import { convertToTons, handleUnitsDisplayValue } from 'utils/utils.service'
+import {
+  convertToTons,
+  handleUnitsDisplayValue,
+  getTheNumberOfUnits,
+} from 'utils/utils.service'
 
 const ProductListInfoLabel = ({
   certificates,
@@ -9,7 +13,7 @@ const ProductListInfoLabel = ({
   productName: String
   units: any
 }) => {
-  console.log({ units })
+  // console.log({ units })
   const handleDownload = (pdfPath: string) => () => {
     const link = document.createElement('a')
     link.href = pdfPath
@@ -31,14 +35,10 @@ const ProductListInfoLabel = ({
 
   const formatUnits = (units: any) => {
     const formattedUnits = handleUnitsDisplayValue(units)
-    return formattedUnits
+
+    return formattedUnits.weightUnit
   }
 
-  const getTheNumberOfUnits = (units: any) => {
-    console.log({ units })
-    let formattedUnits = units // = handleUnitsDisplayValue(units)
-    return formattedUnits
-  }
   return (
     <div className="w-full text-left">
       <ul className="text-gray-700">
@@ -46,7 +46,12 @@ const ProductListInfoLabel = ({
           <h5>Hasta hoy hemos gestionado </h5>
           <div className="flex gap-2 items-center">
             {/* <h2 className="text-5xl"> {units[0].historical_data || 0} </h2>{' '} */}
-            <h2 className="text-5xl"> {units[0].peso_total || 0} </h2>{' '}
+            <h2 className="text-5xl"> {getTheNumberOfUnits(units) || 0} </h2>{' '}
+            <h2 className="text-5xl"> {formatUnits(units) || ''} </h2>{' '}
+            {/* <h2 className="text-5xl">
+              {' '}
+              {getTheNumberOfUnits(units).peso_total}{' '}
+            </h2>{' '} */}
             <p>unidades de {productName} para ti.</p>
           </div>
         </li>

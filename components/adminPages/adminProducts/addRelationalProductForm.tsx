@@ -125,7 +125,8 @@ const AddRelationalProductForm = ({
         </label>
         <input
           id="units"
-          type="numeric"
+          type="number"
+          inputMode="numeric"
           value={units}
           className="rounded-ms w-full p-2 border border-gray-300 focus:outline-none focus:ring focus:border-blue-300"
           onChange={handleUnitsChange}
@@ -139,7 +140,8 @@ const AddRelationalProductForm = ({
         </label>
         <input
           id="totalWeight"
-          type="numeric"
+          type="number"
+          inputMode="numeric"
           value={totalWeight}
           className="rounded-ms w-full p-2 border border-gray-300 focus:outline-none focus:ring focus:border-blue-300"
           onChange={handleWeightChange}
