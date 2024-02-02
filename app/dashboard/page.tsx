@@ -100,7 +100,7 @@ export default function Dashboard() {
   }
 
   const clientNameAsProp = totalAmountCollected[0]?.clients?.client_name
-  console.log({ totalAmountCollected })
+  // console.log({ totalAmountCollected })
   return (
     <div className="w-full md:w-2/3 flex flex-col py-16 gap-8">
       <div className="w-full mb-8 md:mb-16 pl-8">

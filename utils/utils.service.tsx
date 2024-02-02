@@ -65,11 +65,8 @@ export const convertMillionsToShortVersion = (number: number) => {
 }
 
 export const handleUnitsDisplayValue = (units: number) => {
-  console.log({ units })
   const extractTheTotal = calculateTotalUnits(units)
-  console.log({ extractTheTotal })
   const conv = convertMillionsToShortVersion(extractTheTotal)
-  console.log({ conv })
   const isConverted = extractTheTotal >= 1000000
 
   return {

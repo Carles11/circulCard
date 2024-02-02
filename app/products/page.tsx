@@ -6,7 +6,7 @@ import { useSearchParams, useRouter } from 'next/navigation'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 
 import type { Database } from 'types/supabase'
-import { User as SupabaseUser } from '@supabase/supabase-js'
+import { User as SupabaseUser, PostgrestError } from '@supabase/supabase-js'
 
 import {
   CheckIfUserIsAdmin,
@@ -151,21 +151,37 @@ export default function Products() {
         unidades_gestionadas_total: productUnits,
         date_saved: new Date().toISOString(),
       })
-      const { data, error } = await supabase
-        .from('rel_clients_products')
-        .insert([
-          {
-            product_name: productName,
-            product_id: relatingProductID,
-            client_id: clientID,
-            client_name: clientName,
-            peso_total: productWeight,
-            unidades_gestionadas_total: productUnits,
-            historical_data: updatedHistoricalData,
-          },
-        ])
-        .select()
+
+      try {
+        const { data, error } = await supabase
+          .from('rel_clients_products')
+          .insert([
+            {
+              product_name: productName,
+              product_id: relatingProductID,
+              client_id: clientID,
+              client_name: clientName,
+              peso_total: productWeight,
+              unidades_gestionadas_total: productUnits,
+              historical_data: updatedHistoricalData,
+            },
+          ])
+          .select()
+
+        if (error) {
+          console.error({ error })
+          setErrorMessage(error)
+        } else {
+          setSuccessMessage(
+            `Nuevo producto ${productName} vinculado con éxito a ${clientName}.`
+          )
+        }
+      } catch (error) {
+        console.error('Error: ', error)
+        setErrorMessage(error as PostgrestError | null)
+      }
     }
+
     createProductRelation(
       relatingProduct,
       relatingProduct_ID,
@@ -188,9 +204,7 @@ export default function Products() {
 
       if (fetchError) {
         console.error('Error fetching existing data:', fetchError.message)
-        return
       }
-
       // Append new historical data to the existing array
       const updatedHistoricalData = existingData?.historical_data || []
       updatedHistoricalData.push({
@@ -199,7 +213,7 @@ export default function Products() {
         date_saved: new Date().toISOString(),
       })
       // Perform the update operation
-      await supabase
+      const { data, error: updatingError } = await supabase
         .from('rel_clients_products')
         .update({
           client_id: clientID,
@@ -210,6 +224,13 @@ export default function Products() {
         })
         .eq('client_id', clientID)
         .eq('product_id', prodId)
+
+      if (updatingError) {
+        console.error('Error fetching existing data:', updatingError)
+        setErrorMessage(updatingError)
+      } else {
+        setSuccessMessage('Producto actualizado con éxito.')
+      }
     } catch (error) {
       console.error(
         'Error updating and inserting related product:',
@@ -224,6 +245,12 @@ export default function Products() {
         .from('rel_clients_products')
         .delete()
         .eq('product_id', productID)
+      if (error) {
+        console.log({ error })
+        setErrorMessage(error)
+      } else {
+        setSuccessMessage('Producto desvinculado con éxito.')
+      }
     }
     removeRelation(id)
   }

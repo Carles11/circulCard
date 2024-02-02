@@ -19,7 +19,6 @@ const ProductListInfoLabel = ({
     link.click()
   }
 
-  console.log({ units })
   const { convertedWeight, weightUnit } = handleWeightConversion(units || null)
   const { numberOfUnits, unitsUnit } = handleUnitsDisplayValue(units || null)
 
