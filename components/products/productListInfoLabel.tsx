@@ -1,7 +1,6 @@
 import {
   handleWeightConversion,
   handleUnitsDisplayValue,
-  getTheNumberOfUnits,
 } from 'utils/utils.service'
 
 const ProductListInfoLabel = ({
@@ -20,17 +19,9 @@ const ProductListInfoLabel = ({
     link.click()
   }
 
-  const { convertedWeight, weightUnit } = handleWeightConversion(
-    units[0].peso_total || 0
-  )
+  console.log({ units })
+  const { convertedWeight, weightUnit } = handleWeightConversion(units || null)
   const { numberOfUnits, unitsUnit } = handleUnitsDisplayValue(units || null)
-  console.log({ numberOfUnits, unitsUnit })
-
-  const formatUnits = (units: any) => {
-    const formattedUnits = handleUnitsDisplayValue(units)
-
-    return formattedUnits.unitsUnit
-  }
 
   return (
     <div className="w-full text-left">
