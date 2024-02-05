@@ -23,6 +23,7 @@ import RecycleWorld from 'assets/images/icons/SVG/recycle-green-world.svg'
 const Materials = () => {
   const [materials, setMaterials] = useState<any[]>([])
   const [projects, setProjects] = useState<any[]>([])
+  const [products, setProducts] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const router = useRouter() // Initialize the useRouter hook
@@ -30,7 +31,6 @@ const Materials = () => {
   const supabase = createClientComponentClient<Database>()
   const searchParams = useSearchParams()
 
-  const productName = searchParams.get('productName')
   const clientID = searchParams.get('clientID')
 
   useEffect(() => {
@@ -46,6 +46,62 @@ const Materials = () => {
 
     checkUser()
   }, [supabase, router])
+
+  useEffect(() => {
+    const getProducts = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('products')
+          .select('product_name, clients(id)')
+          .filter('clients.id', 'eq', clientID)
+          .not('clients', 'is', null)
+
+        if (error) {
+          throw new Error(error.message)
+        }
+        setProducts(data)
+      } catch (error) {
+        setError(error.message)
+      } finally {
+        setLoading(false)
+      }
+    }
+    getProducts()
+  }, [supabase])
+
+  useEffect(() => {
+    const getMaterials = async () => {
+      if (products.length === 0) return
+
+      // Extract product names from the products array
+      const productNames = products
+        .map((product) => product.product_name)
+        .filter(Boolean)
+
+      console.log({ products })
+      try {
+        const { data, error } = await supabase
+          .from('materials')
+          .select(
+            'id, material_name, percentage_mat-prod, percentage, color, collect_date, cumulative_total, products(product_name)'
+          )
+          .in('products.product_name', productNames)
+          .not('products', 'is', null)
+
+        if (error) {
+          throw new Error(error.message)
+        }
+
+        setMaterials(data || {})
+      } catch (error: any) {
+        setError(error.message)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    getMaterials()
+  }, [supabase, products])
 
   useEffect(() => {
     const getProjects = async () => {
@@ -67,32 +123,6 @@ const Materials = () => {
     }
 
     getProjects()
-  }, [supabase])
-
-  useEffect(() => {
-    const getMaterials = async () => {
-      try {
-        const { data, error } = await supabase
-          .from('materials')
-          .select(
-            'id, material_name, percentage_mat-prod, percentage, color, collect_date, cumulative_total, products(product_name)'
-          )
-          .in('products.product_name', ['tarjetas', 'datáfonos'])
-          .not('products', 'is', null)
-
-        if (error) {
-          throw new Error(error.message)
-        }
-
-        setMaterials(data || {})
-      } catch (error: any) {
-        setError(error.message)
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    getMaterials()
   }, [supabase])
 
   if (loading) {
