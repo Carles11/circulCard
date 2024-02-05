@@ -6,9 +6,12 @@ const PieComponent = ({ materials, projects }) => {
   const baseArray = materials || projects || null
   const prefix = materials ? 'material' : 'project'
   const matLabels = baseArray?.map((matItem) => matItem[`${prefix}_name`])
-  const matPercentages = baseArray?.map(
-    (matItem) => matItem.rel_products_materials[0].material_win_percentage
-  )
+  const matPercentages =
+    baseArray && prefix === 'materials'
+      ? baseArray.map(
+          (matItem) => matItem.rel_products_materials[0].material_win_percentage
+        )
+      : baseArray.map((projItem) => projItem.percentage)
   const matColors = baseArray?.map((matItem) => matItem.color)
 
   const PieChartData = {

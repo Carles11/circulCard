@@ -21,8 +21,9 @@ const CircleList = ({
         {items.map((element: any, index) => {
           // Calculating the total weight recycled based on the peso_total of the product and the percentage of material extracted
           const materialWeight =
+            isMaterial &&
             element.rel_products_materials[0]?.material_name ===
-            element.material_name
+              element.material_name
               ? ((prodWeightName[0]?.peso_total ?? 0) *
                   element.rel_products_materials[0].material_win_percentage) /
                 100
