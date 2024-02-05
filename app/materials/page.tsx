@@ -77,7 +77,7 @@ const Materials = () => {
           .select(
             'id, material_name, percentage_mat-prod, percentage, color, collect_date, cumulative_total, products(product_name)'
           )
-          // .eq('products.product_name', productName)
+          .in('products.product_name', ['tarjetas', 'datáfonos'])
           .not('products', 'is', null)
 
         if (error) {
