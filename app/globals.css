@@ -485,7 +485,7 @@ a:hover.link-with-style {
 /** STYLES FOR AMAZING DROPDOWN*/
 .dropdown {
   position: relative;
-  width: 230px;
+  width: 200px;
   filter: url(#goo);
 
   &__face,

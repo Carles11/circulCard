@@ -23,13 +23,11 @@ const ProductListInfoLabel = ({
   const { numberOfUnits, unitsUnit } = handleUnitsDisplayValue(units || null)
 
   return (
-    <div className="w-full text-left">
+    <div className="w-auto text-right">
       <ul className="text-gray-700">
         <li>
           <h5>Hasta hoy hemos gestionado </h5>
           <div className="flex gap-2 items-center">
-            {/* <h2 className="text-5xl"> {getTheNumberOfUnits(units) || 0} </h2>{' '}
-            <h2 className="text-5xl"> {formatUnits(units) || ''} </h2>{' '} */}
             <h2 className="text-6xl">
               {numberOfUnits}
               {unitsUnit}
@@ -60,9 +58,14 @@ const ProductListInfoLabel = ({
               <ul>
                 {certificates.map((pdfPath, index) => (
                   <li key={index}>
-                    <button onClick={handleDownload(pdfPath)}>
-                      {pdfPath.split('/').pop() ||
-                        'thecirculart_certificado.pdf'}
+                    <button
+                      className="overflow-hidden whitespace-nowrap overflow-ellipsis w-64 md:w-fit md:overflow-visible"
+                      onClick={handleDownload(pdfPath)}
+                    >
+                      <span className="max-w-xs md:max-w-fit inline-block">
+                        {pdfPath.split('/').pop() ||
+                          'thecirculart_certificado.pdf'}
+                      </span>
                     </button>
                   </li>
                 ))}
