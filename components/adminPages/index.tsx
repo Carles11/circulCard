@@ -25,9 +25,9 @@ const AdminSection = ({
   handleCreateRelatedProduct,
   handleUpdateRelatedProduct,
   handleDeleteRelatedProduct,
-  // handleCreateMaterial,
-  // handleUpdateMaterial,
-  // handleDeleteMaterial,
+  handleCreateMaterial,
+  handleUpdateMaterial,
+  handleDeleteMaterial,
   showModal,
   relateItems,
   screenMessage,
@@ -48,9 +48,9 @@ const AdminSection = ({
   handleCreateRelatedProduct: () => void
   handleUpdateRelatedProduct: () => void
   handleDeleteRelatedProduct: () => void
-  // handleCreateMaterial: Function
-  // handleUpdateMaterial: Function
-  // handleDeleteMaterial: Function
+  handleCreateMaterial: Function
+  handleUpdateMaterial: Function
+  handleDeleteMaterial: Function
   showModal: boolean
   relateItems: boolean
   screenMessage: PostgrestError | null | string | undefined
