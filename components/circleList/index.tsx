@@ -5,19 +5,30 @@ import Link from 'next/link'
 
 const CircleList = ({
   items,
+  prodWeightName,
   isMaterial,
 }: // percentage,
 {
   items: String[]
+  prodWeightName: { product: string; peso_total: number }[]
   isMaterial: boolean
   // percentage: number
 }) => {
   const prefix = isMaterial ? 'material' : 'project'
-
+  console.log({ items })
   return (
     <div>
       <ul className={`ul-circles ${!isMobile && `ul-circles-vertical`}`}>
         {items.map((element: any, index) => {
+          // Calculating the total weight recycled based on the peso_total of the product and the percentage of material extracted
+          const materialWeight =
+            element.rel_products_materials[0]?.material_name ===
+            element.material_name
+              ? ((prodWeightName[0]?.peso_total ?? 0) *
+                  element.rel_products_materials[0].material_win_percentage) /
+                100
+              : 0
+
           return (
             <li
               key={index}
@@ -58,7 +69,10 @@ const CircleList = ({
                   <p className="text-xs">{element[`${prefix}_name`]}</p>
                 )}
                 {isMaterial && (
-                  <p className="text-sm">{element.cumulative_total} T.</p>
+                  <p className="text-sm">
+                    {materialWeight}
+                    T.
+                  </p>
                 )}
               </div>
             </li>

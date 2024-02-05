@@ -24,6 +24,7 @@ const Materials = () => {
   const [materials, setMaterials] = useState<any[]>([])
   const [projects, setProjects] = useState<any[]>([])
   const [products, setProducts] = useState<any[]>([])
+  const [prodWeightName, setProdWeightName] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const router = useRouter() // Initialize the useRouter hook
@@ -52,7 +53,7 @@ const Materials = () => {
       try {
         const { data, error } = await supabase
           .from('products')
-          .select('product_name, clients(id)')
+          .select('product_name, clients(id), rel_clients_products(peso_total)')
           .filter('clients.id', 'eq', clientID)
           .not('clients', 'is', null)
 
@@ -72,21 +73,31 @@ const Materials = () => {
   useEffect(() => {
     const getMaterials = async () => {
       if (products.length === 0) return
-
-      // Extract product names from the products array
-      const productNames = products
-        .map((product) => product.product_name)
-        .filter(Boolean)
-
       console.log({ products })
+      const combinedData = products.map((product) => ({
+        product: product.product_name,
+        peso_total:
+          product.rel_clients_products.length > 0
+            ? product.rel_clients_products[0].peso_total
+            : 0,
+      }))
+
+      const productNames = combinedData
+        .map((prod) => prod.product)
+        .filter(Boolean)
+      setProdWeightName(combinedData)
+      console.log({ combinedData })
+      // console.log({ productNames })
+
       try {
         const { data, error } = await supabase
           .from('materials')
           .select(
-            'id, material_name, percentage_mat-prod, percentage, color, collect_date, cumulative_total, products(product_name)'
+            'id, material_name, percentage_mat-prod, percentage, color, collect_date, cumulative_total,  products(product_name), rel_products_materials!rel_products_materials_material_id_fkey(product_name, material_name, material_win_percentage)'
           )
+          .in('rel_products_materials.product_name', productNames)
           .in('products.product_name', productNames)
-          .not('products', 'is', null)
+          .not('rel_products_materials', 'is', null)
 
         if (error) {
           throw new Error(error.message)
@@ -132,7 +143,6 @@ const Materials = () => {
   if (error) {
     return <p className="text-red-500">{error}</p>
   }
-  // console.log({ materials })
 
   return (
     <div className="w-full flex flex-col items-center">
@@ -147,7 +157,11 @@ const Materials = () => {
         }`}
       >
         <div className="flex flex-col p-4">
-          <CircleList items={materials} isMaterial />{' '}
+          <CircleList
+            items={materials}
+            prodWeightName={prodWeightName}
+            isMaterial
+          />{' '}
         </div>
         <div className="w-96 h-96 md:w-[44rem] md:h-[44rem]">
           <PieComponent materials={materials} />
