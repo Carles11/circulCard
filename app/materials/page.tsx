@@ -150,6 +150,7 @@ const Materials = () => {
         iconDark={RecycleHands}
         iconLight={RecycleWorld}
         title="Residuos totales"
+        subTitle="extraídos de tus productos reciclados"
       />
       <div
         className={`w-full flex items-center justify-around ${

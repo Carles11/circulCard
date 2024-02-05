@@ -5,9 +5,11 @@ import PieChart from 'components/charts/pieChart'
 const PieComponent = ({ materials, projects }) => {
   const baseArray = materials || projects || null
   const prefix = materials ? 'material' : 'project'
-
+  console.log({ baseArray })
   const matLabels = baseArray?.map((matItem) => matItem[`${prefix}_name`])
-  const matPercentages = baseArray?.map((matItem) => matItem.percentage)
+  const matPercentages = baseArray?.map(
+    (matItem) => matItem.rel_products_materials[0].material_win_percentage
+  )
   const matColors = baseArray?.map((matItem) => matItem.color)
 
   const PieChartData = {
