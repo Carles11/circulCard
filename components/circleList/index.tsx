@@ -15,7 +15,6 @@ const CircleList = ({
   // percentage: number
 }) => {
   const prefix = isMaterial ? 'material' : 'project'
-  console.log({ items })
   return (
     <div>
       <ul className={`ul-circles ${!isMobile && `ul-circles-vertical`}`}>

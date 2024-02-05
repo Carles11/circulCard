@@ -25,6 +25,7 @@ const Materials = () => {
   const [projects, setProjects] = useState<any[]>([])
   const [products, setProducts] = useState<any[]>([])
   const [prodWeightName, setProdWeightName] = useState<any[]>([])
+  const [onlyProductNames, setOnlyProductNames] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const router = useRouter() // Initialize the useRouter hook
@@ -73,7 +74,7 @@ const Materials = () => {
   useEffect(() => {
     const getMaterials = async () => {
       if (products.length === 0) return
-      console.log({ products })
+
       const combinedData = products.map((product) => ({
         product: product.product_name,
         peso_total:
@@ -85,9 +86,9 @@ const Materials = () => {
       const productNames = combinedData
         .map((prod) => prod.product)
         .filter(Boolean)
+
       setProdWeightName(combinedData)
-      console.log({ combinedData })
-      // console.log({ productNames })
+      setOnlyProductNames(productNames)
 
       try {
         const { data, error } = await supabase
@@ -144,13 +145,26 @@ const Materials = () => {
     return <p className="text-red-500">{error}</p>
   }
 
+  // formatting to add ", " or " and " between products.
+  let formattedProductNames
+
+  if (onlyProductNames.length === 1) {
+    formattedProductNames = onlyProductNames[0]
+  } else if (onlyProductNames.length === 2) {
+    formattedProductNames = onlyProductNames.join(' y ')
+  } else {
+    const lastTwoProducts = onlyProductNames.slice(-2).join(' y ')
+    const restOfProducts = onlyProductNames.slice(0, -2).join(', ')
+    formattedProductNames = `${restOfProducts}, ${lastTwoProducts}`
+  }
+
   return (
     <div className="w-full flex flex-col items-center">
       <HeaderInternalPage
         iconDark={RecycleHands}
         iconLight={RecycleWorld}
         title="Residuos totales"
-        subTitle="extraídos de tus productos reciclados"
+        subTitle={`extraídos de tus ${formattedProductNames}`}
       />
       <div
         className={`w-full flex items-center justify-around ${
